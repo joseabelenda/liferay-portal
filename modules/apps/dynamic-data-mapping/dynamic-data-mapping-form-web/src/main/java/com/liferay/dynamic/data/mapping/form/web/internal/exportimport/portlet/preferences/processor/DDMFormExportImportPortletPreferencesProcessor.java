@@ -129,7 +129,9 @@ public class DDMFormExportImportPortletPreferencesProcessor
 		DDMFormInstance ddmFormInstance =
 			_ddmFormInstanceLocalService.fetchFormInstance(formInstanceId);
 
-		if (ddmFormInstance != null) {
+		if ((ddmFormInstance != null) &&
+			(group.isStagingGroup() || group.isCompanyStagingGroup())) {
+
 			StagedModelDataHandlerUtil.exportReferenceStagedModel(
 				portletDataContext, portletId, ddmFormInstance);
 		}
