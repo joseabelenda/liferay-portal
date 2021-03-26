@@ -42,7 +42,8 @@ public interface ClickToChatConfiguration {
 	@Meta.AD(
 		name = "provider",
 		optionLabels = {
-			"CHATWOOT", "CRISP", "JIVOCHAT", "LIVEPERSON", "SMARTSUPP", "TIDIO"
+			"CHATWOOT", "CRISP", "JIVOCHAT", "LIVEPERSON", "SMARTSUPP",
+			"TAWKTO", "TIDIO"
 		},
 		required = false
 	)

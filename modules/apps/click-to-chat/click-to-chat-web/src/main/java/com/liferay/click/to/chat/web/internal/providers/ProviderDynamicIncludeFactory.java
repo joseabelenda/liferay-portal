@@ -40,6 +40,9 @@ public class ProviderDynamicIncludeFactory {
 			else if (provider.equals(ProviderOptions.TIDIO)) {
 				return new TidioDynamicInclude(providerAccountToken, user);
 			}
+			else if (provider.equals(ProviderOptions.TAWKTO)) {
+				return new TawkToDynamicInclude(providerAccountToken, user);
+			}
 		}
 
 		return null;
