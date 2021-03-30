@@ -43,6 +43,9 @@ public class ProviderDynamicIncludeFactory {
 			else if (provider.equals(ProviderOptions.TAWKTO)) {
 				return new TawkToDynamicInclude(providerAccountToken, user);
 			}
+			else if (provider.equals(ProviderOptions.ZENDESK)) {
+				return new ZendeskDynamicInclude(providerAccountToken, user);
+			}
 		}
 
 		return null;

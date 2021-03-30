@@ -43,7 +43,7 @@ public interface ClickToChatConfiguration {
 		name = "provider",
 		optionLabels = {
 			"CHATWOOT", "CRISP", "JIVOCHAT", "LIVEPERSON", "SMARTSUPP",
-			"TAWKTO", "TIDIO"
+			"TAWKTO", "TIDIO", "ZENDESK"
 		},
 		required = false
 	)

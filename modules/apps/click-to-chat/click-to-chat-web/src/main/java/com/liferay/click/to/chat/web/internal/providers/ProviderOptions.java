@@ -23,7 +23,7 @@ public enum ProviderOptions {
 
 	CHATWOOT("CHATWOOT"), CRISP("CRISP"), JIVOCHAT("JIVOCHAT"),
 	LIVEPERSON("LIVEPERSON"), SMARTSUPP("SMARTSUPP"), TAWKTO("TAWKTO"),
-	TIDIO("TIDIO");
+	TIDIO("TIDIO"), ZENDESK("ZENDESK");
 
 	public static ProviderOptions parse(String value) {
 		for (ProviderOptions provider : ProviderOptions.values()) {
