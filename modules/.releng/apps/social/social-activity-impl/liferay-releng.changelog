@@ -12,3 +12,8 @@
 # Bundle Version 2.0.0
 #
 8fbdff41ec7e890ef5b9b002598bab981c79d535^..18c30c47f4ecfa2fbfef8eaf2fe9aaee022159c2=LPS-77699 LPS-119196 LPS-121824 LPS-122403 LRQA-51488
+
+#
+# Bundle Version 2.0.1
+#
+18c30c47f4ecfa2fbfef8eaf2fe9aaee022159c2^..593f67a1c747cc5a9cfe0f4599034734b48d47c2=LPS-129065
