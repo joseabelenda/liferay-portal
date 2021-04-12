@@ -917,6 +917,7 @@ public class LayoutStagedModelDataHandler
 						isInitialLayoutStagingInProcess()) {
 
 					long finalParentLayoutId = parentLayoutId;
+					boolean finalPrivateLayout = privateLayout;
 
 					priority = TransactionInvokerUtil.invoke(
 						_transactionConfig,
@@ -926,7 +927,7 @@ public class LayoutStagedModelDataHandler
 							public Integer call() throws Exception {
 								return _layoutLocalServiceHelper.
 									getNextPriority(
-										groupId, privateLayout,
+										groupId, finalPrivateLayout,
 										finalParentLayoutId, null, -1);
 							}
 
