@@ -71,7 +71,7 @@ public class UserSearchPermissionFilterContributor
 			}
 			catch (PortalException portalException) {
 				_log.error(
-					"Unable to get User role in company " + companyId,
+					"Unable to get the User role for company " + companyId,
 					portalException);
 			}
 		}
