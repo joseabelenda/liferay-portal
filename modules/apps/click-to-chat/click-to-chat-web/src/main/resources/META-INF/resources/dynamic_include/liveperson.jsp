@@ -16,7 +16,7 @@
 
 <%@ include file="/dynamic_include/init.jsp" %>
 
-<script type='text/javascript'>
+<script type="text/javascript">
 window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount ? (window.lpTag = {
 	wl: lpTag.wl || null,
 	scp: lpTag.scp || null,
@@ -83,18 +83,18 @@ window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount 
 lpTag.sdes = lpTag.sdes || [];
 lpTag.sdes.push({
 			"type": "personal",
-            "personal": {
+			"personal": {
 				"firstname": '<%= user.getFirstName() %>',
-                "lastname": '<%= user.getLastName() %>',
+				"lastname": '<%= user.getLastName() %>',
 				"contacts": [{ "email": '<%= user.getEmailAddress() %>' }]
-            }
-        });
+			}
+		});
 
 lpTag.sdes.push({
 			"type": "ctmrinfo",
-            "info": {
+			"info": {
 				"userName": '<%= user.getUserId() %>',
-                "customerId": '<%= user.getScreenName() %>'
-            }
-        });
+				"customerId": '<%= user.getScreenName() %>'
+			}
+		});
 </script>
