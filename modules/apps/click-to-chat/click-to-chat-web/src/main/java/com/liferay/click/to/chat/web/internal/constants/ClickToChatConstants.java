@@ -21,7 +21,7 @@ public interface ClickToChatConstants {
 
 	public static final String[] CLICK_TO_CHAT_PROVIDER_IDS = {
 		"chatwoot", "crisp", "hubspot", "jivochat", "liveperson", "smartsupp",
-		"tidio"
+		"tawkto", "tidio"
 	};
 
 }
