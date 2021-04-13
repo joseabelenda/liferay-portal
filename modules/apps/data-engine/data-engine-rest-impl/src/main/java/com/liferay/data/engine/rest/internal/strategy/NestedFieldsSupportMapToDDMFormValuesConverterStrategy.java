@@ -129,20 +129,22 @@ public class NestedFieldsSupportMapToDDMFormValuesConverterStrategy
 
 			Stream<String> stream = keySet.stream();
 
-			if (!stream.anyMatch(
+			if (stream.anyMatch(
 					key -> StringUtil.startsWith(key, entry.getKey()))) {
 
-				values.put(
-					StringBundler.concat(
-						entry.getKey(), DDM.INSTANCE_SEPARATOR,
-						StringUtil.randomString()),
-					HashMapBuilder.<String, Object>put(
-						"value",
-						HashMapBuilder.<String, Object>put(
-							LocaleUtil.toLanguageId(locale), StringPool.BLANK
-						).build()
-					).build());
+				continue;
 			}
+
+			values.put(
+				StringBundler.concat(
+					entry.getKey(), DDM.INSTANCE_SEPARATOR,
+					StringUtil.randomString()),
+				HashMapBuilder.<String, Object>put(
+					"value",
+					HashMapBuilder.<String, Object>put(
+						LocaleUtil.toLanguageId(locale), StringPool.BLANK
+					).build()
+				).build());
 		}
 	}
 
