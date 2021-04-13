@@ -125,9 +125,9 @@ public class NestedFieldsSupportMapToDDMFormValuesConverterStrategy
 		for (Map.Entry<String, DDMFormField> entry :
 				ddmFormFieldsMap.entrySet()) {
 
-			Set<String> keySet = values.keySet();
+			Set<String> keys = values.keySet();
 
-			Stream<String> stream = keySet.stream();
+			Stream<String> stream = keys.stream();
 
 			if (stream.anyMatch(
 					key -> StringUtil.startsWith(key, entry.getKey()))) {
