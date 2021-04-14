@@ -44,7 +44,7 @@ boolean clickToChatEnabled = GetterUtil.getBoolean(request.getAttribute(ClickToC
 
 <div class="row">
 	<div class="col-md-12">
-		<aui:input checked="<%= clickToChatEnabled %>" disabled="<%= disabled %>" inlineLabel="right" label='<%= LanguageUtil.get(resourceBundle, "enable-click-to-chat") %>' labelCssClass="simple-toggle-switch" name="TypeSettingsProperties--clickToChatEnabled--" type="toggle-switch" value="<%= clickToChatEnabled %>" />
+		<aui:input checked="<%= clickToChatEnabled %>" disabled="<%= disabled %>" inlineLabel="right" label='<%= LanguageUtil.get(resourceBundle, "enable-click-to-chat") %>' labelCssClass="simple-toggle-switch" name="TypeSettingsProperties--clickToChatEnabled--" onchange="onChangeEnableClickToChat(event)" type="toggle-switch" value="<%= clickToChatEnabled %>" />
 	</div>
 </div>
 
@@ -54,7 +54,7 @@ String clickToChatProviderId = GetterUtil.getString(request.getAttribute(ClickTo
 
 <div class="row">
 	<div class="col-md-6">
-		<aui:select label="chat-provider" name="TypeSettingsProperties--clickToChatProviderId--" onclick="onChangeSelect(event)" value="<%= clickToChatProviderId %>">
+		<aui:select label="chat-provider" name="TypeSettingsProperties--clickToChatProviderId--" onchange="onChangeProvider(event)" value="<%= clickToChatProviderId %>">
 			<aui:option label="" value="" />
 
 			<%
@@ -121,12 +121,6 @@ String clickToChatProviderId = GetterUtil.getString(request.getAttribute(ClickTo
 		Liferay.Util.toggleDisabled(clickToChatGuestUsersAllowed, true);
 	}
 
-	clickToChatEnabled.addEventListener('change', (event) => {
-		Liferay.Util.toggleDisabled(clickToChatProviderId, !clickToChatEnabled.checked);
-		Liferay.Util.toggleDisabled(chatProviderAccountId, !clickToChatEnabled.checked);
-		Liferay.Util.toggleDisabled(clickToChatGuestUsersAllowed, !clickToChatEnabled.checked);
-	});
-
 	function hideContainers() {
 		const providers = document.querySelectorAll('.chat-provider-link');
 
@@ -135,7 +129,13 @@ String clickToChatProviderId = GetterUtil.getString(request.getAttribute(ClickTo
 		});
 	}
 
-	function onChangeSelect(event) {
+	function onChangeEnableClickToChat() {
+		Liferay.Util.toggleDisabled(clickToChatProviderId, !clickToChatEnabled.checked);
+		Liferay.Util.toggleDisabled(chatProviderAccountId, !clickToChatEnabled.checked);
+		Liferay.Util.toggleDisabled(clickToChatGuestUsersAllowed, !clickToChatEnabled.checked);
+	}
+
+	function onChangeProvider(event) {
 		hideContainers();
 
 		showContainer(event.target.value);
@@ -144,7 +144,9 @@ String clickToChatProviderId = GetterUtil.getString(request.getAttribute(ClickTo
 	function showContainer(name) {
 		const provider = document.querySelector('.chat-provider-link-to-' + name);
 
-		provider.classList.remove('hide');
+		if (provider) {
+			provider.classList.remove('hide');
+		}
 	}
 
 	var currentProviderId = "<%=clickToChatProviderId%>";
