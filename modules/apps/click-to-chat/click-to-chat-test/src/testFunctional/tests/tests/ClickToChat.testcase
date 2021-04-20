@@ -1,0 +1,211 @@
+@component-name = "click-to-chat"
+definition {
+
+	property testray.main.component.name = "Click To Chat";
+
+	setUp {
+		TestCase.setUpPortalInstance();
+
+		User.firstLoginPG();
+
+		JSONGroup.addGroup(groupName = "Test Site Name");
+
+	}
+
+	tearDown {
+		var testPortalInstance = PropsUtil.get("test.portal.instance");
+
+		if ("${testPortalInstance}" == "true") {
+			PortalInstances.tearDownCP();
+		}
+		else {
+			JSONGroup.deleteGroupByName(groupName = "Test Site Name");
+		}
+	}
+
+	@description = "Enable JivoChat provider"
+	@priority = "5"
+	test EnableJivoChat {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		ClickToChat.enableClickToChat();
+
+		ClickToChat.chooseStrategy(
+			settingStrategy = "Always Inherit");
+
+		ClickToChat.setChatProvider(
+			settingProvider = "JivoChat", 
+			settingToken = "YTicVC4uBL");
+
+		ClickToChat.save();
+
+		Pause(locator1 = "5000");
+
+		Refresh();
+
+		Pause(locator1 = "5000");
+
+		AssertElementPresent(
+			locator1 = "Providers#CHAT_JIVOCHAT");		
+
+	}
+
+	@description = "Disable JivoChat provider"
+	test DisableJivoChat {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		ClickToChat.enableClickToChat();
+
+		ClickToChat.chooseStrategy(
+			settingStrategy = "Always Inherit");
+
+		ClickToChat.setChatProvider(
+			settingProvider = "JivoChat", 
+			settingToken = "YTicVC4uBL");
+
+		ClickToChat.save();
+
+		Pause(locator1 = "5000");
+
+		Refresh();
+
+		Pause(locator1 = "5000");
+
+		AssertElementPresent(
+			locator1 = "Providers#CHAT_JIVOCHAT");
+
+		ClickToChat.enableClickToChat();
+
+		ClickToChat.update();
+
+		Pause(locator1 = "5000");
+
+		Refresh();
+
+		Pause(locator1 = "5000");
+
+		AssertElementNotPresent(
+			locator1 = "Providers#CHAT_JIVOCHAT");
+
+	}
+
+	@description = "Enable Liveperson provider"
+	test EnableLivePerson {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		ClickToChat.enableClickToChat();
+
+		ClickToChat.chooseStrategy(
+			settingStrategy = "Always Inherit");
+
+		ClickToChat.setChatProvider(
+			settingProvider = "Liveperson", 
+			settingToken = "61415130");
+
+		ClickToChat.save();
+
+		Pause(locator1 = "5000");
+
+		Refresh();
+
+		Pause(locator1 = "7000");
+
+		AssertElementPresent(
+			locator1 = "Providers#CHAT_LIVEPERSON");		
+
+	}
+
+	@description = "Disable JivoChat provider"
+	test DisableLivePerson {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		ClickToChat.enableClickToChat();
+
+		ClickToChat.chooseStrategy(
+			settingStrategy = "Always Inherit");
+
+		ClickToChat.setChatProvider(
+			settingProvider = "Liveperson", 
+			settingToken = "61415130");
+
+		ClickToChat.save();
+
+		Pause(locator1 = "5000");
+
+		Refresh();
+
+		Pause(locator1 = "7000");
+
+		AssertElementPresent(
+			locator1 = "Providers#CHAT_LIVEPERSON");
+
+		ClickToChat.enableClickToChat();
+
+		ClickToChat.update();
+
+		Pause(locator1 = "5000");
+
+		Refresh();
+
+		Pause(locator1 = "7000");
+
+		AssertElementNotPresent(
+			locator1 = "Providers#CHAT_LIVEPERSON");
+
+	}
+
+	@description = "Hide Chat Provider Options"
+	test HideChatProvider {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		ClickToChat.enableClickToChat();
+
+		ClickToChat.chooseStrategy(
+			settingStrategy = "Always Override");
+
+		AssertElementPresent(
+			locator1 = "Providers#CHAT_PROVIDERS_HIDE");		
+
+	}
+    
+}
