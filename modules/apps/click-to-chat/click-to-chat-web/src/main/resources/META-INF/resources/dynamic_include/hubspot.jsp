@@ -16,7 +16,22 @@
 
 <%@ include file="/dynamic_include/init.jsp" %>
 
-<script async defer id="hs-script-loader" src="//js-na1.hs-scripts.com/<%= clickToChatChatProviderAccountId %>.js" type="text/javascript"></script>
+<%
+String[] credentials = clickToChatChatProviderAccountId.split("/");
+%>
+
+<script async defer id="hs-script-loader" src="//js-na1.hs-scripts.com/<%= credentials[0] %>.js" type="text/javascript"></script>
 
 <c:if test="<%= themeDisplay.isSignedIn() %>">
+	<script type="text/javascript">
+		window.hsConversationsSettings = {
+			loadImmediately: false,
+		};
+		window.hsConversationsSettings = {
+			identificationEmail: '<%= user.getEmailAddress() %>',
+			identificationToken:
+				'<%= HubspotConnectionUtil.fetchToken(user, credentials[1]) %>',
+		};
+		window.HubSpotConversations.widget.load();
+	</script>
 </c:if>
