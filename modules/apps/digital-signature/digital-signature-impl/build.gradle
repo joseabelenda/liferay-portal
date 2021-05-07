@@ -1,4 +1,35 @@
+configurations.compileInclude.transitive = true
 dependencies {
+	//DocuSign
+
+	compileInclude group: "com.docusign", name: "docusign-esign-java", version: "3.10.1"
+	//DocuSign external dependencies
+	compileInclude group: 'io.swagger', name: 'swagger-annotations', version: '1.5.17'
+	compileInclude group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.29.1'
+	compileInclude group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: '2.29.1'
+	compileInclude group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.29.1'
+	compileInclude group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.29.1'
+	compileInclude group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.1'
+	compileInclude group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
+	compileInclude group: 'org.glassfish.jersey.core', name: 'jersey-common', version: '2.29.1'
+	compileInclude group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-joda', version: '2.10.1'
+	compileInclude group: 'com.brsanthu', name: 'migbase64', version: '2.2'
+	compileInclude group: 'junit', name: 'junit', version: '4.12'
+	compileInclude group: 'org.apache.oltu.oauth2', name: 'org.apache.oltu.oauth2.client', version: '1.0.2'
+	compileInclude group: 'com.auth0', name: 'java-jwt', version: '3.4.1'
+	compileInclude group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.60'
+	compileInclude group: "com.fasterxml.jackson.dataformat" , name: "jackson-dataformat-csv", version: "2.10.1"
+	compileInclude group: "org.glassfish.hk2", name: "osgi-resource-locator", version: "1.0.3"
+	compileInclude group: "org.glassfish.jersey.ext", name: "jersey-entity-filtering", version: "2.29.1"
+	compileInclude group: "org.joda", name: "joda-convert", version: "1.9.2"
+	compileInclude group: "commons-io", name: "commons-io", version: "2.6"
+	compileInclude group: "org.jvnet.mimepull", name: "mimepull", version: "1.9.11"
+
+	//Added DocuSign external dependencies
+	compileInclude group: "joda-time", name: "joda-time", version: "2.8.1"
+	testCompile group: "org.glassfish.jersey.core", name: "jersey-common"
+
+
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"

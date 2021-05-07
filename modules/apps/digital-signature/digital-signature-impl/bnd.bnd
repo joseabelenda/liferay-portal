@@ -1,3 +1,15 @@
 Bundle-Name: Liferay Digital Signature Implementation
 Bundle-SymbolicName: com.liferay.digital.signature.impl
 Bundle-Version: 3.0.0
+Import-Package:\
+  !com.google.*,\
+	!com.sun.jdi.*,\
+	!com.sun.tools.attach.*,\
+  !org.slf4j.impl.*,\
+  !org.hibernate.validator.*,\
+  !sun.misc.*,\
+  \
+  *
+
+-fixupmessages:\
+  "^Classes found in the wrong directory: \\\\{META-INF/versions/";is:=warning

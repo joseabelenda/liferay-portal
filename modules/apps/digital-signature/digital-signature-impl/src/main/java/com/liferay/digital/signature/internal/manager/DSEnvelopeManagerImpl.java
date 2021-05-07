@@ -14,10 +14,12 @@
 
 package com.liferay.digital.signature.internal.manager;
 
+import com.docusign.esign.client.ApiClient;
 import com.liferay.digital.signature.manager.DSEnvelopeManager;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
+import com.liferay.portal.kernel.util.HttpUtil;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -27,6 +29,12 @@ import org.osgi.service.component.annotations.Component;
 public class DSEnvelopeManagerImpl implements DSEnvelopeManager {
 
 	public void addDSEnvelope() {
+
+		ApiClient apiClient = new ApiClient("account-d.docusign.com", "docusignAccessCode", "aa07ad8c-c09a-4c72-822b-ecfdc8ed8863", "549054fc-1016-4dcf-bfad-fe779294d762");
+		String accessToken = apiClient.getAccessToken();
+		System.out.println("accessToken: " + accessToken);
+
+
 		if (_log.isDebugEnabled()) {
 			_log.debug("Invoking #addDSEnvelope");
 		}
