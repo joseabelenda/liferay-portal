@@ -27,13 +27,14 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 )
 @Meta.OCD(
 	id = "com.liferay.digital.signature.internal.configuration.DigitalSignatureConfiguration",
-	localization = "content/Language", name = "digital-signature-configuration"
+	localization = "content/Language",
+	name = "digital-signature-configuration-name"
 )
 public interface DigitalSignatureConfiguration {
 
 	public boolean enable();
 
-	public String apiUsername();
+	public String apiUserName();
 
 	public String apiAccountId();
 

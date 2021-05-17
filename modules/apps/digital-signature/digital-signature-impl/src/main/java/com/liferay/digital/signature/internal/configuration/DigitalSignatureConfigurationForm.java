@@ -63,7 +63,7 @@ public interface DigitalSignatureConfigurationForm {
 	public String apiAccountId();
 
 	@DDMFormField(label = "%api-username")
-	public String apiUsername();
+	public String apiUserName();
 
 	@DDMFormField(label = "%enable", properties = "showAsSwitcher=true")
 	public boolean enable();

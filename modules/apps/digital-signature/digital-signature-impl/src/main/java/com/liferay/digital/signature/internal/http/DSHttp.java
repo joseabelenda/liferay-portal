@@ -60,7 +60,7 @@ public class DSHttp {
 		throws Exception {
 
 		JSONObject jsonObject = DSAccessTokenWebCacheItem.get(
-			digitalSignatureConfiguration.apiUsername(),
+			digitalSignatureConfiguration.apiUserName(),
 			digitalSignatureConfiguration.integrationKey(),
 			digitalSignatureConfiguration.rsaPrivateKey());
 
