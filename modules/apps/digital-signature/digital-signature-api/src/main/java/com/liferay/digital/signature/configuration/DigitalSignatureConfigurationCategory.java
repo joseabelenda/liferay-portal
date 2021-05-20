@@ -12,23 +12,29 @@
  * details.
  */
 
-package com.liferay.digital.signature.internal.configuration.settings.definition;
+package com.liferay.digital.signature.configuration;
 
-import com.liferay.digital.signature.configuration.DigitalSignatureConfiguration;
-import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-
-import org.osgi.service.component.annotations.Component;
+import com.liferay.configuration.admin.category.ConfigurationCategory;
 
 /**
  * @author José Abelenda
  */
-@Component(service = ConfigurationBeanDeclaration.class)
-public class DigitalSignatureConfigurationBeanDeclaration
-	implements ConfigurationBeanDeclaration {
+public class DigitalSignatureConfigurationCategory
+	implements ConfigurationCategory {
 
 	@Override
-	public Class<?> getConfigurationBeanClass() {
-		return DigitalSignatureConfiguration.class;
+	public String getCategoryIcon() {
+		return "message-boards";
+	}
+
+	@Override
+	public String getCategoryKey() {
+		return "digital-signature";
+	}
+
+	@Override
+	public String getCategorySection() {
+		return "content-and-data";
 	}
 
 }

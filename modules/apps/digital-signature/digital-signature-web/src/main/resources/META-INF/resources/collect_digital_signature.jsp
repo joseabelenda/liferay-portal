@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -11,30 +12,20 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+--%>
 
-package com.liferay.digital.signature.internal.configuration;
+<%@ include file="/init.jsp" %>
 
-import com.liferay.configuration.admin.category.ConfigurationCategory;
+<%
+String digitalSignatureTitle = (String)request.getAttribute(DigitalSignatureWebKeys.DIGITAL_SIGNATURE_TITLE);
 
-/**
- * @author José Abelenda
- */
-public class DigitalSignatureConfigurationCategory
-	implements ConfigurationCategory {
-
-	@Override
-	public String getCategoryIcon() {
-		return "message-boards";
-	}
-
-	@Override
-	public String getCategoryKey() {
-		return "digital-signature";
-	}
-
-	@Override
-	public String getCategorySection() {
-		return "content-and-data";
-	}
-
+if (digitalSignatureTitle != null) {
+	renderResponse.setTitle(digitalSignatureTitle);
 }
+%>
+
+<div id="digital-signature-root">
+	<react:component
+		module="js/pages/CollectDigitalSignature"
+	/>
+</div>

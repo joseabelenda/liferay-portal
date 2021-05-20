@@ -12,23 +12,15 @@
  * details.
  */
 
-package com.liferay.digital.signature.internal.configuration.settings.definition;
-
-import com.liferay.digital.signature.configuration.DigitalSignatureConfiguration;
-import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-
-import org.osgi.service.component.annotations.Component;
+package com.liferay.digital.signature.web.internal.constants;
 
 /**
- * @author José Abelenda
+ * @author Keven Leone
  */
-@Component(service = ConfigurationBeanDeclaration.class)
-public class DigitalSignatureConfigurationBeanDeclaration
-	implements ConfigurationBeanDeclaration {
+public class DigitalSignaturePanelCategoryKeys {
 
-	@Override
-	public Class<?> getConfigurationBeanClass() {
-		return DigitalSignatureConfiguration.class;
-	}
+	// TODO git ls-files **PanelCategoryKeys**
+
+	public static final String CONTROL_PANEL_CATEGORY = "THIS IS WRONG, type ";
 
 }
