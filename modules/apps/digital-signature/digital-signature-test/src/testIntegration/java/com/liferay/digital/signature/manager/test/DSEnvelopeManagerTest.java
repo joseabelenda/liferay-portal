@@ -71,12 +71,17 @@ public class DSEnvelopeManagerTest {
 						new DSRecipient() {
 							{
 								dsRecipientId = "1";
-								emailAddress = "test@liferay.com";
+								emailAddress =
+									RandomTestUtil.randomString() +
+										"@liferay.com";
 								name = RandomTestUtil.randomString();
 							}
 						});
 					emailBlurb = RandomTestUtil.randomString();
 					emailSubject = RandomTestUtil.randomString();
+					name = RandomTestUtil.randomString();
+					senderEmailAddress =
+						RandomTestUtil.randomString() + "@liferay.com";
 					status = "sent";
 				}
 			});

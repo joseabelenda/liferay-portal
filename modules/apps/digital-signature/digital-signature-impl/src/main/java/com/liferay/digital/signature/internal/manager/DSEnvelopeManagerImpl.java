@@ -15,7 +15,9 @@
 package com.liferay.digital.signature.internal.manager;
 
 import com.liferay.digital.signature.internal.http.DSHttp;
+import com.liferay.digital.signature.manager.DSCustomFieldManager;
 import com.liferay.digital.signature.manager.DSEnvelopeManager;
+import com.liferay.digital.signature.model.DSCustomField;
 import com.liferay.digital.signature.model.DSEnvelope;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -44,11 +46,26 @@ public class DSEnvelopeManagerImpl implements DSEnvelopeManager {
 		dsEnvelope = _toDSEnvelope(
 			_dsHttp.post(groupId, "envelopes", _toJSONObject(dsEnvelope)));
 
-		if (_log.isDebugEnabled()) {
-			_log.debug(
-				"Added digital signature envelope ID " +
-					dsEnvelope.getDSEnvelopeId());
-		}
+		String dsEnvelopeName = dsEnvelope.getName();
+		String dsEnvelopeSenderEmailAddress =
+			dsEnvelope.getSenderEmailAddress();
+
+		_dsCustomFieldManager.addDSCustomFields(
+			groupId, dsEnvelope.getDSEnvelopeId(),
+			new DSCustomField() {
+				{
+					name = "envelopeName";
+					show = true;
+					value = dsEnvelopeName;
+				}
+			},
+			new DSCustomField() {
+				{
+					name = "envelopeSenderEmail";
+					show = true;
+					value = dsEnvelopeSenderEmailAddress;
+				}
+			});
 
 		return dsEnvelope;
 	}
@@ -176,6 +193,9 @@ public class DSEnvelopeManagerImpl implements DSEnvelopeManager {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DSEnvelopeManagerImpl.class);
+
+	@Reference
+	private DSCustomFieldManager _dsCustomFieldManager;
 
 	@Reference
 	private DSHttp _dsHttp;

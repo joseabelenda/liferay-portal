@@ -48,6 +48,14 @@ public class DSEnvelope {
 		return emailSubject;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getSenderEmailAddress() {
+		return senderEmailAddress;
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -76,6 +84,14 @@ public class DSEnvelope {
 		this.emailSubject = emailSubject;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSenderEmailAddress(String senderEmailAddress) {
+		this.senderEmailAddress = senderEmailAddress;
+	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
@@ -86,6 +102,8 @@ public class DSEnvelope {
 	protected List<DSRecipient> dsRecipients;
 	protected String emailBlurb;
 	protected String emailSubject;
+	protected String name;
+	protected String senderEmailAddress;
 	protected String status;
 
 }
