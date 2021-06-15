@@ -105,12 +105,6 @@ public class DSEnvelope {
 		return JSONUtil.put(
 			"createdLocalDateTime", getCreatedLocalDateTime()
 		).put(
-			"customFields",
-			JSONUtil.putAll(
-				JSONUtil.put("envelopeName", getName()),
-				JSONUtil.put(
-					"envelopeSenderEmailAddress", getSenderEmailAddress()))
-		).put(
 			"documents",
 			JSONUtil.toJSONArray(
 				getDSDocuments(),
