@@ -197,8 +197,7 @@ public class DSEnvelopeManagerTest {
 		DSEnvelope dsEnvelope2Fetched = _dsEnvelopeManager.getDSEnvelope(
 			TestPropsValues.getCompanyId(), TestPropsValues.getGroupId(),
 			dsEnvelope2.getDSEnvelopeId());
-
-		//Ordenamento
+		
 		_assertPage(
 			dsEnvelope1Fetched.getName(), "asc", 2, "",
 			dsEnvelopes -> {
@@ -211,13 +210,12 @@ public class DSEnvelopeManagerTest {
 				_assertEquals(dsEnvelope2Fetched, dsEnvelopes.get(0));
 				_assertEquals(dsEnvelope1Fetched, dsEnvelopes.get(1));
 			});
-		//Busca pelo id
+
 		_assertPage(
 			dsEnvelope1Fetched.getDSEnvelopeId(), "desc", 1, "",
 			dsEnvelopes -> _assertEquals(
 				dsEnvelope1Fetched, dsEnvelopes.get(0)));
 
-		//Busca pelo Recipient
 		List<DSRecipient> dsRecipients = dsEnvelope1Fetched.getDSRecipients();
 
 		DSRecipient dsRecipient = dsRecipients.get(0);
@@ -227,22 +225,21 @@ public class DSEnvelopeManagerTest {
 			dsEnvelopes -> _assertEquals(
 				dsEnvelope1Fetched, dsEnvelopes.get(0)));
 
-		//Busca pelo email subject
 		_assertPage(
 			dsEnvelope2Fetched.getEmailSubject(), "desc", 1, "",
 			dsEnvelopes -> _assertEquals(
 				dsEnvelope2Fetched, dsEnvelopes.get(0)));
-		//Busca pelo nome
+
 		_assertPage(
 			dsEnvelope2Fetched.getName(), "desc", 1, "",
 			dsEnvelopes -> _assertEquals(
 				dsEnvelope2Fetched, dsEnvelopes.get(0)));
-		//Busca pelo sender
+
 		_assertPage(
 			dsEnvelope1Fetched.getSenderEmailAddress(), "desc", 1, "",
 			dsEnvelopes -> _assertEquals(
 				dsEnvelope1Fetched, dsEnvelopes.get(0)));
-		//Busca pelo status
+
 		_assertPage(
 			dsEnvelope2Fetched.getName(), "desc", 1, dsEnvelope1Fetched.getStatus(),
 			dsEnvelopes -> _assertEquals(
@@ -283,7 +280,7 @@ public class DSEnvelopeManagerTest {
 			TestPropsValues.getCompanyId(), TestPropsValues.getGroupId(),
 			"2021-01-01", keywords, order, Pagination.of(1, 2), status);
 
-		Assert.assertEquals(expectedPageSize, page.getPageSize());
+		Assert.assertEquals(expectedPageSize, page.getTotalCount());
 
 		List<DSEnvelope> dsEnvelopes = (List<DSEnvelope>)page.getItems();
 
