@@ -21,8 +21,7 @@ import React, {useContext, useEffect, useState} from 'react';
 
 import {AppContext} from '../../AppContext';
 import {BackButtonPortal} from '../../components/control-menu/ControlMenu';
-import DocumentPreviewer from '../../components/document-previewer/DocumentPreviewer';
-import EmptyState from '../../components/table/EmptyState';
+import DocumentPreviewerWrapper from '../../components/document-previewer/DocumentPreviewerWrapper';
 import {DOCUSIGN_STATUS} from '../../utils/contants';
 import {concatValues} from '../../utils/utils';
 
@@ -99,8 +98,6 @@ function EnvelopeView({
 		isLoading: true,
 	});
 
-	const fileEntry = fileEntries[0] || {};
-
 	const docusignStatus = DOCUSIGN_STATUS[envelope?.status] || {
 		...DOCUSIGN_STATUS.other,
 		label: envelope?.status,
@@ -118,8 +115,7 @@ function EnvelopeView({
 			const data = await response.json();
 
 			setEnvelope({...data, isLoading: false});
-		}
-		catch (e) {
+		} catch (e) {
 			openToast({
 				message: Liferay.Language.get('an-unexpected-error-occurred'),
 				title: Liferay.Language.get('error'),
@@ -149,21 +145,7 @@ function EnvelopeView({
 				envelopeId={envelopeId}
 			/>
 
-			{fileEntries.length === 0 ? (
-				<EmptyState
-					className="mb-2 mt-4"
-					description={Liferay.Language.get(
-						'the-document-does-not-have-a-preview'
-					)}
-					title={Liferay.Language.get('no-preview-available')}
-				/>
-			) : (
-				<DocumentPreviewer
-					baseImageURL={fileEntry.previewFileURL}
-					initialPage={fileEntry.initialPage}
-					totalPages={fileEntry.previewFileCount}
-				/>
-			)}
+			<DocumentPreviewerWrapper fileEntries={fileEntries} />
 
 			<EnvelopeDetail envelope={envelope} envelopeId={envelopeId} />
 		</div>
