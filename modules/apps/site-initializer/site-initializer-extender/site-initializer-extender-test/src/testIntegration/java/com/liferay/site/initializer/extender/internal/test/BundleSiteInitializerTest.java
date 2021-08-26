@@ -96,11 +96,16 @@ public class BundleSiteInitializerTest {
 	}
 
 	private void _assertFragmentEntry(Group group){
-		FragmentEntry fragmentEntry =
+		FragmentEntry fragmentEntryFragg =
 			_fragmentEntryLocalService.fetchFragmentEntry(
 				group.getGroupId(),
-				"pedrao");
-		Assert.assertNotNull(fragmentEntry);
+				"fragg");
+		FragmentEntry fragmentEntryFragging =
+			_fragmentEntryLocalService.fetchFragmentEntry(
+				group.getGroupId(),
+				"fragging");
+		Assert.assertNotNull(fragmentEntryFragg);
+		Assert.assertNotNull(fragmentEntryFragging);
 	}
 
 	private void _assertDDMStructure(Group group) {
