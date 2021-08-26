@@ -7,4 +7,6 @@ dependencies {
 	testIntegrationCompile project(":apps:site:site-api")
 	testIntegrationCompile project(":core:petra:petra-io")
 	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")
+	testIntegrationCompile project(":apps:journal:journal-api")
+	testIntegrationCompile project(":apps:fragment:fragment-api")
 }

@@ -22,6 +22,8 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
+import com.liferay.fragment.model.FragmentEntry;
+import com.liferay.fragment.service.FragmentEntryLocalService;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.service.ObjectDefinitionLocalService;
@@ -82,14 +84,23 @@ public class BundleSiteInitializerTest {
 
 		siteInitializer.initialize(group.getGroupId());
 
-		_assertDocuments(group);
-		_assertObjectDefinitions(group);
-		_assertDDMStructure(group);
-		_assertDDMTemplate(group);
+//		_assertDocuments(group);
+//		_assertObjectDefinitions(group);
+//		_assertDDMStructure(group);
+//		_assertDDMTemplate(group);
+		_assertFragmentEntry(group);
 
 		GroupLocalServiceUtil.deleteGroup(group);
 
 		bundle.uninstall();
+	}
+
+	private void _assertFragmentEntry(Group group){
+		FragmentEntry fragmentEntry =
+			_fragmentEntryLocalService.fetchFragmentEntry(
+				group.getGroupId(),
+				"pedrao");
+		Assert.assertNotNull(fragmentEntry);
 	}
 
 	private void _assertDDMStructure(Group group) {
@@ -165,5 +176,8 @@ public class BundleSiteInitializerTest {
 
 	@Inject
 	private SiteInitializerRegistry _siteInitializerRegistry;
+
+	@Inject
+	private FragmentEntryLocalService _fragmentEntryLocalService;
 
 }
