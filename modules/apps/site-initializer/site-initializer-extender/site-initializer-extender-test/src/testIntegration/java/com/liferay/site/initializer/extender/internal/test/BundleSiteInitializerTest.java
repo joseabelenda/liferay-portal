@@ -84,10 +84,10 @@ public class BundleSiteInitializerTest {
 
 		siteInitializer.initialize(group.getGroupId());
 
-//		_assertDocuments(group);
-//		_assertObjectDefinitions(group);
-//		_assertDDMStructure(group);
-//		_assertDDMTemplate(group);
+		_assertDocuments(group);
+		_assertObjectDefinitions(group);
+		_assertDDMStructure(group);
+		_assertDDMTemplate(group);
 		_assertFragmentEntry(group);
 
 		GroupLocalServiceUtil.deleteGroup(group);
