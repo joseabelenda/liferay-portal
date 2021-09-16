@@ -19,7 +19,7 @@ import com.liferay.configuration.admin.category.ConfigurationCategory;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Jorge Ferrer
+ * @author Elias Santos
  */
 @Component(service = ConfigurationCategory.class)
 public class MapsConfigurationCategory implements ConfigurationCategory {
