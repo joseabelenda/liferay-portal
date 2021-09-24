@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.search.experiences.internal.blueprint.enhancer;
+package com.liferay.search.experiences.internal.blueprint.search.request.enhancer;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -30,9 +30,12 @@ import com.liferay.portal.search.sort.Sorts;
 import com.liferay.search.experiences.blueprint.parameter.SXPParameter;
 import com.liferay.search.experiences.internal.blueprint.parameter.SXPParameterData;
 import com.liferay.search.experiences.internal.blueprint.parameter.SXPParameterDataCreator;
-import com.liferay.search.experiences.internal.blueprint.search.request.HighlightSearchRequestBodyContributor;
-import com.liferay.search.experiences.internal.blueprint.search.request.SearchRequestBodyContributor;
-import com.liferay.search.experiences.internal.blueprint.search.request.SortSearchRequestBodyContributor;
+import com.liferay.search.experiences.internal.blueprint.search.request.body.contributor.AggsSXPSearchRequestBodyContributor;
+import com.liferay.search.experiences.internal.blueprint.search.request.body.contributor.HighlightSXPSearchRequestBodyContributor;
+import com.liferay.search.experiences.internal.blueprint.search.request.body.contributor.QuerySXPSearchRequestBodyContributor;
+import com.liferay.search.experiences.internal.blueprint.search.request.body.contributor.SXPSearchRequestBodyContributor;
+import com.liferay.search.experiences.internal.blueprint.search.request.body.contributor.SortSXPSearchRequestBodyContributor;
+import com.liferay.search.experiences.internal.blueprint.search.request.body.contributor.SuggestSXPSearchRequestBodyContributor;
 import com.liferay.search.experiences.rest.dto.v1_0.Aggregation;
 import com.liferay.search.experiences.rest.dto.v1_0.Avg;
 import com.liferay.search.experiences.rest.dto.v1_0.Cardinality;
@@ -83,20 +86,23 @@ public class SXPBlueprintSearchRequestEnhancer {
 		_processGeneral(configuration.getGeneral(), searchRequestBuilder);
 		_processQueries(configuration.getQueries(), searchRequestBuilder);
 
-		_contributeSearchRequestBodyContributors(
+		_contributeSXPSearchRequestBodyContributors(
 			searchRequestBuilder, sxpBlueprint, sxpParameterData);
 	}
 
 	@Activate
 	protected void activate() {
-		_searchRequestBodyContributors = Arrays.asList(
-			new HighlightSearchRequestBodyContributor(
+		_sxpSearchRequestBodyContributors = Arrays.asList(
+			new AggsSXPSearchRequestBodyContributor(),
+			new HighlightSXPSearchRequestBodyContributor(
 				_fieldConfigBuilderFactory, _highlightBuilderFactory),
-			new SortSearchRequestBodyContributor(
+			new QuerySXPSearchRequestBodyContributor(),
+			new SuggestSXPSearchRequestBodyContributor(),
+			new SortSXPSearchRequestBodyContributor(
 				_geoBuilders, _queries, _scripts, _sorts));
 	}
 
-	private void _contributeSearchRequestBodyContributors(
+	private void _contributeSXPSearchRequestBodyContributors(
 		SearchRequestBuilder searchRequestBuilder, SXPBlueprint sxpBlueprint,
 		SXPParameterData sxpParameterData) {
 
@@ -109,13 +115,13 @@ public class SXPBlueprintSearchRequestEnhancer {
 			names = (String[])sxpParameter.getValue();
 		}
 
-		for (SearchRequestBodyContributor searchRequestBodyContributor :
-				_searchRequestBodyContributors) {
+		for (SXPSearchRequestBodyContributor sxpSearchRequestBodyContributor :
+				_sxpSearchRequestBodyContributors) {
 
 			if (!ArrayUtil.contains(
-					names, searchRequestBodyContributor.getName())) {
+					names, sxpSearchRequestBodyContributor.getName())) {
 
-				searchRequestBodyContributor.contribute(
+				sxpSearchRequestBodyContributor.contribute(
 					searchRequestBuilder, sxpBlueprint, sxpParameterData);
 			}
 		}
@@ -268,12 +274,13 @@ public class SXPBlueprintSearchRequestEnhancer {
 	@Reference
 	private Scripts _scripts;
 
-	private List<SearchRequestBodyContributor> _searchRequestBodyContributors;
-
 	@Reference
 	private Sorts _sorts;
 
 	@Reference
 	private SXPParameterDataCreator _sxpParameterDataCreator;
+
+	private List<SXPSearchRequestBodyContributor>
+		_sxpSearchRequestBodyContributors;
 
 }

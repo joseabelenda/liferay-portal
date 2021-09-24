@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.search.experiences.internal.blueprint.parser;
+package com.liferay.search.experiences.internal.blueprint.parameter;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.CharPool;
@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.search.experiences.blueprint.parameter.DateSXPParameter;
 import com.liferay.search.experiences.blueprint.parameter.SXPParameter;
-import com.liferay.search.experiences.internal.blueprint.parameter.SXPParameterData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +33,7 @@ import java.util.Set;
 /**
  * @author Petteri Karttunen
  */
-public class SXPTemplateVariableParser {
+public class SXPParameterParser {
 
 	public static JSONArray parse(
 		JSONArray jsonArray, SXPParameterData sxpParameterData) {

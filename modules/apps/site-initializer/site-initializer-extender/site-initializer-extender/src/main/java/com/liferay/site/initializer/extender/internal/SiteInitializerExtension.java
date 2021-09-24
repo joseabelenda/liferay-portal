@@ -14,9 +14,12 @@
 
 package com.liferay.site.initializer.extender.internal;
 
+import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
 import com.liferay.asset.list.service.AssetListEntryLocalService;
 import com.liferay.commerce.account.util.CommerceAccountRoleHelper;
 import com.liferay.commerce.currency.service.CommerceCurrencyLocalService;
+import com.liferay.commerce.initializer.util.CPDefinitionsImporter;
+import com.liferay.commerce.initializer.util.CommerceInventoryWarehousesImporter;
 import com.liferay.commerce.product.importer.CPFileImporter;
 import com.liferay.commerce.product.service.CPMeasurementUnitLocalService;
 import com.liferay.document.library.util.DLURLHelper;
@@ -68,12 +71,15 @@ import org.osgi.framework.BundleContext;
 public class SiteInitializerExtension {
 
 	public SiteInitializerExtension(
-		AssetListEntryLocalService assetListEntryLocalService, Bundle bundle,
+		AssetListEntryLocalService assetListEntryLocalService,
+		AssetVocabularyLocalService assetVocabularyLocalService, Bundle bundle,
 		BundleContext bundleContext,
 		CatalogResource.Factory catalogResourceFactory,
 		ChannelResource.Factory channelResourceFactory,
 		CommerceAccountRoleHelper commerceAccountRoleHelper,
 		CommerceCurrencyLocalService commerceCurrencyLocalService,
+		CommerceInventoryWarehousesImporter commerceInventoryWarehousesImporter,
+		CPDefinitionsImporter cpDefinitionsImporter,
 		CPFileImporter cpFileImporter,
 		CPMeasurementUnitLocalService cpMeasurementUnitLocalService,
 		DDMStructureLocalService ddmStructureLocalService,
@@ -113,9 +119,10 @@ public class SiteInitializerExtension {
 
 		_component.setImplementation(
 			new SiteInitializerRegistrar(
-				assetListEntryLocalService, bundle, bundleContext,
-				catalogResourceFactory, channelResourceFactory,
+				assetListEntryLocalService, assetVocabularyLocalService, bundle,
+				bundleContext, catalogResourceFactory, channelResourceFactory,
 				commerceAccountRoleHelper, commerceCurrencyLocalService,
+				commerceInventoryWarehousesImporter, cpDefinitionsImporter,
 				cpFileImporter, cpMeasurementUnitLocalService,
 				ddmStructureLocalService, ddmTemplateLocalService,
 				defaultDDMStructureHelper, dlURLHelper,

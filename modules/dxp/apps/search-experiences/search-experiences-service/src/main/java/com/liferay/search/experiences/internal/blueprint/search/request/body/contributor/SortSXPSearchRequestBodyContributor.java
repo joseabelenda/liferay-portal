@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.search.experiences.internal.blueprint.search.request;
+package com.liferay.search.experiences.internal.blueprint.search.request.body.contributor;
 
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -44,7 +44,7 @@ import com.liferay.portal.search.sort.SortOrder;
 import com.liferay.portal.search.sort.Sorts;
 import com.liferay.search.experiences.blueprint.parameter.SXPParameter;
 import com.liferay.search.experiences.internal.blueprint.parameter.SXPParameterData;
-import com.liferay.search.experiences.internal.blueprint.parser.SXPTemplateVariableParser;
+import com.liferay.search.experiences.internal.blueprint.parameter.SXPParameterParser;
 import com.liferay.search.experiences.rest.dto.v1_0.SXPBlueprint;
 
 import java.util.ArrayList;
@@ -56,10 +56,10 @@ import java.util.Objects;
 /**
  * @author Petteri Karttunen
  */
-public class SortSearchRequestBodyContributor
-	implements SearchRequestBodyContributor {
+public class SortSXPSearchRequestBodyContributor
+	implements SXPSearchRequestBodyContributor {
 
-	public SortSearchRequestBodyContributor(
+	public SortSXPSearchRequestBodyContributor(
 		GeoBuilders geoBuilders, Queries queries, Scripts scripts,
 		Sorts sorts) {
 
@@ -85,7 +85,7 @@ public class SortSearchRequestBodyContributor
 		JSONObject sortJSONObject = JSONUtil.put("test", "test");
 
 		for (String key : sortJSONObject.keySet()) {
-			JSONObject jsonObject = SXPTemplateVariableParser.parse(
+			JSONObject jsonObject = SXPParameterParser.parse(
 				sortJSONObject.getJSONObject(key), sxpParameterData);
 
 			if (jsonObject == null) {
@@ -142,7 +142,7 @@ public class SortSearchRequestBodyContributor
 			Object object = jsonArray.get(i);
 
 			if (object instanceof JSONObject) {
-				JSONObject jsonObject = SXPTemplateVariableParser.parse(
+				JSONObject jsonObject = SXPParameterParser.parse(
 					(JSONObject)object, sxpParameterData);
 
 				if ((jsonObject == null) || (jsonObject.length() == 0)) {
@@ -200,7 +200,7 @@ public class SortSearchRequestBodyContributor
 
 		String key = iterator.next();
 
-		jsonObject = SXPTemplateVariableParser.parse(
+		jsonObject = SXPParameterParser.parse(
 			jsonObject.getJSONObject(key), sxpParameterData);
 
 		if (jsonObject == null) {

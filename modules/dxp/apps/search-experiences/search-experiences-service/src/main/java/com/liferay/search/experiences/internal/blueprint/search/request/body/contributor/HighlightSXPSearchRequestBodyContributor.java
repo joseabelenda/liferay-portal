@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.search.experiences.internal.blueprint.search.request;
+package com.liferay.search.experiences.internal.blueprint.search.request.body.contributor;
 
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -22,16 +22,16 @@ import com.liferay.portal.search.highlight.HighlightBuilder;
 import com.liferay.portal.search.highlight.HighlightBuilderFactory;
 import com.liferay.portal.search.searcher.SearchRequestBuilder;
 import com.liferay.search.experiences.internal.blueprint.parameter.SXPParameterData;
-import com.liferay.search.experiences.internal.blueprint.parser.SXPTemplateVariableParser;
+import com.liferay.search.experiences.internal.blueprint.parameter.SXPParameterParser;
 import com.liferay.search.experiences.rest.dto.v1_0.SXPBlueprint;
 
 /**
  * @author Petteri Karttunen
  */
-public class HighlightSearchRequestBodyContributor
-	implements SearchRequestBodyContributor {
+public class HighlightSXPSearchRequestBodyContributor
+	implements SXPSearchRequestBodyContributor {
 
-	public HighlightSearchRequestBodyContributor(
+	public HighlightSXPSearchRequestBodyContributor(
 		FieldConfigBuilderFactory fieldConfigBuilderFactory,
 		HighlightBuilderFactory highlightBuilderFactory) {
 
@@ -46,7 +46,7 @@ public class HighlightSearchRequestBodyContributor
 
 		// TODO Replace with real JSON
 
-		JSONObject jsonObject = SXPTemplateVariableParser.parse(
+		JSONObject jsonObject = SXPParameterParser.parse(
 			JSONUtil.put("test", "test"), sxpParameterData);
 
 		if (jsonObject == null) {
