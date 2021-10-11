@@ -2,6 +2,9 @@
   "pageElement" : {
     "pageElements" : [ {
       "definition" : {
+        "fragmentStyle" : {
+          "borderWidth" : "0"
+        },
         "layout" : {
           "borderWidth" : 0,
           "contentDisplay" : "FlexRow",
@@ -55,14 +58,14 @@
                 "fragmentImage" : {
                   "description" : {
                     "value_i18n" : {
-                      "en_US" : "Liferay Logo"
+                      "en_US" : ""
                     }
                   },
                   "fragmentImageClassPKReference" : {
                     "classPKReferences" : {
                       "en_US" : {
                         "className" : "com.liferay.portal.kernel.repository.model.FileEntry",
-                        "classPK" : 41215
+                        "classPK" : 41643
                       }
                     },
                     "fragmentImageConfiguration" : {
@@ -89,6 +92,7 @@
         "definition" : {
           "fragmentStyle" : {
             "backgroundColor" : "gray100Color",
+            "borderWidth" : "0",
             "height" : "100vh",
             "textColor" : "",
             "width" : "240px"
@@ -124,11 +128,6 @@
               "value" : {
                 "fragmentLink" : {
                   "value_i18n" : { }
-                },
-                "text" : {
-                  "value_i18n" : {
-                    "en_US" : "superbank1"
-                  }
                 }
               }
             }, {
@@ -150,35 +149,19 @@
                   "value_i18n" : { }
                 }
               }
-            } ],
-            "fragmentStyle" : {
-              "fontSize" : "fontSizeLg",
-              "marginBottom" : "5",
-              "marginLeft" : "4",
-              "marginTop" : "4"
-            }
+            } ]
           },
           "type" : "Fragment"
         }, {
           "definition" : {
             "fragment" : {
-              "key" : "DIALECT-dialect-nav"
+              "key" : "side-menu"
             },
-            "fragmentConfig" : {
-              "orientation" : "nav-horizontal",
-              "navType" : "nav-primary",
-              "inverted" : false
-            },
+            "fragmentConfig" : { },
             "fragmentFields" : [ ],
             "fragmentStyle" : {
-              "backgroundColor" : "",
-              "textColor" : "",
-              "width" : "240px"
-            },
-            "widgetInstances" : [ {
-              "widgetConfig" : { },
-              "widgetName" : "com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet"
-            } ]
+              "marginTop" : "6"
+            }
           },
           "type" : "Fragment"
         } ],
@@ -186,6 +169,7 @@
       }, {
         "definition" : {
           "fragmentStyle" : {
+            "borderWidth" : "0",
             "width" : "100%"
           },
           "layout" : {
@@ -204,6 +188,7 @@
         "pageElements" : [ {
           "definition" : {
             "fragmentStyle" : {
+              "borderWidth" : "0",
               "height" : "64px",
               "marginRight" : "4"
             },

@@ -1,5 +1,1 @@
-{
-	"frontendTokensValuesPath": "frontend-tokens-values.json",
-	"name": "Customer Portal",
-	"thumbnailPath": "thumbnail.png"
-}
+{"name":"Customer Portal","thumbnailPath":"thumbnail.png","frontendTokensValuesPath":"frontend-tokens-values.json"}
