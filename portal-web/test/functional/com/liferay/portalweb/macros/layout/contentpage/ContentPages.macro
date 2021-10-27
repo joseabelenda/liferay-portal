@@ -253,11 +253,20 @@ definition {
 		}
 
 		if ("${fragmentName}" == "Content Display") {
-			AssertVisible(
-				assetType = "${assetType}",
-				image = "${image}",
-				index = "${position}",
-				locator1 = "Fragment#CONTENT_DISPLAY_IMAGE");
+			if (!(isSet(assetType))) {
+				AssertVisible(
+					image = "${image}",
+					index = "${position}",
+					locator1 = "Fragment#CONTENT_DISPLAY_PREVIEW_IMAGE");
+			}
+
+			else {
+				AssertVisible(
+					assetType = "${assetType}",
+					image = "${image}",
+					index = "${position}",
+					locator1 = "Fragment#CONTENT_DISPLAY_IMAGE");
+			}
 		}
 
 		else {
@@ -283,7 +292,7 @@ definition {
 				value1 = "${text}");
 		}
 
-		else if ("${fragmentName}" == "Content Display") {
+		else if (("${fragmentName}" == "Content Display") || ("${fragmentName}" == "Display Page Content")) {
 			if (!(isSet(assetType))) {
 				AssertTextEquals(
 					index = "${position}",

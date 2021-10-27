@@ -155,6 +155,27 @@ public class ObjectEntryServiceSoap {
 		}
 	}
 
+	public static boolean hasModelResourcePermission(
+			com.liferay.object.model.ObjectEntrySoap objectEntry,
+			String actionId)
+		throws RemoteException {
+
+		try {
+			boolean returnValue =
+				ObjectEntryServiceUtil.hasModelResourcePermission(
+					com.liferay.object.model.impl.ObjectEntryModelImpl.toModel(
+						objectEntry),
+					actionId);
+
+			return returnValue;
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		ObjectEntryServiceSoap.class);
 

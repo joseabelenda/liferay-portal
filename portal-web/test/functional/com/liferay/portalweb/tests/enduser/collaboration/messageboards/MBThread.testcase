@@ -90,7 +90,7 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
+	@refactordone
 	test CanAddLinkToDocument {
 		property portal.acceptance = "true";
 		property testray.component.names = "WYSIWYG";
@@ -102,72 +102,36 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "Document_1.jpg");
 
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "guest");
-
-		LexiconEntry.gotoAdd();
-
-		MenuItem.click(menuItem = "Thread");
-
-		Type(
-			locator1 = "TextInput#SUBJECT",
-			value1 = "MB Thread Message Subject");
-
-		CKEditor.addTextWithLink(
+		MessageboardsThread.addCP(
 			displayText = "Link to Document",
+			displayTextWithLink = "true",
 			dmDocumentTitle = "Document_1.jpg",
-			fieldLabel = "Body");
+			fieldLabel = "Body",
+			siteURLKey = "guest",
+			threadSubject = "MB Thread Message Subject");
 
-		PortletEntry.publish();
-
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "guest");
-
-		LexiconEntry.gotoEntry(rowEntry = "MB Thread Message Subject");
-
-		Click(
-			key_text = "Link to Document",
-			locator1 = "Link#ANY");
-
-		AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
+		MessageboardsThread.viewLinkedEntry(
+			imageFileName = "Document_1.jpg",
+			linkedEntry = "Link to Document");
 	}
 
 	@priority = "4"
-	@refactorneeded
+	@refactordone
 	test CanAddLinkToPage {
 		property portal.acceptance = "true";
 		property testray.component.names = "WYSIWYG";
 
-		JSONLayout.addPublicLayout(
-			groupName = "Guest",
-			layoutName = "Message Boards Page");
-
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "guest");
-
-		LexiconEntry.gotoAdd();
-
-		MenuItem.click(menuItem = "Thread");
-
-		Type(
-			locator1 = "TextInput#SUBJECT",
-			value1 = "MB Thread Message Subject");
-
-		CKEditor.addTextWithLink(
+		MessageboardsThread.addCP(
 			displayText = "Link to Page",
+			displayTextWithLink = "true",
 			fieldLabel = "Body",
+			pageName = "Message Boards Page",
+			siteURLKey = "guest",
+			threadSubject = "MB Thread Message Subject");
+
+		MessageboardsThread.viewLinkedEntry(
+			linkedEntry = "Link to Page",
 			pageName = "Message Boards Page");
-
-		PortletEntry.publish();
-
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "guest");
-
-		LexiconEntry.gotoEntry(rowEntry = "MB Thread Message Subject");
-
-		Click(
-			key_text = "Link to Page",
-			locator1 = "Link#ANY");
-
-		AssertVisible(
-			key_pageName = "Message Boards Page",
-			locator1 = "Home#PAGE_ACTIVE");
 	}
 
 	@priority = "5"
@@ -440,6 +404,96 @@ definition {
 			threadSubject = "Message Boards Thread Subject");
 	}
 
+	@priority = "4"
+	@refactordone
+	test CanMoveMBCategory1ThreadToCategory2 {
+		JSONMBMessage.addCategory(
+			categoryDescription = "MB Category Description",
+			categoryName = "MB Category1 Name",
+			userEmailAddress = "test@liferay.com");
+
+		JSONMBMessage.addCategory(
+			categoryDescription = "MB Category Description",
+			categoryName = "MB Category2 Name",
+			userEmailAddress = "test@liferay.com");
+
+		JSONMBMessage.addMessage(
+			categoryName = "MB Category1 Name",
+			groupName = "Guest",
+			threadBody = "MB Thread Message Body",
+			threadSubject = "MB Thread Message Subject");
+
+		Navigator.gotoPage(pageName = "Message Boards Page");
+
+		MessageboardsThread.movePG(
+			categoryName = "MB Category2 Name",
+			categoryName1 = "MB Category1 Name",
+			categoryName2 = "MB Category2 Name",
+			threadBody = "MB Thread Message Body",
+			threadSubject = "MB Thread Message Subject");
+
+		MessageboardsThread.openToThread(
+			categoryName = "MB Category2 Name",
+			groupName = "Guest",
+			layoutName = "message-boards-page",
+			siteURLKey = "guest",
+			threadSubject = "MB Thread Message Subject");
+
+		MessageboardsThread.viewPG(
+			threadBody = "MB Thread Message Body",
+			threadSubject = "MB Thread Message Subject");
+	}
+
+	@priority = "3"
+	@refactordone
+	test CanMoveMBCategory1ThreadWithExplanationPostToCategory2 {
+		JSONMBMessage.addCategory(
+			categoryDescription = "MB Category Description",
+			categoryName = "MB Category1 Name",
+			userEmailAddress = "test@liferay.com");
+
+		JSONMBMessage.addCategory(
+			categoryDescription = "MB Category Description",
+			categoryName = "MB Category2 Name",
+			userEmailAddress = "test@liferay.com");
+
+		JSONMBMessage.addMessage(
+			categoryName = "MB Category1 Name",
+			groupName = "Guest",
+			threadBody = "MB Thread Message Body",
+			threadSubject = "MB Thread Message Subject");
+
+		Navigator.gotoPage(pageName = "Message Boards Page");
+
+		MessageboardsThread.movePG(
+			categoryName = "MB Category2 Name",
+			categoryName1 = "MB Category1 Name",
+			categoryName2 = "MB Category2 Name",
+			explanationBody = "MB Explanation Post Body",
+			explanationPost = "true",
+			explanationSubject = "MB Explanation Post Subject",
+			threadBody = "MB Thread Message Body",
+			threadSubject = "MB Thread Message Subject");
+
+		MessageboardsCategory.openToCategory(
+			categoryName = "MB Category2 Name",
+			groupName = "Guest",
+			layoutName = "message-boards-page",
+			siteURLKey = "guest");
+
+		MessageboardsThread.gotoPG(
+			lastPostUserName = "Test Test",
+			replyCount = "1",
+			threadBody = "MB Thread Message Body",
+			threadSubject = "MB Thread Message Subject");
+
+		MessageboardsThread.viewPG(
+			threadBody = "MB Thread Message Body",
+			threadBody2 = "MB Explanation Post Body",
+			threadSubject = "MB Thread Message Subject",
+			threadSubject2 = "MB Explanation Post Subject");
+	}
+
 	@description = "This test covers LPS-137634. It ensures that a user cannot publish a thread with a tag that contains Java Script."
 	@priority = "3"
 	test CannotPublishThreadWithTagContainingJavaScript {
@@ -518,6 +572,53 @@ definition {
 			userName = "Test Test");
 	}
 
+	@description = "This is a use case for LPS-65368."
+	@priority = "5"
+	@refactordone
+	test CanViewBBCodeNoXSSWithRemoteServices {
+		property custom.properties = "message.boards.message.formats.default=bbcode";
+
+		JSONLayout.addPublicLayout(
+			groupName = "Guest",
+			layoutName = "Message Boards Page");
+
+		JSONLayout.addWidgetToPublicLayout(
+			column = "1",
+			groupName = "Guest",
+			layoutName = "Message Boards Page",
+			widgetName = "Message Boards");
+
+		JSONMBMessage.addMessage(
+			groupName = "Guest",
+			threadBody = "Message Boards Thread Body",
+			threadSubject = "MB Thread Message Subject");
+
+		JSONMBMessage.addMessageReply(
+			anonymous = "true",
+			groupName = "Guest",
+			replyBody = '''<script>alert(123);</script>''',
+			threadSubject = "MB Thread Message Subject");
+
+		MessageboardsThread.openToThread(
+			groupName = "Guest",
+			layoutName = "message-boards-page",
+			siteURLKey = "guest",
+			threadSubject = "MB Thread Message Subject");
+
+		MessageboardsThread.viewBBCodeNoXSS(
+			threadBody = '''<script>alert(123);</script>''',
+			threadSubject = "RE: MB Thread Message Subject",
+			userName = "Anonymous");
+
+		var actualScript = '''<script>alert(123);</script>''';
+
+		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
+
+		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+
+		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+	}
+
 	@priority = "4"
 	@refactordone
 	test JavascriptIsNotExecutedInBBCodeBody {
@@ -544,13 +645,14 @@ definition {
 
 	@description = "This is a use case for LPS-65365."
 	@priority = "5"
-	@refactorneeded
+	@refactordone
 	test JavascriptIsNotExecutedInHTMLBody {
 		property custom.properties = "message.boards.message.formats.default=html";
 
-		Navigator.gotoPage(pageName = "Message Boards Page");
-
 		MessageboardsThread.addPG(
+			groupName = "Guest",
+			layoutName = "message-boards-page",
+			siteURLKey = "guest",
 			threadBody = '''<script>alert(123);</script>''',
 			threadSubject = '''<script>alert(123);</script>''');
 
@@ -565,101 +667,6 @@ definition {
 		MessageboardsThread.viewNoXSSPG(
 			threadBody = '''<script>alert(123);</script>''',
 			threadSubject = '''<script>alert(123);</script>''');
-	}
-
-	@priority = "4"
-	@refactorneeded
-	test MoveMBCategory1ThreadToCategory2 {
-		JSONMBMessage.addCategory(
-			categoryDescription = "MB Category Description",
-			categoryName = "MB Category1 Name",
-			userEmailAddress = "test@liferay.com");
-
-		JSONMBMessage.addCategory(
-			categoryDescription = "MB Category Description",
-			categoryName = "MB Category2 Name",
-			userEmailAddress = "test@liferay.com");
-
-		Navigator.gotoPage(pageName = "Message Boards Page");
-
-		MessageboardsCategory.gotoPG(categoryName = "MB Category1 Name");
-
-		MessageboardsThread.addPG(
-			threadBody = "MB Thread Message Body",
-			threadSubject = "MB Thread Message Subject");
-
-		Navigator.gotoPage(pageName = "Message Boards Page");
-
-		MessageboardsThread.movePG(
-			categoryName = "MB Category2 Name",
-			categoryName1 = "MB Category1 Name",
-			categoryName2 = "MB Category2 Name",
-			threadBody = "MB Thread Message Body",
-			threadSubject = "MB Thread Message Subject");
-
-		Navigator.gotoPage(pageName = "Message Boards Page");
-
-		MessageboardsCategory.gotoPG(categoryName = "MB Category2 Name");
-
-		MessageboardsThread.gotoPG(
-			lastPostUserName = "Test Test",
-			replyCount = "0",
-			threadBody = "MB Thread Message Body",
-			threadSubject = "MB Thread Message Subject");
-
-		MessageboardsThread.viewPG(
-			threadBody = "MB Thread Message Body",
-			threadSubject = "MB Thread Message Subject");
-	}
-
-	@priority = "3"
-	@refactorneeded
-	test MoveMBCategory1ThreadWithExplanationPostToCategory2 {
-		JSONMBMessage.addCategory(
-			categoryDescription = "MB Category Description",
-			categoryName = "MB Category1 Name",
-			userEmailAddress = "test@liferay.com");
-
-		JSONMBMessage.addCategory(
-			categoryDescription = "MB Category Description",
-			categoryName = "MB Category2 Name",
-			userEmailAddress = "test@liferay.com");
-
-		Navigator.gotoPage(pageName = "Message Boards Page");
-
-		MessageboardsCategory.gotoPG(categoryName = "MB Category1 Name");
-
-		MessageboardsThread.addPG(
-			threadBody = "MB Thread Message Body",
-			threadSubject = "MB Thread Message Subject");
-
-		Navigator.gotoPage(pageName = "Message Boards Page");
-
-		MessageboardsThread.movePG(
-			categoryName = "MB Category2 Name",
-			categoryName1 = "MB Category1 Name",
-			categoryName2 = "MB Category2 Name",
-			explanationBody = "MB Explanation Post Body",
-			explanationPost = "true",
-			explanationSubject = "MB Explanation Post Subject",
-			threadBody = "MB Thread Message Body",
-			threadSubject = "MB Thread Message Subject");
-
-		Navigator.gotoPage(pageName = "Message Boards Page");
-
-		MessageboardsCategory.gotoPG(categoryName = "MB Category2 Name");
-
-		MessageboardsThread.gotoPG(
-			lastPostUserName = "Test Test",
-			replyCount = "1",
-			threadBody = "MB Thread Message Body",
-			threadSubject = "MB Thread Message Subject");
-
-		MessageboardsThread.viewPG(
-			threadBody = "MB Thread Message Body",
-			threadBody2 = "MB Explanation Post Body",
-			threadSubject = "MB Thread Message Subject",
-			threadSubject2 = "MB Explanation Post Subject");
 	}
 
 }

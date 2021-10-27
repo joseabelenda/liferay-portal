@@ -104,6 +104,13 @@ public class ObjectEntryServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static boolean hasModelResourcePermission(
+			ObjectEntry objectEntry, String actionId)
+		throws PortalException {
+
+		return getService().hasModelResourcePermission(objectEntry, actionId);
+	}
+
 	public static ObjectEntry updateObjectEntry(
 			long objectEntryId, Map<String, Serializable> values,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)

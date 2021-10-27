@@ -91,6 +91,11 @@ public interface ObjectEntryService extends BaseService {
 	 */
 	public String getOSGiServiceIdentifier();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasModelResourcePermission(
+			ObjectEntry objectEntry, String actionId)
+		throws PortalException;
+
 	public ObjectEntry updateObjectEntry(
 			long objectEntryId, Map<String, Serializable> values,
 			ServiceContext serviceContext)

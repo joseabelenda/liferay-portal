@@ -339,6 +339,47 @@ public class ObjectEntryServiceHttp {
 		}
 	}
 
+	public static boolean hasModelResourcePermission(
+			HttpPrincipal httpPrincipal,
+			com.liferay.object.model.ObjectEntry objectEntry, String actionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				ObjectEntryServiceUtil.class, "hasModelResourcePermission",
+				_hasModelResourcePermissionParameterTypes7);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, objectEntry, actionId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return ((Boolean)returnObj).booleanValue();
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
 	public static com.liferay.object.model.ObjectEntry updateObjectEntry(
 			HttpPrincipal httpPrincipal, long objectEntryId,
 			java.util.Map<String, java.io.Serializable> values,
@@ -348,7 +389,7 @@ public class ObjectEntryServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				ObjectEntryServiceUtil.class, "updateObjectEntry",
-				_updateObjectEntryParameterTypes7);
+				_updateObjectEntryParameterTypes8);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, objectEntryId, values, serviceContext);
@@ -404,7 +445,9 @@ public class ObjectEntryServiceHttp {
 		new Class[] {long.class};
 	private static final Class<?>[] _getObjectEntryParameterTypes6 =
 		new Class[] {String.class, long.class, long.class};
-	private static final Class<?>[] _updateObjectEntryParameterTypes7 =
+	private static final Class<?>[] _hasModelResourcePermissionParameterTypes7 =
+		new Class[] {com.liferay.object.model.ObjectEntry.class, String.class};
+	private static final Class<?>[] _updateObjectEntryParameterTypes8 =
 		new Class[] {
 			long.class, java.util.Map.class,
 			com.liferay.portal.kernel.service.ServiceContext.class

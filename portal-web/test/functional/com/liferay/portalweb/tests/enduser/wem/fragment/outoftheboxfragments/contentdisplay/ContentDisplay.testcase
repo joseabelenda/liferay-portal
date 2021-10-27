@@ -6,16 +6,22 @@ definition {
 	property testray.main.component.name = "Fragments";
 
 	setUp {
-		TestCase.setUpPortalInstance();
+		task ("Set up instance and sign in") {
+			TestCase.setUpPortalInstance();
 
-		User.firstLoginPG();
+			User.firstLoginPG();
+		}
 
-		JSONGroup.addGroup(groupName = "Test Site Name");
+		task ("Add a site") {
+			JSONGroup.addGroup(groupName = "Test Site Name");
+		}
 
-		JSONLayout.addPublicLayout(
-			groupName = "Test Site Name",
-			layoutName = "Content Page Name",
-			type = "content");
+		task ("Add a content page") {
+			JSONLayout.addPublicLayout(
+				groupName = "Test Site Name",
+				layoutName = "Content Page Name",
+				type = "content");
+		}
 	}
 
 	tearDown {
@@ -331,6 +337,7 @@ definition {
 
 	@description = "This is a test for LPS-101249. Can only select web content articles when set itemType to JournalArticle"
 	@priority = "5"
+	@uitest
 	test ViewOnlyWebContentAvailableWhenItemTypeIsJournalArticle {
 		property portal.acceptance = "true";
 
@@ -595,9 +602,10 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals.assertPartialText(
-				locator1 = "WCD#WEB_CONTENT_CONTENT",
-				value1 = "Web Content Content");
+			ContentPages.viewFragmentText(
+				assetType = "web-content",
+				fragmentName = "Content Display",
+				text = "Web Content Content");
 		}
 
 		task ("Delete the web content") {
@@ -636,21 +644,25 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals.assertPartialText(
-				locator1 = "WCD#WEB_CONTENT_CONTENT",
-				value1 = "Web Content Content");
+			ContentPages.viewFragmentText(
+				assetType = "web-content",
+				fragmentName = "Content Display",
+				text = "Web Content Content");
 
 			ContentPages.gotoPageEditor();
 
-			AssertTextEquals(
-				key_fragmentName = "Content Display",
-				locator1 = "Fragment#FRAGMENT_BODY",
-				value1 = "Web Content Content");
+			PageEditor.viewFragment(fragmentName = "Content Display");
+
+			ContentPages.viewFragmentText(
+				assetType = "web-content",
+				fragmentName = "Content Display",
+				text = "Web Content Content");
 		}
 	}
 
 	@description = "This is a test for LPS-97182. This case ensures that a user can map a blogs content field to a fragment via the content display."
 	@priority = "5"
+	@uitest
 	test ViewSelectedBlog {
 		property portal.acceptance = "true";
 
@@ -763,6 +775,7 @@ definition {
 
 	@description = "This is a test for LPS-97182. This case ensures that a user can map an image to a fragment via the content display."
 	@priority = "5"
+	@uitest
 	test ViewSelectedDocument {
 		property portal.acceptance = "true";
 
@@ -806,6 +819,7 @@ definition {
 
 	@description = "This is a test for LPS-100545. The user can map the content field from web content to a fragment via the content display."
 	@priority = "5"
+	@uitest
 	test ViewSelectedWebContentInContentPage {
 		property portal.acceptance = "true";
 

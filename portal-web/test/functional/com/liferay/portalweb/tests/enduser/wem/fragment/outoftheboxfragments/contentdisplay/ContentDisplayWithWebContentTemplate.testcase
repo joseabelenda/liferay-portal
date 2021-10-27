@@ -6,16 +6,22 @@ definition {
 	property testray.main.component.name = "Fragments";
 
 	setUp {
-		TestCase.setUpPortalInstance();
+		task ("Set up instance and sign in") {
+			TestCase.setUpPortalInstance();
 
-		User.firstLoginPG();
+			User.firstLoginPG();
+		}
 
-		JSONGroup.addGroup(groupName = "Test Site Name");
+		task ("Add a site") {
+			JSONGroup.addGroup(groupName = "Test Site Name");
+		}
 
-		JSONLayout.addPublicLayout(
-			groupName = "Test Site Name",
-			layoutName = "Content Page Name",
-			type = "content");
+		task ("Add a content page") {
+			JSONLayout.addPublicLayout(
+				groupName = "Test Site Name",
+				layoutName = "Content Page Name",
+				type = "content");
+		}
 	}
 
 	tearDown {
@@ -85,6 +91,7 @@ definition {
 
 	@description = "This is a test for LPS-101248. Can select any custom web content template as a Template for web content selected in content fragment."
 	@priority = "5"
+	@uitest
 	test SelectCustomWebContentTemplate {
 		property portal.acceptance = "true";
 

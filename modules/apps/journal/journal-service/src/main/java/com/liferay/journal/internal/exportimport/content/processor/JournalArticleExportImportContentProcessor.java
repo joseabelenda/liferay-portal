@@ -307,12 +307,12 @@ public class JournalArticleExportImportContentProcessor
 			}
 
 			for (Locale locale : field.getAvailableLocales()) {
-				String jsonData = String.valueOf(field.getValue(locale));
+				String json = String.valueOf(field.getValue(locale));
 
 				JSONObject jsonObject = null;
 
 				try {
-					jsonObject = _jsonFactory.createJSONObject(jsonData);
+					jsonObject = _jsonFactory.createJSONObject(json);
 				}
 				catch (JSONException jsonException) {
 					if (_log.isDebugEnabled()) {
@@ -348,7 +348,7 @@ public class JournalArticleExportImportContentProcessor
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"Replacing ", jsonData, " with ",
+							"Replacing ", json, " with ",
 							newArticleJSONObject.toJSONString()));
 				}
 

@@ -704,16 +704,29 @@ public class BundleSiteInitializer implements SiteInitializer {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				StringUtil.read(url.openStream()));
 
-			DDMStructure ddmStructure = ddmStructureLocalService.fetchStructure(
-				serviceContext.getScopeGroupId(),
-				_portal.getClassNameId(JournalArticle.class),
-				jsonObject.getString("ddmStructureKey"));
+			long resourceClassNameId = _portal.getClassNameId(
+				jsonObject.getString(
+					"resourceClassName", JournalArticle.class.getName()));
+
+			long ddmStructureId = 0;
+
+			String ddmStructureKey = jsonObject.getString("ddmStructureKey");
+
+			if (Validator.isNotNull(ddmStructureKey)) {
+				DDMStructure ddmStructure =
+					ddmStructureLocalService.fetchStructure(
+						serviceContext.getScopeGroupId(), resourceClassNameId,
+						ddmStructureKey);
+
+				ddmStructureId = ddmStructure.getStructureId();
+			}
 
 			_ddmTemplateLocalService.addTemplate(
 				serviceContext.getUserId(), serviceContext.getScopeGroupId(),
-				_portal.getClassNameId(DDMStructure.class),
-				ddmStructure.getStructureId(),
-				_portal.getClassNameId(JournalArticle.class),
+				_portal.getClassNameId(
+					jsonObject.getString(
+						"className", DDMStructure.class.getName())),
+				ddmStructureId, resourceClassNameId,
 				jsonObject.getString("ddmTemplateKey"),
 				HashMapBuilder.put(
 					LocaleUtil.getSiteDefault(), jsonObject.getString("name")
@@ -1152,7 +1165,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 
 			String urlPath = url.getPath();
 
-			if (StringUtil.endsWith(urlPath, ".json")) {
+			if (StringUtil.endsWith(urlPath, "page-definition.json")) {
 				String json = StringUtil.read(url.openStream());
 
 				json = StringUtil.replace(
@@ -1172,6 +1185,25 @@ public class BundleSiteInitializer implements SiteInitializer {
 						scopeGroup.getFriendlyURL(),
 						String.valueOf(serviceContext.getScopeGroupId())
 					});
+
+				String css = _read(FileUtil.getPath(urlPath) + "/css.css");
+
+				if (Validator.isNotNull(css)) {
+					JSONObject jsonObject = _jsonFactory.createJSONObject(json);
+
+					if (jsonObject == null) {
+						return;
+					}
+
+					JSONObject settingsJSONObject = jsonObject.getJSONObject(
+						"settings");
+
+					settingsJSONObject.put("css", css);
+
+					jsonObject.put("settings", settingsJSONObject);
+
+					json = jsonObject.toString();
+				}
 
 				zipWriter.addEntry(
 					StringUtil.removeFirst(
@@ -2081,7 +2113,17 @@ public class BundleSiteInitializer implements SiteInitializer {
 			return;
 		}
 
+		String js = _read(resourcePath + "/js.js");
+
+		if (Validator.isNotNull(js)) {
+			settingsJSONObject.put("javascript", js);
+		}
+
 		UnicodeProperties unicodeProperties = layoutSet.getSettingsProperties();
+
+		String js = GetterUtil.getString(_read(resourcePath + "/js.js"));
+
+		unicodeProperties.put("javascript", js);
 
 		for (String key : settingsJSONObject.keySet()) {
 			unicodeProperties.put(key, settingsJSONObject.getString(key));

@@ -1084,7 +1084,7 @@ definition {
 
 		task ("Add and edit an external application") {
 			OAuth2.addAndEditExternalApplication(
-				applicationName = "My Application",
+				applicationName = "My application",
 				callbackURI = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=default''',
 				checkboxCheckList = "Remember Device",
 				clientId = "default",
@@ -1102,7 +1102,7 @@ definition {
 
 			LexiconEntry.viewNoEntryMenuItem(
 				menuItem = "Revoke Authorizations",
-				rowEntry = "My Application");
+				rowEntry = "My application");
 		}
 
 		task ("Authorize application and launch request") {
@@ -1133,14 +1133,14 @@ definition {
 
 			// Revoke authorizations via kebab menu
 
-			OAuth2.revokeApplicationAuthorization(applicationName = "My Application");
+			OAuth2.revokeApplicationAuthorization(applicationName = "My application");
 		}
 
 		task ("Assert My application has no authorizations") {
 
 			// Assert that the Authorization list is empty under the Authorization page in the application settings
 
-			OAuth2.assertApplicationHasNoAuthorization(applicationName = "My Application");
+			OAuth2.assertApplicationHasNoAuthorization(applicationName = "My application");
 		}
 	}
 
@@ -1151,7 +1151,7 @@ definition {
 
 		task ("Add and edit external application") {
 			OAuth2.addAndEditExternalApplication(
-				applicationName = "My Application",
+				applicationName = "My application",
 				callbackURI = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=default''',
 				checkboxCheckList = "Trusted Application",
 				clientId = "default",
@@ -1169,7 +1169,7 @@ definition {
 
 			LexiconEntry.viewNoEntryMenuItem(
 				menuItem = "Revoke Authorizations",
-				rowEntry = "My Application");
+				rowEntry = "My application");
 		}
 
 		task ("Authorize application and launch request") {
@@ -1200,14 +1200,14 @@ definition {
 
 			// Revoke authorizations via kebab menu
 
-			OAuth2.revokeApplicationAuthorization(applicationName = "My Application");
+			OAuth2.revokeApplicationAuthorization(applicationName = "My application");
 		}
 
 		task ("Assert My application has no authorization") {
 
 			// Assert that the Authorization list is empty under the Authorization page in the application settings
 
-			OAuth2.assertApplicationHasNoAuthorization(applicationName = "My Application");
+			OAuth2.assertApplicationHasNoAuthorization(applicationName = "My application");
 		}
 	}
 

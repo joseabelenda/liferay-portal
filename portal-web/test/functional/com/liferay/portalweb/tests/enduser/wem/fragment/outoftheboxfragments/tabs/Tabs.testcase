@@ -38,6 +38,7 @@ definition {
 
 	@description = "This is a use case for LPS-109298. Each tab of Tabs fragment is able to contain any elements in content page."
 	@priority = "5"
+	@uitest
 	test AddElementToEachPanel {
 		property portal.acceptance = "true";
 
@@ -257,9 +258,7 @@ definition {
 		}
 
 		task ("Move master page template drop zone to Tab1 of Tab Fragment") {
-			Click(
-				key_fragmentName = "Drop Zone",
-				locator1 = "Fragment#FRAGMENT_BODY");
+			PageEditor.clickConfigurableField(fragmentName = "Drop Zone");
 
 			DragAndDrop.javaScriptDragAndDropToObject(
 				key_dragFragmentName = "Drop Zone",
@@ -480,6 +479,7 @@ definition {
 
 	@description = "This is a use case for LPS-111274. The selected Tabs fragment should always stay selected when click on the tabs of it."
 	@priority = "5"
+	@uitest
 	test ViewTopperBarWhenSwitchToOtherTabs {
 		property portal.acceptance = "true";
 

@@ -162,6 +162,26 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 	}
 
 	@Override
+	public boolean hasModelResourcePermission(
+			ObjectEntry objectEntry, String actionId)
+		throws PortalException {
+
+		if (objectEntry == null) {
+			return false;
+		}
+
+		ObjectDefinition objectDefinition =
+			_objectDefinitionLocalService.getObjectDefinition(
+				objectEntry.getObjectDefinitionId());
+
+		ModelResourcePermission<ObjectEntry> modelResourcePermission =
+			_modelResourcePermissions.get(objectDefinition.getClassName());
+
+		return modelResourcePermission.contains(
+			getPermissionChecker(), objectEntry, actionId);
+	}
+
+	@Override
 	public ObjectEntry updateObjectEntry(
 			long objectEntryId, Map<String, Serializable> values,
 			ServiceContext serviceContext)

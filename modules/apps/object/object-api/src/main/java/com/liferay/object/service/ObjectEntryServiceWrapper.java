@@ -106,6 +106,15 @@ public class ObjectEntryServiceWrapper
 	}
 
 	@Override
+	public boolean hasModelResourcePermission(
+			com.liferay.object.model.ObjectEntry objectEntry, String actionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _objectEntryService.hasModelResourcePermission(
+			objectEntry, actionId);
+	}
+
+	@Override
 	public com.liferay.object.model.ObjectEntry updateObjectEntry(
 			long objectEntryId,
 			java.util.Map<String, java.io.Serializable> values,

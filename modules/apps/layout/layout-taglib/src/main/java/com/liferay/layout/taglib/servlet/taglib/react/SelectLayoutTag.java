@@ -15,6 +15,8 @@
 package com.liferay.layout.taglib.servlet.taglib.react;
 
 import com.liferay.exportimport.kernel.staging.StagingUtil;
+import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
+import com.liferay.layout.item.selector.LayoutItemSelectorReturnType;
 import com.liferay.layout.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -43,6 +45,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
@@ -59,6 +62,10 @@ public class SelectLayoutTag extends IncludeTag {
 
 	public boolean getFollowURLOnTitleClick() {
 		return _followURLOnTitleClick;
+	}
+
+	public String getItemSelectorReturnType() {
+		return _itemSelectorReturnType;
 	}
 
 	public String getItemSelectorSaveEvent() {
@@ -121,6 +128,10 @@ public class SelectLayoutTag extends IncludeTag {
 		_followURLOnTitleClick = followURLOnTitleClick;
 	}
 
+	public void setItemSelectorReturnType(String itemSelectorReturnType) {
+		_itemSelectorReturnType = itemSelectorReturnType;
+	}
+
 	public void setItemSelectorSaveEvent(String itemSelectorSaveEvent) {
 		_itemSelectorSaveEvent = itemSelectorSaveEvent;
 	}
@@ -172,6 +183,7 @@ public class SelectLayoutTag extends IncludeTag {
 		_componentId = null;
 		_enableCurrentPage = false;
 		_followURLOnTitleClick = false;
+		_itemSelectorReturnType = null;
 		_itemSelectorSaveEvent = null;
 		_multiSelection = false;
 		_namespace = null;
@@ -305,7 +317,11 @@ public class SelectLayoutTag extends IncludeTag {
 			).put(
 				"name", layout.getName(themeDisplay.getLocale())
 			).put(
+				"payload", _getPayload(layout, themeDisplay)
+			).put(
 				"privateLayout", layout.isPrivateLayout()
+			).put(
+				"returnType", getItemSelectorReturnType()
 			).put(
 				"url",
 				PortalUtil.getLayoutRelativeURL(layout, themeDisplay, false)
@@ -359,6 +375,35 @@ public class SelectLayoutTag extends IncludeTag {
 			));
 	}
 
+	private String _getPayload(Layout layout, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		if (Objects.equals(
+				LayoutItemSelectorReturnType.class.getName(),
+				getItemSelectorReturnType())) {
+
+			return JSONUtil.put(
+				"layoutId", layout.getLayoutId()
+			).put(
+				"name", layout.getName(themeDisplay.getLocale())
+			).put(
+				"plid", layout.getPlid()
+			).put(
+				"url", PortalUtil.getLayoutFullURL(layout, themeDisplay)
+			).put(
+				"uuid", layout.getUuid()
+			).toString();
+		}
+		else if (Objects.equals(
+					UUIDItemSelectorReturnType.class.getName(),
+					getItemSelectorReturnType())) {
+
+			return layout.getUuid();
+		}
+
+		return PortalUtil.getLayoutRelativeURL(layout, themeDisplay, false);
+	}
+
 	private long _getSelPlid() {
 		return ParamUtil.getLong(
 			getRequest(), "selPlid", LayoutConstants.DEFAULT_PLID);
@@ -394,6 +439,7 @@ public class SelectLayoutTag extends IncludeTag {
 	private String _componentId;
 	private boolean _enableCurrentPage;
 	private boolean _followURLOnTitleClick;
+	private String _itemSelectorReturnType;
 	private String _itemSelectorSaveEvent;
 	private boolean _multiSelection;
 	private String _namespace;

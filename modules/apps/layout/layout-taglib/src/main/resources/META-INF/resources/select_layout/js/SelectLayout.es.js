@@ -64,8 +64,9 @@ const SelectLayout = ({
 					layoutId: node.layoutId,
 					name: node.value,
 					privateLayout: node.privateLayout,
+					returnType: node.returnType,
 					title: node.name,
-					value: node.url,
+					value: node.payload,
 				});
 			}
 		});
