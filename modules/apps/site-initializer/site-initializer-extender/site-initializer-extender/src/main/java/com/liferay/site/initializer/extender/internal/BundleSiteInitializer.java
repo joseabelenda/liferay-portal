@@ -2094,11 +2094,13 @@ public class BundleSiteInitializer implements SiteInitializer {
 			return;
 		}
 
+		String js = _read(resourcePath + "/js.js");
+
+		if (Validator.isNotNull(js)) {
+			settingsJSONObject.put("javascript", js);
+		}
+
 		UnicodeProperties unicodeProperties = layoutSet.getSettingsProperties();
-
-		String js = GetterUtil.getString(_read(resourcePath + "/js.js"));
-
-		unicodeProperties.put("javascript", js);
 
 		for (String key : settingsJSONObject.keySet()) {
 			unicodeProperties.put(key, settingsJSONObject.getString(key));
