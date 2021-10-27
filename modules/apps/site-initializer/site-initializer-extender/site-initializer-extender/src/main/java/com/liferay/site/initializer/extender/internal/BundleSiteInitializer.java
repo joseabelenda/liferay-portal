@@ -1052,7 +1052,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 		}
 
 		json = StringUtil.replace(
-			json, "\"[$", "$]\"",
+			json, "[$", "$]",
 			HashMapBuilder.putAll(
 				assetListEntryIdsStringUtilReplaceValues
 			).putAll(
@@ -1165,7 +1165,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 
 			String urlPath = url.getPath();
 
-			if (StringUtil.endsWith(urlPath, ".json")) {
+			if (StringUtil.endsWith(urlPath, "page-definition.json")) {
 				String json = StringUtil.read(url.openStream());
 
 				json = StringUtil.replace(
@@ -1185,6 +1185,21 @@ public class BundleSiteInitializer implements SiteInitializer {
 						scopeGroup.getFriendlyURL(),
 						String.valueOf(serviceContext.getScopeGroupId())
 					});
+
+				String css = _read(FileUtil.getPath(urlPath) + "/css.css");
+
+				if (Validator.isNotNull(css)) {
+					JSONObject jsonObject = _jsonFactory.createJSONObject(json);
+
+					JSONObject settingsJSONObject = jsonObject.getJSONObject(
+						"settings");
+
+					settingsJSONObject.put("css", css);
+
+					jsonObject.put("settings", settingsJSONObject);
+
+					json = jsonObject.toString();
+				}
 
 				zipWriter.addEntry(
 					StringUtil.removeFirst(
