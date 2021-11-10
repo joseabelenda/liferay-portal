@@ -25,3 +25,11 @@ export const createOrders = (accountId, channelId, skuId, product) => {
 
 	return axios.post(`${DeliveryAPI}/v1.0/orders`, payload);
 };
+
+export const updateOrderPaymentMethod = (orderId) => {
+	const payload = {
+		paymentMethod: 'paypal',
+	};
+
+	return axios.patch(`${DeliveryAPI}/v1.0/orders/${orderId}`, payload);
+};
