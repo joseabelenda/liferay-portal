@@ -27,6 +27,10 @@ public class DSDocument {
 		return dsDocumentId;
 	}
 
+	public String getFileEntryExternalReferenceCode() {
+		return fileEntryExternalReferenceCode;
+	}
+
 	public String getFileExtension() {
 		return fileExtension;
 	}
@@ -47,6 +51,12 @@ public class DSDocument {
 		this.dsDocumentId = dsDocumentId;
 	}
 
+	public void setFileEntryExternalReferenceCode(
+		String fileEntryExternalReferenceCode) {
+
+		this.fileEntryExternalReferenceCode = fileEntryExternalReferenceCode;
+	}
+
 	public void setFileExtension(String fileExtension) {
 		this.fileExtension = fileExtension;
 	}
@@ -61,6 +71,7 @@ public class DSDocument {
 
 	protected String data;
 	protected String dsDocumentId;
+	protected String fileEntryExternalReferenceCode;
 	protected String fileExtension;
 	protected String name;
 	protected String uri;
