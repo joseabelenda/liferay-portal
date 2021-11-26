@@ -21,7 +21,10 @@ import com.liferay.digital.signature.model.DSCustomField;
 import com.liferay.digital.signature.model.DSDocument;
 import com.liferay.digital.signature.model.DSEnvelope;
 import com.liferay.digital.signature.model.DSRecipient;
+import com.liferay.document.library.kernel.model.DLFileEntry;
+import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -30,9 +33,13 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+
+import java.io.IOException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -54,11 +61,29 @@ public class DSEnvelopeManagerImpl implements DSEnvelopeManager {
 
 	@Override
 	public DSEnvelope addDSEnvelope(
-		long companyId, long groupId, DSEnvelope dsEnvelope) {
+			long companyId, long groupId, DSEnvelope dsEnvelope)
+		throws IOException, PortalException {
 
 		String dsEnvelopeName = dsEnvelope.getName();
 		String dsEnvelopeSenderEmailAddress =
 			dsEnvelope.getSenderEmailAddress();
+
+		for (DSDocument document : dsEnvelope.getDSDocuments()) {
+			if (Validator.isNotNull(
+					document.getFileEntryExternalReferenceCode())) {
+
+				DLFileEntry dlFileEntry =
+					_dlFileEntryLocalService.
+						getFileEntryByExternalReferenceCode(
+							groupId,
+							document.getFileEntryExternalReferenceCode());
+
+				String base64 = Base64.encode(
+					FileUtil.getBytes(dlFileEntry.getContentStream()));
+
+				document.setData(base64);
+			}
+		}
 
 		dsEnvelope = _toDSEnvelope(
 			_dsHttp.post(
@@ -277,6 +302,9 @@ public class DSEnvelopeManagerImpl implements DSEnvelopeManager {
 	private static final Pattern _pattern = Pattern.compile(
 		"[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}" +
 			"\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}");
+
+	@Reference
+	private DLFileEntryLocalService _dlFileEntryLocalService;
 
 	@Reference
 	private DSCustomFieldManager _dsCustomFieldManager;
