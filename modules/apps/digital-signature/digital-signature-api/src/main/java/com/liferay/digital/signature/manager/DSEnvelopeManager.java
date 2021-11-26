@@ -15,8 +15,11 @@
 package com.liferay.digital.signature.manager;
 
 import com.liferay.digital.signature.model.DSEnvelope;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+
+import java.io.IOException;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -27,7 +30,8 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface DSEnvelopeManager {
 
 	public DSEnvelope addDSEnvelope(
-		long companyId, long groupId, DSEnvelope dsEnvelope);
+			long companyId, long groupId, DSEnvelope dsEnvelope)
+		throws IOException, PortalException;
 
 	public void deleteDSEnvelopes(
 			long companyId, long groupId, String... dsEnvelopeIds)
