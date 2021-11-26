@@ -73,6 +73,8 @@ public class DSEnvelopeUtil {
 		return new DSDocument() {
 			{
 				data = dsDocument.getData();
+				fileEntryExternalReferenceCode =
+					dsDocument.getFileEntryExternalReferenceCode();
 				fileExtension = dsDocument.getFileExtension();
 				id = dsDocument.getDSDocumentId();
 				name = dsDocument.getName();
@@ -88,6 +90,8 @@ public class DSEnvelopeUtil {
 			{
 				data = dsDocument.getData();
 				dsDocumentId = dsDocument.getId();
+				fileEntryExternalReferenceCode =
+					dsDocument.getFileEntryExternalReferenceCode();
 				fileExtension = dsDocument.getFileExtension();
 				name = dsDocument.getName();
 				uri = dsDocument.getUri();
