@@ -230,6 +230,25 @@ public interface RemoteAppEntryLocalService
 	public RemoteAppEntry fetchRemoteAppEntry(long remoteAppEntryId);
 
 	/**
+	 * Returns the remote app entry with the matching external reference code and company.
+	 *
+	 * @param companyId the primary key of the company
+	 * @param externalReferenceCode the remote app entry's external reference code
+	 * @return the matching remote app entry, or <code>null</code> if a matching remote app entry could not be found
+	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public RemoteAppEntry fetchRemoteAppEntryByExternalReferenceCode(
+		long companyId, String externalReferenceCode);
+
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link #fetchRemoteAppEntryByExternalReferenceCode(long, String)}
+	 */
+	@Deprecated
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public RemoteAppEntry fetchRemoteAppEntryByReferenceCode(
+		long companyId, String externalReferenceCode);
+
+	/**
 	 * Returns the remote app entry with the matching UUID and company.
 	 *
 	 * @param uuid the remote app entry's UUID
@@ -296,6 +315,19 @@ public interface RemoteAppEntryLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public RemoteAppEntry getRemoteAppEntry(long remoteAppEntryId)
+		throws PortalException;
+
+	/**
+	 * Returns the remote app entry with the matching external reference code and company.
+	 *
+	 * @param companyId the primary key of the company
+	 * @param externalReferenceCode the remote app entry's external reference code
+	 * @return the matching remote app entry
+	 * @throws PortalException if a matching remote app entry could not be found
+	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public RemoteAppEntry getRemoteAppEntryByExternalReferenceCode(
+			long companyId, String externalReferenceCode)
 		throws PortalException;
 
 	/**
