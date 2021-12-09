@@ -12,20 +12,19 @@
  * details.
  */
 
-package com.liferay.webhook.logger;
+package com.liferay.webhook;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author Inácio Nery
- * @author Brian Wing Shun Chan
+ * @author Nícolas Moura
  */
 @SpringBootApplication
-public class WebhookLoggerSpringBootApplication {
+public class RaylifeWebhookSpringBootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebhookLoggerSpringBootApplication.class, args);
+		SpringApplication.run(RaylifeWebhookSpringBootApplication.class, args);
 	}
 
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.webhook.logger;
+package com.liferay.webhook;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -50,12 +50,11 @@ import java.net.URL;
 import java.io.InputStream;
 
 /**
- * @author Inácio Nery
- * @author Brian Wing Shun Chan
+ * @author Nícolas Moura
  */
-@RequestMapping("/raylife-webhook")
+@RequestMapping("/raylife")
 @RestController
-public class WebhookLoggerRestController {
+public class RaylifeWebhookRestController {
 
 	@GetMapping("{value}")
 	public String getValue(@PathVariable(required = false) String value) {
@@ -83,5 +82,5 @@ public class WebhookLoggerRestController {
 	}
 
 	private static final Log _log = LogFactory.getLog(
-		WebhookLoggerRestController.class);
+		RaylifeWebhookRestController.class);
 }
