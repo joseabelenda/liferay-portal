@@ -1,0 +1,24 @@
+{
+	"active": true,
+	"cronExpression": "0 5 * ? * * *",
+	"dispatchTaskClusterMode": 0,
+	"dispatchTaskExecutorType": "talend",
+	"endDateDay": "",
+	"endDateHour": "",
+	"endDateMinute": "",
+	"endDateMonth": "",
+	"endDateYear": "",
+	"name": "Raylife Job Scheduler",
+	"neverEnd": false,
+	"overlapAllowed": false,
+	"properties": {
+		"statistics": "true"
+	},
+	"startDateDay": "",
+	"startDateHour": "",
+	"startDateMinute": "",
+	"startDateMonth": "",
+	"startDateYear": "",
+	"system": false,
+	"unique": true
+}
