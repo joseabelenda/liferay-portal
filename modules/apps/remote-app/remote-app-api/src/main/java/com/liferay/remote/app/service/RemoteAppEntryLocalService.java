@@ -79,10 +79,30 @@ public interface RemoteAppEntryLocalService
 		throws PortalException;
 
 	@Indexable(type = IndexableType.REINDEX)
+	public RemoteAppEntry addCustomElementRemoteAppEntry(
+			long userId, String customElementCSSURLs,
+			String customElementHTMLElementName, String customElementURLs,
+			String externalReferenceCode, String description,
+			String friendlyURLMapping, boolean instanceable,
+			Map<Locale, String> nameMap, String portletCategoryName,
+			String properties, String sourceCodeURL)
+		throws PortalException;
+
+	@Indexable(type = IndexableType.REINDEX)
 	public RemoteAppEntry addIFrameRemoteAppEntry(
 			long userId, String description, String friendlyURLMapping,
 			String iFrameURL, boolean instanceable, Map<Locale, String> nameMap,
 			String portletCategoryName, String properties, String sourceCodeURL)
+		throws PortalException;
+
+	@Indexable(type = IndexableType.REINDEX)
+	public RemoteAppEntry addOrUpdateCustomElementRemoteAppEntry(
+			long userId, String customElementCSSURLs,
+			String customElementHTMLElementName, String customElementURLs,
+			String externalReferenceCode, String description,
+			String friendlyURLMapping, boolean instanceable,
+			Map<Locale, String> nameMap, String portletCategoryName,
+			String properties, String sourceCodeURL)
 		throws PortalException;
 
 	/**
