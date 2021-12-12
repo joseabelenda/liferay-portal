@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.remote.app.constants.RemoteAppConstants;
 import com.liferay.remote.app.deployer.RemoteAppEntryDeployer;
+import com.liferay.remote.app.exception.DuplicateRemoteAppEntryException;
 import com.liferay.remote.app.exception.RemoteAppEntryCustomElementCSSURLsException;
 import com.liferay.remote.app.exception.RemoteAppEntryCustomElementHTMLElementNameException;
 import com.liferay.remote.app.exception.RemoteAppEntryCustomElementURLsException;
@@ -95,6 +96,24 @@ public class RemoteAppEntryLocalServiceImpl
 			String properties, String sourceCodeURL)
 		throws PortalException {
 
+		return addCustomElementRemoteAppEntry(
+			userId, customElementCSSURLs, customElementHTMLElementName,
+			customElementURLs, null, description, friendlyURLMapping,
+			instanceable, nameMap, portletCategoryName, properties,
+			sourceCodeURL);
+	}
+
+	@Indexable(type = IndexableType.REINDEX)
+	@Override
+	public RemoteAppEntry addCustomElementRemoteAppEntry(
+			long userId, String customElementCSSURLs,
+			String customElementHTMLElementName, String customElementURLs,
+			String externalReferenceCode, String description,
+			String friendlyURLMapping, boolean instanceable,
+			Map<Locale, String> nameMap, String portletCategoryName,
+			String properties, String sourceCodeURL)
+		throws PortalException {
+
 		customElementCSSURLs = StringUtil.trim(customElementCSSURLs);
 		customElementHTMLElementName = StringUtil.trim(
 			customElementHTMLElementName);
@@ -106,10 +125,17 @@ public class RemoteAppEntryLocalServiceImpl
 
 		_validateFriendlyURLMapping(friendlyURLMapping);
 
-		RemoteAppEntry remoteAppEntry = remoteAppEntryPersistence.create(
-			counterLocalService.increment());
+		if (Validator.isBlank(externalReferenceCode)) {
+			externalReferenceCode = null;
+		}
 
 		User user = _userLocalService.getUser(userId);
+
+		_validateExternalReferenceCode(
+			user.getCompanyId(), externalReferenceCode);
+
+		RemoteAppEntry remoteAppEntry = remoteAppEntryPersistence.create(
+			counterLocalService.increment());
 
 		remoteAppEntry.setCompanyId(user.getCompanyId());
 		remoteAppEntry.setUserId(user.getUserId());
@@ -120,6 +146,7 @@ public class RemoteAppEntryLocalServiceImpl
 			customElementHTMLElementName);
 		remoteAppEntry.setCustomElementURLs(customElementURLs);
 		remoteAppEntry.setDescription(description);
+		remoteAppEntry.setExternalReferenceCode(externalReferenceCode);
 		remoteAppEntry.setFriendlyURLMapping(friendlyURLMapping);
 		remoteAppEntry.setInstanceable(instanceable);
 		remoteAppEntry.setNameMap(nameMap);
@@ -183,6 +210,46 @@ public class RemoteAppEntryLocalServiceImpl
 		remoteAppEntryLocalService.deployRemoteAppEntry(remoteAppEntry);
 
 		return _startWorkflowInstance(userId, remoteAppEntry);
+	}
+
+	@Indexable(type = IndexableType.REINDEX)
+	@Override
+	public RemoteAppEntry addOrUpdateCustomElementRemoteAppEntry(
+			long userId, String customElementCSSURLs,
+			String customElementHTMLElementName, String customElementURLs,
+			String externalReferenceCode, String description,
+			String friendlyURLMapping, boolean instanceable,
+			Map<Locale, String> nameMap, String portletCategoryName,
+			String properties, String sourceCodeURL)
+		throws PortalException {
+
+		RemoteAppEntry remoteAppEntry = null;
+
+		User user = _userLocalService.getUser(userId);
+
+		if (Validator.isBlank(externalReferenceCode)) {
+			externalReferenceCode = null;
+		}
+		else {
+			remoteAppEntry =
+				remoteAppEntryLocalService.
+					fetchRemoteAppEntryByExternalReferenceCode(
+						user.getCompanyId(), externalReferenceCode);
+		}
+
+		if (remoteAppEntry == null) {
+			return addCustomElementRemoteAppEntry(
+				userId, customElementCSSURLs, customElementHTMLElementName,
+				customElementURLs, externalReferenceCode, description,
+				friendlyURLMapping, instanceable, nameMap, portletCategoryName,
+				properties, sourceCodeURL);
+		}
+
+		return remoteAppEntryLocalService.updateCustomElementRemoteAppEntry(
+			remoteAppEntry.getRemoteAppEntryId(), customElementCSSURLs,
+			customElementHTMLElementName, customElementURLs, description,
+			friendlyURLMapping, nameMap, portletCategoryName, properties,
+			sourceCodeURL);
 	}
 
 	@Override
@@ -567,6 +634,24 @@ public class RemoteAppEntryLocalServiceImpl
 				throw new RemoteAppEntryCustomElementURLsException(
 					"Invalid custom element URL " + customElementURL);
 			}
+		}
+	}
+
+	private void _validateExternalReferenceCode(
+			long companyId, String externalReferenceCode)
+		throws DuplicateRemoteAppEntryException {
+
+		if (Validator.isNull(externalReferenceCode)) {
+			return;
+		}
+
+		RemoteAppEntry remoteAppEntry =
+			remoteAppEntryLocalService.
+				fetchRemoteAppEntryByExternalReferenceCode(
+					companyId, externalReferenceCode);
+
+		if (remoteAppEntry != null) {
+			throw new DuplicateRemoteAppEntryException();
 		}
 	}
 
