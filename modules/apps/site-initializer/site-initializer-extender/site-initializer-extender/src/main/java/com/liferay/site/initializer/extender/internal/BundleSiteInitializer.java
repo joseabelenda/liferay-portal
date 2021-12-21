@@ -900,6 +900,119 @@ public class BundleSiteInitializer implements SiteInitializer {
 		}
 	}
 
+	private void _addDispatchTrigger(
+			String resourcePath, ServiceContext serviceContext)
+		throws Exception {
+
+		String json = _read(resourcePath + "dispatch-trigger.json");
+
+		if (Validator.isNull(json)) {
+			return;
+		}
+
+		JSONObject dispatchTriggerJSONObject = JSONFactoryUtil.createJSONObject(
+			json);
+
+		JSONObject propertiesJSONObject =
+			dispatchTriggerJSONObject.getJSONObject("properties");
+
+		UnicodeProperties unicodeProperties = new UnicodeProperties();
+
+		for (String key : propertiesJSONObject.keySet()) {
+			unicodeProperties.put(key, propertiesJSONObject.getString(key));
+		}
+
+		DispatchTrigger dispatchTrigger =
+			_dispatchTriggerLocalService.fetchDispatchTrigger(
+				serviceContext.getCompanyId(),
+				dispatchTriggerJSONObject.getString("name"));
+
+		if (dispatchTrigger != null) {
+			if (dispatchTriggerJSONObject.getBoolean("unique")) {
+				return;
+			}
+
+			_dispatchTriggerLocalService.deleteDispatchTrigger(
+				dispatchTrigger.getDispatchTriggerId());
+		}
+
+		URL url = _bundle.getEntry(resourcePath + "dispatch-trigger.zip");
+
+		if (url != null) {
+			TalendArchiveParserUtil.updateUnicodeProperties(
+				url.openStream(), unicodeProperties);
+		}
+
+		dispatchTrigger = _dispatchTriggerLocalService.addDispatchTrigger(
+			serviceContext.getUserId(),
+			dispatchTriggerJSONObject.getString("dispatchTaskExecutorType"),
+			unicodeProperties, dispatchTriggerJSONObject.getString("name"),
+			dispatchTriggerJSONObject.getBoolean("system"));
+
+		File file = FileUtil.createTempFile(url.openStream());
+
+		_dispatchFileRepository.addFileEntry(
+			dispatchTrigger.getUserId(), dispatchTrigger.getDispatchTriggerId(),
+			FileUtil.getShortFileName(url.getPath()), file.length(),
+			MimeTypesUtil.getContentType(file), new FileInputStream(file));
+
+		Calendar calendar = CalendarFactoryUtil.getCalendar(
+			serviceContext.getTimeZone());
+
+		if (dispatchTriggerJSONObject.getInt("startDateDay") != 0) {
+			_dispatchTriggerLocalService.updateDispatchTrigger(
+				dispatchTrigger.getDispatchTriggerId(),
+				dispatchTriggerJSONObject.getBoolean("active"),
+				dispatchTriggerJSONObject.getString("cronExpression"),
+				DispatchTaskClusterMode.valueOf(
+					dispatchTriggerJSONObject.getInt(
+						"dispatchTaskClusterMode")),
+				calendar.get(dispatchTriggerJSONObject.getInt("endDateMonth")),
+				calendar.get(dispatchTriggerJSONObject.getInt("endDateDay")),
+				calendar.get(dispatchTriggerJSONObject.getInt("endDateYear")),
+				calendar.get(dispatchTriggerJSONObject.getInt("endDateHour")),
+				calendar.get(dispatchTriggerJSONObject.getInt("endDateMinute")),
+				dispatchTriggerJSONObject.getBoolean("neverEnd"),
+				dispatchTriggerJSONObject.getBoolean("overlapAllowed"),
+				calendar.get(
+					dispatchTriggerJSONObject.getInt("startDateMonth")),
+				calendar.get(dispatchTriggerJSONObject.getInt("startDateDay")),
+				calendar.get(dispatchTriggerJSONObject.getInt("startDateYear")),
+				calendar.get(dispatchTriggerJSONObject.getInt("startDateHour")),
+				calendar.get(
+					dispatchTriggerJSONObject.getInt("startDateMinute")));
+		}
+		else {
+
+			// TODO Rewrite with TransactionCommitCallbackUtil to avoid the 5
+			// minute timer
+
+			int actualMonth = calendar.get(Calendar.MONTH);
+			int actualDay = calendar.get(Calendar.DAY_OF_MONTH);
+			int actualYear = calendar.get(Calendar.YEAR);
+			int actualHour = calendar.get(Calendar.HOUR_OF_DAY);
+			int actualMinute = calendar.get(Calendar.MINUTE);
+
+			calendar.add(Calendar.MINUTE, 5);
+
+			_dispatchTriggerLocalService.updateDispatchTrigger(
+				dispatchTrigger.getDispatchTriggerId(),
+				dispatchTriggerJSONObject.getBoolean("active"),
+				StringBundler.concat(
+					"0 ", calendar.get(Calendar.MINUTE), " * ? * * *"),
+				DispatchTaskClusterMode.valueOf(
+					dispatchTriggerJSONObject.getInt(
+						"dispatchTaskClusterMode")),
+				calendar.get(Calendar.MONTH),
+				calendar.get(Calendar.DAY_OF_MONTH),
+				calendar.get(Calendar.YEAR), calendar.get(Calendar.HOUR_OF_DAY),
+				calendar.get(Calendar.MINUTE),
+				dispatchTriggerJSONObject.getBoolean("neverEnd"),
+				dispatchTriggerJSONObject.getBoolean("overlapAllowed"),
+				actualMonth, actualDay, actualYear, actualHour, actualMinute);
+		}
+	}
+
 	private void _addDispatchTriggers(ServiceContext serviceContext)
 		throws Exception {
 
@@ -911,120 +1024,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 		}
 
 		for (String resourcePath : resourcePaths) {
-			String json = _read(resourcePath + "dispatch-trigger.json");
-
-			if (Validator.isNull(json)) {
-				return;
-			}
-
-			JSONObject dispatchTriggerJSONObject =
-				JSONFactoryUtil.createJSONObject(json);
-
-			JSONObject propertiesJSONObject =
-				dispatchTriggerJSONObject.getJSONObject("properties");
-
-			UnicodeProperties unicodeProperties = new UnicodeProperties();
-
-			for (String key : propertiesJSONObject.keySet()) {
-				unicodeProperties.put(key, propertiesJSONObject.getString(key));
-			}
-
-			DispatchTrigger dispatchTrigger =
-				_dispatchTriggerLocalService.fetchDispatchTrigger(
-					serviceContext.getCompanyId(),
-					dispatchTriggerJSONObject.getString("name"));
-
-			if (dispatchTrigger != null) {
-				if (dispatchTriggerJSONObject.getBoolean("unique")) {
-					continue;
-				}
-
-				_dispatchTriggerLocalService.deleteDispatchTrigger(
-					dispatchTrigger.getDispatchTriggerId());
-			}
-
-			URL url = _bundle.getEntry(resourcePath + "dispatch-trigger.zip");
-
-			if (url != null) {
-				TalendArchiveParserUtil.updateUnicodeProperties(
-					url.openStream(), unicodeProperties);
-			}
-
-			dispatchTrigger = _dispatchTriggerLocalService.addDispatchTrigger(
-				serviceContext.getUserId(),
-				dispatchTriggerJSONObject.getString("dispatchTaskExecutorType"),
-				unicodeProperties, dispatchTriggerJSONObject.getString("name"),
-				dispatchTriggerJSONObject.getBoolean("system"));
-
-			File file = FileUtil.createTempFile(url.openStream());
-
-			_dispatchFileRepository.addFileEntry(
-				dispatchTrigger.getUserId(),
-				dispatchTrigger.getDispatchTriggerId(),
-				FileUtil.getShortFileName(url.getPath()), file.length(),
-				MimeTypesUtil.getContentType(file), new FileInputStream(file));
-
-			Calendar calendar = CalendarFactoryUtil.getCalendar(
-				serviceContext.getTimeZone());
-
-			if (dispatchTriggerJSONObject.getInt("startDateDay") != 0) {
-				_dispatchTriggerLocalService.updateDispatchTrigger(
-					dispatchTrigger.getDispatchTriggerId(),
-					dispatchTriggerJSONObject.getBoolean("active"),
-					dispatchTriggerJSONObject.getString("cronExpression"),
-					DispatchTaskClusterMode.valueOf(
-						dispatchTriggerJSONObject.getInt(
-							"dispatchTaskClusterMode")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("endDateMonth")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("endDateDay")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("endDateYear")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("endDateHour")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("endDateMinute")),
-					dispatchTriggerJSONObject.getBoolean("neverEnd"),
-					dispatchTriggerJSONObject.getBoolean("overlapAllowed"),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("startDateMonth")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("startDateDay")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("startDateYear")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("startDateHour")),
-					calendar.get(
-						dispatchTriggerJSONObject.getInt("startDateMinute")));
-			}
-			else {
-				int actualMonth = calendar.get(Calendar.MONTH);
-				int actualDay = calendar.get(Calendar.DAY_OF_MONTH);
-				int actualYear = calendar.get(Calendar.YEAR);
-				int actualHour = calendar.get(Calendar.HOUR_OF_DAY);
-				int actualMinute = calendar.get(Calendar.MINUTE);
-
-				calendar.add(Calendar.MINUTE, 5);
-
-				_dispatchTriggerLocalService.updateDispatchTrigger(
-					dispatchTrigger.getDispatchTriggerId(),
-					dispatchTriggerJSONObject.getBoolean("active"),
-					StringBundler.concat(
-						"0 ", calendar.get(Calendar.MINUTE), " * ? * * *"),
-					DispatchTaskClusterMode.valueOf(
-						dispatchTriggerJSONObject.getInt(
-							"dispatchTaskClusterMode")),
-					calendar.get(Calendar.MONTH),
-					calendar.get(Calendar.DAY_OF_MONTH),
-					calendar.get(Calendar.YEAR),
-					calendar.get(Calendar.HOUR_OF_DAY),
-					calendar.get(Calendar.MINUTE),
-					dispatchTriggerJSONObject.getBoolean("neverEnd"),
-					dispatchTriggerJSONObject.getBoolean("overlapAllowed"),
-					actualMonth, actualDay, actualYear, actualHour,
-					actualMinute);
-			}
+			_addDispatchTrigger(resourcePath, serviceContext);
 		}
 	}
 
