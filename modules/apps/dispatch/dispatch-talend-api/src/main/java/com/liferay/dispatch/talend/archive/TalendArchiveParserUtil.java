@@ -115,8 +115,7 @@ public class TalendArchiveParserUtil {
 				}
 
 				unicodeProperties.put(
-					propertyName,
-					contextProperties.getProperty(propertyName));
+					propertyName, contextProperties.getProperty(propertyName));
 			}
 		}
 		finally {
@@ -200,7 +199,8 @@ public class TalendArchiveParserUtil {
 		String jobName, Path jobDirectoryPath, String jobVersion) {
 
 		String jarName = StringBundler.concat(
-			jobName, StringPool.SLASH, StringUtil.toLowerCase(jobName), StringPool.UNDERLINE,
+			jobName, StringPool.SLASH, StringUtil.toLowerCase(jobName),
+			StringPool.UNDERLINE,
 			StringUtil.replace(jobVersion, CharPool.PERIOD, CharPool.UNDERLINE),
 			".jar");
 
