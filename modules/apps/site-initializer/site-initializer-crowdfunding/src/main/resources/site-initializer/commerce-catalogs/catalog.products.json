@@ -131,6 +131,12 @@
 				"value": {
 				  "en_US": "2.4x"
 				}
+			},
+			{
+				"specificationKey": "funder",
+				"value": {
+				  "en_US": "BDR Capital LLC"
+				}
 			}
 		],
 		"productType": "simple",
@@ -270,6 +276,12 @@
 				"value": {
 				  "en_US": "1.4x"
 				}
+			},
+			{
+				"specificationKey": "funder",
+				"value": {
+				  "en_US": "American BDD"
+				}
 			}
 		],
 		"productType": "simple",
@@ -408,6 +420,12 @@
 				"specificationKey": "sponsor-historic-equity-multiple",
 				"value": {
 				  "en_US": "2.4x"
+				}
+			},
+			{
+				"specificationKey": "funder",
+				"value": {
+				  "en_US": "BDR Capital LLC"
 				}
 			}
 		],
