@@ -299,8 +299,8 @@
 		</div>
 	</div>
 	<script>
-		const btnSendInvesment = document.querySelector("#btn-send-investment");
-		const inputInvesment = document.querySelector("#input-investment");
+		var btnSendInvesment = document.querySelector("#btn-send-investment");
+		var inputInvesment = document.querySelector("#input-investment");
 		btnSendInvesment.addEventListener("click",function(){
 			var url = "/group/crowse/checkout?productId=" + ${cpCatalogEntry.getCPDefinitionId()+1} + "&channelId=" + ${commerceChannelId} + "&accountId=" + ${commerceAccountId} + "&investment=" + inputInvesment.value;
 			window.location.href = url;
