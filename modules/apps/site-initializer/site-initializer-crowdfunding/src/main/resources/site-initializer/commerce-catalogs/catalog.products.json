@@ -48,41 +48,94 @@
 		"productChannelFilter": false,
 		"productStatus": 0,
 		"productSpecifications": [
-		  {
-			"label": {
-				"additionalProp1": "Distribuition Period",
-				"additionalProp2": "Loan To Cost",
-				"additionalProp3": "Capital Growth",
-				"additionalProp5": "Location",
-				"additionalProp6": "Floors",
-				"additionalProp7": "Area",
-				"additionalProp8": "Payment Date",
-				"additionalProp9": "Property Type",
-				"additionalProp10": "Investiment Profile",
-				"additionalProp11": "Funding Target",
-				"additionalProp12": "Minimum Hold Period",
-				"additionalProp13": "Yield"
+			{
+				"specificationKey": "distribuition-period",
+				"value": {
+					"en_US": "Quartely"
+				}
 			},
-			"priority": 0,
-			"value": {
-				"additionalProp1": "Quartely",
-				"additionalProp2": "60.0% - 70.0%",
-				"additionalProp3": "7.00%",
-				"additionalProp5": "San Francisco - California - USA",
-				"additionalProp6": "2",
-				"additionalProp7": "387 m2",
-				"additionalProp8": "06.22.2021",
-				"additionalProp9": "Multifamily",
-				"additionalProp10": "Core-Plus",
-				"additionalProp11": "$1,600,00",
-				"additionalProp12": "2 - 4 years",
-				"additionalProp13": "7.03%"
+			{
+				"specificationKey": "loan-to-cost",
+				"value": {
+				  "en_US": "60.0% - 70.0%"
+				}
+			},
+			{
+				"specificationKey": "capital-growth",
+				"value": {
+				  "en_US": "7.00%"
+				}
+			},
+			{
+				"specificationKey": "location",
+				"value": {
+				  "en_US": "San Francisco - California - USA"
+				}
+			},
+			{
+				"specificationKey": "floors",
+				"value": {
+				  "en_US": "2"
+				}
+			},
+			{
+				"specificationKey": "area",
+				"value": {
+				  "en_US": "387 m2"
+				}
+			},
+			{
+				"specificationKey": "payment-date",
+				"value": {
+				  "en_US": "06.22.2021"
+				}
+			},
+			{
+				"specificationKey": "property-type",
+				"value": {
+				  "en_US": "Multifamily"
+				}
+			},
+			{
+				"specificationKey": "investiment-profile",
+				"value": {
+				  "en_US": "Core-Plus"
+				}
+			},
+			{
+				"specificationKey": "funding-target",
+				"value": {
+				  "en_US": "$1,600,00"
+				}
+			},
+			{
+				"specificationKey": "minimum-hold-period",
+				"value": {
+				  "en_US": "2 - 4 years"
+				}
+			},
+			{
+				"specificationKey": "yield",
+				"value": {
+				  "en_US": "7.03%"
+				}
+			},
+			{
+				"specificationKey": "sponsor-historic-net-irr",
+				"value": {
+				  "en_US": "20.4%"
+				}
+			},
+			{
+				"specificationKey": "sponsor-historic-equity-multiple",
+				"value": {
+				  "en_US": "2.4x"
+				}
 			}
-		  }
 		],
 		"productType": "simple",
 		"productTypeI18n": "Simples",
-		"sku": "CRW001",
+		"sku": "default",
 		"urls": "sonata-at-columbia-stations"
 	},
 	{
@@ -134,41 +187,94 @@
 		"productChannelFilter": false,
 		"productStatus": 0,
 		"productSpecifications": [
-		  {
-		  "label": {
-			"additionalProp1": "Distribuition Period",
-			"additionalProp2": "Loan To Cost",
-			"additionalProp3": "Capital Growth",
-			"additionalProp5": "Location",
-			"additionalProp6": "Floors",
-			"additionalProp7": "Area",
-			"additionalProp8": "Payment Date",
-			"additionalProp9": "Property Type",
-			"additionalProp10": "Investiment Profile",
-			"additionalProp11": "Funding Target",
-			"additionalProp12": "Minimum Hold Period",
-			"additionalProp13": "Yield"
-		  },
-		  "priority": 0,
-		  "value": {
-			"additionalProp1": "Yearly",
-			"additionalProp2": "40.0% - 50.0%",
-			"additionalProp3": "7.50%",
-			"additionalProp5": "Los Angeles - California - USA",
-			"additionalProp6": "1",
-			"additionalProp7": "1200 m2",
-			"additionalProp8": "06.22.2021",
-			"additionalProp9": "Multifamily",
-			"additionalProp10": "Core-Plus",
-			"additionalProp11": "$2,900,00",
-			"additionalProp12": "4 - 6 years",
-			"additionalProp13": "7.08%"
-		  }
-		  }
+			{
+				"specificationKey": "distribuition-period",
+				"value": {
+					"en_US": "Yearly"
+				}
+			},
+			{
+				"specificationKey": "loan-to-cost",
+				"value": {
+				  "en_US": "50.0% - 60.0%"
+				}
+			},
+			{
+				"specificationKey": "capital-growth",
+				"value": {
+				  "en_US": "7.80%"
+				}
+			},
+			{
+				"specificationKey": "location",
+				"value": {
+				  "en_US": "Los Angeles - California - USA"
+				}
+			},
+			{
+				"specificationKey": "floors",
+				"value": {
+				  "en_US": "1"
+				}
+			},
+			{
+				"specificationKey": "area",
+				"value": {
+				  "en_US": "450 m2"
+				}
+			},
+			{
+				"specificationKey": "payment-date",
+				"value": {
+				  "en_US": "06.22.2021"
+				}
+			},
+			{
+				"specificationKey": "property-type",
+				"value": {
+				  "en_US": "Multifamily"
+				}
+			},
+			{
+				"specificationKey": "investiment-profile",
+				"value": {
+				  "en_US": "Core-Plus"
+				}
+			},
+			{
+				"specificationKey": "funding-target",
+				"value": {
+				  "en_US": "$1,000,00"
+				}
+			},
+			{
+				"specificationKey": "minimum-hold-period",
+				"value": {
+				  "en_US": "4 - 6 years"
+				}
+			},
+			{
+				"specificationKey": "yield",
+				"value": {
+				  "en_US": "6.03%"
+				}
+			},
+			{
+				"specificationKey": "sponsor-historic-net-irr",
+				"value": {
+				  "en_US": "15.4%"
+				}
+			},
+			{
+				"specificationKey": "sponsor-historic-equity-multiple",
+				"value": {
+				  "en_US": "1.4x"
+				}
+			}
 		],
 		"productType": "simple",
 		"productTypeI18n": "Simples",
-		"sku": "CRW002",
+		"sku": "default",
 		"urls": "california-house"
 	},
 	{
@@ -220,41 +326,94 @@
 		"productChannelFilter": false,
 		"productStatus": 0,
 		"productSpecifications": [
-		  {
-			"label": {
-				"additionalProp1": "Distribuition Period",
-				"additionalProp2": "Loan To Cost",
-				"additionalProp3": "Capital Growth",
-				"additionalProp5": "Location",
-				"additionalProp6": "Floors",
-				"additionalProp7": "Area",
-				"additionalProp8": "Payment Date",
-				"additionalProp9": "Property Type",
-				"additionalProp10": "Investiment Profile",
-				"additionalProp11": "Funding Target",
-				"additionalProp12": "Minimum Hold Period",
-				"additionalProp13": "Yield"
+			{
+				"specificationKey": "distribuition-period",
+				"value": {
+					"en_US": "Monthly"
+				}
 			},
-			"priority": 0,
-			"value": {
-				"additionalProp1": "Quartely",
-				"additionalProp2": "70.0% - 80.0%",
-				"additionalProp3": "6.50%",
-				"additionalProp5": "Diamond Bar - California - USA",
-				"additionalProp6": "3",
-				"additionalProp7": "2200 m2",
-				"additionalProp8": "06.22.2021",
-				"additionalProp9": "Multifamily",
-				"additionalProp10": "Core-Plus",
-				"additionalProp11": "$3,500,00",
-				"additionalProp12": "6 - 8 years",
-				"additionalProp13": "10.08%"
+			{
+				"specificationKey": "loan-to-cost",
+				"value": {
+				  "en_US": "70.0% - 80.0%"
+				}
+			},
+			{
+				"specificationKey": "capital-growth",
+				"value": {
+				  "en_US": "8.50%"
+				}
+			},
+			{
+				"specificationKey": "location",
+				"value": {
+				  "en_US": "Diamond Bar - California - USA"
+				}
+			},
+			{
+				"specificationKey": "floors",
+				"value": {
+				  "en_US": "3"
+				}
+			},
+			{
+				"specificationKey": "area",
+				"value": {
+				  "en_US": "580 m2"
+				}
+			},
+			{
+				"specificationKey": "payment-date",
+				"value": {
+				  "en_US": "06.22.2021"
+				}
+			},
+			{
+				"specificationKey": "property-type",
+				"value": {
+				  "en_US": "Multifamily"
+				}
+			},
+			{
+				"specificationKey": "investiment-profile",
+				"value": {
+				  "en_US": "Core-Plus"
+				}
+			},
+			{
+				"specificationKey": "funding-target",
+				"value": {
+				  "en_US": "$3,200,00"
+				}
+			},
+			{
+				"specificationKey": "minimum-hold-period",
+				"value": {
+				  "en_US": "4 - 8 years"
+				}
+			},
+			{
+				"specificationKey": "yield",
+				"value": {
+				  "en_US": "10.05%"
+				}
+			},
+			{
+				"specificationKey": "sponsor-historic-net-irr",
+				"value": {
+				  "en_US": "20.4%"
+				}
+			},
+			{
+				"specificationKey": "sponsor-historic-equity-multiple",
+				"value": {
+				  "en_US": "2.4x"
+				}
 			}
-		  }
 		],
 		"productType": "simple",
 		"productTypeI18n": "Simples",
-		"sku": "CRW003",
+		"sku": "default",
 		"urls":"new-modern-villa-in-nueva-andalusia"
 	}
 ]
