@@ -96,6 +96,7 @@
     	align-items: center;
     	justify-content: center;
 		text-decoration: none;
+		cursor: pointer;
 	}
 
 	
@@ -144,28 +145,28 @@
 			<#switch key>
 				<#case "funding-target">
 					<#assign fundingTarget = specification.getValue(locale) />
-				<#break>
+					<#break>
 				<#case "location">
 					<#assign location = specification.getValue(locale) />
-				<#break>
+					<#break>
 				<#case "capital-growth">
 					<#assign capitalGrowth = specification.getValue(locale) />
-				<#break>
+					<#break>
 				<#case "yield">
 					<#assign yield = specification.getValue(locale) />
-				<#break>
+					<#break>
 				<#case "floors">
 					<#assign floors = specification.getValue(locale) />
-				<#break>
+					<#break>
 				<#case "area">
 					<#assign area = specification.getValue(locale) />
-				<#break>
+					<#break>
 				<#case "property-type">
 					<#assign propertyType = specification.getValue(locale) />
-				<#break>
+					<#break>
 				<#case "investiment-profile">
 					<#assign investmentProfile = specification.getValue(locale) />
-				<#break>
+					<#break>
 			</#switch>
 	</#list>
 
@@ -201,7 +202,7 @@
 					<@commerce_ui["gallery"] CPDefinitionId=cpCatalogEntry.getCPDefinitionId() />
 				</div>
 				<div class="my-5">
-					${cpCatalogEntry.getDescription()}
+					${cpCatalogEntry.getDeion()}
 				</div>
 			</div>
 			<div class="col-sm-12 col-md-4">
@@ -301,7 +302,7 @@
 		const btnSendInvesment = document.querySelector("#btn-send-investment");
 		const inputInvesment = document.querySelector("#input-investment");
 		btnSendInvesment.addEventListener("click",function(){
-			var url = "/group/crowse/checkout?productId=" + ${cpCatalogEntry.getCPDefinitionId()} + "&channelId=" + ${commerceChannelId} + "&accountId=" + ${commerceAccountId} + "&investment=" + inputInvesment.value;
+			var url = "/group/crowse/checkout?productId=" + ${cpCatalogEntry.getCPDefinitionId()+1} + "&channelId=" + ${commerceChannelId} + "&accountId=" + ${commerceAccountId} + "&investment=" + inputInvesment.value;
 			window.location.href = url;
 		});
 	</script>

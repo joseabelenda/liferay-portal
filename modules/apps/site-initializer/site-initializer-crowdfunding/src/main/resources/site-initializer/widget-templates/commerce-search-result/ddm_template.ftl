@@ -134,6 +134,42 @@
     }
 </style>
 
+<script>
+    function getElements(elementId){
+        var progress = document.querySelector("#progress-" + elementId + ">div");
+        var progressInfo = document.querySelector("#progress-info-" + elementId);
+        
+        return {
+            progress,
+            progressInfo: progressInfo,
+            progressPercentage: progressInfo.querySelector("span:first-child"),
+            progressAmountLeft: progressInfo.querySelector("span:last-child"),
+            totalAmount: progress.dataset.fundingTarget,
+        }
+    }
+
+    function printProgress(progress, progressPercentage, progressAmountLeft, progressWidth, totalAmount, total){
+        var formatter = new Intl.NumberFormat('en-US', {
+				        style: 'currency',
+				        currency: 'USD',
+		                });
+        progress.style.width = Math.round(progressWidth) + "%";    
+        progressPercentage.innerText = Math.round(progressWidth) + "%";
+        progressAmountLeft.innerText = formatter.format(Math.round(+totalAmount - total)) + ' Left'; 
+    }
+
+    function calculatePercentage(itemsList, progress, totalAmount, progressPercentage, progressAmountLeft) {
+        var total = 0;
+        itemsList.forEach(function(item){
+            total+= item.investimentCommitment;
+        });
+                            
+        totalAmount = totalAmount.replace('$','').replaceAll(',','');
+        var progressWidth = (total/+totalAmount) * 100;
+        printProgress(progress, progressPercentage, progressAmountLeft, progressWidth, totalAmount, total);
+    }
+</script>
+
 <div class="container">
 	<div class="row">
 		<#if entries?has_content>
@@ -185,7 +221,7 @@
                                         ${fundingTarget}
                                     </span>
                             </div>
-                            <div>
+                            <div class="text-right">
                                 <div>
                                     <span>Yield</span>	
                                     <span class="font-weight-bold">7.14%</span>	
@@ -201,28 +237,23 @@
 					        <h1 class="title">${curCPCatalogEntry.getName()}</h1>
 					        <span class="legend">BDR Capital LLC</span>
 					        <span class="tag">Tenured</span>
-					        <div id="progress-${curCPCatalogEntry.getCPDefinitionId()}" class="progress-bar">
+					        <div id="progress-${curCPCatalogEntry.getCPDefinitionId()+1}" class="progress-bar">
 						        <div data-funding-target="${fundingTarget}"></div>
+					        </div>
+                            <div id="progress-info-${curCPCatalogEntry.getCPDefinitionId()+1}" class="d-flex align-items-center justify-content-between mt-2">
+							    <span></span>
+							    <span></span>
 					        </div>
 				        </div>
 			        </a>
 		        </div>
 		        <script>
-			        Liferay.Util.fetch('/o/c/checkoutfieldsorderproducts/?search=45909').then(function(response) {
+			        Liferay.Util.fetch('/o/c/checkoutfieldsorderproducts/?search=${curCPCatalogEntry.getCPDefinitionId()+1}').then(function(response) {
 			            return response.json();
 			        }).then(function(data) {
-                        var progress = document.querySelector("#progress-${curCPCatalogEntry.getCPDefinitionId()}>div");
-                        var totalAmount = progress.dataset.fundingTarget;
-                        var total = 0;
-
-                        data.items.forEach(function(item){
-                                total+= item.investimentCommitment;
+                        var {progress,progressInfo,progressPercentage,progressAmountLeft,totalAmount} = getElements(${curCPCatalogEntry.getCPDefinitionId()+1});      
+                        calculatePercentage(data.items, progress, totalAmount, progressPercentage, progressAmountLeft);
                         });
-                        
-                        totalAmount = totalAmount.replace('$','').replaceAll(',','');
-                        var progressWidth = (total/+totalAmount) * 100;
-                        progress.style.width = progressWidth + "%";
-                    });
 		        </script>
 		    </#list>
 		</#if>
