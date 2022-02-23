@@ -33,6 +33,7 @@
     "type" : "Root"
   },
   "settings" : {
+    "colorSchemeName" : "01",
     "themeName" : "Dialect",
     "themeSettings" : {
       "lfr-theme:regular:show-header" : "false",
