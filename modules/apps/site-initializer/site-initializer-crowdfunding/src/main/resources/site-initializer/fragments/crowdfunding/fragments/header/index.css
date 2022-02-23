@@ -1,11 +1,12 @@
 header{
 	background: #fff;
-	height: 60px;
+	height: 53px;
 }
 .crowd-header{
   display:flex;
-	justify-content: space-between;
-	margin-top: 22px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 22px;
 }
 
 .crowd-header ul{
@@ -13,21 +14,23 @@ header{
 	list-style: none;
 	margin: 5px 0 0 0;
 	padding: 0;
+	align-items: flex-start;
 }
 
 .crowd-header ul li{
-	margin: 0 30px;
+	margin: 0 20px;
 }
 
 .crowd-header ul li.active a{
-	border-bottom: solid 4px #8275D3;
-	padding-bottom: 30px;
+	border-bottom: solid 4px var(--color-brand-primary);
+	padding-bottom: 20px;
 }
 
 .crowd-header ul li a{
 	color: #28282B;
 	font-size: 1rem;
 	font-weight: 600;
+	padding-top: 0;
 }
 
 .crowd-header .user-info{
