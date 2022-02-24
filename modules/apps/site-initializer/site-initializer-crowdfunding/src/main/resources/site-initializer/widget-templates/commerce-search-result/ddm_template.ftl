@@ -248,7 +248,7 @@
 			        </a>
 		        </div>
 		        <script>
-			        Liferay.Util.fetch('/o/c/checkoutfieldsorderproducts/?search=${curCPCatalogEntry.getCPDefinitionId()+1}').then(function(response) {
+			        Liferay.Util.fetch('/o/c/crowseinvestmentobjects/?search=${curCPCatalogEntry.getCPDefinitionId()+1}').then(function(response) {
 			            return response.json();
 			        }).then(function(data) {
                         var {progress,progressInfo,progressPercentage,progressAmountLeft,totalAmount} = getElements(${curCPCatalogEntry.getCPDefinitionId()+1});      

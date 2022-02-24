@@ -35,7 +35,7 @@ export function checkoutOrder(cartId) {
 }
 
 export function insertOrderObject(orderId, productId, investmentAmount) {
-    return fetch(`/o/c/checkoutfieldsorderproducts?p_auth=${window.Liferay.authToken}`, {
+    return fetch(`/o/c/crowseinvestmentobjects?p_auth=${window.Liferay.authToken}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
