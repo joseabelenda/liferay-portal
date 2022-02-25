@@ -1,8 +1,8 @@
 {
 	"pageElement": {
 		"pageElements": [
-            {
-                "definition": {
+			{
+				"definition": {
                     "fragmentStyle": {
                         "backgroundColor": "colorNeutral0"
                     },
@@ -19,8 +19,8 @@
                         "widthType": "Fluid"
                     }
                 },
-                "pageElements": [
-                    {
+				"pageElements": [
+					{
                         "definition": {
                             "fragment": {
                                 "key": "filter"
@@ -45,8 +45,30 @@
                             }
                         ],
                         "type": "Fragment"
+                    }
+				],
+				"type": "Section"
+			},
+			{
+				"definition": {
+                    "fragmentStyle": {
+                        "backgroundColor": "colorNeutral0"
                     },
-                    {
+                    "layout": {
+                        "borderWidth": 0,
+                        "marginBottom": 0,
+                        "marginLeft": 0,
+                        "marginRight": 0,
+                        "marginTop": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "paddingRight": 0,
+                        "paddingTop": 0,
+                        "widthType": "Fluid"
+                    }
+                },
+				"pageElements": [
+					{
                         "definition": {
                             "widgetInstance": {
                                 "widgetConfig": {
@@ -78,15 +100,15 @@
                         },
                         "type": "Widget"
                     }
-                ],
-                "type": "Section"
-            }
+				],
+				"type": "Section"
+			}
 		],
 		"type": "Root"
 	},
 	"settings": {
 		"masterPage": {
-			"key": "crowdfunding"
+			"key": "Crowdfunding"
 		}
 	}
 }

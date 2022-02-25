@@ -1,8 +1,24 @@
 [
 	{
+		"active": true,
+		"externalReferenceCode": "CRW001",
+		"productAccountGroupFilter": false,
+		"productChannelFilter": false,
+		"shippable": false,
+		"backOrders": true,
 		"displayAvailability": false,
 		"displayStockQuantity": false,
-		"externalReferenceCode": "CRW001",
+		"maxOrderQuantity": 10000,
+		"minOrderQuantity": 1,
+		"minStockQuantity": 0,
+		"multipleOrderQuantity": 1,
+		"productStatus": 0,
+		"productType": "simple",
+		"productTypeI18n": "Simples",
+		"sku": "default",
+		"urls": "sonata-at-columbia-stations",
+		"description": "<p>\n  <b>The Sponsor</b></p>\n<p>Mussum Ipsum, cacilds vidis litro abertis. Paisis, filhis, espiritis\n  santis.Quem num gosta di mé, boa gentis num é.Mé faiz elementum\n  girarzis, nisi eros vermeio.Aenean aliquam molestie leo, vitae iaculis\n  nisl.<br />  </p>\n<p>\n  <b>The Location</b></p>\n<p>Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed\n  non consequat odio.Si u mundo tá muito paradis? Toma um mé que o mundo\n  vai girarzis!Copo furadis é disculpa de bebadis, arcu quam euismod\n  magna.Mais vale um bebadis conhecidiss, que um alcoolatra\n  anonimis.<br />  </p>\n<p>\n  <b>The Investment</b>\n  <br /> Paisis, filhis, espiritis santis.Quem num gosta di mé, boa\n  gentis num é.Interessantiss quisso pudia ce receita de bolis, mais\n  bolis eu num gostis.Nullam volutpat risus nec leo commodo, ut interdum\n  diam laoreet. Sed non consequat odio.<br /> Nec orci ornare consequat.\n  Praesent lacinia ultrices consectetur. Sed non ipsum felis.Atirei o\n  pau no gatis, per gatis num morreus.Quem manda na minha terra sou\n  euzis!Leite de capivaris, leite de mula manquis sem cabeça.<br />\n  <b>Disclaimer and Footnotes</b>\n  <br /> Quem num gosta di mim que vai caçá sua turmis!Si num tem leite\n  então bota uma pinga aí cumpadi!Diuretics paradis num copo é motivis\n  de denguis.Mé faiz elementum girarzis, nisi eros vermeio.</p>",
+		"name": "Sonata At Columbia Stations",
 		"images": [
 			{
 			"priority": 0,
@@ -37,16 +53,9 @@
 			"type": 1
 			}
 		],
-		"backOrders": false,
-		"active": true,
 		"categories": [
 			"Tenured"
 		],
-		"description": "<p>\n  <b>The Sponsor</b></p>\n<p>Mussum Ipsum, cacilds vidis litro abertis. Paisis, filhis, espiritis\n  santis.Quem num gosta di mé, boa gentis num é.Mé faiz elementum\n  girarzis, nisi eros vermeio.Aenean aliquam molestie leo, vitae iaculis\n  nisl.<br />  </p>\n<p>\n  <b>The Location</b></p>\n<p>Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed\n  non consequat odio.Si u mundo tá muito paradis? Toma um mé que o mundo\n  vai girarzis!Copo furadis é disculpa de bebadis, arcu quam euismod\n  magna.Mais vale um bebadis conhecidiss, que um alcoolatra\n  anonimis.<br />  </p>\n<p>\n  <b>The Investment</b>\n  <br /> Paisis, filhis, espiritis santis.Quem num gosta di mé, boa\n  gentis num é.Interessantiss quisso pudia ce receita de bolis, mais\n  bolis eu num gostis.Nullam volutpat risus nec leo commodo, ut interdum\n  diam laoreet. Sed non consequat odio.<br /> Nec orci ornare consequat.\n  Praesent lacinia ultrices consectetur. Sed non ipsum felis.Atirei o\n  pau no gatis, per gatis num morreus.Quem manda na minha terra sou\n  euzis!Leite de capivaris, leite de mula manquis sem cabeça.<br />\n  <b>Disclaimer and Footnotes</b>\n  <br /> Quem num gosta di mim que vai caçá sua turmis!Si num tem leite\n  então bota uma pinga aí cumpadi!Diuretics paradis num copo é motivis\n  de denguis.Mé faiz elementum girarzis, nisi eros vermeio.</p>",
-		"name": "Sonata At Columbia Stations",
-		"productAccountGroupFilter": false,
-		"productChannelFilter": false,
-		"productStatus": 0,
 		"productSpecifications": [
 			{
 				"specificationKey": "distribuition-period",
@@ -138,16 +147,28 @@
 				  "en_US": "BDR Capital LLC"
 				}
 			}
-		],
+		]
+	},
+	{
+		"active": true,
+		"externalReferenceCode": "CRW002",
+		"productAccountGroupFilter": false,
+		"productChannelFilter": false,
+		"shippable": false,
+		"backOrders": true,	
+		"displayAvailability": false,
+		"displayStockQuantity": false,
+		"maxOrderQuantity": 10000,
+		"minOrderQuantity": 1,
+		"minStockQuantity": 0,
+		"multipleOrderQuantity": 1,
+		"productStatus": 0,
 		"productType": "simple",
 		"productTypeI18n": "Simples",
 		"sku": "default",
-		"urls": "sonata-at-columbia-stations"
-	},
-	{
-		"displayAvailability": false,
-		"displayStockQuantity": false,
-		"externalReferenceCode": "CRW002",
+		"urls": "california-house",
+		"description": "<p>\n  <b>The Sponsor</b></p>\n<p>Mussum Ipsum, cacilds vidis litro abertis. Paisis, filhis, espiritis\n  santis.Quem num gosta di mé, boa gentis num é.Mé faiz elementum\n  girarzis, nisi eros vermeio.Aenean aliquam molestie leo, vitae iaculis\n  nisl.<br />  </p>\n<p>\n  <b>The Location</b></p>\n<p>Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed\n  non consequat odio.Si u mundo tá muito paradis? Toma um mé que o mundo\n  vai girarzis!Copo furadis é disculpa de bebadis, arcu quam euismod\n  magna.Mais vale um bebadis conhecidiss, que um alcoolatra\n  anonimis.<br />  </p>\n<p>\n  <b>The Investment</b>\n  <br /> Paisis, filhis, espiritis santis.Quem num gosta di mé, boa\n  gentis num é.Interessantiss quisso pudia ce receita de bolis, mais\n  bolis eu num gostis.Nullam volutpat risus nec leo commodo, ut interdum\n  diam laoreet. Sed non consequat odio.<br /> Nec orci ornare consequat.\n  Praesent lacinia ultrices consectetur. Sed non ipsum felis.Atirei o\n  pau no gatis, per gatis num morreus.Quem manda na minha terra sou\n  euzis!Leite de capivaris, leite de mula manquis sem cabeça.<br />\n  <b>Disclaimer and Footnotes</b>\n  <br /> Quem num gosta di mim que vai caçá sua turmis!Si num tem leite\n  então bota uma pinga aí cumpadi!Diuretics paradis num copo é motivis\n  de denguis.Mé faiz elementum girarzis, nisi eros vermeio.</p>",
+		"name": "California House",
 		"images": [
 			{
 			"priority": 1,
@@ -182,16 +203,9 @@
 			"type": 1
 			}
 		],
-		"backOrders": false,
-		"active": true,
 		"categories": [
 		  "Tenured"
 		],
-		"description": "<p>\n  <b>The Sponsor</b></p>\n<p>Mussum Ipsum, cacilds vidis litro abertis. Paisis, filhis, espiritis\n  santis.Quem num gosta di mé, boa gentis num é.Mé faiz elementum\n  girarzis, nisi eros vermeio.Aenean aliquam molestie leo, vitae iaculis\n  nisl.<br />  </p>\n<p>\n  <b>The Location</b></p>\n<p>Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed\n  non consequat odio.Si u mundo tá muito paradis? Toma um mé que o mundo\n  vai girarzis!Copo furadis é disculpa de bebadis, arcu quam euismod\n  magna.Mais vale um bebadis conhecidiss, que um alcoolatra\n  anonimis.<br />  </p>\n<p>\n  <b>The Investment</b>\n  <br /> Paisis, filhis, espiritis santis.Quem num gosta di mé, boa\n  gentis num é.Interessantiss quisso pudia ce receita de bolis, mais\n  bolis eu num gostis.Nullam volutpat risus nec leo commodo, ut interdum\n  diam laoreet. Sed non consequat odio.<br /> Nec orci ornare consequat.\n  Praesent lacinia ultrices consectetur. Sed non ipsum felis.Atirei o\n  pau no gatis, per gatis num morreus.Quem manda na minha terra sou\n  euzis!Leite de capivaris, leite de mula manquis sem cabeça.<br />\n  <b>Disclaimer and Footnotes</b>\n  <br /> Quem num gosta di mim que vai caçá sua turmis!Si num tem leite\n  então bota uma pinga aí cumpadi!Diuretics paradis num copo é motivis\n  de denguis.Mé faiz elementum girarzis, nisi eros vermeio.</p>",
-		"name": "California House",
-		"productAccountGroupFilter": false,
-		"productChannelFilter": false,
-		"productStatus": 0,
 		"productSpecifications": [
 			{
 				"specificationKey": "distribuition-period",
@@ -283,16 +297,28 @@
 				  "en_US": "American BDD"
 				}
 			}
-		],
+		]
+	},
+	{
+		"active": true,
+		"externalReferenceCode": "CRW003",
+		"productAccountGroupFilter": false,
+		"productChannelFilter": false,
+		"shippable": false,
+		"backOrders": true,	
+		"displayAvailability": false,
+		"displayStockQuantity": false,
+		"maxOrderQuantity": 10000,
+		"minOrderQuantity": 1,
+		"minStockQuantity": 0,
+		"multipleOrderQuantity": 1,
+		"productStatus": 0,
 		"productType": "simple",
 		"productTypeI18n": "Simples",
 		"sku": "default",
-		"urls": "california-house"
-	},
-	{
-		"displayAvailability": false,
-		"displayStockQuantity": false,
-		"externalReferenceCode": "CRW003",
+		"urls":"new-modern-villa-in-nueva-andalusia",
+		"description": "<p>\n  <b>The Sponsor</b></p>\n<p>Mussum Ipsum, cacilds vidis litro abertis. Paisis, filhis, espiritis\n  santis.Quem num gosta di mé, boa gentis num é.Mé faiz elementum\n  girarzis, nisi eros vermeio.Aenean aliquam molestie leo, vitae iaculis\n  nisl.<br />  </p>\n<p>\n  <b>The Location</b></p>\n<p>Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed\n  non consequat odio.Si u mundo tá muito paradis? Toma um mé que o mundo\n  vai girarzis!Copo furadis é disculpa de bebadis, arcu quam euismod\n  magna.Mais vale um bebadis conhecidiss, que um alcoolatra\n  anonimis.<br />  </p>\n<p>\n  <b>The Investment</b>\n  <br /> Paisis, filhis, espiritis santis.Quem num gosta di mé, boa\n  gentis num é.Interessantiss quisso pudia ce receita de bolis, mais\n  bolis eu num gostis.Nullam volutpat risus nec leo commodo, ut interdum\n  diam laoreet. Sed non consequat odio.<br /> Nec orci ornare consequat.\n  Praesent lacinia ultrices consectetur. Sed non ipsum felis.Atirei o\n  pau no gatis, per gatis num morreus.Quem manda na minha terra sou\n  euzis!Leite de capivaris, leite de mula manquis sem cabeça.<br />\n  <b>Disclaimer and Footnotes</b>\n  <br /> Quem num gosta di mim que vai caçá sua turmis!Si num tem leite\n  então bota uma pinga aí cumpadi!Diuretics paradis num copo é motivis\n  de denguis.Mé faiz elementum girarzis, nisi eros vermeio.</p>",
+		"name": "New Modern Villa in Nueva Andalusia",
 		"images": [
 			{
 			"priority": 1,
@@ -327,16 +353,9 @@
 			"type": 1
 			}
 		],
-		"backOrders": false,
-		"active": true,
 		"categories": [
 		  "Tenured"
 		],
-		"description": "<p>\n  <b>The Sponsor</b></p>\n<p>Mussum Ipsum, cacilds vidis litro abertis. Paisis, filhis, espiritis\n  santis.Quem num gosta di mé, boa gentis num é.Mé faiz elementum\n  girarzis, nisi eros vermeio.Aenean aliquam molestie leo, vitae iaculis\n  nisl.<br />  </p>\n<p>\n  <b>The Location</b></p>\n<p>Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed\n  non consequat odio.Si u mundo tá muito paradis? Toma um mé que o mundo\n  vai girarzis!Copo furadis é disculpa de bebadis, arcu quam euismod\n  magna.Mais vale um bebadis conhecidiss, que um alcoolatra\n  anonimis.<br />  </p>\n<p>\n  <b>The Investment</b>\n  <br /> Paisis, filhis, espiritis santis.Quem num gosta di mé, boa\n  gentis num é.Interessantiss quisso pudia ce receita de bolis, mais\n  bolis eu num gostis.Nullam volutpat risus nec leo commodo, ut interdum\n  diam laoreet. Sed non consequat odio.<br /> Nec orci ornare consequat.\n  Praesent lacinia ultrices consectetur. Sed non ipsum felis.Atirei o\n  pau no gatis, per gatis num morreus.Quem manda na minha terra sou\n  euzis!Leite de capivaris, leite de mula manquis sem cabeça.<br />\n  <b>Disclaimer and Footnotes</b>\n  <br /> Quem num gosta di mim que vai caçá sua turmis!Si num tem leite\n  então bota uma pinga aí cumpadi!Diuretics paradis num copo é motivis\n  de denguis.Mé faiz elementum girarzis, nisi eros vermeio.</p>",
-		"name": "New Modern Villa in Nueva Andalusia",
-		"productAccountGroupFilter": false,
-		"productChannelFilter": false,
-		"productStatus": 0,
 		"productSpecifications": [
 			{
 				"specificationKey": "distribuition-period",
@@ -428,10 +447,6 @@
 				  "en_US": "BDR Capital LLC"
 				}
 			}
-		],
-		"productType": "simple",
-		"productTypeI18n": "Simples",
-		"sku": "default",
-		"urls":"new-modern-villa-in-nueva-andalusia"
+		]
 	}
 ]

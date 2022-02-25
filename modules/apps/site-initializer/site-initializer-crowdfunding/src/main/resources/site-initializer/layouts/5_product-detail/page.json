@@ -1,9 +1,9 @@
 {
 	"hidden": true,
 	"name_i18n": {
-		"en_US": "Investment"
+		"en_US": "Product"
 	},
-	"private": true,
+	"private": false,
 	"system": false,
 	"type": "Content",
 	"typeSettings": [
