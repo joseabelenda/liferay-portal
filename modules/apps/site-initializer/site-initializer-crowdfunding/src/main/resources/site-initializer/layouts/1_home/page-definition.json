@@ -68,18 +68,18 @@
                     }
                 },
 				"pageElements": [
-					{
+                    {
                         "definition": {
                             "widgetInstance": {
                                 "widgetConfig": {
                                     "cpContentListRendererKey": "list-default",
-                                    "selectionStyle": "adt",
-                                    "displayStyle": "ddmTemplate_45808",
+                                    "selectionStyle": "custom",
+                                    "displayStyle": "default",
                                     "virtual--cpTypeListEntryRendererKey": "list-entry-default",
                                     "grouped--cpTypeListEntryRendererKey": "list-entry-default",
                                     "paginationDelta": "15",
                                     "paginate": "true",
-                                    "displayStyleGroupId": "45315",
+                                    "displayStyleGroupId": "40694",
                                     "simple--cpTypeListEntryRendererKey": "list-entry-default"
                                 },
                                 "widgetName": "com_liferay_commerce_product_content_search_web_internal_portlet_CPSearchResultsPortlet"
