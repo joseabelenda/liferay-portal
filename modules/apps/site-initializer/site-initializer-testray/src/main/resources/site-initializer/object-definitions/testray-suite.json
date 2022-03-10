@@ -2,7 +2,7 @@
 	"label": {
 		"en_US": "Testray Suite"
 	},
-	"name": "TestraySuite",
+	"name": "Suite",
 	"objectFields": [
 		{
 			"indexed": false,
@@ -22,7 +22,7 @@
 			},
 			"name": "description",
 			"required": false,
-			"type": "Clob"
+			"type": "String"
 		},
 		{
 			"indexed": false,
@@ -32,7 +32,17 @@
 			},
 			"name": "caseParameters",
 			"required": false,
-			"type": "Clob"
+			"type": "String"
+		},
+		{
+			"indexed": false,
+			"indexedAsKeyword": false,
+			"label": {
+				"en_US": "Type"
+			},
+			"name": "type",
+			"required": false,
+			"type": "String"
 		}
 	],
 	"pluralLabel": {
