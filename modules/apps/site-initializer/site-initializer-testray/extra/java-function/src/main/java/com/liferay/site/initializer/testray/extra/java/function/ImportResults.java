@@ -264,14 +264,14 @@ public class ImportResults {
 			long testrayProjectId, Map<String, String> propertiesMap)
 		throws Exception {
 
-		String buildName = propertiesMap.get("testray.build.name");
+		String testrayBuildName = propertiesMap.get("testray.build.name");
 
 		Map<String, String> parametersMap = new HashMap<>();
 
-		parametersMap.put("filter", "name eq '" + buildName + "'");
+		parametersMap.put("filter", "name eq '" + testrayBuildName + "'");
 
 		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "testraybuilds", null, parametersMap,
+			null, "builds", null, parametersMap,
 			HttpInvoker.HttpMethod.GET);
 
 		JSONArray buildsJSONArray = responseJSONObject.getJSONArray("items");
@@ -287,7 +287,7 @@ public class ImportResults {
 		bodyMap.put(
 			"description", _buildTestrayBuildDescription(propertiesMap));
 		bodyMap.put("dueDate", propertiesMap.get("testray.build.time"));
-		bodyMap.put("name", buildName);
+		bodyMap.put("name", testrayBuildName);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
 		long testrayRoutineId = _fetchOrAddTestrayRoutine(
@@ -299,7 +299,7 @@ public class ImportResults {
 			new JSONObject(
 				bodyMap
 			).toString(),
-			"testraybuilds", null, null, HttpInvoker.HttpMethod.POST);
+			"builds", null, null, HttpInvoker.HttpMethod.POST);
 
 		return responseJSONObject.getLong("id");
 	}
