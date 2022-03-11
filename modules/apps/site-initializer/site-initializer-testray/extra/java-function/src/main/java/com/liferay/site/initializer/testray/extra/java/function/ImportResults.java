@@ -581,6 +581,37 @@ public class ImportResults {
 		).getService();
 	}
 
+	private void _fetchOrAddTestrayTask(
+			long testrayBuildId, String testrayTaskName)
+		throws Exception {
+
+		Map<String, String> parametersMap = new HashMap<>();
+
+		parametersMap.put("filter", "name eq '" + testrayTaskName + "'");
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			null, "tasks", null, parametersMap,
+			HttpInvoker.HttpMethod.GET);
+
+		JSONArray tasksJSONArray = responseJSONObject.getJSONArray("items");
+
+		if (tasksJSONArray.isEmpty()) {
+			Map<String, String> bodyMap = new HashMap<>();
+
+			bodyMap.put(
+				"dueStatus",
+				String.valueOf(TestrayConstants.TESTRAY_STATUS_IN_PROGRESS));
+			bodyMap.put("name", testrayTaskName);
+			bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
+
+			HttpUtil.invoke(
+				new JSONObject(
+					bodyMap
+				).toString(),
+				"tasks", null, null, HttpInvoker.HttpMethod.POST);
+		}
+	}
+
 	public long fetchOrAddTestrayTeam(long projectId, String teamName) throws Exception {
 		Map<String, String> parametersMap = new HashMap<>();
 
@@ -808,6 +839,9 @@ public class ImportResults {
 
 		_addTestrayCases(
 			rootElement, testrayBuildId, testrayProjectId, testrayRunId);
+
+		_fetchOrAddTestrayTask(
+			testrayBuildId, propertiesMap.get("testray.build.name"));
 	}
 
 	private final DocumentBuilder _documentBuilder;
