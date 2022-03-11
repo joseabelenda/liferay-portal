@@ -45,6 +45,7 @@ import org.rauschig.jarchivelib.ArchiverFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -534,11 +535,58 @@ public class ImportResults {
 		for (File file : files) {
 			Document document = _documentBuilder.parse(file);
 
-			long projectId = addTestrayProject(document);
-
-			addTestrayBuild(projectId, document);
-			addTestrayCase(projectId, document);
+			_processResults(document);
 		}
+	}
+
+	private String _getAttributeValue(Node node, String attributeName) {
+		NamedNodeMap namedNodeMap = node.getAttributes();
+
+		if (namedNodeMap == null) {
+			return null;
+		}
+
+		Node attributeNode = namedNodeMap.getNamedItem(attributeName);
+
+		if (attributeNode == null) {
+			return null;
+		}
+
+		return attributeNode.getTextContent();
+	}
+
+	private Map<String, String> _getProperties(Element rootElement) {
+		Map<String, String> map = new HashMap<>();
+
+		NodeList nodeList = rootElement.getElementsByTagName("properties");
+
+		Node propertiesNode = nodeList.item(0);
+
+		Element element = (Element)propertiesNode;
+
+		NodeList propertyNodeList = element.getElementsByTagName("property");
+
+		for (int i = 0; i < propertyNodeList.getLength(); i++) {
+			Node node = propertyNodeList.item(i);
+
+			if (!node.hasAttributes()) {
+				continue;
+			}
+
+			map.put(
+				_getAttributeValue(node, "name"),
+				_getAttributeValue(node, "value"));
+		}
+
+		return map;
+	}
+
+	private void _processResults(Document document) throws Exception {
+		Element rootElement = document.getDocumentElement();
+
+		Map<String, String> propertiesMap = _getProperties(rootElement);
+
+		String projectName = propertiesMap.get("testray.project.name");
 	}
 
 	private final DocumentBuilder _documentBuilder;
