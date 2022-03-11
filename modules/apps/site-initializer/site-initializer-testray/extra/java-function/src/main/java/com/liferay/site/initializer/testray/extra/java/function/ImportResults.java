@@ -349,55 +349,15 @@ public class ImportResults {
 	}
 
 
-	public long addTestrayProject(Document document) throws Exception {
-		Map<String, String> bodyMap = new HashMap<>();
-
-		Element element = document.getDocumentElement();
-
-		element.normalize();
-
-		NodeList nodeList = document.getElementsByTagName("property");
-
-		String projectName = null;
-
-		for (int i = 0; i < nodeList.getLength(); i++) {
-			Node node = nodeList.item(i);
-
-			if ((node.getNodeType() == Node.ELEMENT_NODE) &&
-				!node.getNodeName(
-				).equals(
-					"#text"
-				) &&
-				(node.getAttributes(
-				).getLength() > 0)) {
-
-				String name = node.getAttributes(
-				).getNamedItem(
-					"name"
-				).getTextContent();
-
-				if (name.equals("testray.project.name")) {
-					String value = node.getAttributes(
-					).getNamedItem(
-						"value"
-					).getTextContent();
-
-					projectName = value;
-
-					bodyMap.put("description", name);
-					bodyMap.put("name", value);
-
-					break;
-				}
-			}
-		}
+	private long _fetchOrAddTestrayProject(String testrayProjectName)
+		throws Exception {
 
 		Map<String, String> parametersMap = new HashMap<>();
 
-		parametersMap.put("filter", "name eq '" + projectName + "'");
+		parametersMap.put("filter", "name eq '" + testrayProjectName + "'");
 
 		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "testrayprojects", null, parametersMap,
+			null, "projects", null, parametersMap,
 			HttpInvoker.HttpMethod.GET);
 
 		JSONArray projectsJSONArray = responseJSONObject.getJSONArray("items");
@@ -408,11 +368,15 @@ public class ImportResults {
 			return projectJSONObject.getLong("id");
 		}
 
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("name", testrayProjectName);
+
 		responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
-			"testrayprojects", null, null, HttpInvoker.HttpMethod.POST);
+			"projects", null, null, HttpInvoker.HttpMethod.POST);
 
 		return responseJSONObject.getLong("id");
 	}
@@ -586,7 +550,9 @@ public class ImportResults {
 
 		Map<String, String> propertiesMap = _getProperties(rootElement);
 
-		String projectName = propertiesMap.get("testray.project.name");
+		String testrayProjectName = propertiesMap.get("testray.project.name");
+
+		long testrayProjectId = _fetchOrAddTestrayProject(testrayProjectName);
 	}
 
 	private final DocumentBuilder _documentBuilder;
