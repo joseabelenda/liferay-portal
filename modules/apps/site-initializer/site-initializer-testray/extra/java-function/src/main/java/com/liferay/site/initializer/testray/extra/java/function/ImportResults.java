@@ -805,6 +805,9 @@ public class ImportResults {
 
 		long testrayRunId = _fetchOrAddTestrayRun(
 			testrayBuildId, propertiesMap.get("testray.run.id"));
+
+		_addTestrayCases(
+			rootElement, testrayBuildId, testrayProjectId, testrayRunId);
 	}
 
 	private final DocumentBuilder _documentBuilder;
