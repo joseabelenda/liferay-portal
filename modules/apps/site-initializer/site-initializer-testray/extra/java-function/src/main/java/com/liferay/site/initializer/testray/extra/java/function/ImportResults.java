@@ -32,7 +32,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -74,88 +76,82 @@ public class ImportResults {
 		_documentBuilder = _documentBuilderFactory.newDocumentBuilder();
 	}
 
-	public void addTestrayCase(long projectId, Document document)
+	private void _addTestrayCases(
+			Element rootElement, long testrayBuildId, long testrayProjectId,
+			long testrayRunId)
 		throws Exception {
 
-		String componentName = null;
-		
-		Map<String, String> map = new HashMap<>();
-
-		map.put("testrayProjectId", String.valueOf(projectId));
-		
-		NodeList testCasesNodeList = document.getElementsByTagName(
+		NodeList testCasesNodeList = rootElement.getElementsByTagName(
 			"testcase");
 
 		for (int i = 0; i < testCasesNodeList.getLength(); i++) {
-			Node testCaseNode = testCasesNodeList.item(i);
+			Node testcaseNode = testCasesNodeList.item(i);
 
-			Element element = (Element)testCaseNode;
+			Map<String, Object> testrayCasePropertiesMap =
+				_getTestrayCaseProperties((Element)testcaseNode);
 
-			NodeList propertyNodeList = element.getElementsByTagName(
-				"property");
-
-			for (int j = 0; j < propertyNodeList.getLength(); j++) {
-				Node node = propertyNodeList.item(j);
-
-				if ((node.getNodeType() == Node.ELEMENT_NODE) &&
-					!node.getNodeName(
-					).equals(
-						"#text"
-					) &&
-					(node.getAttributes(
-					).getLength() > 0)) {
-
-					String name = node.getAttributes(
-					).getNamedItem(
-						"name"
-					).getTextContent();
-
-					String value = null;
-
-					if (name.equals("testray.main.component.name")) {
-						componentName = node.getAttributes(
-						).getNamedItem(
-							"value"
-						).getTextContent();
-					}
-					else if (name.equals("testray.team.name")) {
-						value = node.getAttributes(
-						).getNamedItem(
-							"value"
-						).getTextContent();
-						
-						long teamId = fetchOrAddTestrayTeam(projectId, value);
-						long componentId = fetchOrAddTestrayComponent(
-							projectId, teamId, componentName);
-
-						map.put("testrayComponentId", String.valueOf(componentId));
-					}
-					else if (name.equals("testray.testcase.name")) {
-						value = node.getAttributes(
-						).getNamedItem(
-							"value"
-						).getTextContent();
-						map.put("name", value);
-
-						//TODO figure out what it means
-						map.put("stepsType", name);
-					}
-					else if (name.equals("testray.testcase.priority")) {
-						value = node.getAttributes(
-						).getNamedItem(
-							"value"
-						).getTextContent();
-						map.put("priority", value);
-					}
-				}
-			}
-
-			HttpUtil.invoke(
-				new JSONObject(
-					map
-				).toString(),
-				"testraycases", null, null, HttpInvoker.HttpMethod.POST);
+			_addTestrayCase(
+				testcaseNode, testrayBuildId, testrayProjectId, testrayRunId,
+				testrayCasePropertiesMap);
 		}
+	}
+
+	private void _addTestrayCase(
+			Node testcaseNode, long testrayBuildId, long testrayProjectId,
+			long testrayRunId, Map<String, Object> testrayCasePropertiesMap)
+		throws Exception {
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put(
+			"description",
+			(String)testrayCasePropertiesMap.get(
+				"testray.testcase.description"));
+		bodyMap.put(
+			"name",
+			(String)testrayCasePropertiesMap.get("testray.testcase.name"));
+		bodyMap.put(
+			"priority",
+			(String)testrayCasePropertiesMap.get("testray.testcase.priority"));
+
+		String caseTypeName = (String)testrayCasePropertiesMap.get(
+			"testray.case.type.name");
+
+		// long testrayCaseTypeId = _fetchOrAddTestrayCaseType(caseTypeName);
+
+		// bodyMap.put("testrayCaseTypeId", String.valueOf(testrayCaseTypeId));
+
+		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
+
+		String teamName = (String)testrayCasePropertiesMap.get(
+			"testray.team.name");
+
+		// long testrayTeamId = _fetchOrAddTestrayTeam(testrayProjectId, teamName);
+
+		// bodyMap.put("testrayTeamId", String.valueOf(testrayTeamId));
+
+		String componentName = (String)testrayCasePropertiesMap.get(
+			"testray.main.component.name");
+
+		// long testrayComponentId = _fetchOrAddTestrayComponent(
+		// 	testrayProjectId, testrayTeamId, componentName);
+
+		// bodyMap.put("testrayComponentId", String.valueOf(testrayComponentId));
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"testraycases", null, null, HttpInvoker.HttpMethod.POST);
+
+		long testrayCaseId = responseJSONObject.getLong("id");
+
+		// long testrayCaseResultId = _addTestrayCaseResult(
+		// 	testrayCaseId, testrayComponentId, testrayBuildId, testrayRunId,
+		// 	testrayCasePropertiesMap);
+
+		// _addTestrayAttachments(testcaseNode, testrayCaseResultId);
+		// _addTestrayWarnings(testrayCasePropertiesMap, testrayCaseResultId);
 	}
 
 	public long fetchOrAddTestrayComponent(long projectId, long teamId,
@@ -534,6 +530,68 @@ public class ImportResults {
 		}
 
 		return map;
+	}
+
+	private Map<String, Object> _getTestrayCaseProperties(
+		Element testcaseElement) {
+
+		Map<String, Object> map = new HashMap<>();
+
+		NodeList propertiesNodeList = testcaseElement.getElementsByTagName(
+			"properties");
+
+		Node propertiesNode = propertiesNodeList.item(0);
+
+		Element element = (Element)propertiesNode;
+
+		NodeList propertyNodeList = element.getElementsByTagName("property");
+
+		for (int i = 0; i < propertyNodeList.getLength(); i++) {
+			Node propertyNode = propertyNodeList.item(i);
+
+			if (!propertyNode.hasAttributes()) {
+				continue;
+			}
+
+			String name = _getAttributeValue(propertyNode, "name");
+
+			if (name.equalsIgnoreCase("testray.testcase.warnings")) {
+				List<String> values = new ArrayList<>();
+
+				NodeList childNodeList = propertyNode.getChildNodes();
+
+				for (int j = 0; j < childNodeList.getLength(); j++) {
+					Node childNode = childNodeList.item(j);
+
+					String warning = childNode.getTextContent();
+
+					if (!_isEmpty(warning)) {
+						values.add(childNode.getTextContent());
+					}
+				}
+
+				map.put(name, values);
+			}
+			else {
+				map.put(name, _getAttributeValue(propertyNode, "value"));
+			}
+		}
+
+		return map;
+	}
+
+	private boolean _isEmpty(String value) {
+		if (value == null) {
+			return true;
+		}
+
+		String trimmedValue = value.trim();
+
+		if (trimmedValue.isEmpty()) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private void _processResults(Document document) throws Exception {
