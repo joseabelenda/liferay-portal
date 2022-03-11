@@ -132,13 +132,13 @@ public class ImportResults {
 
 		bodyMap.put("testrayTeamId", String.valueOf(testrayTeamId));
 
-		String componentName = (String)testrayCasePropertiesMap.get(
+		String testrayComponentName = (String)testrayCasePropertiesMap.get(
 			"testray.main.component.name");
 
-		// long testrayComponentId = _fetchOrAddTestrayComponent(
-		// 	testrayProjectId, testrayTeamId, componentName);
+		long testrayComponentId = _fetchOrAddTestrayComponent(
+			testrayProjectId, testrayTeamId, testrayComponentName);
 
-		// bodyMap.put("testrayComponentId", String.valueOf(testrayComponentId));
+		bodyMap.put("testrayComponentId", String.valueOf(testrayComponentId));
 
 		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
@@ -188,38 +188,42 @@ public class ImportResults {
 		return responseJSONObject.getLong("id");
 	}
 
-	public long fetchOrAddTestrayComponent(long projectId, long teamId,
-		String componentName) throws Exception {
+	private long _fetchOrAddTestrayComponent(
+			long testrayProjectId, long testrayTeamId,
+			String testrayComponentName)
+		throws Exception {
 
 		Map<String, String> parametersMap = new HashMap<>();
 
-		parametersMap.put("filter", "name eq '" + componentName + "'");
+		parametersMap.put("filter", "name eq '" + testrayComponentName + "'");
 
 		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "testraycomponents", null, parametersMap,
+			null, "components", null, parametersMap,
 			HttpInvoker.HttpMethod.GET);
 
-		JSONArray componentsJSONArray = responseJSONObject.getJSONArray("items");
+		JSONArray componentsJSONArray = responseJSONObject.getJSONArray(
+			"items");
 
 		if (!componentsJSONArray.isEmpty()) {
-			JSONObject componentJSONObject = componentsJSONArray.getJSONObject(0);
+			JSONObject componentJSONObject = componentsJSONArray.getJSONObject(
+				0);
 
 			return componentJSONObject.getLong("id");
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
 
-		bodyMap.put("name", componentName);
-		bodyMap.put("testrayProjectId", String.valueOf(projectId));
-		bodyMap.put("testrayTeamId", String.valueOf(teamId));
+		bodyMap.put("name", testrayComponentName);
+		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
+		bodyMap.put("testrayTeamId", String.valueOf(testrayTeamId));
 
 		responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
-			"testraycomponents", null, null, HttpInvoker.HttpMethod.POST);
+			"components", null, null, HttpInvoker.HttpMethod.POST);
 
-	   	return responseJSONObject.getLong("id");
+		return responseJSONObject.getLong("id");
 	}
 
 	private long _fetchOrAddTestrayRun(long testrayBuildId,
