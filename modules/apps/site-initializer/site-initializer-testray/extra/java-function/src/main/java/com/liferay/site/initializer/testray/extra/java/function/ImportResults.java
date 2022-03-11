@@ -345,6 +345,12 @@ public class ImportResults {
 		bodyMap.put("name", testrayBuildName);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
+		long testrayProductVersionId = _fetchOrAddTestrayProductVersion(
+			testrayProjectId, propertiesMap.get("testray.product.version"));
+
+		bodyMap.put(
+			"testrayProductVersionId", String.valueOf(testrayProductVersionId));
+
 		long testrayRoutineId = _fetchOrAddTestrayRoutine(
 			testrayProjectId, propertiesMap.get("testray.build.type"));
 
@@ -424,6 +430,40 @@ public class ImportResults {
 				bodyMap
 			).toString(),
 			"components", null, null, HttpInvoker.HttpMethod.POST);
+
+		return responseJSONObject.getLong("id");
+	}
+
+	private long _fetchOrAddTestrayProductVersion(long testrayProjectId,
+			String testrayProductVersion)
+		throws Exception{
+
+		Map<String, String> parametersMap = new HashMap<>();
+
+		parametersMap.put("filter", "name eq '" + testrayProductVersion + "'");
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			null, "productversions", null, parametersMap,
+			HttpInvoker.HttpMethod.GET);
+
+		JSONArray versionsJSONArray = responseJSONObject.getJSONArray("items");
+
+		if (!versionsJSONArray.isEmpty()) {
+			JSONObject versionJSONObject = versionsJSONArray.getJSONObject(0);
+
+			return versionJSONObject.getLong("id");
+		}
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("name", testrayProductVersion);
+		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
+
+		responseJSONObject = HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"productversions", null, null, HttpInvoker.HttpMethod.POST);
 
 		return responseJSONObject.getLong("id");
 	}
