@@ -253,6 +253,28 @@ public class ImportResults {
 		}
 	}
 
+	private void _addTestrayFactor(
+			long testrayRunId, long testrayCategoryId, String categoryName,
+			long testrayOptionId, String optionName)
+		throws Exception {
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("classNameId", String.valueOf(testrayRunId));
+		bodyMap.put("classPK", String.valueOf(testrayRunId));
+		bodyMap.put(
+			"testrayFactorCategoryId", String.valueOf(testrayCategoryId));
+		bodyMap.put("testrayFactorCategoryName", categoryName);
+		bodyMap.put("testrayFactorOptionId", String.valueOf(testrayOptionId));
+		bodyMap.put("testrayFactorOptionName", optionName);
+
+		HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"testrayfactors", null, null, HttpInvoker.HttpMethod.POST);
+	}
+
 	private void _addTestrayWarnings(
 			Map<String, Object> testrayCasePropertiesMap,
 			long testrayCaseResultId)
@@ -434,9 +456,78 @@ public class ImportResults {
 		return responseJSONObject.getLong("id");
 	}
 
-	private long _fetchOrAddTestrayProductVersion(long testrayProjectId,
-			String testrayProductVersion)
-		throws Exception{
+	private long _fetchOrAddTestrayFactorCategory(String categoryName)
+		throws Exception {
+
+		Map<String, String> parametersMap = new HashMap<>();
+
+		parametersMap.put("filter", "name eq '" + categoryName + "'");
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			null, "factorcategories", null, parametersMap,
+			HttpInvoker.HttpMethod.GET);
+
+		JSONArray categoriesJSONArray = responseJSONObject.getJSONArray(
+			"items");
+
+		if (!categoriesJSONArray.isEmpty()) {
+			JSONObject categoryJSONObject = categoriesJSONArray.getJSONObject(
+				0);
+
+			return categoryJSONObject.getLong("id");
+		}
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("name", categoryName);
+
+		responseJSONObject = HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"factorcategories", null, null, HttpInvoker.HttpMethod.POST);
+
+		return responseJSONObject.getLong("id");
+	}
+
+	private long _fetchOrAddTestrayFactorOption(
+			String optionName, long testrayCategoryId)
+		throws Exception {
+
+		Map<String, String> parametersMap = new HashMap<>();
+
+		parametersMap.put("filter", "name eq '" + optionName + "'");
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			null, "factoroptions", null, parametersMap,
+			HttpInvoker.HttpMethod.GET);
+
+		JSONArray optionsJSONArray = responseJSONObject.getJSONArray("items");
+
+		if (!optionsJSONArray.isEmpty()) {
+			JSONObject optionJSONObject = optionsJSONArray.getJSONObject(0);
+
+			return optionJSONObject.getLong("id");
+		}
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("name", optionName);
+		bodyMap.put(
+			"testrayFactorCategoryId", String.valueOf(testrayCategoryId));
+
+		responseJSONObject = HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"factoroptions", null, null, HttpInvoker.HttpMethod.POST);
+
+		return responseJSONObject.getLong("id");
+	}
+
+	private long _fetchOrAddTestrayProductVersion(
+			long testrayProjectId, String testrayProductVersion)
+		throws Exception {
 
 		Map<String, String> parametersMap = new HashMap<>();
 
@@ -533,7 +624,7 @@ public class ImportResults {
 	}
 
 	private long _fetchOrAddTestrayRun(
-			long testrayBuildId, String testrayRunName)
+			long testrayBuildId, String testrayRunName, Element rootElement)
 		throws Exception {
 
 		Map<String, String> parametersMap = new HashMap<>();
@@ -541,8 +632,7 @@ public class ImportResults {
 		parametersMap.put("filter", "name eq '" + testrayRunName + "'");
 
 		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "runs", null, parametersMap,
-			HttpInvoker.HttpMethod.GET);
+			null, "runs", null, parametersMap, HttpInvoker.HttpMethod.GET);
 
 		JSONArray runsJSONArray = responseJSONObject.getJSONArray("items");
 
@@ -564,7 +654,23 @@ public class ImportResults {
 			).toString(),
 			"runs", null, null, HttpInvoker.HttpMethod.POST);
 
-		return responseJSONObject.getLong("id");
+		long testrayRunId = responseJSONObject.getLong("id");
+
+		String environmentHash = _getTestrayRunEnvironmentHash(
+			rootElement, testrayRunId);
+
+		bodyMap = new HashMap<>();
+
+		bodyMap.put("environmentHash", environmentHash);
+
+		HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"testrayruns/" + String.valueOf(testrayRunId), null, null,
+			HttpInvoker.HttpMethod.PATCH);
+
+		return testrayRunId;
 	}
 
 	private void _fetchOrAddTestrayTask(
@@ -736,6 +842,45 @@ public class ImportResults {
 		return map;
 	}
 
+	private String _getTestrayRunEnvironmentHash(
+			Element rootElement, long testrayRunId)
+		throws Exception {
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		NodeList environmentNodeList = rootElement.getElementsByTagName(
+			"environment");
+
+		for (int i = 0; i < environmentNodeList.getLength(); i++) {
+			Node node = environmentNodeList.item(i);
+
+			if (!node.hasAttributes()) {
+				continue;
+			}
+
+			String categoryName = _getAttributeValue(node, "type");
+			String optionName = _getAttributeValue(node, "option");
+
+			long testrayCategoryId = _fetchOrAddTestrayFactorCategory(
+				categoryName);
+
+			long testrayOptionId = _fetchOrAddTestrayFactorOption(
+				optionName, testrayCategoryId);
+
+			_addTestrayFactor(
+				testrayRunId, testrayCategoryId, categoryName, testrayOptionId,
+				optionName);
+
+			stringBuilder.append(testrayCategoryId);
+			
+			stringBuilder.append(testrayOptionId);
+		}
+
+		String testrayFactorsString = stringBuilder.toString();
+
+		return String.valueOf(testrayFactorsString.hashCode());
+	}
+
 	private boolean _isEmpty(String value) {
 		if (value == null) {
 			return true;
@@ -763,7 +908,7 @@ public class ImportResults {
 			testrayProjectId, propertiesMap);
 
 		long testrayRunId = _fetchOrAddTestrayRun(
-			testrayBuildId, propertiesMap.get("testray.run.id"));
+			testrayBuildId, propertiesMap.get("testray.run.id"), rootElement);
 
 		_addTestrayCases(
 			rootElement, testrayBuildId, testrayProjectId, testrayRunId);
