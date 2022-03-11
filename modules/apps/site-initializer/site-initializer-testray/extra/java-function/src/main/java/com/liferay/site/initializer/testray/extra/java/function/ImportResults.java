@@ -542,6 +542,9 @@ public class ImportResults {
 		String testrayProjectName = propertiesMap.get("testray.project.name");
 
 		long testrayProjectId = _fetchOrAddTestrayProject(testrayProjectName);
+
+		long testrayBuildId = _fetchOrAddTestrayBuild(
+			testrayProjectId, propertiesMap);
 	}
 
 	private final DocumentBuilder _documentBuilder;
