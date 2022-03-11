@@ -179,6 +179,12 @@ public class ImportResults {
 			testrayCasePropertiesMap, testcaseNode);
 
 		_addTestrayAttachments(testcaseNode, testrayCaseResultId);
+		_addTestrayIssue(
+			(String)testrayCasePropertiesMap.get("testray.case.issue"),
+			testrayCaseResultId);
+		_addTestrayIssue(
+			(String)testrayCasePropertiesMap.get("testray.case.defect"),
+			testrayCaseResultId);
 		_addTestrayWarnings(testrayCasePropertiesMap, testrayCaseResultId);
 	}
 
@@ -206,13 +212,16 @@ public class ImportResults {
 				TestrayConstants.TESTRAY_CASE_RESULT_STATUS_IN_PROGRESS);
 		}
 		else if (testrayTestcaseStatus.equals("passed")) {
-			dueStatus = String.valueOf(TestrayConstants.TESTRAY_CASE_RESULT_STATUS_PASSED);
+			dueStatus = String.valueOf(
+				TestrayConstants.TESTRAY_CASE_RESULT_STATUS_PASSED);
 		}
 		else if (testrayTestcaseStatus.equals("failed")) {
-			dueStatus = String.valueOf(TestrayConstants.TESTRAY_CASE_RESULT_STATUS_FAILED);
+			dueStatus = String.valueOf(
+				TestrayConstants.TESTRAY_CASE_RESULT_STATUS_FAILED);
 		}
 		else if (testrayTestcaseStatus.equals("blocked")) {
-			dueStatus = String.valueOf(TestrayConstants.TESTRAY_CASE_RESULT_STATUS_BLOCKED);
+			dueStatus = String.valueOf(
+				TestrayConstants.TESTRAY_CASE_RESULT_STATUS_BLOCKED);
 		}
 		else if (testrayTestcaseStatus.equals("dnr")) {
 			dueStatus = String.valueOf(
@@ -290,6 +299,24 @@ public class ImportResults {
 				bodyMap
 			).toString(),
 			"testrayfactors", null, null, HttpInvoker.HttpMethod.POST);
+	}
+
+	private void _addTestrayIssue(String issue, long testrayCaseResultId)
+		throws Exception {
+
+		if (_isEmpty(issue)) {
+			return;
+		}
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("name", issue);
+
+		HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"issues", null, null, HttpInvoker.HttpMethod.POST);
 	}
 
 	private void _addTestrayWarnings(
@@ -644,7 +671,8 @@ public class ImportResults {
 	}
 
 	private long _fetchOrAddTestrayRun(
-			long testrayBuildId, Map<String, String> propertiesMap, Element rootElement)
+			long testrayBuildId, Map<String, String> propertiesMap,
+			Element rootElement)
 		throws Exception {
 
 		String testrayRunName = propertiesMap.get("testray.run.id");
@@ -667,8 +695,10 @@ public class ImportResults {
 		Map<String, String> bodyMap = new HashMap<>();
 
 		bodyMap.put("externalReferencePK", propertiesMap.get("testray.run.id"));
-		bodyMap.put("externalReferenceType",
-			String.valueOf(TestrayConstants.TESTRAY_RUN_EXTERNAL_REFERENCE_TYPE_POSHI));
+		bodyMap.put(
+			"externalReferenceType",
+			String.valueOf(
+				TestrayConstants.TESTRAY_RUN_EXTERNAL_REFERENCE_TYPE_POSHI));
 		bodyMap.put("jenkinsJobKey", propertiesMap.get("jenkins.job.id"));
 		bodyMap.put("name", propertiesMap.get("testray.run.id"));
 		bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
@@ -716,7 +746,8 @@ public class ImportResults {
 
 			bodyMap.put(
 				"dueStatus",
-				String.valueOf(TestrayConstants.TESTRAY_CASE_RESULT_STATUS_IN_PROGRESS));
+				String.valueOf(
+					TestrayConstants.TESTRAY_CASE_RESULT_STATUS_IN_PROGRESS));
 			bodyMap.put("name", testrayTaskName);
 			bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
 
