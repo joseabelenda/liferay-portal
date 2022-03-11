@@ -21,6 +21,7 @@ import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
 
 import com.liferay.petra.http.invoker.HttpInvoker;
+import com.liferay.petra.string.StringPool;
 import com.liferay.site.initializer.testray.extra.java.function.http.HttpUtil;
 import com.liferay.site.initializer.testray.extra.java.function.util.PropsUtil;
 import com.liferay.site.initializer.testray.extra.java.function.util.PropsValues;
@@ -257,6 +258,41 @@ public class ImportResults {
 	   	return responseJSONObject.getLong("id");
 	}
 
+	private String _buildTestrayBuildDescription(
+		Map<String, String> propertiesMap) {
+
+		StringBuilder sb = new StringBuilder(15);
+
+		if (propertiesMap.get("liferay.portal.git.id") != null) {
+			sb.append("Portal hash: ");
+			sb.append(propertiesMap.get("liferay.portal.git.id"));
+			sb.append(StringPool.SEMICOLON);
+			sb.append(StringPool.NEW_LINE);
+		}
+
+		if (propertiesMap.get("liferay.plugins.git.id") != null) {
+			sb.append("Plugins hash: ");
+			sb.append(propertiesMap.get("liferay.plugins.git.id"));
+			sb.append(StringPool.SEMICOLON);
+			sb.append(StringPool.NEW_LINE);
+		}
+
+		if (propertiesMap.get("liferay.portal.branch") != null) {
+			sb.append("Portal branch: ");
+			sb.append(propertiesMap.get("liferay.portal.branch"));
+			sb.append(StringPool.SEMICOLON);
+			sb.append(StringPool.NEW_LINE);
+		}
+
+		if (propertiesMap.get("liferay.portal.bundle") != null) {
+			sb.append("Bundle: ");
+			sb.append(propertiesMap.get("liferay.portal.bundle"));
+			sb.append(StringPool.SEMICOLON);
+		}
+
+		return sb.toString();
+	}
+
 	private long _fetchOrAddTestrayBuild(
 			long testrayProjectId, Map<String, String> propertiesMap)
 		throws Exception {
@@ -281,6 +317,8 @@ public class ImportResults {
 
 		Map<String, String> bodyMap = new HashMap<>();
 
+		bodyMap.put(
+			"description", _buildTestrayBuildDescription(propertiesMap));
 		bodyMap.put("dueDate", propertiesMap.get("testray.build.time"));
 		bodyMap.put("name", buildName);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
