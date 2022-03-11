@@ -644,8 +644,10 @@ public class ImportResults {
 	}
 
 	private long _fetchOrAddTestrayRun(
-			long testrayBuildId, String testrayRunName, Element rootElement)
+			long testrayBuildId, Map<String, String> propertiesMap, Element rootElement)
 		throws Exception {
+
+		String testrayRunName = propertiesMap.get("testray.run.id");
 
 		Map<String, String> parametersMap = new HashMap<>();
 
@@ -664,8 +666,11 @@ public class ImportResults {
 
 		Map<String, String> bodyMap = new HashMap<>();
 
-		bodyMap.put("externalReferencePK", testrayRunName);
-		bodyMap.put("name", testrayRunName);
+		bodyMap.put("externalReferencePK", propertiesMap.get("testray.run.id"));
+		bodyMap.put("externalReferenceType",
+			String.valueOf(TestrayConstants.TESTRAY_RUN_EXTERNAL_REFERENCE_TYPE_POSHI));
+		bodyMap.put("jenkinsJobKey", propertiesMap.get("jenkins.job.id"));
+		bodyMap.put("name", propertiesMap.get("testray.run.id"));
 		bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
 
 		responseJSONObject = HttpUtil.invoke(
@@ -928,7 +933,7 @@ public class ImportResults {
 			testrayProjectId, propertiesMap);
 
 		long testrayRunId = _fetchOrAddTestrayRun(
-			testrayBuildId, propertiesMap.get("testray.run.id"), rootElement);
+			testrayBuildId, propertiesMap, rootElement);
 
 		_addTestrayCases(
 			rootElement, testrayBuildId, testrayProjectId, testrayRunId);
