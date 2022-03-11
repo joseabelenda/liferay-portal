@@ -114,12 +114,12 @@ public class ImportResults {
 			"priority",
 			(String)testrayCasePropertiesMap.get("testray.testcase.priority"));
 
-		String caseTypeName = (String)testrayCasePropertiesMap.get(
+		String testrayCaseTypeName = (String)testrayCasePropertiesMap.get(
 			"testray.case.type.name");
 
-		// long testrayCaseTypeId = _fetchOrAddTestrayCaseType(caseTypeName);
+		long testrayCaseTypeId = _fetchOrAddTestrayCaseType(testrayCaseTypeName);
 
-		// bodyMap.put("testrayCaseTypeId", String.valueOf(testrayCaseTypeId));
+		bodyMap.put("testrayCaseTypeId", String.valueOf(testrayCaseTypeId));
 
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
@@ -152,6 +152,38 @@ public class ImportResults {
 
 		// _addTestrayAttachments(testcaseNode, testrayCaseResultId);
 		// _addTestrayWarnings(testrayCasePropertiesMap, testrayCaseResultId);
+	}
+
+	private long _fetchOrAddTestrayCaseType(String testrayCaseTypeName)
+		throws Exception {
+
+		Map<String, String> parametersMap = new HashMap<>();
+
+		parametersMap.put("filter", "name eq '" + testrayCaseTypeName + "'");
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			null, "casetypes", null, parametersMap,
+			HttpInvoker.HttpMethod.GET);
+
+		JSONArray caseTypesJSONArray = responseJSONObject.getJSONArray("items");
+
+		if (!caseTypesJSONArray.isEmpty()) {
+			JSONObject caseTypeJSONObject = caseTypesJSONArray.getJSONObject(0);
+
+			return caseTypeJSONObject.getLong("id");
+		}
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("name", testrayCaseTypeName);
+
+		responseJSONObject = HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"casetypes", null, null, HttpInvoker.HttpMethod.POST);
+
+		return responseJSONObject.getLong("id");
 	}
 
 	public long fetchOrAddTestrayComponent(long projectId, long teamId,
