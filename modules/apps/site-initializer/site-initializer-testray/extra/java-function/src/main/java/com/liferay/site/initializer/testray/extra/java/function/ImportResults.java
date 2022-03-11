@@ -22,6 +22,7 @@ import com.google.cloud.storage.StorageOptions;
 
 import com.liferay.petra.http.invoker.HttpInvoker;
 import com.liferay.petra.string.StringPool;
+import com.liferay.site.initializer.testray.extra.java.function.constants.TestrayConstants;
 import com.liferay.site.initializer.testray.extra.java.function.http.HttpUtil;
 import com.liferay.site.initializer.testray.extra.java.function.util.PropsUtil;
 import com.liferay.site.initializer.testray.extra.java.function.util.PropsValues;
@@ -148,12 +149,63 @@ public class ImportResults {
 
 		long testrayCaseId = responseJSONObject.getLong("id");
 
-		// long testrayCaseResultId = _addTestrayCaseResult(
-		// 	testrayCaseId, testrayComponentId, testrayBuildId, testrayRunId,
-		// 	testrayCasePropertiesMap);
+		long testrayCaseResultId = _addTestrayCaseResult(
+			testrayCaseId, testrayComponentId, testrayBuildId, testrayRunId,
+			testrayCasePropertiesMap);
 
 		// _addTestrayAttachments(testcaseNode, testrayCaseResultId);
 		// _addTestrayWarnings(testrayCasePropertiesMap, testrayCaseResultId);
+	}
+
+	private long _addTestrayCaseResult(
+			long testrayCaseId, long testrayComponentId, long testrayBuildId,
+			long testrayRunId, Map<String, Object> testrayCasePropertiesMap)
+		throws Exception {
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
+		bodyMap.put("testrayCaseId", String.valueOf(testrayCaseId));
+		bodyMap.put("testrayComponentId", String.valueOf(testrayComponentId));
+		bodyMap.put("testrayRunId", String.valueOf(testrayRunId));
+
+		String dueStatus = String.valueOf(
+			TestrayConstants.TESTRAY_STATUS_UNTESTED);
+
+		String testrayTestcaseStatus = (String)testrayCasePropertiesMap.get(
+			"testray.testcase.status");
+
+		if (testrayTestcaseStatus.equals("in-progress")) {
+			dueStatus = String.valueOf(
+				TestrayConstants.TESTRAY_STATUS_IN_PROGRESS);
+		}
+		else if (testrayTestcaseStatus.equals("passed")) {
+			dueStatus = String.valueOf(TestrayConstants.TESTRAY_STATUS_PASSED);
+		}
+		else if (testrayTestcaseStatus.equals("failed")) {
+			dueStatus = String.valueOf(TestrayConstants.TESTRAY_STATUS_FAILED);
+		}
+		else if (testrayTestcaseStatus.equals("blocked")) {
+			dueStatus = String.valueOf(TestrayConstants.TESTRAY_STATUS_BLOCKED);
+		}
+		else if (testrayTestcaseStatus.equals("dnr")) {
+			dueStatus = String.valueOf(
+				TestrayConstants.TESTRAY_STATUS_DID_NOT_RUN);
+		}
+		else if (testrayTestcaseStatus.equals("test-fix")) {
+			dueStatus = String.valueOf(
+				TestrayConstants.TESTRAY_STATUS_TEST_FIX);
+		}
+
+		bodyMap.put("dueStatus", dueStatus);
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"caseresults", null, null, HttpInvoker.HttpMethod.POST);
+
+		return responseJSONObject.getLong("id");
 	}
 
 	private long _fetchOrAddTestrayCaseType(String testrayCaseTypeName)
