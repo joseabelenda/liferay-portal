@@ -192,11 +192,13 @@ public class ImportResults {
 	   	return responseJSONObject.getLong("id");
 	}
 
-	public long fetchOrAddTestrayRun(long buildId, String runName) throws Exception {
+	private long _fetchOrAddTestrayRun(long testrayBuildId,
+			String testrayRunName)
+		throws Exception {
 
 		Map<String, String> parametersMap = new HashMap<>();
 
-		parametersMap.put("filter", "name eq '" + runName + "'");
+		parametersMap.put("filter", "name eq '" + testrayRunName + "'");
 
 		JSONObject responseJSONObject = HttpUtil.invoke(
 			null, "testrayruns", null, parametersMap,
@@ -212,17 +214,17 @@ public class ImportResults {
 
 		Map<String, String> bodyMap = new HashMap<>();
 
-		bodyMap.put("externalReferencePK", runName);
-		bodyMap.put("name", runName);
-		bodyMap.put("testrayBuildId", String.valueOf(buildId));
+		bodyMap.put("externalReferencePK", testrayRunName);
+		bodyMap.put("name", testrayRunName);
+		bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
 
 		responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
-			"testrayruns", null, null, HttpInvoker.HttpMethod.POST);
+			"runs", null, null, HttpInvoker.HttpMethod.POST);
 
-	   	return responseJSONObject.getLong("id");
+		return responseJSONObject.getLong("id");
 	}
 
 	private String _buildTestrayBuildDescription(
@@ -545,6 +547,9 @@ public class ImportResults {
 
 		long testrayBuildId = _fetchOrAddTestrayBuild(
 			testrayProjectId, propertiesMap);
+
+		long testrayRunId = _fetchOrAddTestrayRun(
+			testrayBuildId, propertiesMap.get("testray.run.id"));
 	}
 
 	private final DocumentBuilder _documentBuilder;
