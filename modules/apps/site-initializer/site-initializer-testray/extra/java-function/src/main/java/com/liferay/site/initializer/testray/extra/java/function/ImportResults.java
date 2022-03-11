@@ -117,18 +117,20 @@ public class ImportResults {
 		String testrayCaseTypeName = (String)testrayCasePropertiesMap.get(
 			"testray.case.type.name");
 
-		long testrayCaseTypeId = _fetchOrAddTestrayCaseType(testrayCaseTypeName);
+		long testrayCaseTypeId = _fetchOrAddTestrayCaseType(
+			testrayCaseTypeName);
 
 		bodyMap.put("testrayCaseTypeId", String.valueOf(testrayCaseTypeId));
 
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
-		String teamName = (String)testrayCasePropertiesMap.get(
+		String testrayTeamName = (String)testrayCasePropertiesMap.get(
 			"testray.team.name");
 
-		// long testrayTeamId = _fetchOrAddTestrayTeam(testrayProjectId, teamName);
+		long testrayTeamId =_fetchOrAddTestrayTeam(
+			testrayProjectId, testrayTeamName);
 
-		// bodyMap.put("testrayTeamId", String.valueOf(testrayTeamId));
+		bodyMap.put("testrayTeamId", String.valueOf(testrayTeamId));
 
 		String componentName = (String)testrayCasePropertiesMap.get(
 			"testray.main.component.name");
@@ -251,6 +253,40 @@ public class ImportResults {
 				bodyMap
 			).toString(),
 			"runs", null, null, HttpInvoker.HttpMethod.POST);
+
+		return responseJSONObject.getLong("id");
+	}
+
+	private long _fetchOrAddTestrayTeam(long testrayProjectId,
+			String testrayTeamName)
+		throws Exception {
+
+		Map<String, String> parametersMap = new HashMap<>();
+
+		parametersMap.put("filter", "name eq '" + testrayTeamName + "'");
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			null, "teams", null, parametersMap,
+			HttpInvoker.HttpMethod.GET);
+
+		JSONArray teamsJSONArray = responseJSONObject.getJSONArray("items");
+
+		if (!teamsJSONArray.isEmpty()) {
+			JSONObject teamJSONObject = teamsJSONArray.getJSONObject(0);
+
+			return teamJSONObject.getLong("id");
+		}
+
+		Map<String, String> bodyMap = new HashMap<>();
+
+		bodyMap.put("name", testrayTeamName);
+		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
+
+		responseJSONObject = HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			"teams", null, null, HttpInvoker.HttpMethod.POST);
 
 		return responseJSONObject.getLong("id");
 	}
