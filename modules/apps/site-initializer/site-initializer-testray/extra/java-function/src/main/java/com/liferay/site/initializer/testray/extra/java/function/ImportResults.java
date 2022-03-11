@@ -77,6 +77,51 @@ public class ImportResults {
 		_documentBuilder = _documentBuilderFactory.newDocumentBuilder();
 	}
 
+	private void _addTestrayAttachments(
+			Node testcaseNode, long testrayCaseResultId)
+		throws Exception {
+
+		Element testcaseElement = (Element)testcaseNode;
+
+		NodeList attachmentsNodeList = testcaseElement.getElementsByTagName(
+			"attachments");
+
+		for (int i = 0; i < attachmentsNodeList.getLength(); i++) {
+			Node attachmentsNode = attachmentsNodeList.item(i);
+
+			if (attachmentsNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element attachmentsElement = (Element)attachmentsNode;
+
+				NodeList fileNodeList = attachmentsElement.getElementsByTagName(
+					"file");
+
+				for (int j = 0; j < fileNodeList.getLength(); j++) {
+					Node fileNode = fileNodeList.item(j);
+
+					if (fileNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element fileElement = (Element)fileNode;
+
+						Map<String, String> bodyMap = new HashMap<>();
+
+						bodyMap.put("name", fileElement.getAttribute("name"));
+						bodyMap.put(
+							"r_caseResultToAttachments_c_caseResultId",
+							String.valueOf(testrayCaseResultId));
+						bodyMap.put("url", fileElement.getAttribute("url"));
+						bodyMap.put("value", fileElement.getAttribute("value"));
+
+						HttpUtil.invoke(
+							new JSONObject(
+								bodyMap
+							).toString(),
+							"attachments", null, null,
+							HttpInvoker.HttpMethod.POST);
+					}
+				}
+			}
+		}
+	}
+
 	private void _addTestrayCases(
 			Element rootElement, long testrayBuildId, long testrayProjectId,
 			long testrayRunId)
@@ -153,7 +198,7 @@ public class ImportResults {
 			testrayCaseId, testrayComponentId, testrayBuildId, testrayRunId,
 			testrayCasePropertiesMap);
 
-		// _addTestrayAttachments(testcaseNode, testrayCaseResultId);
+		_addTestrayAttachments(testcaseNode, testrayCaseResultId);
 		// _addTestrayWarnings(testrayCasePropertiesMap, testrayCaseResultId);
 	}
 
