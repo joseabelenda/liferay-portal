@@ -378,18 +378,15 @@ public class ImportResults {
 		return sb.toString();
 	}
 
-	private long _fetchOrAddTestrayBuild(
-			long testrayProjectId, Map<String, String> propertiesMap)
+	private long _fetchEntityIdByName(String objectName, String entityName)
 		throws Exception {
-
-		String testrayBuildName = propertiesMap.get("testray.build.name");
 
 		Map<String, String> parametersMap = new HashMap<>();
 
-		parametersMap.put("filter", "name eq '" + testrayBuildName + "'");
+		parametersMap.put("filter", "name eq '" + entityName + "'");
 
 		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "builds", null, parametersMap, HttpInvoker.HttpMethod.GET);
+			null, objectName, null, parametersMap, HttpInvoker.HttpMethod.GET);
 
 		JSONArray jsonArray = responseJSONObject.getJSONArray("items");
 
@@ -397,6 +394,21 @@ public class ImportResults {
 			JSONObject buildJSONObject = jsonArray.getJSONObject(0);
 
 			return buildJSONObject.getLong("id");
+		}
+
+		return 0l;
+	}
+
+	private long _fetchOrAddTestrayBuild(
+			long testrayProjectId, Map<String, String> propertiesMap)
+		throws Exception {
+
+		String testrayBuildName = propertiesMap.get("testray.build.name");
+
+		long testrayBuildId = _fetchEntityIdByName("builds", testrayBuildName);
+
+		if (testrayBuildId > 0) {
+			return testrayBuildId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
@@ -424,7 +436,7 @@ public class ImportResults {
 		bodyMap.put(
 			"r_routineToBuilds_c_routineId", String.valueOf(testrayRoutineId));
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
@@ -436,26 +448,18 @@ public class ImportResults {
 	private long _fetchOrAddTestrayCaseType(String testrayCaseTypeName)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayCaseTypeId = _fetchEntityIdByName(
+			"casetypes", testrayCaseTypeName);
 
-		parametersMap.put("filter", "name eq '" + testrayCaseTypeName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "casetypes", null, parametersMap, HttpInvoker.HttpMethod.GET);
-
-		JSONArray jsonArray = responseJSONObject.getJSONArray("items");
-
-		if (!jsonArray.isEmpty()) {
-			JSONObject caseTypeJSONObject = jsonArray.getJSONObject(0);
-
-			return caseTypeJSONObject.getLong("id");
+		if (testrayCaseTypeId > 0) {
+			return testrayCaseTypeId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
 
 		bodyMap.put("name", testrayCaseTypeName);
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
@@ -469,20 +473,11 @@ public class ImportResults {
 			long testrayTeamId)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayComponentId = _fetchEntityIdByName(
+			"components", testrayComponentName);
 
-		parametersMap.put("filter", "name eq '" + testrayComponentName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "components", null, parametersMap,
-			HttpInvoker.HttpMethod.GET);
-
-		JSONArray jsonArray = responseJSONObject.getJSONArray("items");
-
-		if (!jsonArray.isEmpty()) {
-			JSONObject componentJSONObject = jsonArray.getJSONObject(0);
-
-			return componentJSONObject.getLong("id");
+		if (testrayComponentId > 0) {
+			return testrayComponentId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
@@ -491,7 +486,7 @@ public class ImportResults {
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 		bodyMap.put("testrayTeamId", String.valueOf(testrayTeamId));
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
@@ -503,29 +498,18 @@ public class ImportResults {
 	private long _fetchOrAddTestrayFactorCategory(String categoryName)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayCategoryId = _fetchEntityIdByName(
+			"factorcategories", categoryName);
 
-		parametersMap.put("filter", "name eq '" + categoryName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "factorcategories", null, parametersMap,
-			HttpInvoker.HttpMethod.GET);
-
-		JSONArray categoriesJSONArray = responseJSONObject.getJSONArray(
-			"items");
-
-		if (!categoriesJSONArray.isEmpty()) {
-			JSONObject categoryJSONObject = categoriesJSONArray.getJSONObject(
-				0);
-
-			return categoryJSONObject.getLong("id");
+		if (testrayCategoryId > 0) {
+			return testrayCategoryId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
 
 		bodyMap.put("name", categoryName);
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
@@ -538,20 +522,11 @@ public class ImportResults {
 			String optionName, long testrayCategoryId)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayFactorOptionId = _fetchEntityIdByName(
+			"factoroptions", optionName);
 
-		parametersMap.put("filter", "name eq '" + optionName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "factoroptions", null, parametersMap,
-			HttpInvoker.HttpMethod.GET);
-
-		JSONArray optionsJSONArray = responseJSONObject.getJSONArray("items");
-
-		if (!optionsJSONArray.isEmpty()) {
-			JSONObject optionJSONObject = optionsJSONArray.getJSONObject(0);
-
-			return optionJSONObject.getLong("id");
+		if (testrayFactorOptionId > 0) {
+			return testrayFactorOptionId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
@@ -560,7 +535,7 @@ public class ImportResults {
 		bodyMap.put(
 			"testrayFactorCategoryId", String.valueOf(testrayCategoryId));
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
@@ -573,20 +548,11 @@ public class ImportResults {
 			long testrayProjectId, String testrayProductVersion)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayProductVersionId = _fetchEntityIdByName(
+			"productversions", testrayProductVersion);
 
-		parametersMap.put("filter", "name eq '" + testrayProductVersion + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "productversions", null, parametersMap,
-			HttpInvoker.HttpMethod.GET);
-
-		JSONArray jsonArray = responseJSONObject.getJSONArray("items");
-
-		if (!jsonArray.isEmpty()) {
-			JSONObject versionJSONObject = jsonArray.getJSONObject(0);
-
-			return versionJSONObject.getLong("id");
+		if (testrayProductVersionId > 0) {
+			return testrayProductVersionId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
@@ -594,7 +560,7 @@ public class ImportResults {
 		bodyMap.put("name", testrayProductVersion);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
@@ -606,26 +572,18 @@ public class ImportResults {
 	private long _fetchOrAddTestrayProject(String testrayProjectName)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayProjectId = _fetchEntityIdByName(
+			"projects", testrayProjectName);
 
-		parametersMap.put("filter", "name eq '" + testrayProjectName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "projects", null, parametersMap, HttpInvoker.HttpMethod.GET);
-
-		JSONArray jsonArray = responseJSONObject.getJSONArray("items");
-
-		if (!jsonArray.isEmpty()) {
-			JSONObject projectJSONObject = jsonArray.getJSONObject(0);
-
-			return projectJSONObject.getLong("id");
+		if (testrayProjectId > 0) {
+			return testrayProjectId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
 
 		bodyMap.put("name", testrayProjectName);
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
@@ -638,19 +596,10 @@ public class ImportResults {
 			long testrayProjectId, String routineName)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayRoutineId = _fetchEntityIdByName("routines", routineName);
 
-		parametersMap.put("filter", "name eq '" + routineName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "routines", null, parametersMap, HttpInvoker.HttpMethod.GET);
-
-		JSONArray jsonArray = responseJSONObject.getJSONArray("items");
-
-		if (!jsonArray.isEmpty()) {
-			JSONObject routineJSONObject = jsonArray.getJSONObject(0);
-
-			return routineJSONObject.getLong("id");
+		if (testrayRoutineId > 0) {
+			return testrayRoutineId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
@@ -658,7 +607,7 @@ public class ImportResults {
 		bodyMap.put("name", routineName);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
@@ -674,19 +623,10 @@ public class ImportResults {
 
 		String testrayRunName = propertiesMap.get("testray.run.id");
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayRunId = _fetchEntityIdByName("runs", testrayRunName);
 
-		parametersMap.put("filter", "name eq '" + testrayRunName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "runs", null, parametersMap, HttpInvoker.HttpMethod.GET);
-
-		JSONArray jsonArray = responseJSONObject.getJSONArray("items");
-
-		if (!jsonArray.isEmpty()) {
-			JSONObject runJSONObject = jsonArray.getJSONObject(0);
-
-			return runJSONObject.getLong("id");
+		if (testrayRunId > 0) {
+			return testrayRunId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
@@ -700,13 +640,13 @@ public class ImportResults {
 		bodyMap.put("name", propertiesMap.get("testray.run.id"));
 		bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
 			"runs", null, null, HttpInvoker.HttpMethod.POST);
 
-		long testrayRunId = responseJSONObject.getLong("id");
+		testrayRunId = responseJSONObject.getLong("id");
 
 		String environmentHash = _getTestrayRunEnvironmentHash(
 			element, testrayRunId);
@@ -719,7 +659,7 @@ public class ImportResults {
 			new JSONObject(
 				bodyMap
 			).toString(),
-			"testrayruns/" + String.valueOf(testrayRunId), null, null,
+			"runs/" + String.valueOf(testrayRunId), null, null,
 			HttpInvoker.HttpMethod.PATCH);
 
 		return testrayRunId;
@@ -729,16 +669,9 @@ public class ImportResults {
 			long testrayBuildId, String testrayTaskName)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayTaskId = _fetchEntityIdByName("tasks", testrayTaskName);
 
-		parametersMap.put("filter", "name eq '" + testrayTaskName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "tasks", null, parametersMap, HttpInvoker.HttpMethod.GET);
-
-		JSONArray tasksJSONArray = responseJSONObject.getJSONArray("items");
-
-		if (tasksJSONArray.isEmpty()) {
+		if (testrayTaskId == 0) {
 			Map<String, String> bodyMap = new HashMap<>();
 
 			bodyMap.put(
@@ -760,19 +693,10 @@ public class ImportResults {
 			long testrayProjectId, String testrayTeamName)
 		throws Exception {
 
-		Map<String, String> parametersMap = new HashMap<>();
+		long testrayTeamId = _fetchEntityIdByName("teams", testrayTeamName);
 
-		parametersMap.put("filter", "name eq '" + testrayTeamName + "'");
-
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			null, "teams", null, parametersMap, HttpInvoker.HttpMethod.GET);
-
-		JSONArray jsonArray = responseJSONObject.getJSONArray("items");
-
-		if (!jsonArray.isEmpty()) {
-			JSONObject teamJSONObject = jsonArray.getJSONObject(0);
-
-			return teamJSONObject.getLong("id");
+		if (testrayTeamId > 0) {
+			return testrayTeamId;
 		}
 
 		Map<String, String> bodyMap = new HashMap<>();
@@ -780,7 +704,7 @@ public class ImportResults {
 		bodyMap.put("name", testrayTeamName);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
-		responseJSONObject = HttpUtil.invoke(
+		JSONObject responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
 				bodyMap
 			).toString(),
