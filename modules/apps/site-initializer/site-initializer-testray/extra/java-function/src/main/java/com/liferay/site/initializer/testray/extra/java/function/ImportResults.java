@@ -28,6 +28,7 @@ import com.liferay.site.initializer.testray.extra.java.function.util.PropsUtil;
 import com.liferay.site.initializer.testray.extra.java.function.util.PropsValues;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.nio.file.Files;
@@ -1015,33 +1016,52 @@ public class ImportResults {
 	}
 
 	private void _unTarGzip(byte[] bytes) throws Exception {
-		Path pathTempFile = Files.createTempFile(null, null);
-
-		Files.write(pathTempFile, bytes);
-
-		File tempFile = pathTempFile.toFile();
-
-		Path pathTempDirectory = Files.createTempDirectory(null);
-
-		File tempDirectory = pathTempDirectory.toFile();
-
-		Archiver archiver = ArchiverFactory.createArchiver("tar", "gz");
+		Path pathTempFile = null;
+		Path pathTempDirectory = null;
 
 		try {
-			archiver.extract(tempFile, tempDirectory);
+			pathTempFile = Files.createTempFile(null, null);
+
+			Files.write(pathTempFile, bytes);
+
+			File tempFile = pathTempFile.toFile();
+
+			pathTempDirectory = Files.createTempDirectory(null);
+
+			File tempDirectory = pathTempDirectory.toFile();
+
+			Archiver archiver = ArchiverFactory.createArchiver("tar", "gz");
+
+			try {
+				archiver.extract(tempFile, tempDirectory);
+			}
+			catch (IOException ioException) {
+				archiver = ArchiverFactory.createArchiver("tar");
+
+				archiver.extract(tempFile, tempDirectory);
+			}
+
+			File[] files = tempDirectory.listFiles();
+
+			for (File file : files) {
+				try {
+					Document document = _documentBuilder.parse(file);
+
+					_processResults(document);
+				}
+				finally {
+					file.delete();
+				}
+			}
 		}
-		catch {
-			archiver = ArchiverFactory.createArchiver("tar");
+		finally {
+			if (pathTempFile != null) {
+				Files.deleteIfExists(pathTempFile);
+			}
 
-			archiver.extract(tempFile, tempDirectory);
-		}
-
-		File[] files = tempDirectory.listFiles();
-
-		for (File file : files) {
-			Document document = _documentBuilder.parse(file);
-
-			_processResults(document);
+			if (pathTempDirectory != null) {
+				Files.deleteIfExists(pathTempDirectory);
+			}
 		}
 	}
 
