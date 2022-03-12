@@ -5,6 +5,7 @@
 	"name": "CasesComponents",
 	"objectFields": [
 		{
+			"DBType": "String",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {

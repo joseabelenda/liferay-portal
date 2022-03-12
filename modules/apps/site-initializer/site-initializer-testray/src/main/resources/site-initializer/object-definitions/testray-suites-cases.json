@@ -5,6 +5,7 @@
 	"name": "SuitesCases",
 	"objectFields": [
 		{
+			"DBType": "String",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {

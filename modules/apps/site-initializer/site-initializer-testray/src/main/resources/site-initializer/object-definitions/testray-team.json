@@ -5,6 +5,7 @@
 	"name": "Team",
 	"objectFields": [
 		{
+			"DBType": "String",
 			"indexed": true,
 			"indexedAsKeyword": false,
 			"label": {

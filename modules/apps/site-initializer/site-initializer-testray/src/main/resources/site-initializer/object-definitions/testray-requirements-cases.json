@@ -5,6 +5,7 @@
 	"name": "RequirementsCases",
 	"objectFields": [
 		{
+			"DBType": "String",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {

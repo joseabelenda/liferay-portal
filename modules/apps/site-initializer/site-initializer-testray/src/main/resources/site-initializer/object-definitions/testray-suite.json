@@ -5,6 +5,7 @@
 	"name": "Suite",
 	"objectFields": [
 		{
+			"DBType": "String",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {
@@ -15,6 +16,7 @@
 			"type": "String"
 		},
 		{
+			"DBType": "String",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {
@@ -25,6 +27,7 @@
 			"type": "String"
 		},
 		{
+			"DBType": "String",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {
@@ -35,6 +38,7 @@
 			"type": "String"
 		},
 		{
+			"DBType": "String",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {

@@ -5,6 +5,7 @@
 	"name": "Task",
 	"objectFields": [
 		{
+			"DBType": "String",
 			"indexed": true,
 			"indexedAsKeyword": false,
 			"label": {
@@ -15,6 +16,7 @@
 			"type": "String"
 		},
 		{
+			"DBType": "Integer",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {
@@ -25,6 +27,7 @@
 			"type": "Integer"
 		},
 		{
+			"DBType": "Date",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {

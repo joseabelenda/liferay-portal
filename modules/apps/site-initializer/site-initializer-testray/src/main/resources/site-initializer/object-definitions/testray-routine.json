@@ -5,6 +5,7 @@
 	"name": "Routine",
 	"objectFields": [
 		{
+			"DBType": "String",
 			"indexed": true,
 			"indexedAsKeyword": false,
 			"label": {
@@ -15,6 +16,7 @@
 			"type": "String"
 		},
 		{
+			"DBType": "Boolean",
 			"indexed": false,
 			"indexedAsKeyword": false,
 			"label": {
