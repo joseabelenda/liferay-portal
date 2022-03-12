@@ -78,6 +78,18 @@ public class ImportResults {
 		_documentBuilder = _documentBuilderFactory.newDocumentBuilder();
 	}
 
+	private long _addEntity(Map<String, String> bodyMap, String objectName)
+		throws Exception {
+
+		JSONObject responseJSONObject = HttpUtil.invoke(
+			new JSONObject(
+				bodyMap
+			).toString(),
+			objectName, null, null, HttpInvoker.HttpMethod.POST);
+
+		return responseJSONObject.getLong("id");
+	}
+
 	private void _addTestrayAttachments(
 			Node testcaseNode, long testrayCaseResultId)
 		throws Exception {
@@ -111,12 +123,7 @@ public class ImportResults {
 						bodyMap.put("url", fileElement.getAttribute("url"));
 						bodyMap.put("value", fileElement.getAttribute("value"));
 
-						HttpUtil.invoke(
-							new JSONObject(
-								bodyMap
-							).toString(),
-							"attachments", null, null,
-							HttpInvoker.HttpMethod.POST);
+						_addEntity(bodyMap, "attachments");
 					}
 				}
 			}
@@ -167,13 +174,7 @@ public class ImportResults {
 
 		bodyMap.put("testrayComponentId", String.valueOf(testrayComponentId));
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"cases", null, null, HttpInvoker.HttpMethod.POST);
-
-		long testrayCaseId = responseJSONObject.getLong("id");
+		long testrayCaseId = _addEntity(bodyMap, "cases");
 
 		long testrayCaseResultId = _addTestrayCaseResult(
 			testrayBuildId, testrayCaseId, testrayComponentId, testrayRunId,
@@ -249,13 +250,7 @@ public class ImportResults {
 			}
 		}
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"caseresults", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "caseresults");
 	}
 
 	private void _addTestrayCases(
@@ -292,11 +287,7 @@ public class ImportResults {
 		bodyMap.put("testrayFactorOptionId", String.valueOf(testrayOptionId));
 		bodyMap.put("testrayFactorOptionName", optionName);
 
-		HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"testrayfactors", null, null, HttpInvoker.HttpMethod.POST);
+		_addEntity(bodyMap, "testrayfactors");
 	}
 
 	private void _addTestrayIssue(String issue) throws Exception {
@@ -308,11 +299,7 @@ public class ImportResults {
 
 		bodyMap.put("name", issue);
 
-		HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"issues", null, null, HttpInvoker.HttpMethod.POST);
+		_addEntity(bodyMap, "issues");
 	}
 
 	private void _addTestrayWarnings(
@@ -335,11 +322,7 @@ public class ImportResults {
 				"r_caseResultToWarnings_c_caseResultId",
 				String.valueOf(testrayCaseResultId));
 
-			HttpUtil.invoke(
-				new JSONObject(
-					bodyMap
-				).toString(),
-				"warnings", null, null, HttpInvoker.HttpMethod.POST);
+			_addEntity(bodyMap, "warnings");
 		}
 	}
 
@@ -436,13 +419,7 @@ public class ImportResults {
 		bodyMap.put(
 			"r_routineToBuilds_c_routineId", String.valueOf(testrayRoutineId));
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"builds", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "builds");
 	}
 
 	private long _fetchOrAddTestrayCaseType(String testrayCaseTypeName)
@@ -459,13 +436,7 @@ public class ImportResults {
 
 		bodyMap.put("name", testrayCaseTypeName);
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"casetypes", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "casetypes");
 	}
 
 	private long _fetchOrAddTestrayComponent(
@@ -486,13 +457,7 @@ public class ImportResults {
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 		bodyMap.put("testrayTeamId", String.valueOf(testrayTeamId));
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"components", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "components");
 	}
 
 	private long _fetchOrAddTestrayFactorCategory(String categoryName)
@@ -509,13 +474,7 @@ public class ImportResults {
 
 		bodyMap.put("name", categoryName);
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"factorcategories", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "factorcategories");
 	}
 
 	private long _fetchOrAddTestrayFactorOption(
@@ -535,13 +494,7 @@ public class ImportResults {
 		bodyMap.put(
 			"testrayFactorCategoryId", String.valueOf(testrayCategoryId));
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"factoroptions", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "factoroptions");
 	}
 
 	private long _fetchOrAddTestrayProductVersion(
@@ -560,13 +513,7 @@ public class ImportResults {
 		bodyMap.put("name", testrayProductVersion);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"productversions", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "productversions");
 	}
 
 	private long _fetchOrAddTestrayProject(String testrayProjectName)
@@ -583,13 +530,7 @@ public class ImportResults {
 
 		bodyMap.put("name", testrayProjectName);
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"projects", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "projects");
 	}
 
 	private long _fetchOrAddTestrayRoutine(
@@ -607,13 +548,7 @@ public class ImportResults {
 		bodyMap.put("name", routineName);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"routines", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "routines");
 	}
 
 	private long _fetchOrAddTestrayRun(
@@ -640,13 +575,7 @@ public class ImportResults {
 		bodyMap.put("name", propertiesMap.get("testray.run.id"));
 		bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"runs", null, null, HttpInvoker.HttpMethod.POST);
-
-		testrayRunId = responseJSONObject.getLong("id");
+		testrayRunId = _addEntity(bodyMap, "runs");
 
 		String environmentHash = _getTestrayRunEnvironmentHash(
 			element, testrayRunId);
@@ -681,11 +610,7 @@ public class ImportResults {
 			bodyMap.put("name", testrayTaskName);
 			bodyMap.put("testrayBuildId", String.valueOf(testrayBuildId));
 
-			HttpUtil.invoke(
-				new JSONObject(
-					bodyMap
-				).toString(),
-				"tasks", null, null, HttpInvoker.HttpMethod.POST);
+			_addEntity(bodyMap, "tasks");
 		}
 	}
 
@@ -704,13 +629,7 @@ public class ImportResults {
 		bodyMap.put("name", testrayTeamName);
 		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
 
-		JSONObject responseJSONObject = HttpUtil.invoke(
-			new JSONObject(
-				bodyMap
-			).toString(),
-			"teams", null, null, HttpInvoker.HttpMethod.POST);
-
-		return responseJSONObject.getLong("id");
+		return _addEntity(bodyMap, "teams");
 	}
 
 	private String _getAttributeValue(Node node, String attributeName) {
