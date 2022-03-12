@@ -408,18 +408,21 @@ public class ImportResults {
 		bodyMap.put(
 			"githubCompareURLs", propertiesMap.get("liferay.compare.urls"));
 		bodyMap.put("name", testrayBuildName);
-		bodyMap.put("testrayProjectId", String.valueOf(testrayProjectId));
+		bodyMap.put(
+			"r_projectToBuilds_c_projectId", String.valueOf(testrayProjectId));
 
 		long testrayProductVersionId = _fetchOrAddTestrayProductVersion(
 			testrayProjectId, propertiesMap.get("testray.product.version"));
 
 		bodyMap.put(
-			"testrayProductVersionId", String.valueOf(testrayProductVersionId));
+			"r_productVersionToBuilds_c_productVersionId",
+			String.valueOf(testrayProductVersionId));
 
 		long testrayRoutineId = _fetchOrAddTestrayRoutine(
 			testrayProjectId, propertiesMap.get("testray.build.type"));
 
-		bodyMap.put("testrayRoutineId", String.valueOf(testrayRoutineId));
+		bodyMap.put(
+			"r_routineToBuilds_c_routineId", String.valueOf(testrayRoutineId));
 
 		responseJSONObject = HttpUtil.invoke(
 			new JSONObject(
