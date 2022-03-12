@@ -1027,7 +1027,14 @@ public class ImportResults {
 
 		Archiver archiver = ArchiverFactory.createArchiver("tar", "gz");
 
-		archiver.extract(tempFile, tempDirectory);
+		try {
+			archiver.extract(tempFile, tempDirectory);
+		}
+		catch {
+			archiver = ArchiverFactory.createArchiver("tar");
+
+			archiver.extract(tempFile, tempDirectory);
+		}
 
 		File[] files = tempDirectory.listFiles();
 
