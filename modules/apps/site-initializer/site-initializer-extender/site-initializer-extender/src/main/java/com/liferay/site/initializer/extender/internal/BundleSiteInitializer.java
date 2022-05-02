@@ -2322,6 +2322,47 @@ public class BundleSiteInitializer implements SiteInitializer {
 		}
 	}
 
+	private void _addOrganizationUser(
+			JSONArray organizationJSONArray, ServiceContext serviceContext,
+			Long userId)
+		throws Exception {
+
+		if (JSONUtil.isEmpty(organizationJSONArray)) {
+			return;
+		}
+
+		OrganizationResource.Builder organizationResourceBuilder =
+			_organizationResourceFactory.create();
+
+		OrganizationResource organizationResource =
+			organizationResourceBuilder.user(
+				serviceContext.fetchUser()
+			).httpServletRequest(
+				serviceContext.getRequest()
+			).build();
+
+		for (int i = 0; i < organizationJSONArray.length(); i++) {
+			JSONObject jsonObject = organizationJSONArray.getJSONObject(i);
+
+			Page<Organization> organizationsPage =
+				organizationResource.getOrganizationsPage(
+					null, null,
+					organizationResource.toFilter(
+						StringBundler.concat(
+							"name eq '", jsonObject.getString("name"), "'")),
+					null, null);
+
+			Organization organization = organizationsPage.fetchFirstItem();
+
+			if (organization == null) {
+				continue;
+			}
+
+			_userLocalService.addOrganizationUser(
+				GetterUtil.getLong(organization.getId()), userId);
+		}
+	}
+
 	private void _addPermissions(
 			Map<String, String> objectDefinitionIdsStringUtilReplaceValues,
 			ServiceContext serviceContext)
@@ -3106,16 +3147,16 @@ public class BundleSiteInitializer implements SiteInitializer {
 					jsonObject.getString("emailAddress"), serviceContext);
 
 				if (jsonObject.has("organizationBriefs")) {
-					_associateUserOrganization(
+					_addOrganizationUser(
 						jsonObject.getJSONArray("organizationBriefs"),
-						userAccount.getId(), serviceContext);
+						serviceContext, userAccount.getId());
 				}
 			}
 			else {
 				if (jsonObject.has("organizationBriefs")) {
-					_associateUserOrganization(
+					_addOrganizationUser(
 						jsonObject.getJSONArray("organizationBriefs"),
-						existingUserAccount.getUserId(), serviceContext);
+						serviceContext, existingUserAccount.getUserId());
 				}
 			}
 
@@ -3333,47 +3374,6 @@ public class BundleSiteInitializer implements SiteInitializer {
 				postAccountByExternalReferenceCodeAccountRoleUserAccountByEmailAddress(
 					accountBriefsJSONObject.getString("externalReferenceCode"),
 					accountRole.getId(), emailAddress);
-		}
-	}
-
-	private void _associateUserOrganization(
-			JSONArray organizationJSONArray, Long userId,
-			ServiceContext serviceContext)
-		throws Exception {
-
-		if (JSONUtil.isEmpty(organizationJSONArray)) {
-			return;
-		}
-
-		OrganizationResource.Builder organizationResourceBuilder =
-			_organizationResourceFactory.create();
-
-		OrganizationResource organizationResource =
-			organizationResourceBuilder.user(
-				serviceContext.fetchUser()
-			).httpServletRequest(
-				serviceContext.getRequest()
-			).build();
-
-		for (int i = 0; i < organizationJSONArray.length(); i++) {
-			JSONObject jsonObject = organizationJSONArray.getJSONObject(i);
-
-			Page<Organization> organizationsPage =
-				organizationResource.getOrganizationsPage(
-					null, null,
-					organizationResource.toFilter(
-						StringBundler.concat(
-							"name eq '", jsonObject.getString("name"), "'")),
-					null, null);
-
-			Organization organization = organizationsPage.fetchFirstItem();
-
-			if(organization == null){
-				continue;
-			}
-
-			_userLocalService.addOrganizationUser(
-				GetterUtil.getLong(organization.getId()), userId);
 		}
 	}
 
