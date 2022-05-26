@@ -96,8 +96,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 	@Override
 	public void doExecute(
-			DispatchTrigger dispatchTrigger,
-			DispatchTaskExecutorOutput dispatchTaskExecutorOutput)
+		DispatchTrigger dispatchTrigger,
+		DispatchTaskExecutorOutput dispatchTaskExecutorOutput)
 		throws Exception {
 
 		UnicodeProperties unicodeProperties =
@@ -137,8 +137,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 			_invoke(() -> _load(dispatchTrigger.getCompanyId()));
 
 			_invoke(
-				() -> _uploadToTestray(
-					dispatchTrigger.getCompanyId(), unicodeProperties));
+				() -> readFile(unicodeProperties));
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(
@@ -154,7 +153,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private ObjectEntry _addObjectEntry(
-			String objectDefinitionShortName, Map<String, Object> properties)
+		String objectDefinitionShortName, Map<String, Object> properties)
 		throws Exception {
 
 		ObjectDefinition objectDefinition = _getObjectDefinition(
@@ -173,7 +172,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 		JSONArray jsonArray = null;
 
-		Element testcaseElement = (Element)testcaseNode;
+		Element testcaseElement = (Element) testcaseNode;
 
 		NodeList attachmentsNodeList = testcaseElement.getElementsByTagName(
 			"attachments");
@@ -185,7 +184,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 				continue;
 			}
 
-			Element attachmentsElement = (Element)attachmentsNode;
+			Element attachmentsElement = (Element) attachmentsNode;
 
 			NodeList fileNodeList = attachmentsElement.getElementsByTagName(
 				"file");
@@ -197,7 +196,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 					continue;
 				}
 
-				Element fileElement = (Element)fileNode;
+				Element fileElement = (Element) fileNode;
 
 				jsonArray = JSONUtil.put(
 					JSONUtil.put(
@@ -214,13 +213,13 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private void _addTestrayCase(
-			long companyId, Node testcaseNode, long testrayBuildId,
-			String testrayBuildTime,
-			Map<String, Object> testrayCasePropertiesMap, long testrayProjectId,
-			long testrayRunId)
+		long companyId, Node testcaseNode, long testrayBuildId,
+		String testrayBuildTime,
+		Map<String, Object> testrayCasePropertiesMap, long testrayProjectId,
+		long testrayRunId)
 		throws Exception {
 
-		String testrayCaseName = (String)testrayCasePropertiesMap.get(
+		String testrayCaseName = (String) testrayCasePropertiesMap.get(
 			"testray.testcase.name");
 
 		String objectEntryIdsKey = StringBundler.concat(
@@ -235,11 +234,12 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 		long testrayTeamId = _getTestrayTeamId(
 			companyId, testrayProjectId,
-			(String)testrayCasePropertiesMap.get("testray.team.name"));
+			(String) testrayCasePropertiesMap.get("testray.team.name"));
 
 		long testrayComponentId = _getTestrayComponentId(
 			companyId,
-			(String)testrayCasePropertiesMap.get("testray.main.component.name"),
+			(String) testrayCasePropertiesMap.get(
+				"testray.main.component.name"),
 			testrayProjectId, testrayTeamId);
 
 		if (testrayCaseId == 0) {
@@ -255,7 +255,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 					testrayCasePropertiesMap.get("testray.testcase.description")
 				).put(
 					"name",
-					(String)testrayCasePropertiesMap.get(
+					(String) testrayCasePropertiesMap.get(
 						"testray.testcase.name")
 				).put(
 					"priority",
@@ -264,7 +264,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 					"r_caseTypeToCases_c_caseTypeId",
 					_getTestrayCaseTypeId(
 						companyId,
-						(String)testrayCasePropertiesMap.get(
+						(String) testrayCasePropertiesMap.get(
 							"testray.case.type.name"))
 				).put(
 					"r_componentToCases_c_componentId", testrayComponentId
@@ -283,14 +283,14 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 		_addTestrayCaseResultIssue(
 			companyId, testrayCaseResultId,
-			(String)testrayCasePropertiesMap.get("testray.case.defect"));
+			(String) testrayCasePropertiesMap.get("testray.case.defect"));
 		_addTestrayCaseResultIssue(
 			companyId, testrayCaseResultId,
-			(String)testrayCasePropertiesMap.get("testray.case.issue"));
+			(String) testrayCasePropertiesMap.get("testray.case.issue"));
 	}
 
 	private void _addTestrayCaseResultIssue(
-			long companyId, long testrayCaseResultId, String testrayIssueName)
+		long companyId, long testrayCaseResultId, String testrayIssueName)
 		throws Exception {
 
 		String objectEntryIdsKey = "Issue#" + testrayIssueName;
@@ -325,8 +325,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private void _addTestrayCases(
-			long companyId, Element element, long testrayBuildId,
-			String testrayBuildTime, long testrayProjectId, long testrayRunId)
+		long companyId, Element element, long testrayBuildId,
+		String testrayBuildTime, long testrayProjectId, long testrayRunId)
 		throws Exception {
 
 		NodeList testCaseNodeList = element.getElementsByTagName("testcase");
@@ -335,7 +335,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 			Node testcaseNode = testCaseNodeList.item(i);
 
 			Map<String, Object> testrayCasePropertiesMap =
-				_getTestrayCaseProperties((Element)testcaseNode);
+				_getTestrayCaseProperties((Element) testcaseNode);
 
 			_addTestrayCase(
 				companyId, testcaseNode, testrayBuildId, testrayBuildTime,
@@ -344,9 +344,9 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private void _addTestrayFactor(
-			long testrayFactorCategoryId, String testrayFactorCategoryName,
-			long testrayFactorOptionId, String testrayFactorOptionName,
-			long testrayRunId)
+		long testrayFactorCategoryId, String testrayFactorCategoryName,
+		long testrayFactorOptionId, String testrayFactorOptionName,
+		long testrayRunId)
 		throws Exception {
 
 		_addObjectEntry(
@@ -395,7 +395,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private ObjectDefinition _getObjectDefinition(
-			String objectDefinitionShortName)
+		String objectDefinitionShortName)
 		throws Exception {
 
 		ObjectDefinition objectDefinition = _objectDefinitions.get(
@@ -404,28 +404,28 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 		if (objectDefinition == null) {
 			throw new PortalException(
 				"No object definition found with short name " +
-					objectDefinitionShortName);
+				objectDefinitionShortName);
 		}
 
 		return objectDefinition;
 	}
 
 	private List<ObjectEntry> _getObjectEntries(
-			long companyId, String objectDefinitionShortName)
+		long companyId, String objectDefinitionShortName)
 		throws Exception {
 
 		com.liferay.portal.vulcan.pagination.Page<ObjectEntry>
 			objectEntriesPage = _objectEntryManager.getObjectEntries(
-				companyId, _getObjectDefinition(objectDefinitionShortName),
-				null, null, _defaultDTOConverterContext, (Filter)null, null,
-				null, null);
+			companyId, _getObjectDefinition(objectDefinitionShortName),
+			null, null, _defaultDTOConverterContext, (Filter) null, null,
+			null, null);
 
-		return (List<ObjectEntry>)objectEntriesPage.getItems();
+		return (List<ObjectEntry>) objectEntriesPage.getItems();
 	}
 
 	private long _getObjectEntryId(
-			long companyId, String filterString,
-			String objectDefinitionShortName, String objectEntryIdsKey)
+		long companyId, String filterString,
+		String objectDefinitionShortName, String objectEntryIdsKey)
 		throws Exception {
 
 		Long objectEntryId = _objectEntryIds.get(objectEntryIdsKey);
@@ -436,9 +436,9 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 		com.liferay.portal.vulcan.pagination.Page<ObjectEntry>
 			objectEntriesPage = _objectEntryManager.getObjectEntries(
-				companyId, _objectDefinitions.get(objectDefinitionShortName),
-				null, null, _defaultDTOConverterContext, filterString, null,
-				null, null);
+			companyId, _objectDefinitions.get(objectDefinitionShortName),
+			null, null, _defaultDTOConverterContext, filterString, null,
+			null, null);
 
 		ObjectEntry objectEntry = objectEntriesPage.fetchFirstItem();
 
@@ -457,7 +457,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 		Node propertiesNode = propertiesNodeList.item(0);
 
-		Element propertiesElement = (Element)propertiesNode;
+		Element propertiesElement = (Element) propertiesNode;
 
 		NodeList propertyNodeList = propertiesElement.getElementsByTagName(
 			"property");
@@ -513,8 +513,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayBuildId(
-			long companyId, Map<String, String> propertiesMap,
-			String testrayBuildName, long testrayProjectId)
+		long companyId, Map<String, String> propertiesMap,
+		String testrayBuildName, long testrayProjectId)
 		throws Exception {
 
 		String objectEntryIdsKey = StringBundler.concat(
@@ -574,7 +574,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 		Node propertiesNode = propertiesNodeList.item(0);
 
-		Element propertiesElement = (Element)propertiesNode;
+		Element propertiesElement = (Element) propertiesNode;
 
 		NodeList propertyNodeList = propertiesElement.getElementsByTagName(
 			"property");
@@ -595,9 +595,9 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayCaseResultId(
-			Node testcaseNode, long testrayBuildId, String testrayBuildTime,
-			long testrayCaseId, Map<String, Object> testrayCasePropertiesMap,
-			long testrayComponentId, long testrayRunId)
+		Node testcaseNode, long testrayBuildId, String testrayBuildTime,
+		long testrayCaseId, Map<String, Object> testrayCasePropertiesMap,
+		long testrayComponentId, long testrayRunId)
 		throws Exception {
 
 		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
@@ -608,7 +608,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 			"dueStatus",
 			() -> {
 				String testrayTestcaseStatus =
-					(String)testrayCasePropertiesMap.get(
+					(String) testrayCasePropertiesMap.get(
 						"testray.testcase.status");
 
 				if (testrayTestcaseStatus.equals("blocked")) {
@@ -644,10 +644,10 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 			"startDate", testrayBuildTime
 		).put(
 			"warnings",
-			(Integer)testrayCasePropertiesMap.get("testray.testcase.warnings")
+			(Integer) testrayCasePropertiesMap.get("testray.testcase.warnings")
 		).build();
 
-		Element element = (Element)testcaseNode;
+		Element element = (Element) testcaseNode;
 
 		NodeList nodeList = element.getElementsByTagName("failure");
 
@@ -667,7 +667,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayCaseTypeId(
-			long companyId, String testrayCaseTypeName)
+		long companyId, String testrayCaseTypeName)
 		throws Exception {
 
 		String objectEntryIdsKey = "CaseType#" + testrayCaseTypeName;
@@ -694,8 +694,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayComponentId(
-			long companyId, String testrayComponentName, long testrayProjectId,
-			long testrayTeamId)
+		long companyId, String testrayComponentName, long testrayProjectId,
+		long testrayTeamId)
 		throws Exception {
 
 		String objectEntryIdsKey = StringBundler.concat(
@@ -731,7 +731,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayFactorCategoryId(
-			long companyId, String testrayFactorCategoryName)
+		long companyId, String testrayFactorCategoryName)
 		throws Exception {
 
 		String objectEntryIdsKey =
@@ -759,8 +759,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayFactorOptionId(
-			long companyId, long testrayFactorCategoryId,
-			String testrayFactorOptionName)
+		long companyId, long testrayFactorCategoryId,
+		String testrayFactorOptionName)
 		throws Exception {
 
 		String objectEntryIdsKey = StringBundler.concat(
@@ -795,8 +795,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayProductVersionId(
-			long companyId, String testrayProductVersionName,
-			long testrayProjectId)
+		long companyId, String testrayProductVersionName,
+		long testrayProjectId)
 		throws Exception {
 
 		String objectEntryIdsKey =
@@ -852,7 +852,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayRoutineId(
-			long companyId, long testrayProjectId, String testrayRoutineName)
+		long companyId, long testrayProjectId, String testrayRoutineName)
 		throws Exception {
 
 		String objectEntryIdsKey = StringBundler.concat(
@@ -885,7 +885,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private String _getTestrayRunEnvironmentHash(
-			long companyId, Element element, long testrayRunId)
+		long companyId, Element element, long testrayRunId)
 		throws Exception {
 
 		StringBundler sb = new StringBundler();
@@ -924,8 +924,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayRunId(
-			long companyId, Element element, Map<String, String> propertiesMap,
-			long testrayBuildId, String testrayRunName)
+		long companyId, Element element, Map<String, String> propertiesMap,
+		long testrayBuildId, String testrayRunName)
 		throws Exception {
 
 		String objectEntryIdsKey = StringBundler.concat(
@@ -980,7 +980,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _getTestrayTeamId(
-			long companyId, long testrayProjectId, String testrayTeamName)
+		long companyId, long testrayProjectId, String testrayTeamName)
 		throws Exception {
 
 		String objectEntryIdsKey = StringBundler.concat(
@@ -1104,7 +1104,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 			Map<String, Object> properties = objectEntry.getProperties();
 
 			_objectEntryIds.put(
-				"CaseType#" + (String)properties.get("name"),
+				"CaseType#" + (String) properties.get("name"),
 				objectEntry.getId());
 		}
 	}
@@ -1122,8 +1122,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 			_objectEntryIds.put(
 				StringBundler.concat(
-					"Component#", (String)properties.get("name"), "#TeamId#",
-					(Long)properties.get("r_teamToComponents_c_teamId")),
+					"Component#", (String) properties.get("name"), "#TeamId#",
+					(Long) properties.get("r_teamToComponents_c_teamId")),
 				objectEntry.getId());
 		}
 	}
@@ -1140,7 +1140,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 			Map<String, Object> properties = objectEntry.getProperties();
 
 			_objectEntryIds.put(
-				"FactorCategory#" + (String)properties.get("name"),
+				"FactorCategory#" + (String) properties.get("name"),
 				objectEntry.getId());
 		}
 	}
@@ -1158,9 +1158,9 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 			_objectEntryIds.put(
 				StringBundler.concat(
-					"FactorOption#", (String)properties.get("name"),
+					"FactorOption#", (String) properties.get("name"),
 					"#FactorCategoryId#",
-					(Long)properties.get(
+					(Long) properties.get(
 						"r_factorCategoryToOptions_c_factorCategoryId")),
 				objectEntry.getId());
 		}
@@ -1178,7 +1178,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 			Map<String, Object> properties = objectEntry.getProperties();
 
 			_objectEntryIds.put(
-				"Project#" + (String)properties.get("name"),
+				"Project#" + (String) properties.get("name"),
 				objectEntry.getId());
 		}
 	}
@@ -1195,8 +1195,8 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 			_objectEntryIds.put(
 				StringBundler.concat(
-					"Team#", (String)properties.get("name"), "#ProjectId#",
-					(Long)properties.get("r_projectToTeams_c_projectIds")),
+					"Team#", (String) properties.get("name"), "#ProjectId#",
+					(Long) properties.get("r_projectToTeams_c_projectIds")),
 				objectEntry.getId());
 		}
 	}
@@ -1273,14 +1273,39 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 				propertiesMap.get("testray.run.id")));
 	}
 
+	private void readFile(UnicodeProperties unicodeProperties)
+		throws Exception {
+
+		//String pathfile = "home//dev//projects//liferay-portal//TestRayXml";
+
+		File pathFile = new File(unicodeProperties.getProperty("folderName"));
+
+		File[] fileList = pathFile.listFiles();
+
+		System.out.println(fileList);
+
+
+	/*	try (InputStream inputStream = new ByteArrayInputStream(
+			pathFile.getBytes())) {
+
+			String folderName = unicodeProperties.getProperty("folderName");
+
+			ArrayList<File> listFiles = new ArrayList<>();
+*/
+
+
+	/*	}catch (IOException ioException) {
+			_log.error("Unable to authenticate with GCP");*/
+	}
+
 	private void _uploadToTestray(
-			long companyId, UnicodeProperties unicodeProperties)
+		long companyId, UnicodeProperties unicodeProperties)
 		throws Exception {
 
 		String s3APIKey = unicodeProperties.getProperty("s3APIKey");
 
 		try (InputStream inputStream = new ByteArrayInputStream(
-				s3APIKey.getBytes())) {
+			s3APIKey.getBytes())) {
 
 			Storage storage = StorageOptions.newBuilder(
 			).setCredentials(
@@ -1332,6 +1357,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 				"Unable to authenticate with GCP", ioException);
 		}
 	}
+
 
 	private static final int _TESTRAY_CASE_RESULT_STATUS_BLOCKED = 4;
 
