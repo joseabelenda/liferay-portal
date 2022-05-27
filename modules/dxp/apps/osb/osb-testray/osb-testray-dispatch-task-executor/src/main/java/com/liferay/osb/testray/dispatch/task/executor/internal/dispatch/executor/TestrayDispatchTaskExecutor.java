@@ -137,7 +137,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 			_invoke(() -> _load(dispatchTrigger.getCompanyId()));
 
 			_invoke(
-				() -> readFile(unicodeProperties));
+				() -> readFile(dispatchTrigger.getCompanyId(), unicodeProperties));
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(
@@ -1273,29 +1273,38 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 				propertiesMap.get("testray.run.id")));
 	}
 
-	private void readFile(UnicodeProperties unicodeProperties)
+	private void readFile(long companyId, UnicodeProperties unicodeProperties)
 		throws Exception {
 
-		//String pathfile = "home//dev//projects//liferay-portal//TestRayXml";
+		try (InputStream inputStream = new ByteArrayInputStream(
+			unicodeProperties.getProperty("folderName").getBytes())) {
 
 		File pathFile = new File(unicodeProperties.getProperty("folderName"));
 
 		File[] fileList = pathFile.listFiles();
 
+		System.out.println("Iniciei a listagem.");
 		System.out.println(fileList);
 
+		for (File file : fileList){
+			String name = file.getName();
+			System.out.println(name);
 
-	/*	try (InputStream inputStream = new ByteArrayInputStream(
-			pathFile.getBytes())) {
+			byte[] fileContent = Files.readAllBytes(file.toPath());
 
-			String folderName = unicodeProperties.getProperty("folderName");
+			try {
+				_processArchive(companyId, fileContent);
 
-			ArrayList<File> listFiles = new ArrayList<>();
-*/
+			}catch(Exception exception){
+					_log.error(exception);
+				}
+			}
+		}catch (IOException ioException) {
+			_log.error("Unable to authenticate with GCP");
 
-
-	/*	}catch (IOException ioException) {
-			_log.error("Unable to authenticate with GCP");*/
+			throw new PortalException(
+				"Unable to authenticate with GCP", ioException);
+		}
 	}
 
 	private void _uploadToTestray(
