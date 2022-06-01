@@ -454,6 +454,11 @@ public class BundleSiteInitializer implements SiteInitializer {
 					objectDefinitionIdsStringUtilReplaceValues,
 					serviceContext));
 
+			_invoke(
+				() -> _addPermissions(
+					objectDefinitionIdsStringUtilReplaceValues,
+					serviceContext));
+
 			// TODO Review order/dependency
 
 			Map<String, String> clientExtensionEntryIdsStringUtilReplaceValues =
@@ -471,10 +476,6 @@ public class BundleSiteInitializer implements SiteInitializer {
 
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {
-					_invoke(
-						() -> _addPermissions(
-							objectDefinitionIdsStringUtilReplaceValues,
-							serviceContext));
 					_invoke(
 						() -> _addWorkflowDefinitions(
 							objectDefinitionResource, serviceContext));
@@ -2354,7 +2355,15 @@ public class BundleSiteInitializer implements SiteInitializer {
 			Organization organization = organizationsPage.fetchFirstItem();
 
 			if (organization == null) {
+				if (_log.isInfoEnabled()) {
+					_log.info("No organization found");
+				}
+
 				continue;
+			}
+
+			if (_log.isInfoEnabled()) {
+				_log.info("Adding user to organization" + organization.getId());
 			}
 
 			_userLocalService.addOrganizationUser(
