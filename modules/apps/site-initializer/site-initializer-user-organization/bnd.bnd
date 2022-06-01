@@ -1,0 +1,6 @@
+Bundle-Name: Liferay Site Initializer User Organization
+Bundle-SymbolicName: com.liferay.site.initializer.user.organization
+Bundle-Version: 1.0.2
+Liferay-Site-Initializer-Name: User Organization Test
+Provide-Capability: liferay.site.initializer
+Web-ContextPath: /site-initializer-user-organization

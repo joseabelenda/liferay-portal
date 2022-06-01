@@ -1,0 +1,22 @@
+[
+	{
+		"accountBriefs": [
+			{
+				"externalReferenceCode": "ERC-001",
+				"roleBriefs": [
+					"Account Administrator"
+				]
+			}
+		],
+		"alternateName": "4be7rd36-73e3-11ec-90d6-0242ac120003",
+		"emailAddress": "new.user@liferay.com",
+		"familyName": "New User",
+		"givenName": "New Test",
+		"name": "New Test User",
+		"organizationBriefs": [
+			{
+				"name": "Test Organization"
+			}
+		]
+	}
+]
