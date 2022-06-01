@@ -1,15 +1,12 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p>
  * The contents of this file are subject to the terms of the Liferay Enterprise
  * Subscription License ("License"). You may not use this file except in
  * compliance with the License. You can obtain a copy of the License by
  * contacting Liferay, Inc. See the License for the specific language governing
  * permissions and limitations under the License, including but not limited to
  * distribution rights of the Software.
- *
- *
- *
  */
 
 package com.liferay.osb.testray.dispatch.task.executor.internal.dispatch.executor;
@@ -55,8 +52,15 @@ import com.liferay.portal.vulcan.dto.converter.DefaultDTOConverterContext;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import org.apache.commons.io.IOUtils;
+
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -136,8 +140,15 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 		try {
 			_invoke(() -> _load(dispatchTrigger.getCompanyId()));
 
-			_invoke(
-				() -> readFile(dispatchTrigger.getCompanyId(), unicodeProperties));
+			if (Validator.isNotNull(unicodeProperties.getProperty("Bucket"))) {
+				_invoke(() -> _uploadToTestray(
+					dispatchTrigger.getCompanyId(), unicodeProperties));
+			}
+			if (Validator.isNull(unicodeProperties.getProperty("Bucket"))) {
+				_invoke(() -> readFile(
+					dispatchTrigger.getCompanyId(), unicodeProperties));
+			}
+
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(
@@ -1279,27 +1290,32 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 		try (InputStream inputStream = new ByteArrayInputStream(
 			unicodeProperties.getProperty("folderName").getBytes())) {
 
-		File pathFile = new File(unicodeProperties.getProperty("folderName"));
+			File pathFile =
+				new File(unicodeProperties.getProperty("folderName"));
 
-		File[] fileList = pathFile.listFiles();
+			File[] fileList = pathFile.listFiles();
 
-		System.out.println("Iniciei a listagem.");
-		System.out.println(fileList);
+			System.out.println("Iniciei a listagem.");
+			System.out.println(fileList);
 
-		for (File file : fileList){
-			String name = file.getName();
-			System.out.println(name);
+			for (File file : fileList) {
+				String name = file.getName();
+				System.out.println(name);
 
-			byte[] fileContent = Files.readAllBytes(file.toPath());
 
-			try {
-				_processArchive(companyId, fileContent);
+				//byte[] data = FileUtils.readFileToByteArray(file);
+				byte[] fileContent = Files.readAllBytes(file.toPath());
 
-			}catch(Exception exception){
+				try {
+					_processArchive(companyId, fileContent);
+
+				}
+				catch (Exception exception) {
 					_log.error(exception);
 				}
 			}
-		}catch (IOException ioException) {
+		}
+		catch (IOException ioException) {
 			_log.error("Unable to authenticate with GCP");
 
 			throw new PortalException(

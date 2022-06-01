@@ -51,4 +51,7 @@ dependencies {
 	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-string")
+	implementation 'commons-io:commons-io:2.11.0'
+	implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+
 }
