@@ -140,12 +140,13 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 		try {
 			_invoke(() -> _load(dispatchTrigger.getCompanyId()));
 
-			if (Validator.isNotNull(unicodeProperties.getProperty("Bucket"))) {
+			if (Validator.isNull(
+				unicodeProperties.getProperty("localFolderPath"))) {
 				_invoke(() -> _uploadToTestray(
 					dispatchTrigger.getCompanyId(), unicodeProperties));
 			}
-			if (Validator.isNull(unicodeProperties.getProperty("Bucket"))) {
-				_invoke(() -> readFile(
+			else {
+				_invoke(() -> _readFile(
 					dispatchTrigger.getCompanyId(), unicodeProperties));
 			}
 
@@ -1022,18 +1023,18 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 	}
 
 	private long _increment(
-			long companyId, String fieldName, String filterString,
-			String objectDefinitionShortName)
+		long companyId, String fieldName, String filterString,
+		String objectDefinitionShortName)
 		throws Exception {
 
 		com.liferay.portal.vulcan.pagination.Page<ObjectEntry>
 			objectEntriesPage = _objectEntryManager.getObjectEntries(
-				companyId, _objectDefinitions.get(objectDefinitionShortName),
-				null, null, _defaultDTOConverterContext, filterString, null,
-				null,
-				new Sort[] {
-					new Sort("nestedFieldArray.value_long#" + fieldName, true)
-				});
+			companyId, _objectDefinitions.get(objectDefinitionShortName),
+			null, null, _defaultDTOConverterContext, filterString, null,
+			null,
+			new Sort[]{
+				new Sort("nestedFieldArray.value_long#" + fieldName, true)
+			});
 
 		ObjectEntry objectEntry = objectEntriesPage.fetchFirstItem();
 
@@ -1043,7 +1044,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 
 		Map<String, Object> properties = objectEntry.getProperties();
 
-		Long fieldValue = (Long)properties.get(fieldName);
+		Long fieldValue = (Long) properties.get(fieldName);
 
 		if (fieldValue == null) {
 			return 1;
@@ -1284,26 +1285,18 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 				propertiesMap.get("testray.run.id")));
 	}
 
-	private void readFile(long companyId, UnicodeProperties unicodeProperties)
+	private void _readFile(long companyId, UnicodeProperties unicodeProperties)
 		throws Exception {
 
-		try (InputStream inputStream = new ByteArrayInputStream(
-			unicodeProperties.getProperty("folderName").getBytes())) {
+		unicodeProperties.getProperty("localFolderPath").getBytes()))
 
 			File pathFile =
-				new File(unicodeProperties.getProperty("folderName"));
+				new File(unicodeProperties.getProperty("localFolderPath"));
 
 			File[] fileList = pathFile.listFiles();
 
-			System.out.println("Iniciei a listagem.");
-			System.out.println(fileList);
-
 			for (File file : fileList) {
-				String name = file.getName();
-				System.out.println(name);
 
-
-				//byte[] data = FileUtils.readFileToByteArray(file);
 				byte[] fileContent = Files.readAllBytes(file.toPath());
 
 				try {
@@ -1315,14 +1308,6 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 				}
 			}
 		}
-		catch (IOException ioException) {
-			_log.error("Unable to authenticate with GCP");
-
-			throw new PortalException(
-				"Unable to authenticate with GCP", ioException);
-		}
-	}
-
 	private void _uploadToTestray(
 		long companyId, UnicodeProperties unicodeProperties)
 		throws Exception {
