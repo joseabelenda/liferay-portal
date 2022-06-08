@@ -39,7 +39,6 @@ dependencies {
 	compileOnly group: "com.google.api", name: "gax", version: "1.62.0"
 	compileOnly group: "com.google.cloud", name: "google-cloud-storage", version: "2.4.0"
 	compileOnly group: "com.google.cloud.functions", name: "functions-framework-api", version: "1.0.1"
-	compileOnly group: "com.jtransc", name: "jtransc-rt", version: "0.6.1"
 	compileOnly group: "com.liferay", name: "biz.aQute.bnd.annotation", version: "4.2.0.LIFERAY-PATCHED-2"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 	compileOnly group: "javax.ws.rs", name: "javax.ws.rs-api", version: "2.1"

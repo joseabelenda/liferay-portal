@@ -1288,9 +1288,7 @@ public class TestrayDispatchTaskExecutor extends BaseDispatchTaskExecutor {
 		File pathFile = new File(
 			unicodeProperties.getProperty("localFolderPath"));
 
-		File[] fileList = pathFile.listFiles();
-
-		for (File file : fileList) {
+		for (File file : pathFile.listFiles()) {
 			byte[] fileContent = Files.readAllBytes(file.toPath());
 
 			try {
