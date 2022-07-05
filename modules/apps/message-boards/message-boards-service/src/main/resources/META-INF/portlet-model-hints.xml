@@ -157,6 +157,19 @@
 		<field name="type" type="String" />
 		<field name="validated" type="boolean" />
 	</model>
+	<model name="com.liferay.message.boards.model.MBSuspiciousActivityType">
+		<field name="mvccVersion" type="long" />
+		<field name="ctCollectionId" type="long" />
+		<field name="uuid" type="String" />
+		<field name="suspiciousActivityTypeId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="description" type="String" />
+	</model>
 	<model name="com.liferay.message.boards.model.MBThread">
 		<field name="mvccVersion" type="long" />
 		<field name="ctCollectionId" type="long" />
