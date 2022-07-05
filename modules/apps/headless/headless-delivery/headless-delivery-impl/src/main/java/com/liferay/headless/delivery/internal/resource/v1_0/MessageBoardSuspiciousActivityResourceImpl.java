@@ -151,7 +151,7 @@ public class MessageBoardSuspiciousActivityResourceImpl
 			new ArrayList<>();
 	  	System.out.println(messageBoardSuspiciousActivity.getDescription());
 		mbSuspiciousActivity.add(
-			_mbSuspiciousActivityService.addOrUpdateSuspiciousActivity(
+			_mbSuspiciousActivityService.addOrUpdateSuspiciousActivityByMessage(
 				messageBoardMessageId,
 				messageBoardSuspiciousActivity.getDescription(),
 				messageBoardSuspiciousActivity.getType()
@@ -164,15 +164,29 @@ public class MessageBoardSuspiciousActivityResourceImpl
 
   }
 
-//
-//  @Override
-//  public MessageBoardSuspiciousActivity postMessageBoardThreadMessageBoardSuspiciousActivity()
-//      throws Exception{
-//
-//
-//
-//  }
 
+  @Override
+  public Page<MessageBoardSuspiciousActivity> postMessageBoardThreadMessageBoardSuspiciousActivityPage(
+	  Long messageBoardThreadId, MessageBoardSuspiciousActivity messageBoardSuspiciousActivity)
+	  throws Exception{
+
+	  List<MBSuspiciousActivity> mbSuspiciousActivity =
+		  new ArrayList<>();
+
+	  mbSuspiciousActivity.add(
+		  _mbSuspiciousActivityService.addOrUpdateSuspiciousActivityByThread(
+			  messageBoardThreadId,
+			  messageBoardSuspiciousActivity.getDescription(),
+			  messageBoardSuspiciousActivity.getType()
+		  ));
+	  System.out.println(mbSuspiciousActivity);
+	  return Page.of(
+		  TransformUtil.transform(
+			  mbSuspiciousActivity,
+			  this::_toMessageSuspiciousActivity));
+
+
+  }
 
 
 	private MessageBoardSuspiciousActivity _toMessageSuspiciousActivity(MBSuspiciousActivity mbSuspiciousActivity)
