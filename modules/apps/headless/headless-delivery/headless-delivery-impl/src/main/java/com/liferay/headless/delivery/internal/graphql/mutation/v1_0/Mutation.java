@@ -2899,8 +2899,8 @@ public class Mutation {
 	@GraphQLField(
 		description = "Creates a new message board suspicious activity inside a thread."
 	)
-	public MessageBoardSuspiciousActivity
-			createMessageBoardThreadMessageBoardSuspiciousActivity(
+	public java.util.Collection<MessageBoardSuspiciousActivity>
+			createMessageBoardThreadMessageBoardSuspiciousActivityPage(
 				@GraphQLName("messageBoardThreadId") Long messageBoardThreadId,
 				@GraphQLName("messageBoardSuspiciousActivity")
 					MessageBoardSuspiciousActivity
@@ -2910,26 +2910,15 @@ public class Mutation {
 		return _applyComponentServiceObjects(
 			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			messageBoardSuspiciousActivityResource ->
-				messageBoardSuspiciousActivityResource.
-					postMessageBoardThreadMessageBoardSuspiciousActivity(
-						messageBoardThreadId, messageBoardSuspiciousActivity));
-	}
+			messageBoardSuspiciousActivityResource -> {
+				Page paginationPage =
+					messageBoardSuspiciousActivityResource.
+						postMessageBoardThreadMessageBoardSuspiciousActivityPage(
+							messageBoardThreadId,
+							messageBoardSuspiciousActivity);
 
-	@GraphQLField
-	public Response createMessageBoardThreadMessageBoardSuspiciousActivityBatch(
-			@GraphQLName("messageBoardThreadId") Long messageBoardThreadId,
-			@GraphQLName("callbackURL") String callbackURL,
-			@GraphQLName("object") Object object)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			messageBoardSuspiciousActivityResource ->
-				messageBoardSuspiciousActivityResource.
-					postMessageBoardThreadMessageBoardSuspiciousActivityBatch(
-						messageBoardThreadId, callbackURL, object));
+				return paginationPage.getItems();
+			});
 	}
 
 	@GraphQLField(
