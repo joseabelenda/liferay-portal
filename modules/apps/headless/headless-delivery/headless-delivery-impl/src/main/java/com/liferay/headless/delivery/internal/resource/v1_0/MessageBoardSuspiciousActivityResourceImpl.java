@@ -40,6 +40,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -64,14 +65,19 @@ public class MessageBoardSuspiciousActivityResourceImpl
 		Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception{
 
-		List<MBSuspiciousActivity> dados = _mbSuspiciousActivityService.getThreadSuspiciousActivities(messageBoardThreadId);
+		List<MBSuspiciousActivity> mbSuspiciousActivities =
+			_mbSuspiciousActivityService.getThreadSuspiciousActivities(messageBoardThreadId);
 
 
-		Page teste = Page.of(TransformUtil.transform(dados,this::_toMessageSuspiciousActivity));
+		return Page.of(
+			TransformUtil.transform(
+				mbSuspiciousActivities,
+				this::_toMessageSuspiciousActivity));
 
 
-		return teste;
+
 	}
+
 
 	@Override
 	public Page<MessageBoardSuspiciousActivity> getMessageBoardMessageMessageBoardSuspiciousActivityPage(
@@ -79,21 +85,85 @@ public class MessageBoardSuspiciousActivityResourceImpl
 		Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception{
 
-		List<MBSuspiciousActivity> dados = _mbSuspiciousActivityService.getMessageSuspiciousActivities(messageBoardMessageId);
+		List<MBSuspiciousActivity> mbSuspiciousActivities =
+			_mbSuspiciousActivityService.getMessageSuspiciousActivities(messageBoardMessageId);
 
+		return Page.of(
+			TransformUtil.transform(
+				mbSuspiciousActivities,
+				this::_toMessageSuspiciousActivity));
 
-		Page teste = Page.of(TransformUtil.transform(dados,this::_toMessageSuspiciousActivity));
-
-
-		return teste;
 	}
 
-//  @Override
-//  public MessageBoardSuspiciousActivity postMessageBoardMessageMessageBoardSuspiciousActivityPage()
-//      throws Exception{
-//
-//
-//  }
+
+	@Override
+	public Page<MessageBoardSuspiciousActivity> getMessageBoardSuspiciousActivitiesMessageBoardSuspiciousActivityUpdateValidatedPage(
+		Long messageBoardSuspiciousActivityId)
+		throws Exception{
+
+		List<MBSuspiciousActivity> mbSuspiciousActivities = new ArrayList<>();
+		mbSuspiciousActivities.add( _mbSuspiciousActivityService.updateValidated(
+			messageBoardSuspiciousActivityId));
+
+		return  Page.of(
+			TransformUtil.transform(
+				mbSuspiciousActivities,
+				this::_toMessageSuspiciousActivity
+			));
+
+	}
+
+
+	@Override
+	public Page<MessageBoardSuspiciousActivity> getMessageBoardSuspiciousActivitiesMessageBoardSuspiciousActivityPage(
+		Long messageBoardSuspiciousActivityId, String search, Aggregation aggregation,
+		Filter filter, Pagination pagination, Sort[] sorts)
+		throws Exception{
+
+		List<MBSuspiciousActivity > mbSuspiciousActivities = new ArrayList<>();
+		mbSuspiciousActivities.add(
+			_mbSuspiciousActivityService.getSuspiciousActivity(
+				messageBoardSuspiciousActivityId));
+		System.out.println(mbSuspiciousActivities);
+		return Page.of(
+			TransformUtil.transform(
+				mbSuspiciousActivities,
+				this::_toMessageSuspiciousActivity));
+
+	}
+
+
+	@Override
+	public void deleteMessageBoardSuspiciousActivityMessageBoardSuspiciousActivity(
+		Long messageBoardSuspiciousActivityId)
+		throws Exception{
+			_mbSuspiciousActivityService.deleteSuspiciousActivity(
+				messageBoardSuspiciousActivityId);
+
+	}
+
+  @Override
+  public Page<MessageBoardSuspiciousActivity> postMessageBoardMessageMessageBoardSuspiciousActivityPage(
+	  Long messageBoardMessageId, MessageBoardSuspiciousActivity messageBoardSuspiciousActivity)
+      throws Exception{
+
+		List<MBSuspiciousActivity> mbSuspiciousActivity =
+			new ArrayList<>();
+	  	System.out.println(messageBoardSuspiciousActivity.getDescription());
+		mbSuspiciousActivity.add(
+			_mbSuspiciousActivityService.addOrUpdateSuspiciousActivity(
+				messageBoardMessageId,
+				messageBoardSuspiciousActivity.getDescription(),
+				messageBoardSuspiciousActivity.getType()
+			));
+
+		return Page.of(
+			TransformUtil.transform(
+				mbSuspiciousActivity,
+				this::_toMessageSuspiciousActivity));
+
+  }
+
 //
 //  @Override
 //  public MessageBoardSuspiciousActivity postMessageBoardThreadMessageBoardSuspiciousActivity()
@@ -104,21 +174,6 @@ public class MessageBoardSuspiciousActivityResourceImpl
 //  }
 
 
-//  public Page<MessageBoardSuspiciousActivity> getMessageBoardSuspiciousActivitiesMessageBoardSuspiciousActivityPage(
-//      Long messageBoardSuspiciousActivityId, String search, Aggregation aggregation,
-//      Filter filter, Pagination pagination, Sort[] sorts)
-//      throws Exception{
-//
-//      ArrayList<MBSuspiciousActivity > dados = new ArrayList<>();
-//      MBSuspiciousActivity data = _mbSuspiciousActivityService.getSuspiciousActivity(messageBoardSuspiciousActivityId);
-//      System.out.println(data);
-//      dados.add(data);
-//      System.out.println(dados);
-//      Page teste = Page.of(TransformUtil.transform(dados,this::_toMessageSuspiciousActivity));
-//
-//
-//      return teste;
-//  }
 
 	private MessageBoardSuspiciousActivity _toMessageSuspiciousActivity(MBSuspiciousActivity mbSuspiciousActivity)
 		throws Exception {
@@ -126,25 +181,7 @@ public class MessageBoardSuspiciousActivityResourceImpl
 
 		return _messageBoardSuspiciousActivityDTOConverter.toDTO(
 			new DefaultDTOConverterContext(false,
-				HashMapBuilder.put(
-					"delete",
-					addAction(
-						ActionKeys.DELETE, mbSuspiciousActivity,
-						"deleteMessageBoardSuspiciousActivity")
-				).put(
-					"get",
-					addAction(
-						ActionKeys.VIEW, mbSuspiciousActivity, "getMessageBoardSuspiciousActivity")
-				).put(
-					"replace",
-					addAction(
-						ActionKeys.UPDATE, mbSuspiciousActivity, "putMessageBoardSuspiciousActivity")
-				).put(
-					"update",
-					addAction(
-						ActionKeys.UPDATE, mbSuspiciousActivity,
-						"patchMessageBoardSuspiciousActivity")
-				).build(),
+				null,
 				_dtoConverterRegistry, mbSuspiciousActivity.getPrimaryKey(),
 				contextAcceptLanguage.getPreferredLocale(), contextUriInfo,
 				contextUser));
