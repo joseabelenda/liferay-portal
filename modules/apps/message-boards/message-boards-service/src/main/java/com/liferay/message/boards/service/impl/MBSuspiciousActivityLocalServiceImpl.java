@@ -41,7 +41,7 @@ public class MBSuspiciousActivityLocalServiceImpl
 	extends MBSuspiciousActivityLocalServiceBaseImpl {
 
 	@Override
-	public MBSuspiciousActivity addOrUpdateSuspiciousActivity(
+	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByMessage(
 			long userId, long messageId, String description, String type)
 		throws PortalException {
 
@@ -78,6 +78,44 @@ public class MBSuspiciousActivityLocalServiceImpl
 		return mbSuspiciousActivityLocalService.updateMBSuspiciousActivity(
 			suspiciousActivity);
 	}
+
+
+	@Override
+	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByThread(
+		long userId, long threadId, String description, String type)
+		throws PortalException {
+
+		MBSuspiciousActivity suspiciousActivity =
+			mbSuspiciousActivityPersistence.fetchByU_T(userId, threadId);
+
+		if (suspiciousActivity == null) {
+			long suspiciousActivityId = counterLocalService.increment();
+
+			suspiciousActivity = mbSuspiciousActivityPersistence.create(
+				suspiciousActivityId);
+
+			MBThread thread = _mbThreadPersistence.findByPrimaryKey(
+				threadId);
+
+			suspiciousActivity.setGroupId(thread.getGroupId());
+
+			User user = _userLocalService.getUser(userId);
+
+			suspiciousActivity.setCompanyId(user.getCompanyId());
+			suspiciousActivity.setUserId(user.getUserId());
+			suspiciousActivity.setUserName(user.getFullName());
+
+			suspiciousActivity.setMessageId(0);
+			suspiciousActivity.setThreadId(thread.getThreadId());
+		}
+
+		suspiciousActivity.setDescription(description);
+		suspiciousActivity.setType(type);
+
+		return mbSuspiciousActivityLocalService.updateMBSuspiciousActivity(
+			suspiciousActivity);
+	}
+
 
 	@Override
 	public MBSuspiciousActivity deleteSuspiciousActivity(
