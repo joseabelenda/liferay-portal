@@ -419,6 +419,34 @@
 			<finder-column name="threadId" />
 		</finder>
 	</entity>
+	<entity human-name="message boards suspicious activity type" local-service="true" name="MBSuspiciousActivityType" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column container-model="true" name="suspiciousActivityTypeId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" uad-anonymize-field-name="fullName" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="description" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="SuspiciousActivityTypeId" return-type="Collection">
+			<finder-column name="suspiciousActivityTypeId" />
+		</finder>
+	</entity>
 	<entity human-name="message boards thread" local-service="true" name="MBThread" remote-service="true" trash-enabled="true" uuid="true">
 
 		<!-- PK fields -->
