@@ -68,6 +68,10 @@ create index IX_191B6619 on MBSuspiciousActivity (uuid_[$COLUMN_LENGTH:75$], com
 create index IX_B5AC78AB on MBSuspiciousActivity (uuid_[$COLUMN_LENGTH:75$], ctCollectionId);
 create unique index IX_A3E15B5B on MBSuspiciousActivity (uuid_[$COLUMN_LENGTH:75$], groupId, ctCollectionId);
 
+create index IX_65AE9BF3 on MBSuspiciousActivityType (uuid_[$COLUMN_LENGTH:75$], companyId, ctCollectionId);
+create index IX_A7C06711 on MBSuspiciousActivityType (uuid_[$COLUMN_LENGTH:75$], ctCollectionId);
+create unique index IX_F39C3FB5 on MBSuspiciousActivityType (uuid_[$COLUMN_LENGTH:75$], groupId, ctCollectionId);
+
 create index IX_A1BB5EE8 on MBThread (categoryId, priority, ctCollectionId);
 create index IX_93724410 on MBThread (groupId, categoryId, ctCollectionId);
 create index IX_C25692A8 on MBThread (groupId, categoryId, lastPostDate, ctCollectionId);
