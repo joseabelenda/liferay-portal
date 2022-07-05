@@ -15532,12 +15532,10 @@ paths:
                             schema:
                                 items:
                                     $ref: "#/components/schemas/MessageBoardSuspiciousActivity"
-                                type: array
                         application/xml:
                             schema:
                                 items:
                                     $ref: "#/components/schemas/MessageBoardSuspiciousActivity"
-                                type: array
             tags: [ "MessageBoardSuspiciousActivity" ]
     "/message-board-threads/{messageBoardThreadId}/message-board-suspicious-activity":
         get:
