@@ -15612,10 +15612,12 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/MessageBoardSuspiciousActivity"
+                                items:
+                                    $ref: "#/components/schemas/MessageBoardSuspiciousActivity"
                         application/xml:
                             schema:
-                                $ref: "#/components/schemas/MessageBoardSuspiciousActivity"
+                                items:
+                                    $ref: "#/components/schemas/MessageBoardSuspiciousActivity"
             tags: [ "MessageBoardSuspiciousActivity" ]
     "/message-board-suspicious-activity/{suspiciousActivityId}/message-board-suspicious-activity-update-validated":
         get:
