@@ -261,6 +261,14 @@ public class MBSuspiciousActivityPersistenceTest {
 	}
 
 	@Test
+	public void testCountByU_T() throws Exception {
+		_persistence.countByU_T(
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
+
+		_persistence.countByU_T(0L, 0L);
+	}
+
+	@Test
 	public void testFindByPrimaryKeyExisting() throws Exception {
 		MBSuspiciousActivity newMBSuspiciousActivity =
 			addMBSuspiciousActivity();
@@ -609,6 +617,17 @@ public class MBSuspiciousActivityPersistenceTest {
 			ReflectionTestUtil.<Long>invoke(
 				mbSuspiciousActivity, "getColumnOriginalValue",
 				new Class<?>[] {String.class}, "messageId"));
+
+		Assert.assertEquals(
+			Long.valueOf(mbSuspiciousActivity.getUserId()),
+			ReflectionTestUtil.<Long>invoke(
+				mbSuspiciousActivity, "getColumnOriginalValue",
+				new Class<?>[] {String.class}, "userId"));
+		Assert.assertEquals(
+			Long.valueOf(mbSuspiciousActivity.getThreadId()),
+			ReflectionTestUtil.<Long>invoke(
+				mbSuspiciousActivity, "getColumnOriginalValue",
+				new Class<?>[] {String.class}, "threadId"));
 	}
 
 	protected MBSuspiciousActivity addMBSuspiciousActivity() throws Exception {

@@ -59,12 +59,23 @@ public class MBSuspiciousActivityLocalServiceWrapper
 	}
 
 	@Override
-	public MBSuspiciousActivity addOrUpdateSuspiciousActivity(
+	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByMessage(
 			long userId, long messageId, String description, String type)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _mbSuspiciousActivityLocalService.addOrUpdateSuspiciousActivity(
-			userId, messageId, description, type);
+		return _mbSuspiciousActivityLocalService.
+			addOrUpdateSuspiciousActivityByMessage(
+				userId, messageId, description, type);
+	}
+
+	@Override
+	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByThread(
+			long userId, long threadId, String description, String type)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _mbSuspiciousActivityLocalService.
+			addOrUpdateSuspiciousActivityByThread(
+				userId, threadId, description, type);
 	}
 
 	/**
