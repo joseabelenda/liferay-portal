@@ -15591,7 +15591,7 @@ paths:
         post:
             description:
                 Creates a new message board suspicious activity inside a thread.
-            operationId: postMessageBoardThreadMessageBoardSuspiciousActivity
+            operationId: postMessageBoardThreadMessageBoardSuspiciousActivityPage
             parameters:
                 - in: path
                   name: messageBoardThreadId
