@@ -3062,10 +3062,10 @@ components:
                         The ID of the Message Board thread reported.
                     format: int64
                     type: integer
-                type:
+                suspiciousCategoryId:
                     description:
-                        The type of report.
-                    type: string
+                        The object Suspicious Activity Type reported.
+                    type: integer
                 userId:
                     description:
                         The ID of the user reported the message.

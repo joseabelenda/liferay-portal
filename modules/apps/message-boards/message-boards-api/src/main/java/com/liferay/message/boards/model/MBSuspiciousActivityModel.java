@@ -286,19 +286,18 @@ public interface MBSuspiciousActivityModel
 	public void setDescription(String description);
 
 	/**
-	 * Returns the type of this message boards suspicious activity.
+	 * Returns the suspicious activity type ID of this message boards suspicious activity.
 	 *
-	 * @return the type of this message boards suspicious activity
+	 * @return the suspicious activity type ID of this message boards suspicious activity
 	 */
-	@AutoEscape
-	public String getType();
+	public long getSuspiciousActivityTypeId();
 
 	/**
-	 * Sets the type of this message boards suspicious activity.
+	 * Sets the suspicious activity type ID of this message boards suspicious activity.
 	 *
-	 * @param type the type of this message boards suspicious activity
+	 * @param suspiciousActivityTypeId the suspicious activity type ID of this message boards suspicious activity
 	 */
-	public void setType(String type);
+	public void setSuspiciousActivityTypeId(long suspiciousActivityTypeId);
 
 	/**
 	 * Returns the validated of this message boards suspicious activity.

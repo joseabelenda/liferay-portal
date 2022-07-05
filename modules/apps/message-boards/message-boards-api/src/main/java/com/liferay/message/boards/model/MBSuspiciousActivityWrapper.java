@@ -60,7 +60,8 @@ public class MBSuspiciousActivityWrapper
 		attributes.put("messageId", getMessageId());
 		attributes.put("threadId", getThreadId());
 		attributes.put("description", getDescription());
-		attributes.put("type", getType());
+		attributes.put(
+			"suspiciousActivityTypeId", getSuspiciousActivityTypeId());
 		attributes.put("validated", isValidated());
 
 		return attributes;
@@ -147,10 +148,11 @@ public class MBSuspiciousActivityWrapper
 			setDescription(description);
 		}
 
-		String type = (String)attributes.get("type");
+		Long suspiciousActivityTypeId = (Long)attributes.get(
+			"suspiciousActivityTypeId");
 
-		if (type != null) {
-			setType(type);
+		if (suspiciousActivityTypeId != null) {
+			setSuspiciousActivityTypeId(suspiciousActivityTypeId);
 		}
 
 		Boolean validated = (Boolean)attributes.get("validated");
@@ -296,6 +298,16 @@ public class MBSuspiciousActivityWrapper
 	}
 
 	/**
+	 * Returns the suspicious activity type ID of this message boards suspicious activity.
+	 *
+	 * @return the suspicious activity type ID of this message boards suspicious activity
+	 */
+	@Override
+	public long getSuspiciousActivityTypeId() {
+		return model.getSuspiciousActivityTypeId();
+	}
+
+	/**
 	 * Returns the thread ID of this message boards suspicious activity.
 	 *
 	 * @return the thread ID of this message boards suspicious activity
@@ -303,16 +315,6 @@ public class MBSuspiciousActivityWrapper
 	@Override
 	public long getThreadId() {
 		return model.getThreadId();
-	}
-
-	/**
-	 * Returns the type of this message boards suspicious activity.
-	 *
-	 * @return the type of this message boards suspicious activity
-	 */
-	@Override
-	public String getType() {
-		return model.getType();
 	}
 
 	/**
@@ -501,6 +503,16 @@ public class MBSuspiciousActivityWrapper
 	}
 
 	/**
+	 * Sets the suspicious activity type ID of this message boards suspicious activity.
+	 *
+	 * @param suspiciousActivityTypeId the suspicious activity type ID of this message boards suspicious activity
+	 */
+	@Override
+	public void setSuspiciousActivityTypeId(long suspiciousActivityTypeId) {
+		model.setSuspiciousActivityTypeId(suspiciousActivityTypeId);
+	}
+
+	/**
 	 * Sets the thread ID of this message boards suspicious activity.
 	 *
 	 * @param threadId the thread ID of this message boards suspicious activity
@@ -508,16 +520,6 @@ public class MBSuspiciousActivityWrapper
 	@Override
 	public void setThreadId(long threadId) {
 		model.setThreadId(threadId);
-	}
-
-	/**
-	 * Sets the type of this message boards suspicious activity.
-	 *
-	 * @param type the type of this message boards suspicious activity
-	 */
-	@Override
-	public void setType(String type) {
-		model.setType(type);
 	}
 
 	/**

@@ -39,19 +39,19 @@ public class MBSuspiciousActivityServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.message.boards.service.impl.MBSuspiciousActivityServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static MBSuspiciousActivity addOrUpdateSuspiciousActivityByMessage(
-			long messageId, String description, String type)
+			long messageId, String description, long suspiciousActivityTypeId)
 		throws PortalException {
 
 		return getService().addOrUpdateSuspiciousActivityByMessage(
-			messageId, description, type);
+			messageId, description, suspiciousActivityTypeId);
 	}
 
 	public static MBSuspiciousActivity addOrUpdateSuspiciousActivityByThread(
-			long threadId, String description, String type)
+			long threadId, String description, long suspiciousActivityTypeId)
 		throws PortalException {
 
 		return getService().addOrUpdateSuspiciousActivityByThread(
-			threadId, description, type);
+			threadId, description, suspiciousActivityTypeId);
 	}
 
 	public static MBSuspiciousActivity deleteSuspiciousActivity(

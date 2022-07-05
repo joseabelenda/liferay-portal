@@ -80,8 +80,8 @@ public class MBSuspiciousActivityModelImpl
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
 		{"messageId", Types.BIGINT}, {"threadId", Types.BIGINT},
-		{"description", Types.VARCHAR}, {"type_", Types.VARCHAR},
-		{"validated", Types.BOOLEAN}
+		{"description", Types.VARCHAR},
+		{"suspiciousActivityTypeId", Types.BIGINT}, {"validated", Types.BOOLEAN}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -101,12 +101,12 @@ public class MBSuspiciousActivityModelImpl
 		TABLE_COLUMNS_MAP.put("messageId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("threadId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("type_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("suspiciousActivityTypeId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("validated", Types.BOOLEAN);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table MBSuspiciousActivity (mvccVersion LONG default 0 not null,ctCollectionId LONG default 0 not null,uuid_ VARCHAR(75) null,suspiciousActivityId LONG not null,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,messageId LONG,threadId LONG,description STRING null,type_ VARCHAR(75) null,validated BOOLEAN,primary key (suspiciousActivityId, ctCollectionId))";
+		"create table MBSuspiciousActivity (mvccVersion LONG default 0 not null,ctCollectionId LONG default 0 not null,uuid_ VARCHAR(75) null,suspiciousActivityId LONG not null,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,messageId LONG,threadId LONG,description STRING null,suspiciousActivityTypeId LONG,validated BOOLEAN,primary key (suspiciousActivityId, ctCollectionId))";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table MBSuspiciousActivity";
@@ -357,11 +357,13 @@ public class MBSuspiciousActivityModelImpl
 			"description",
 			(BiConsumer<MBSuspiciousActivity, String>)
 				MBSuspiciousActivity::setDescription);
-		attributeGetterFunctions.put("type", MBSuspiciousActivity::getType);
+		attributeGetterFunctions.put(
+			"suspiciousActivityTypeId",
+			MBSuspiciousActivity::getSuspiciousActivityTypeId);
 		attributeSetterBiConsumers.put(
-			"type",
-			(BiConsumer<MBSuspiciousActivity, String>)
-				MBSuspiciousActivity::setType);
+			"suspiciousActivityTypeId",
+			(BiConsumer<MBSuspiciousActivity, Long>)
+				MBSuspiciousActivity::setSuspiciousActivityTypeId);
 		attributeGetterFunctions.put(
 			"validated", MBSuspiciousActivity::getValidated);
 		attributeSetterBiConsumers.put(
@@ -666,22 +668,17 @@ public class MBSuspiciousActivityModelImpl
 
 	@JSON
 	@Override
-	public String getType() {
-		if (_type == null) {
-			return "";
-		}
-		else {
-			return _type;
-		}
+	public long getSuspiciousActivityTypeId() {
+		return _suspiciousActivityTypeId;
 	}
 
 	@Override
-	public void setType(String type) {
+	public void setSuspiciousActivityTypeId(long suspiciousActivityTypeId) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_type = type;
+		_suspiciousActivityTypeId = suspiciousActivityTypeId;
 	}
 
 	@JSON
@@ -807,7 +804,8 @@ public class MBSuspiciousActivityModelImpl
 		mbSuspiciousActivityImpl.setMessageId(getMessageId());
 		mbSuspiciousActivityImpl.setThreadId(getThreadId());
 		mbSuspiciousActivityImpl.setDescription(getDescription());
-		mbSuspiciousActivityImpl.setType(getType());
+		mbSuspiciousActivityImpl.setSuspiciousActivityTypeId(
+			getSuspiciousActivityTypeId());
 		mbSuspiciousActivityImpl.setValidated(isValidated());
 
 		mbSuspiciousActivityImpl.resetOriginalValues();
@@ -846,8 +844,8 @@ public class MBSuspiciousActivityModelImpl
 			this.<Long>getColumnOriginalValue("threadId"));
 		mbSuspiciousActivityImpl.setDescription(
 			this.<String>getColumnOriginalValue("description"));
-		mbSuspiciousActivityImpl.setType(
-			this.<String>getColumnOriginalValue("type_"));
+		mbSuspiciousActivityImpl.setSuspiciousActivityTypeId(
+			this.<Long>getColumnOriginalValue("suspiciousActivityTypeId"));
 		mbSuspiciousActivityImpl.setValidated(
 			this.<Boolean>getColumnOriginalValue("validated"));
 
@@ -989,13 +987,8 @@ public class MBSuspiciousActivityModelImpl
 			mbSuspiciousActivityCacheModel.description = null;
 		}
 
-		mbSuspiciousActivityCacheModel.type = getType();
-
-		String type = mbSuspiciousActivityCacheModel.type;
-
-		if ((type != null) && (type.length() == 0)) {
-			mbSuspiciousActivityCacheModel.type = null;
-		}
+		mbSuspiciousActivityCacheModel.suspiciousActivityTypeId =
+			getSuspiciousActivityTypeId();
 
 		mbSuspiciousActivityCacheModel.validated = isValidated();
 
@@ -1107,7 +1100,7 @@ public class MBSuspiciousActivityModelImpl
 	private long _messageId;
 	private long _threadId;
 	private String _description;
-	private String _type;
+	private long _suspiciousActivityTypeId;
 	private boolean _validated;
 
 	public <T> T getColumnValue(String columnName) {
@@ -1153,7 +1146,8 @@ public class MBSuspiciousActivityModelImpl
 		_columnOriginalValues.put("messageId", _messageId);
 		_columnOriginalValues.put("threadId", _threadId);
 		_columnOriginalValues.put("description", _description);
-		_columnOriginalValues.put("type_", _type);
+		_columnOriginalValues.put(
+			"suspiciousActivityTypeId", _suspiciousActivityTypeId);
 		_columnOriginalValues.put("validated", _validated);
 	}
 
@@ -1163,7 +1157,6 @@ public class MBSuspiciousActivityModelImpl
 		Map<String, String> attributeNames = new HashMap<>();
 
 		attributeNames.put("uuid_", "uuid");
-		attributeNames.put("type_", "type");
 
 		_attributeNames = Collections.unmodifiableMap(attributeNames);
 	}
@@ -1205,7 +1198,7 @@ public class MBSuspiciousActivityModelImpl
 
 		columnBitmasks.put("description", 4096L);
 
-		columnBitmasks.put("type_", 8192L);
+		columnBitmasks.put("suspiciousActivityTypeId", 8192L);
 
 		columnBitmasks.put("validated", 16384L);
 

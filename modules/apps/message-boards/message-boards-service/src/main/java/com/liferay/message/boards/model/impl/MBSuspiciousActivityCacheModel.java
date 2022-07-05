@@ -106,8 +106,8 @@ public class MBSuspiciousActivityCacheModel
 		sb.append(threadId);
 		sb.append(", description=");
 		sb.append(description);
-		sb.append(", type=");
-		sb.append(type);
+		sb.append(", suspiciousActivityTypeId=");
+		sb.append(suspiciousActivityTypeId);
 		sb.append(", validated=");
 		sb.append(validated);
 		sb.append("}");
@@ -166,13 +166,8 @@ public class MBSuspiciousActivityCacheModel
 			mbSuspiciousActivityImpl.setDescription(description);
 		}
 
-		if (type == null) {
-			mbSuspiciousActivityImpl.setType("");
-		}
-		else {
-			mbSuspiciousActivityImpl.setType(type);
-		}
-
+		mbSuspiciousActivityImpl.setSuspiciousActivityTypeId(
+			suspiciousActivityTypeId);
 		mbSuspiciousActivityImpl.setValidated(validated);
 
 		mbSuspiciousActivityImpl.resetOriginalValues();
@@ -202,7 +197,8 @@ public class MBSuspiciousActivityCacheModel
 
 		threadId = objectInput.readLong();
 		description = objectInput.readUTF();
-		type = objectInput.readUTF();
+
+		suspiciousActivityTypeId = objectInput.readLong();
 
 		validated = objectInput.readBoolean();
 	}
@@ -249,12 +245,7 @@ public class MBSuspiciousActivityCacheModel
 			objectOutput.writeUTF(description);
 		}
 
-		if (type == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(type);
-		}
+		objectOutput.writeLong(suspiciousActivityTypeId);
 
 		objectOutput.writeBoolean(validated);
 	}
@@ -272,7 +263,7 @@ public class MBSuspiciousActivityCacheModel
 	public long messageId;
 	public long threadId;
 	public String description;
-	public String type;
+	public long suspiciousActivityTypeId;
 	public boolean validated;
 
 }

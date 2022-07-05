@@ -42,7 +42,7 @@ public class MBSuspiciousActivityLocalServiceImpl
 
 	@Override
 	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByMessage(
-			long userId, long messageId, String description, String type)
+			long userId, long messageId, String description, long suspiciousActivityTypeId)
 		throws PortalException {
 
 		MBSuspiciousActivity suspiciousActivity =
@@ -73,7 +73,7 @@ public class MBSuspiciousActivityLocalServiceImpl
 		}
 
 		suspiciousActivity.setDescription(description);
-		suspiciousActivity.setType(type);
+		suspiciousActivity.setSuspiciousActivityId(suspiciousActivityTypeId);
 
 		return mbSuspiciousActivityLocalService.updateMBSuspiciousActivity(
 			suspiciousActivity);
@@ -82,7 +82,7 @@ public class MBSuspiciousActivityLocalServiceImpl
 
 	@Override
 	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByThread(
-		long userId, long threadId, String description, String type)
+		long userId, long threadId, String description, long suspiciousActivityTypeId)
 		throws PortalException {
 
 		MBSuspiciousActivity suspiciousActivity =
@@ -110,7 +110,7 @@ public class MBSuspiciousActivityLocalServiceImpl
 		}
 
 		suspiciousActivity.setDescription(description);
-		suspiciousActivity.setType(type);
+		suspiciousActivity.setSuspiciousActivityId(suspiciousActivityTypeId);
 
 		return mbSuspiciousActivityLocalService.updateMBSuspiciousActivity(
 			suspiciousActivity);

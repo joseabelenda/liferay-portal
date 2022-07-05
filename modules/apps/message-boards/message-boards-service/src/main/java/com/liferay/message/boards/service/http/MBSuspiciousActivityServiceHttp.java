@@ -53,7 +53,7 @@ public class MBSuspiciousActivityServiceHttp {
 	public static com.liferay.message.boards.model.MBSuspiciousActivity
 			addOrUpdateSuspiciousActivityByMessage(
 				HttpPrincipal httpPrincipal, long messageId, String description,
-				String type)
+				long suspiciousActivityTypeId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -63,7 +63,7 @@ public class MBSuspiciousActivityServiceHttp {
 				_addOrUpdateSuspiciousActivityByMessageParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, messageId, description, type);
+				methodKey, messageId, description, suspiciousActivityTypeId);
 
 			Object returnObj = null;
 
@@ -97,7 +97,7 @@ public class MBSuspiciousActivityServiceHttp {
 	public static com.liferay.message.boards.model.MBSuspiciousActivity
 			addOrUpdateSuspiciousActivityByThread(
 				HttpPrincipal httpPrincipal, long threadId, String description,
-				String type)
+				long suspiciousActivityTypeId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -107,7 +107,7 @@ public class MBSuspiciousActivityServiceHttp {
 				_addOrUpdateSuspiciousActivityByThreadParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, threadId, description, type);
+				methodKey, threadId, description, suspiciousActivityTypeId);
 
 			Object returnObj = null;
 
@@ -344,11 +344,11 @@ public class MBSuspiciousActivityServiceHttp {
 
 	private static final Class<?>[]
 		_addOrUpdateSuspiciousActivityByMessageParameterTypes0 = new Class[] {
-			long.class, String.class, String.class
+			long.class, String.class, long.class
 		};
 	private static final Class<?>[]
 		_addOrUpdateSuspiciousActivityByThreadParameterTypes1 = new Class[] {
-			long.class, String.class, String.class
+			long.class, String.class, long.class
 		};
 	private static final Class<?>[] _deleteSuspiciousActivityParameterTypes2 =
 		new Class[] {long.class};

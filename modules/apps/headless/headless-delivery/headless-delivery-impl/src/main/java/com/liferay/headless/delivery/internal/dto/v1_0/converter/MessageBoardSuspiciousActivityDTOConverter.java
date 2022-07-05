@@ -4,7 +4,9 @@ import com.liferay.headless.delivery.dto.v1_0.MessageBoardMessage;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardSuspiciousActivity;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.model.MBSuspiciousActivity;
+import com.liferay.message.boards.model.MBSuspiciousActivityType;
 import com.liferay.message.boards.service.MBSuspiciousActivityService;
+import com.liferay.message.boards.service.MBSuspiciousActivityTypeService;
 import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.dto.converter.DTOConverterContext;
 import org.osgi.service.component.annotations.Component;
@@ -35,7 +37,8 @@ public class MessageBoardSuspiciousActivityDTOConverter implements
 				modifiedDate = mbSuspiciousActivity.getModifiedDate();
 				suspiciousActivityId = mbSuspiciousActivity.getSuspiciousActivityId();
 				threadId = mbSuspiciousActivity.getThreadId();
-				type = mbSuspiciousActivity.getType();
+				suspiciousActivityType =  _mbSuspiciousActivityTypeService.getSuspiciousActivityType(
+					mbSuspiciousActivity.getSuspiciousActivityId());
 				userId = mbSuspiciousActivity.getUserId();
 				validated = mbSuspiciousActivity.getValidated();
 
@@ -56,4 +59,7 @@ public class MessageBoardSuspiciousActivityDTOConverter implements
 
 	@Reference
 	private MBSuspiciousActivityService _mbSuspiciousActivityService;
+
+	@Reference
+	private MBSuspiciousActivityTypeService _mbSuspiciousActivityTypeService;
 }
