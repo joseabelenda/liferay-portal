@@ -3028,12 +3028,12 @@ components:
                             type: string
                         type: object
                     description:
-                        Block of suspicious activity reporteds.
+                        Block of suspicious activity reported.
                     readOnly: true
                     type: object
                 description:
                     description:
-                        Description of the suspicious activity resported.
+                        Description of the suspicious activity reported.
                     type: string
                 createDate:
                     description:
@@ -3062,9 +3062,10 @@ components:
                         The ID of the Message Board thread reported.
                     format: int64
                     type: integer
-                suspiciousCategoryId:
+                suspiciousTypeId:
                     description:
-                        The object Suspicious Activity Type reported.
+                        The ID of the Suspicious Activity Type reported.
+                    format: int64
                     type: integer
                 userId:
                     description:
@@ -3076,7 +3077,32 @@ components:
                         A flag that indicates if the report was accepted.
                     type: boolean
             required:
-                - type
+                - suspiciousTypeId
+            type: object
+        MessageBoardSuspiciousActivityType:
+            description:
+                Represents a type of a suspicious activity.
+            properties:
+                actions:
+                    additionalProperties:
+                        additionalProperties:
+                            type: string
+                        type: object
+                    description:
+                        Block of suspicious activity type.
+                    readOnly: true
+                    type: object
+                description:
+                    description:
+                        Description of the suspicious activity type.
+                    type: string
+                suspiciousTypeId:
+                    description:
+                        The ID of the Suspicious Activity Type reported.
+                    format: int64
+                    type: integer
+            required:
+                - description
             type: object
         NavigationMenu:
             # @review
@@ -15645,3 +15671,100 @@ paths:
                                     $ref: "#/components/schemas/MessageBoardSuspiciousActivity"
                                 type: array
             tags: [ "MessageBoardSuspiciousActivity" ]
+    "/message-board-suspicious-activity-type/{suspiciousTypeId}/message-board-suspicious-activity-type":
+        get:
+            description:
+                Retrieves the message board suspicious activity type.
+            operationId: getMessageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityTypePage
+            parameters:
+                - in: path
+                  name: suspiciousTypeId
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+                                type: array
+            tags: [ "MessageBoardSuspiciousActivityType" ]
+        put:
+            description:
+                Update a suspicious activity type.
+            operationId: putMessageBoardSuspiciousActivityTypeMessageBoardSuspiciousActivityType
+            parameters:
+                - in: path
+                  name: suspiciousTypeId
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+            tags: [ "MessageBoardSuspiciousActivityType" ]
+        delete:
+            description:
+                Deletes the suspicious activity from message board and returns a 204 if the operation succeeds.
+            operationId: deleteMessageBoardSuspiciousActivityTypeMessageBoardSuspiciousActivityType
+            parameters:
+                - in: path
+                  name: suspiciousTypeId
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                204:
+                    content:
+                        application/json: { }
+                        application/xml: { }
+            tags: [ "MessageBoardSuspiciousActivityType" ]
+    "/message-board-suspicious-activity-type/message-board-suspicious-activity-type":
+        post:
+            description:
+                Creates a new message board suspicious activity type.
+            operationId: postMessageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityTypePage
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/MessageBoardSuspiciousActivityType"
+            tags: [ "MessageBoardSuspiciousActivityType" ]
