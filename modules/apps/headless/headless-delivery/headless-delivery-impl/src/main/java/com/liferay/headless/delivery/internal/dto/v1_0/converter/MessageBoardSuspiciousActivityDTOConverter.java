@@ -37,8 +37,8 @@ public class MessageBoardSuspiciousActivityDTOConverter implements
 				modifiedDate = mbSuspiciousActivity.getModifiedDate();
 				suspiciousActivityId = mbSuspiciousActivity.getSuspiciousActivityId();
 				threadId = mbSuspiciousActivity.getThreadId();
-				suspiciousActivityType =  _mbSuspiciousActivityTypeService.getSuspiciousActivityType(
-					mbSuspiciousActivity.getSuspiciousActivityId());
+//				suspiciousTypeId =  _mbSuspiciousActivityTypeService.getSuspiciousActivityType(
+//					mbSuspiciousActivity.getSuspiciousActivityId());
 				userId = mbSuspiciousActivity.getUserId();
 				validated = mbSuspiciousActivity.getValidated();
 

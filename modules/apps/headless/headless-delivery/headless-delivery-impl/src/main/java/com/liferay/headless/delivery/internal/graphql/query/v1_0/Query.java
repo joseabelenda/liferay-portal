@@ -31,6 +31,7 @@ import com.liferay.headless.delivery.dto.v1_0.MessageBoardAttachment;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardMessage;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardSection;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardSuspiciousActivity;
+import com.liferay.headless.delivery.dto.v1_0.MessageBoardSuspiciousActivityType;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardThread;
 import com.liferay.headless.delivery.dto.v1_0.NavigationMenu;
 import com.liferay.headless.delivery.dto.v1_0.NavigationMenuItem;
@@ -58,6 +59,7 @@ import com.liferay.headless.delivery.resource.v1_0.MessageBoardAttachmentResourc
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardMessageResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardSectionResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardSuspiciousActivityResource;
+import com.liferay.headless.delivery.resource.v1_0.MessageBoardSuspiciousActivityTypeResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardThreadResource;
 import com.liferay.headless.delivery.resource.v1_0.NavigationMenuResource;
 import com.liferay.headless.delivery.resource.v1_0.SitePageResource;
@@ -240,6 +242,15 @@ public class Query {
 
 		_messageBoardSuspiciousActivityResourceComponentServiceObjects =
 			messageBoardSuspiciousActivityResourceComponentServiceObjects;
+	}
+
+	public static void
+		setMessageBoardSuspiciousActivityTypeResourceComponentServiceObjects(
+			ComponentServiceObjects<MessageBoardSuspiciousActivityTypeResource>
+				messageBoardSuspiciousActivityTypeResourceComponentServiceObjects) {
+
+		_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects =
+			messageBoardSuspiciousActivityTypeResourceComponentServiceObjects;
 	}
 
 	public static void setMessageBoardThreadResourceComponentServiceObjects(
@@ -2533,6 +2544,29 @@ public class Query {
 					messageBoardSuspiciousActivityResource.
 						getMessageBoardSuspiciousActivitiesMessageBoardSuspiciousActivityUpdateValidatedPage(
 							suspiciousActivityId)));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {messageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityType(suspiciousTypeId: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField(
+		description = "Retrieves the message board suspicious activity type."
+	)
+	public MessageBoardSuspiciousActivityTypePage
+			messageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityType(
+				@GraphQLName("suspiciousTypeId") Long suspiciousTypeId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityTypeResource ->
+				new MessageBoardSuspiciousActivityTypePage(
+					messageBoardSuspiciousActivityTypeResource.
+						getMessageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityTypePage(
+							suspiciousTypeId)));
 	}
 
 	/**
@@ -6058,6 +6092,47 @@ public class Query {
 
 	}
 
+	@GraphQLName("MessageBoardSuspiciousActivityTypePage")
+	public class MessageBoardSuspiciousActivityTypePage {
+
+		public MessageBoardSuspiciousActivityTypePage(
+			Page messageBoardSuspiciousActivityTypePage) {
+
+			actions = messageBoardSuspiciousActivityTypePage.getActions();
+
+			facets = messageBoardSuspiciousActivityTypePage.getFacets();
+
+			items = messageBoardSuspiciousActivityTypePage.getItems();
+			lastPage = messageBoardSuspiciousActivityTypePage.getLastPage();
+			page = messageBoardSuspiciousActivityTypePage.getPage();
+			pageSize = messageBoardSuspiciousActivityTypePage.getPageSize();
+			totalCount = messageBoardSuspiciousActivityTypePage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected Map<String, Map> actions;
+
+		@GraphQLField
+		protected List<Facet> facets;
+
+		@GraphQLField
+		protected java.util.Collection<MessageBoardSuspiciousActivityType>
+			items;
+
+		@GraphQLField
+		protected long lastPage;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
 	@GraphQLName("MessageBoardThreadPage")
 	public class MessageBoardThreadPage {
 
@@ -6875,6 +6950,26 @@ public class Query {
 	}
 
 	private void _populateResourceContext(
+			MessageBoardSuspiciousActivityTypeResource
+				messageBoardSuspiciousActivityTypeResource)
+		throws Exception {
+
+		messageBoardSuspiciousActivityTypeResource.setContextAcceptLanguage(
+			_acceptLanguage);
+		messageBoardSuspiciousActivityTypeResource.setContextCompany(_company);
+		messageBoardSuspiciousActivityTypeResource.setContextHttpServletRequest(
+			_httpServletRequest);
+		messageBoardSuspiciousActivityTypeResource.
+			setContextHttpServletResponse(_httpServletResponse);
+		messageBoardSuspiciousActivityTypeResource.setContextUriInfo(_uriInfo);
+		messageBoardSuspiciousActivityTypeResource.setContextUser(_user);
+		messageBoardSuspiciousActivityTypeResource.setGroupLocalService(
+			_groupLocalService);
+		messageBoardSuspiciousActivityTypeResource.setRoleLocalService(
+			_roleLocalService);
+	}
+
+	private void _populateResourceContext(
 			MessageBoardThreadResource messageBoardThreadResource)
 		throws Exception {
 
@@ -7030,6 +7125,9 @@ public class Query {
 	private static ComponentServiceObjects
 		<MessageBoardSuspiciousActivityResource>
 			_messageBoardSuspiciousActivityResourceComponentServiceObjects;
+	private static ComponentServiceObjects
+		<MessageBoardSuspiciousActivityTypeResource>
+			_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects;
 	private static ComponentServiceObjects<MessageBoardThreadResource>
 		_messageBoardThreadResourceComponentServiceObjects;
 	private static ComponentServiceObjects<NavigationMenuResource>
