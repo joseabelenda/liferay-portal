@@ -3076,7 +3076,6 @@ public class MBSuspiciousActivityPersistenceImpl
 		Map<String, String> dbColumnNames = new HashMap<String, String>();
 
 		dbColumnNames.put("uuid", "uuid_");
-		dbColumnNames.put("type", "type_");
 
 		setDBColumnNames(dbColumnNames);
 
@@ -3913,7 +3912,7 @@ public class MBSuspiciousActivityPersistenceImpl
 		ctStrictColumnNames.add("messageId");
 		ctStrictColumnNames.add("threadId");
 		ctStrictColumnNames.add("description");
-		ctStrictColumnNames.add("type_");
+		ctStrictColumnNames.add("suspiciousActivityTypeId");
 		ctStrictColumnNames.add("validated");
 
 		_ctColumnNamesMap.put(
@@ -4138,7 +4137,7 @@ public class MBSuspiciousActivityPersistenceImpl
 		MBSuspiciousActivityPersistenceImpl.class);
 
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(
-		new String[] {"uuid", "type"});
+		new String[] {"uuid"});
 
 	@Override
 	protected FinderCache getFinderCache() {

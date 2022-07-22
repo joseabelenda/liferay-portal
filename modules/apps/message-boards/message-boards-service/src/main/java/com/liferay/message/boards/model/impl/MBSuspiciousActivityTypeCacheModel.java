@@ -14,7 +14,7 @@
 
 package com.liferay.message.boards.model.impl;
 
-import com.liferay.message.boards.model.MBSuspiciousActivity;
+import com.liferay.message.boards.model.MBSuspiciousActivityType;
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -28,13 +28,13 @@ import java.io.ObjectOutput;
 import java.util.Date;
 
 /**
- * The cache model class for representing MBSuspiciousActivity in entity cache.
+ * The cache model class for representing MBSuspiciousActivityType in entity cache.
  *
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class MBSuspiciousActivityCacheModel
-	implements CacheModel<MBSuspiciousActivity>, Externalizable, MVCCModel {
+public class MBSuspiciousActivityTypeCacheModel
+	implements CacheModel<MBSuspiciousActivityType>, Externalizable, MVCCModel {
 
 	@Override
 	public boolean equals(Object object) {
@@ -42,16 +42,16 @@ public class MBSuspiciousActivityCacheModel
 			return true;
 		}
 
-		if (!(object instanceof MBSuspiciousActivityCacheModel)) {
+		if (!(object instanceof MBSuspiciousActivityTypeCacheModel)) {
 			return false;
 		}
 
-		MBSuspiciousActivityCacheModel mbSuspiciousActivityCacheModel =
-			(MBSuspiciousActivityCacheModel)object;
+		MBSuspiciousActivityTypeCacheModel mbSuspiciousActivityTypeCacheModel =
+			(MBSuspiciousActivityTypeCacheModel)object;
 
-		if ((suspiciousActivityId ==
-				mbSuspiciousActivityCacheModel.suspiciousActivityId) &&
-			(mvccVersion == mbSuspiciousActivityCacheModel.mvccVersion)) {
+		if ((suspiciousActivityTypeId ==
+				mbSuspiciousActivityTypeCacheModel.suspiciousActivityTypeId) &&
+			(mvccVersion == mbSuspiciousActivityTypeCacheModel.mvccVersion)) {
 
 			return true;
 		}
@@ -61,7 +61,7 @@ public class MBSuspiciousActivityCacheModel
 
 	@Override
 	public int hashCode() {
-		int hashCode = HashUtil.hash(0, suspiciousActivityId);
+		int hashCode = HashUtil.hash(0, suspiciousActivityTypeId);
 
 		return HashUtil.hash(hashCode, mvccVersion);
 	}
@@ -78,7 +78,7 @@ public class MBSuspiciousActivityCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{mvccVersion=");
 		sb.append(mvccVersion);
@@ -86,8 +86,8 @@ public class MBSuspiciousActivityCacheModel
 		sb.append(ctCollectionId);
 		sb.append(", uuid=");
 		sb.append(uuid);
-		sb.append(", suspiciousActivityId=");
-		sb.append(suspiciousActivityId);
+		sb.append(", suspiciousActivityTypeId=");
+		sb.append(suspiciousActivityTypeId);
 		sb.append(", groupId=");
 		sb.append(groupId);
 		sb.append(", companyId=");
@@ -100,79 +100,66 @@ public class MBSuspiciousActivityCacheModel
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", messageId=");
-		sb.append(messageId);
-		sb.append(", threadId=");
-		sb.append(threadId);
 		sb.append(", description=");
 		sb.append(description);
-		sb.append(", suspiciousActivityTypeId=");
-		sb.append(suspiciousActivityTypeId);
-		sb.append(", validated=");
-		sb.append(validated);
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	@Override
-	public MBSuspiciousActivity toEntityModel() {
-		MBSuspiciousActivityImpl mbSuspiciousActivityImpl =
-			new MBSuspiciousActivityImpl();
+	public MBSuspiciousActivityType toEntityModel() {
+		MBSuspiciousActivityTypeImpl mbSuspiciousActivityTypeImpl =
+			new MBSuspiciousActivityTypeImpl();
 
-		mbSuspiciousActivityImpl.setMvccVersion(mvccVersion);
-		mbSuspiciousActivityImpl.setCtCollectionId(ctCollectionId);
+		mbSuspiciousActivityTypeImpl.setMvccVersion(mvccVersion);
+		mbSuspiciousActivityTypeImpl.setCtCollectionId(ctCollectionId);
 
 		if (uuid == null) {
-			mbSuspiciousActivityImpl.setUuid("");
+			mbSuspiciousActivityTypeImpl.setUuid("");
 		}
 		else {
-			mbSuspiciousActivityImpl.setUuid(uuid);
+			mbSuspiciousActivityTypeImpl.setUuid(uuid);
 		}
 
-		mbSuspiciousActivityImpl.setSuspiciousActivityId(suspiciousActivityId);
-		mbSuspiciousActivityImpl.setGroupId(groupId);
-		mbSuspiciousActivityImpl.setCompanyId(companyId);
-		mbSuspiciousActivityImpl.setUserId(userId);
+		mbSuspiciousActivityTypeImpl.setSuspiciousActivityTypeId(
+			suspiciousActivityTypeId);
+		mbSuspiciousActivityTypeImpl.setGroupId(groupId);
+		mbSuspiciousActivityTypeImpl.setCompanyId(companyId);
+		mbSuspiciousActivityTypeImpl.setUserId(userId);
 
 		if (userName == null) {
-			mbSuspiciousActivityImpl.setUserName("");
+			mbSuspiciousActivityTypeImpl.setUserName("");
 		}
 		else {
-			mbSuspiciousActivityImpl.setUserName(userName);
+			mbSuspiciousActivityTypeImpl.setUserName(userName);
 		}
 
 		if (createDate == Long.MIN_VALUE) {
-			mbSuspiciousActivityImpl.setCreateDate(null);
+			mbSuspiciousActivityTypeImpl.setCreateDate(null);
 		}
 		else {
-			mbSuspiciousActivityImpl.setCreateDate(new Date(createDate));
+			mbSuspiciousActivityTypeImpl.setCreateDate(new Date(createDate));
 		}
 
 		if (modifiedDate == Long.MIN_VALUE) {
-			mbSuspiciousActivityImpl.setModifiedDate(null);
+			mbSuspiciousActivityTypeImpl.setModifiedDate(null);
 		}
 		else {
-			mbSuspiciousActivityImpl.setModifiedDate(new Date(modifiedDate));
+			mbSuspiciousActivityTypeImpl.setModifiedDate(
+				new Date(modifiedDate));
 		}
-
-		mbSuspiciousActivityImpl.setMessageId(messageId);
-		mbSuspiciousActivityImpl.setThreadId(threadId);
 
 		if (description == null) {
-			mbSuspiciousActivityImpl.setDescription("");
+			mbSuspiciousActivityTypeImpl.setDescription("");
 		}
 		else {
-			mbSuspiciousActivityImpl.setDescription(description);
+			mbSuspiciousActivityTypeImpl.setDescription(description);
 		}
 
-		mbSuspiciousActivityImpl.setSuspiciousActivityTypeId(
-			suspiciousActivityTypeId);
-		mbSuspiciousActivityImpl.setValidated(validated);
+		mbSuspiciousActivityTypeImpl.resetOriginalValues();
 
-		mbSuspiciousActivityImpl.resetOriginalValues();
-
-		return mbSuspiciousActivityImpl;
+		return mbSuspiciousActivityTypeImpl;
 	}
 
 	@Override
@@ -182,7 +169,7 @@ public class MBSuspiciousActivityCacheModel
 		ctCollectionId = objectInput.readLong();
 		uuid = objectInput.readUTF();
 
-		suspiciousActivityId = objectInput.readLong();
+		suspiciousActivityTypeId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
 
@@ -192,15 +179,7 @@ public class MBSuspiciousActivityCacheModel
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-
-		messageId = objectInput.readLong();
-
-		threadId = objectInput.readLong();
 		description = objectInput.readUTF();
-
-		suspiciousActivityTypeId = objectInput.readLong();
-
-		validated = objectInput.readBoolean();
 	}
 
 	@Override
@@ -216,7 +195,7 @@ public class MBSuspiciousActivityCacheModel
 			objectOutput.writeUTF(uuid);
 		}
 
-		objectOutput.writeLong(suspiciousActivityId);
+		objectOutput.writeLong(suspiciousActivityTypeId);
 
 		objectOutput.writeLong(groupId);
 
@@ -234,36 +213,24 @@ public class MBSuspiciousActivityCacheModel
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
-		objectOutput.writeLong(messageId);
-
-		objectOutput.writeLong(threadId);
-
 		if (description == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(description);
 		}
-
-		objectOutput.writeLong(suspiciousActivityTypeId);
-
-		objectOutput.writeBoolean(validated);
 	}
 
 	public long mvccVersion;
 	public long ctCollectionId;
 	public String uuid;
-	public long suspiciousActivityId;
+	public long suspiciousActivityTypeId;
 	public long groupId;
 	public long companyId;
 	public long userId;
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public long messageId;
-	public long threadId;
 	public String description;
-	public long suspiciousActivityTypeId;
-	public boolean validated;
 
 }

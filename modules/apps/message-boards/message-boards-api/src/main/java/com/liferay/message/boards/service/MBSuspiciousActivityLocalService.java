@@ -85,11 +85,13 @@ public interface MBSuspiciousActivityLocalService
 		MBSuspiciousActivity mbSuspiciousActivity);
 
 	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByMessage(
-			long userId, long messageId, String description, String type)
+			long userId, long messageId, String description,
+			long suspiciousActivityTypeId)
 		throws PortalException;
 
 	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByThread(
-			long userId, long threadId, String description, String type)
+			long userId, long threadId, String description,
+			long suspiciousActivityTypeId)
 		throws PortalException;
 
 	/**

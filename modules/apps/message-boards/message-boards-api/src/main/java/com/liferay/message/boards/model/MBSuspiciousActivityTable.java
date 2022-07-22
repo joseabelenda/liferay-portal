@@ -70,8 +70,10 @@ public class MBSuspiciousActivityTable
 	public final Column<MBSuspiciousActivityTable, String> description =
 		createColumn(
 			"description", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<MBSuspiciousActivityTable, String> type = createColumn(
-		"type_", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<MBSuspiciousActivityTable, Long>
+		suspiciousActivityTypeId = createColumn(
+			"suspiciousActivityTypeId", Long.class, Types.BIGINT,
+			Column.FLAG_DEFAULT);
 	public final Column<MBSuspiciousActivityTable, Boolean> validated =
 		createColumn(
 			"validated", Boolean.class, Types.BOOLEAN, Column.FLAG_DEFAULT);

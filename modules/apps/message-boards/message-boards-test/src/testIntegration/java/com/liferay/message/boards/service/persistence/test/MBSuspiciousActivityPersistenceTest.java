@@ -151,7 +151,8 @@ public class MBSuspiciousActivityPersistenceTest {
 
 		newMBSuspiciousActivity.setDescription(RandomTestUtil.randomString());
 
-		newMBSuspiciousActivity.setType(RandomTestUtil.randomString());
+		newMBSuspiciousActivity.setSuspiciousActivityTypeId(
+			RandomTestUtil.nextLong());
 
 		newMBSuspiciousActivity.setValidated(RandomTestUtil.randomBoolean());
 
@@ -204,8 +205,8 @@ public class MBSuspiciousActivityPersistenceTest {
 			existingMBSuspiciousActivity.getDescription(),
 			newMBSuspiciousActivity.getDescription());
 		Assert.assertEquals(
-			existingMBSuspiciousActivity.getType(),
-			newMBSuspiciousActivity.getType());
+			existingMBSuspiciousActivity.getSuspiciousActivityTypeId(),
+			newMBSuspiciousActivity.getSuspiciousActivityTypeId());
 		Assert.assertEquals(
 			existingMBSuspiciousActivity.isValidated(),
 			newMBSuspiciousActivity.isValidated());
@@ -300,7 +301,8 @@ public class MBSuspiciousActivityPersistenceTest {
 			"uuid", true, "suspiciousActivityId", true, "groupId", true,
 			"companyId", true, "userId", true, "userName", true, "createDate",
 			true, "modifiedDate", true, "messageId", true, "threadId", true,
-			"description", true, "type", true, "validated", true);
+			"description", true, "suspiciousActivityTypeId", true, "validated",
+			true);
 	}
 
 	@Test
@@ -659,7 +661,8 @@ public class MBSuspiciousActivityPersistenceTest {
 
 		mbSuspiciousActivity.setDescription(RandomTestUtil.randomString());
 
-		mbSuspiciousActivity.setType(RandomTestUtil.randomString());
+		mbSuspiciousActivity.setSuspiciousActivityTypeId(
+			RandomTestUtil.nextLong());
 
 		mbSuspiciousActivity.setValidated(RandomTestUtil.randomBoolean());
 
