@@ -38,21 +38,21 @@ public class MBSuspiciousActivityServiceImpl
 
 	@Override
 	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByMessage(
-			long messageId, String description, String type)
+			long messageId, String description, long suspiciousActivityTypeId)
 		throws PortalException {
 
 		return mbSuspiciousActivityLocalService.addOrUpdateSuspiciousActivityByMessage(
-			getUserId(), messageId, description, type);
+			getUserId(), messageId, description, suspiciousActivityTypeId);
 	}
 
 
 	@Override
 	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByThread(
-		long threadId, String description, String type)
+		long threadId, String description, long suspiciousActivityTypeId)
 		throws PortalException {
 
 		return mbSuspiciousActivityLocalService.addOrUpdateSuspiciousActivityByThread(
-			getUserId(), threadId, description, type);
+			getUserId(), threadId, description, suspiciousActivityTypeId);
 	}
 
 
