@@ -154,7 +154,7 @@ public class MessageBoardSuspiciousActivityResourceImpl
 			_mbSuspiciousActivityService.addOrUpdateSuspiciousActivityByMessage(
 				messageBoardMessageId,
 				messageBoardSuspiciousActivity.getDescription(),
-				messageBoardSuspiciousActivity.getType()
+				messageBoardSuspiciousActivity.getSuspiciousActivityId()
 			));
 
 		return Page.of(
@@ -177,7 +177,7 @@ public class MessageBoardSuspiciousActivityResourceImpl
 		  _mbSuspiciousActivityService.addOrUpdateSuspiciousActivityByThread(
 			  messageBoardThreadId,
 			  messageBoardSuspiciousActivity.getDescription(),
-			  messageBoardSuspiciousActivity.getType()
+			  messageBoardSuspiciousActivity.getSuspiciousActivityId()
 		  ));
 	  System.out.println(mbSuspiciousActivity);
 	  return Page.of(
