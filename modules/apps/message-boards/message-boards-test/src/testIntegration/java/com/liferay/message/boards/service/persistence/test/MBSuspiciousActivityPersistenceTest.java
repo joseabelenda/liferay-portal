@@ -151,7 +151,8 @@ public class MBSuspiciousActivityPersistenceTest {
 
 		newMBSuspiciousActivity.setDescription(RandomTestUtil.randomString());
 
-		newMBSuspiciousActivity.setType(RandomTestUtil.randomString());
+		newMBSuspiciousActivity.setSuspiciousActivityTypeId(
+			RandomTestUtil.nextLong());
 
 		newMBSuspiciousActivity.setValidated(RandomTestUtil.randomBoolean());
 
@@ -204,8 +205,8 @@ public class MBSuspiciousActivityPersistenceTest {
 			existingMBSuspiciousActivity.getDescription(),
 			newMBSuspiciousActivity.getDescription());
 		Assert.assertEquals(
-			existingMBSuspiciousActivity.getType(),
-			newMBSuspiciousActivity.getType());
+			existingMBSuspiciousActivity.getSuspiciousActivityTypeId(),
+			newMBSuspiciousActivity.getSuspiciousActivityTypeId());
 		Assert.assertEquals(
 			existingMBSuspiciousActivity.isValidated(),
 			newMBSuspiciousActivity.isValidated());
@@ -261,6 +262,14 @@ public class MBSuspiciousActivityPersistenceTest {
 	}
 
 	@Test
+	public void testCountByU_T() throws Exception {
+		_persistence.countByU_T(
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
+
+		_persistence.countByU_T(0L, 0L);
+	}
+
+	@Test
 	public void testFindByPrimaryKeyExisting() throws Exception {
 		MBSuspiciousActivity newMBSuspiciousActivity =
 			addMBSuspiciousActivity();
@@ -292,7 +301,8 @@ public class MBSuspiciousActivityPersistenceTest {
 			"uuid", true, "suspiciousActivityId", true, "groupId", true,
 			"companyId", true, "userId", true, "userName", true, "createDate",
 			true, "modifiedDate", true, "messageId", true, "threadId", true,
-			"description", true, "type", true, "validated", true);
+			"description", true, "suspiciousActivityTypeId", true, "validated",
+			true);
 	}
 
 	@Test
@@ -609,6 +619,17 @@ public class MBSuspiciousActivityPersistenceTest {
 			ReflectionTestUtil.<Long>invoke(
 				mbSuspiciousActivity, "getColumnOriginalValue",
 				new Class<?>[] {String.class}, "messageId"));
+
+		Assert.assertEquals(
+			Long.valueOf(mbSuspiciousActivity.getUserId()),
+			ReflectionTestUtil.<Long>invoke(
+				mbSuspiciousActivity, "getColumnOriginalValue",
+				new Class<?>[] {String.class}, "userId"));
+		Assert.assertEquals(
+			Long.valueOf(mbSuspiciousActivity.getThreadId()),
+			ReflectionTestUtil.<Long>invoke(
+				mbSuspiciousActivity, "getColumnOriginalValue",
+				new Class<?>[] {String.class}, "threadId"));
 	}
 
 	protected MBSuspiciousActivity addMBSuspiciousActivity() throws Exception {
@@ -640,7 +661,8 @@ public class MBSuspiciousActivityPersistenceTest {
 
 		mbSuspiciousActivity.setDescription(RandomTestUtil.randomString());
 
-		mbSuspiciousActivity.setType(RandomTestUtil.randomString());
+		mbSuspiciousActivity.setSuspiciousActivityTypeId(
+			RandomTestUtil.nextLong());
 
 		mbSuspiciousActivity.setValidated(RandomTestUtil.randomBoolean());
 

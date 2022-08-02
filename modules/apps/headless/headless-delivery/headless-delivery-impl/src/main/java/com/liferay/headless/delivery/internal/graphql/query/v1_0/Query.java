@@ -30,6 +30,8 @@ import com.liferay.headless.delivery.dto.v1_0.Language;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardAttachment;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardMessage;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardSection;
+import com.liferay.headless.delivery.dto.v1_0.MessageBoardSuspiciousActivity;
+import com.liferay.headless.delivery.dto.v1_0.MessageBoardSuspiciousActivityType;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardThread;
 import com.liferay.headless.delivery.dto.v1_0.NavigationMenu;
 import com.liferay.headless.delivery.dto.v1_0.NavigationMenuItem;
@@ -56,6 +58,8 @@ import com.liferay.headless.delivery.resource.v1_0.LanguageResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardAttachmentResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardMessageResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardSectionResource;
+import com.liferay.headless.delivery.resource.v1_0.MessageBoardSuspiciousActivityResource;
+import com.liferay.headless.delivery.resource.v1_0.MessageBoardSuspiciousActivityTypeResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardThreadResource;
 import com.liferay.headless.delivery.resource.v1_0.NavigationMenuResource;
 import com.liferay.headless.delivery.resource.v1_0.SitePageResource;
@@ -229,6 +233,24 @@ public class Query {
 
 		_messageBoardSectionResourceComponentServiceObjects =
 			messageBoardSectionResourceComponentServiceObjects;
+	}
+
+	public static void
+		setMessageBoardSuspiciousActivityResourceComponentServiceObjects(
+			ComponentServiceObjects<MessageBoardSuspiciousActivityResource>
+				messageBoardSuspiciousActivityResourceComponentServiceObjects) {
+
+		_messageBoardSuspiciousActivityResourceComponentServiceObjects =
+			messageBoardSuspiciousActivityResourceComponentServiceObjects;
+	}
+
+	public static void
+		setMessageBoardSuspiciousActivityTypeResourceComponentServiceObjects(
+			ComponentServiceObjects<MessageBoardSuspiciousActivityTypeResource>
+				messageBoardSuspiciousActivityTypeResourceComponentServiceObjects) {
+
+		_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects =
+			messageBoardSuspiciousActivityTypeResourceComponentServiceObjects;
 	}
 
 	public static void setMessageBoardThreadResourceComponentServiceObjects(
@@ -2386,6 +2408,170 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {messageBoardSuspiciousActivitiesMessageBoardSuspiciousActivity(aggregation: ___, filter: ___, page: ___, pageSize: ___, search: ___, sorts: ___, suspiciousActivityId: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField(
+		description = "Retrieves the suspicious activity from message board. Results can be paginated, filtered, searched, and sorted."
+	)
+	public MessageBoardSuspiciousActivityPage
+			messageBoardSuspiciousActivitiesMessageBoardSuspiciousActivity(
+				@GraphQLName("suspiciousActivityId") Long suspiciousActivityId,
+				@GraphQLName("search") String search,
+				@GraphQLName("aggregation") List<String> aggregations,
+				@GraphQLName("filter") String filterString,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page,
+				@GraphQLName("sort") String sortsString)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityResource ->
+				new MessageBoardSuspiciousActivityPage(
+					messageBoardSuspiciousActivityResource.
+						getMessageBoardSuspiciousActivitiesMessageBoardSuspiciousActivityPage(
+							suspiciousActivityId, search,
+							_aggregationBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								aggregations),
+							_filterBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								filterString),
+							Pagination.of(page, pageSize),
+							_sortsBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								sortsString))));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {messageBoardMessageMessageBoardSuspiciousActivity(aggregation: ___, filter: ___, messageBoardMessageId: ___, page: ___, pageSize: ___, search: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField(
+		description = "Retrieves the message board suspicious activities from messages. Results can be paginated, filtered, searched, and sorted."
+	)
+	public MessageBoardSuspiciousActivityPage
+			messageBoardMessageMessageBoardSuspiciousActivity(
+				@GraphQLName("messageBoardMessageId") Long
+					messageBoardMessageId,
+				@GraphQLName("search") String search,
+				@GraphQLName("aggregation") List<String> aggregations,
+				@GraphQLName("filter") String filterString,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page,
+				@GraphQLName("sort") String sortsString)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityResource ->
+				new MessageBoardSuspiciousActivityPage(
+					messageBoardSuspiciousActivityResource.
+						getMessageBoardMessageMessageBoardSuspiciousActivityPage(
+							messageBoardMessageId, search,
+							_aggregationBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								aggregations),
+							_filterBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								filterString),
+							Pagination.of(page, pageSize),
+							_sortsBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								sortsString))));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {messageBoardThreadMessageBoardSuspiciousActivity(aggregation: ___, filter: ___, messageBoardThreadId: ___, page: ___, pageSize: ___, search: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField(
+		description = "Retrieves the message board suspicious activities from threads. Results can be paginated, filtered, searched, and sorted."
+	)
+	public MessageBoardSuspiciousActivityPage
+			messageBoardThreadMessageBoardSuspiciousActivity(
+				@GraphQLName("messageBoardThreadId") Long messageBoardThreadId,
+				@GraphQLName("search") String search,
+				@GraphQLName("aggregation") List<String> aggregations,
+				@GraphQLName("filter") String filterString,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page,
+				@GraphQLName("sort") String sortsString)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityResource ->
+				new MessageBoardSuspiciousActivityPage(
+					messageBoardSuspiciousActivityResource.
+						getMessageBoardThreadMessageBoardSuspiciousActivityPage(
+							messageBoardThreadId, search,
+							_aggregationBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								aggregations),
+							_filterBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								filterString),
+							Pagination.of(page, pageSize),
+							_sortsBiFunction.apply(
+								messageBoardSuspiciousActivityResource,
+								sortsString))));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {messageBoardSuspiciousActivitiesMessageBoardSuspiciousActivityUpdateValidated(suspiciousActivityId: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField(
+		description = "Update the validate field of a suspicious activity."
+	)
+	public MessageBoardSuspiciousActivityPage
+			messageBoardSuspiciousActivitiesMessageBoardSuspiciousActivityUpdateValidated(
+				@GraphQLName("suspiciousActivityId") Long suspiciousActivityId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityResource ->
+				new MessageBoardSuspiciousActivityPage(
+					messageBoardSuspiciousActivityResource.
+						getMessageBoardSuspiciousActivitiesMessageBoardSuspiciousActivityUpdateValidatedPage(
+							suspiciousActivityId)));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {messageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityType(suspiciousTypeId: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField(
+		description = "Retrieves the message board suspicious activity type."
+	)
+	public MessageBoardSuspiciousActivityTypePage
+			messageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityType(
+				@GraphQLName("suspiciousTypeId") Long suspiciousTypeId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityTypeResource ->
+				new MessageBoardSuspiciousActivityTypePage(
+					messageBoardSuspiciousActivityTypeResource.
+						getMessageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityTypePage(
+							suspiciousTypeId)));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
 	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {messageBoardSectionMessageBoardThreads(aggregation: ___, filter: ___, messageBoardSectionId: ___, page: ___, pageSize: ___, search: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField(
@@ -4109,6 +4295,53 @@ public class Query {
 
 	}
 
+	@GraphQLTypeExtension(MessageBoardMessage.class)
+	public class
+		GetMessageBoardMessageMessageBoardSuspiciousActivityPageTypeExtension {
+
+		public GetMessageBoardMessageMessageBoardSuspiciousActivityPageTypeExtension(
+			MessageBoardMessage messageBoardMessage) {
+
+			_messageBoardMessage = messageBoardMessage;
+		}
+
+		@GraphQLField(
+			description = "Retrieves the message board suspicious activities from messages. Results can be paginated, filtered, searched, and sorted."
+		)
+		public MessageBoardSuspiciousActivityPage
+				messageBoardSuspiciousActivity(
+					@GraphQLName("search") String search,
+					@GraphQLName("aggregation") List<String> aggregations,
+					@GraphQLName("filter") String filterString,
+					@GraphQLName("pageSize") int pageSize,
+					@GraphQLName("page") int page,
+					@GraphQLName("sort") String sortsString)
+			throws Exception {
+
+			return _applyComponentServiceObjects(
+				_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+				Query.this::_populateResourceContext,
+				messageBoardSuspiciousActivityResource ->
+					new MessageBoardSuspiciousActivityPage(
+						messageBoardSuspiciousActivityResource.
+							getMessageBoardMessageMessageBoardSuspiciousActivityPage(
+								_messageBoardMessage.getId(), search,
+								_aggregationBiFunction.apply(
+									messageBoardSuspiciousActivityResource,
+									aggregations),
+								_filterBiFunction.apply(
+									messageBoardSuspiciousActivityResource,
+									filterString),
+								Pagination.of(page, pageSize),
+								_sortsBiFunction.apply(
+									messageBoardSuspiciousActivityResource,
+									sortsString))));
+		}
+
+		private MessageBoardMessage _messageBoardMessage;
+
+	}
+
 	@GraphQLTypeExtension(Comment.class)
 	public class GetCommentCommentsPageTypeExtension {
 
@@ -4579,6 +4812,53 @@ public class Query {
 		}
 
 		private BlogPosting _blogPosting;
+
+	}
+
+	@GraphQLTypeExtension(MessageBoardThread.class)
+	public class
+		GetMessageBoardThreadMessageBoardSuspiciousActivityPageTypeExtension {
+
+		public GetMessageBoardThreadMessageBoardSuspiciousActivityPageTypeExtension(
+			MessageBoardThread messageBoardThread) {
+
+			_messageBoardThread = messageBoardThread;
+		}
+
+		@GraphQLField(
+			description = "Retrieves the message board suspicious activities from threads. Results can be paginated, filtered, searched, and sorted."
+		)
+		public MessageBoardSuspiciousActivityPage
+				messageBoardSuspiciousActivity(
+					@GraphQLName("search") String search,
+					@GraphQLName("aggregation") List<String> aggregations,
+					@GraphQLName("filter") String filterString,
+					@GraphQLName("pageSize") int pageSize,
+					@GraphQLName("page") int page,
+					@GraphQLName("sort") String sortsString)
+			throws Exception {
+
+			return _applyComponentServiceObjects(
+				_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+				Query.this::_populateResourceContext,
+				messageBoardSuspiciousActivityResource ->
+					new MessageBoardSuspiciousActivityPage(
+						messageBoardSuspiciousActivityResource.
+							getMessageBoardThreadMessageBoardSuspiciousActivityPage(
+								_messageBoardThread.getId(), search,
+								_aggregationBiFunction.apply(
+									messageBoardSuspiciousActivityResource,
+									aggregations),
+								_filterBiFunction.apply(
+									messageBoardSuspiciousActivityResource,
+									filterString),
+								Pagination.of(page, pageSize),
+								_sortsBiFunction.apply(
+									messageBoardSuspiciousActivityResource,
+									sortsString))));
+		}
+
+		private MessageBoardThread _messageBoardThread;
 
 	}
 
@@ -5772,6 +6052,87 @@ public class Query {
 
 	}
 
+	@GraphQLName("MessageBoardSuspiciousActivityPage")
+	public class MessageBoardSuspiciousActivityPage {
+
+		public MessageBoardSuspiciousActivityPage(
+			Page messageBoardSuspiciousActivityPage) {
+
+			actions = messageBoardSuspiciousActivityPage.getActions();
+
+			facets = messageBoardSuspiciousActivityPage.getFacets();
+
+			items = messageBoardSuspiciousActivityPage.getItems();
+			lastPage = messageBoardSuspiciousActivityPage.getLastPage();
+			page = messageBoardSuspiciousActivityPage.getPage();
+			pageSize = messageBoardSuspiciousActivityPage.getPageSize();
+			totalCount = messageBoardSuspiciousActivityPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected Map<String, Map> actions;
+
+		@GraphQLField
+		protected List<Facet> facets;
+
+		@GraphQLField
+		protected java.util.Collection<MessageBoardSuspiciousActivity> items;
+
+		@GraphQLField
+		protected long lastPage;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("MessageBoardSuspiciousActivityTypePage")
+	public class MessageBoardSuspiciousActivityTypePage {
+
+		public MessageBoardSuspiciousActivityTypePage(
+			Page messageBoardSuspiciousActivityTypePage) {
+
+			actions = messageBoardSuspiciousActivityTypePage.getActions();
+
+			facets = messageBoardSuspiciousActivityTypePage.getFacets();
+
+			items = messageBoardSuspiciousActivityTypePage.getItems();
+			lastPage = messageBoardSuspiciousActivityTypePage.getLastPage();
+			page = messageBoardSuspiciousActivityTypePage.getPage();
+			pageSize = messageBoardSuspiciousActivityTypePage.getPageSize();
+			totalCount = messageBoardSuspiciousActivityTypePage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected Map<String, Map> actions;
+
+		@GraphQLField
+		protected List<Facet> facets;
+
+		@GraphQLField
+		protected java.util.Collection<MessageBoardSuspiciousActivityType>
+			items;
+
+		@GraphQLField
+		protected long lastPage;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
 	@GraphQLName("MessageBoardThreadPage")
 	public class MessageBoardThreadPage {
 
@@ -6569,6 +6930,46 @@ public class Query {
 	}
 
 	private void _populateResourceContext(
+			MessageBoardSuspiciousActivityResource
+				messageBoardSuspiciousActivityResource)
+		throws Exception {
+
+		messageBoardSuspiciousActivityResource.setContextAcceptLanguage(
+			_acceptLanguage);
+		messageBoardSuspiciousActivityResource.setContextCompany(_company);
+		messageBoardSuspiciousActivityResource.setContextHttpServletRequest(
+			_httpServletRequest);
+		messageBoardSuspiciousActivityResource.setContextHttpServletResponse(
+			_httpServletResponse);
+		messageBoardSuspiciousActivityResource.setContextUriInfo(_uriInfo);
+		messageBoardSuspiciousActivityResource.setContextUser(_user);
+		messageBoardSuspiciousActivityResource.setGroupLocalService(
+			_groupLocalService);
+		messageBoardSuspiciousActivityResource.setRoleLocalService(
+			_roleLocalService);
+	}
+
+	private void _populateResourceContext(
+			MessageBoardSuspiciousActivityTypeResource
+				messageBoardSuspiciousActivityTypeResource)
+		throws Exception {
+
+		messageBoardSuspiciousActivityTypeResource.setContextAcceptLanguage(
+			_acceptLanguage);
+		messageBoardSuspiciousActivityTypeResource.setContextCompany(_company);
+		messageBoardSuspiciousActivityTypeResource.setContextHttpServletRequest(
+			_httpServletRequest);
+		messageBoardSuspiciousActivityTypeResource.
+			setContextHttpServletResponse(_httpServletResponse);
+		messageBoardSuspiciousActivityTypeResource.setContextUriInfo(_uriInfo);
+		messageBoardSuspiciousActivityTypeResource.setContextUser(_user);
+		messageBoardSuspiciousActivityTypeResource.setGroupLocalService(
+			_groupLocalService);
+		messageBoardSuspiciousActivityTypeResource.setRoleLocalService(
+			_roleLocalService);
+	}
+
+	private void _populateResourceContext(
 			MessageBoardThreadResource messageBoardThreadResource)
 		throws Exception {
 
@@ -6721,6 +7122,12 @@ public class Query {
 		_messageBoardMessageResourceComponentServiceObjects;
 	private static ComponentServiceObjects<MessageBoardSectionResource>
 		_messageBoardSectionResourceComponentServiceObjects;
+	private static ComponentServiceObjects
+		<MessageBoardSuspiciousActivityResource>
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects;
+	private static ComponentServiceObjects
+		<MessageBoardSuspiciousActivityTypeResource>
+			_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects;
 	private static ComponentServiceObjects<MessageBoardThreadResource>
 		_messageBoardThreadResourceComponentServiceObjects;
 	private static ComponentServiceObjects<NavigationMenuResource>

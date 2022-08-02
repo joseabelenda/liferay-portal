@@ -25,6 +25,8 @@ import com.liferay.headless.delivery.dto.v1_0.KnowledgeBaseFolder;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardAttachment;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardMessage;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardSection;
+import com.liferay.headless.delivery.dto.v1_0.MessageBoardSuspiciousActivity;
+import com.liferay.headless.delivery.dto.v1_0.MessageBoardSuspiciousActivityType;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardThread;
 import com.liferay.headless.delivery.dto.v1_0.NavigationMenu;
 import com.liferay.headless.delivery.dto.v1_0.Rating;
@@ -45,6 +47,8 @@ import com.liferay.headless.delivery.resource.v1_0.KnowledgeBaseFolderResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardAttachmentResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardMessageResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardSectionResource;
+import com.liferay.headless.delivery.resource.v1_0.MessageBoardSuspiciousActivityResource;
+import com.liferay.headless.delivery.resource.v1_0.MessageBoardSuspiciousActivityTypeResource;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardThreadResource;
 import com.liferay.headless.delivery.resource.v1_0.NavigationMenuResource;
 import com.liferay.headless.delivery.resource.v1_0.StructuredContentFolderResource;
@@ -180,6 +184,24 @@ public class Mutation {
 
 		_messageBoardSectionResourceComponentServiceObjects =
 			messageBoardSectionResourceComponentServiceObjects;
+	}
+
+	public static void
+		setMessageBoardSuspiciousActivityResourceComponentServiceObjects(
+			ComponentServiceObjects<MessageBoardSuspiciousActivityResource>
+				messageBoardSuspiciousActivityResourceComponentServiceObjects) {
+
+		_messageBoardSuspiciousActivityResourceComponentServiceObjects =
+			messageBoardSuspiciousActivityResourceComponentServiceObjects;
+	}
+
+	public static void
+		setMessageBoardSuspiciousActivityTypeResourceComponentServiceObjects(
+			ComponentServiceObjects<MessageBoardSuspiciousActivityTypeResource>
+				messageBoardSuspiciousActivityTypeResourceComponentServiceObjects) {
+
+		_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects =
+			messageBoardSuspiciousActivityTypeResourceComponentServiceObjects;
 	}
 
 	public static void setMessageBoardThreadResourceComponentServiceObjects(
@@ -2841,6 +2863,136 @@ public class Mutation {
 	}
 
 	@GraphQLField(
+		description = "Deletes the suspicious activity from message board and returns a 204 if the operation succeeds."
+	)
+	public boolean
+			deleteMessageBoardSuspiciousActivityMessageBoardSuspiciousActivity(
+				@GraphQLName("suspiciousActivityId") Long suspiciousActivityId)
+		throws Exception {
+
+		_applyVoidComponentServiceObjects(
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityResource ->
+				messageBoardSuspiciousActivityResource.
+					deleteMessageBoardSuspiciousActivityMessageBoardSuspiciousActivity(
+						suspiciousActivityId));
+
+		return true;
+	}
+
+	@GraphQLField(
+		description = "Creates a new message board suspicious activity inside a message."
+	)
+	public java.util.Collection<MessageBoardSuspiciousActivity>
+			createMessageBoardMessageMessageBoardSuspiciousActivityPage(
+				@GraphQLName("messageBoardMessageId") Long
+					messageBoardMessageId,
+				@GraphQLName("messageBoardSuspiciousActivity")
+					MessageBoardSuspiciousActivity
+						messageBoardSuspiciousActivity)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityResource -> {
+				Page paginationPage =
+					messageBoardSuspiciousActivityResource.
+						postMessageBoardMessageMessageBoardSuspiciousActivityPage(
+							messageBoardMessageId,
+							messageBoardSuspiciousActivity);
+
+				return paginationPage.getItems();
+			});
+	}
+
+	@GraphQLField(
+		description = "Creates a new message board suspicious activity inside a thread."
+	)
+	public java.util.Collection<MessageBoardSuspiciousActivity>
+			createMessageBoardThreadMessageBoardSuspiciousActivityPage(
+				@GraphQLName("messageBoardThreadId") Long messageBoardThreadId,
+				@GraphQLName("messageBoardSuspiciousActivity")
+					MessageBoardSuspiciousActivity
+						messageBoardSuspiciousActivity)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityResource -> {
+				Page paginationPage =
+					messageBoardSuspiciousActivityResource.
+						postMessageBoardThreadMessageBoardSuspiciousActivityPage(
+							messageBoardThreadId,
+							messageBoardSuspiciousActivity);
+
+				return paginationPage.getItems();
+			});
+	}
+
+	@GraphQLField(
+		description = "Deletes the suspicious activity from message board and returns a 204 if the operation succeeds."
+	)
+	public boolean
+			deleteMessageBoardSuspiciousActivityTypeMessageBoardSuspiciousActivityType(
+				@GraphQLName("suspiciousTypeId") Long suspiciousTypeId)
+		throws Exception {
+
+		_applyVoidComponentServiceObjects(
+			_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityTypeResource ->
+				messageBoardSuspiciousActivityTypeResource.
+					deleteMessageBoardSuspiciousActivityTypeMessageBoardSuspiciousActivityType(
+						suspiciousTypeId));
+
+		return true;
+	}
+
+	@GraphQLField(description = "Update a suspicious activity type.")
+	public MessageBoardSuspiciousActivityType
+			updateMessageBoardSuspiciousActivityTypeMessageBoardSuspiciousActivityType(
+				@GraphQLName("suspiciousTypeId") Long suspiciousTypeId,
+				@GraphQLName("messageBoardSuspiciousActivityType")
+					MessageBoardSuspiciousActivityType
+						messageBoardSuspiciousActivityType)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityTypeResource ->
+				messageBoardSuspiciousActivityTypeResource.
+					putMessageBoardSuspiciousActivityTypeMessageBoardSuspiciousActivityType(
+						suspiciousTypeId, messageBoardSuspiciousActivityType));
+	}
+
+	@GraphQLField(
+		description = "Creates a new message board suspicious activity type."
+	)
+	public java.util.Collection<MessageBoardSuspiciousActivityType>
+			createMessageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityTypePage(
+				@GraphQLName("messageBoardSuspiciousActivityType")
+					MessageBoardSuspiciousActivityType
+						messageBoardSuspiciousActivityType)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			messageBoardSuspiciousActivityTypeResource -> {
+				Page paginationPage =
+					messageBoardSuspiciousActivityTypeResource.
+						postMessageBoardSuspiciousActivityTypesMessageBoardSuspiciousActivityTypePage(
+							messageBoardSuspiciousActivityType);
+
+				return paginationPage.getItems();
+			});
+	}
+
+	@GraphQLField(
 		description = "Creates a new message board thread inside a section."
 	)
 	public MessageBoardThread createMessageBoardSectionMessageBoardThread(
@@ -4677,6 +4829,54 @@ public class Mutation {
 	}
 
 	private void _populateResourceContext(
+			MessageBoardSuspiciousActivityResource
+				messageBoardSuspiciousActivityResource)
+		throws Exception {
+
+		messageBoardSuspiciousActivityResource.setContextAcceptLanguage(
+			_acceptLanguage);
+		messageBoardSuspiciousActivityResource.setContextCompany(_company);
+		messageBoardSuspiciousActivityResource.setContextHttpServletRequest(
+			_httpServletRequest);
+		messageBoardSuspiciousActivityResource.setContextHttpServletResponse(
+			_httpServletResponse);
+		messageBoardSuspiciousActivityResource.setContextUriInfo(_uriInfo);
+		messageBoardSuspiciousActivityResource.setContextUser(_user);
+		messageBoardSuspiciousActivityResource.setGroupLocalService(
+			_groupLocalService);
+		messageBoardSuspiciousActivityResource.setRoleLocalService(
+			_roleLocalService);
+
+		messageBoardSuspiciousActivityResource.
+			setVulcanBatchEngineImportTaskResource(
+				_vulcanBatchEngineImportTaskResource);
+	}
+
+	private void _populateResourceContext(
+			MessageBoardSuspiciousActivityTypeResource
+				messageBoardSuspiciousActivityTypeResource)
+		throws Exception {
+
+		messageBoardSuspiciousActivityTypeResource.setContextAcceptLanguage(
+			_acceptLanguage);
+		messageBoardSuspiciousActivityTypeResource.setContextCompany(_company);
+		messageBoardSuspiciousActivityTypeResource.setContextHttpServletRequest(
+			_httpServletRequest);
+		messageBoardSuspiciousActivityTypeResource.
+			setContextHttpServletResponse(_httpServletResponse);
+		messageBoardSuspiciousActivityTypeResource.setContextUriInfo(_uriInfo);
+		messageBoardSuspiciousActivityTypeResource.setContextUser(_user);
+		messageBoardSuspiciousActivityTypeResource.setGroupLocalService(
+			_groupLocalService);
+		messageBoardSuspiciousActivityTypeResource.setRoleLocalService(
+			_roleLocalService);
+
+		messageBoardSuspiciousActivityTypeResource.
+			setVulcanBatchEngineImportTaskResource(
+				_vulcanBatchEngineImportTaskResource);
+	}
+
+	private void _populateResourceContext(
 			MessageBoardThreadResource messageBoardThreadResource)
 		throws Exception {
 
@@ -4829,6 +5029,12 @@ public class Mutation {
 		_messageBoardMessageResourceComponentServiceObjects;
 	private static ComponentServiceObjects<MessageBoardSectionResource>
 		_messageBoardSectionResourceComponentServiceObjects;
+	private static ComponentServiceObjects
+		<MessageBoardSuspiciousActivityResource>
+			_messageBoardSuspiciousActivityResourceComponentServiceObjects;
+	private static ComponentServiceObjects
+		<MessageBoardSuspiciousActivityTypeResource>
+			_messageBoardSuspiciousActivityTypeResourceComponentServiceObjects;
 	private static ComponentServiceObjects<MessageBoardThreadResource>
 		_messageBoardThreadResourceComponentServiceObjects;
 	private static ComponentServiceObjects<NavigationMenuResource>

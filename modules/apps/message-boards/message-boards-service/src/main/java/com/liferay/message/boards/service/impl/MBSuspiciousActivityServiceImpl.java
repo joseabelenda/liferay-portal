@@ -37,13 +37,24 @@ public class MBSuspiciousActivityServiceImpl
 	extends MBSuspiciousActivityServiceBaseImpl {
 
 	@Override
-	public MBSuspiciousActivity addOrUpdateSuspiciousActivity(
-			long messageId, String description, String type)
+	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByMessage(
+			long messageId, String description, long suspiciousActivityTypeId)
 		throws PortalException {
 
-		return mbSuspiciousActivityLocalService.addOrUpdateSuspiciousActivity(
-			getUserId(), messageId, description, type);
+		return mbSuspiciousActivityLocalService.addOrUpdateSuspiciousActivityByMessage(
+			getUserId(), messageId, description, suspiciousActivityTypeId);
 	}
+
+
+	@Override
+	public MBSuspiciousActivity addOrUpdateSuspiciousActivityByThread(
+		long threadId, String description, long suspiciousActivityTypeId)
+		throws PortalException {
+
+		return mbSuspiciousActivityLocalService.addOrUpdateSuspiciousActivityByThread(
+			getUserId(), threadId, description, suspiciousActivityTypeId);
+	}
+
 
 	@Override
 	public MBSuspiciousActivity deleteSuspiciousActivity(
