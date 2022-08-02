@@ -57,8 +57,9 @@ public class MBSuspiciousActivityTableReferenceDefinitionTest
 
 	@Override
 	protected CTModel<?> addCTModel() throws Exception {
-		return _mbSuspiciousActivityLocalService.addOrUpdateSuspiciousActivity(
-			TestPropsValues.getUserId(), _mbMessage.getMessageId(), "", "");
+		return _mbSuspiciousActivityLocalService.
+			addOrUpdateMessageSuspiciousActivity(
+				TestPropsValues.getUserId(), _mbMessage.getMessageId(), "");
 	}
 
 	private MBMessage _mbMessage;
