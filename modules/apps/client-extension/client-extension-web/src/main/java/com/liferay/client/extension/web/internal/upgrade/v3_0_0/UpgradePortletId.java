@@ -31,6 +31,16 @@ import java.util.List;
 public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 
 	@Override
+	protected void doUpgrade() throws Exception {
+		runSQL(
+			"delete from Portlet where portletId like " +
+				"'com_liferay_client_extension_web_internal_portlet_" +
+					"ClientExtensionEntryPortlet_%'");
+
+		super.doUpgrade();
+	}
+
+	@Override
 	protected String[][] getRenamePortletIdsArray() {
 		return getRenamePortletIdsArray(
 			connection,
