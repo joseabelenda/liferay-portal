@@ -426,7 +426,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 					assetListEntryIdsStringUtilReplaceValues,
 					documentsStringUtilReplaceValues, serviceContext));
 
-			_invoke(() -> _addKnowledgeBaseArticles(serviceContext));
+			//_invoke(() -> _addKnowledgeBaseArticles(serviceContext));
 			_invoke(() -> _addOrganizations(serviceContext));
 			_invoke(() -> _addSAPEntries(serviceContext));
 			_invoke(() -> _addSegmentsEntries(serviceContext));
@@ -441,21 +441,21 @@ public class BundleSiteInitializer implements SiteInitializer {
 						serviceContext, siteNavigationMenuItemSettingsBuilder));
 
 			_invoke(() -> _addPortletSettings(serviceContext));
-			_invoke(
-				() -> _updateLayoutSets(
-					documentsStringUtilReplaceValues, serviceContext));
+			//_invoke(
+			//	() -> _updateLayoutSets(
+			//		documentsStringUtilReplaceValues, serviceContext));
 
 			_invoke(
 				() -> _addDDMTemplates(
 					_ddmStructureLocalService, serviceContext));
-			_invoke(
-				() -> _addJournalArticles(
-					_ddmStructureLocalService, _ddmTemplateLocalService,
-					documentsStringUtilReplaceValues, serviceContext,
-					siteNavigationMenuItemSettingsBuilder));
+			//_invoke(
+			//	() -> _addJournalArticles(
+			//		_ddmStructureLocalService, _ddmTemplateLocalService,
+			//		documentsStringUtilReplaceValues, serviceContext,
+			//		siteNavigationMenuItemSettingsBuilder));
 
-			Map<String, Layout> layouts = _invoke(
-				() -> _addLayouts(serviceContext));
+			//Map<String, Layout> layouts = _invoke(
+			//	() -> _addLayouts(serviceContext));
 
 			_invoke(
 				() -> _addLayoutPageTemplates(
@@ -504,18 +504,18 @@ public class BundleSiteInitializer implements SiteInitializer {
 					() -> _addClientExtensionEntries(
 						documentsStringUtilReplaceValues, serviceContext));
 
-			_invoke(
-				() -> _addLayoutsContent(
-					assetListEntryIdsStringUtilReplaceValues,
-					clientExtensionEntryIdsStringUtilReplaceValues,
-					ddmStructureEntryIdsStringUtilReplaceValues,
-					documentsStringUtilReplaceValues, layouts,
-					objectDefinitionIdsAndObjectEntryIdsStringUtilReplaceValues,
-					serviceContext,
-					siteNavigationMenuItemSettingsBuilder.build(),
-					taxonomyCategoryIdsStringUtilReplaceValues));
+			//_invoke(
+			//	() -> _addLayoutsContent(
+			//		assetListEntryIdsStringUtilReplaceValues,
+			//		clientExtensionEntryIdsStringUtilReplaceValues,
+			//		ddmStructureEntryIdsStringUtilReplaceValues,
+			//		documentsStringUtilReplaceValues, layouts,
+			//		objectDefinitionIdsAndObjectEntryIdsStringUtilReplaceValues,
+			//		serviceContext,
+			//		siteNavigationMenuItemSettingsBuilder.build(),
+			//		taxonomyCategoryIdsStringUtilReplaceValues));
 
-			_invoke(() -> _addWorkflowDefinitions(serviceContext));
+			//_invoke(() -> _addWorkflowDefinitions(serviceContext));
 		}
 		catch (Exception exception) {
 			_log.error(exception);
@@ -764,7 +764,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 
 		while (enumeration.hasMoreElements()) {
 			URL url = enumeration.nextElement();
-
+			
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				StringUtil.read(url.openStream()));
 
@@ -2423,6 +2423,8 @@ public class BundleSiteInitializer implements SiteInitializer {
 		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
+
+		_servletContext
 
 		Organization organization = Organization.toDTO(json);
 
