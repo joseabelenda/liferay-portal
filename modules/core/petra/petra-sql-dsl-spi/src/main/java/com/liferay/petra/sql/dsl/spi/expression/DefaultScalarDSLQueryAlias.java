@@ -60,10 +60,13 @@ public class DefaultScalarDSLQueryAlias<T>
 	@Override
 	protected void doToSQL(
 		Consumer<String> consumer, ASTNodeListener astNodeListener) {
-
-		consumer.accept("(");
-		consumer.accept(_dslQuery.toSQL(astNodeListener));
-		consumer.accept(") as " + _name);
+		if (_name != null) {
+			consumer.accept("(");
+			consumer.accept(_dslQuery.toSQL(astNodeListener));
+			consumer.accept(") as " + _name);
+		}else{
+			consumer.accept(_dslQuery.toSQL(astNodeListener));
+		}
 	}
 
 	private final DSLQuery _dslQuery;
