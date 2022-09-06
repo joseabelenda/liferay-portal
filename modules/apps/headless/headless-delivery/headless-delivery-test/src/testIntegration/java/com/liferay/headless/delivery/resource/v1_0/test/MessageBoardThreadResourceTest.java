@@ -172,6 +172,13 @@ public class MessageBoardThreadResourceTest
 	}
 
 	@Override
+	protected Long
+	testGetMessageBoardSectionFilteredMessageBoardThreadsPage_getMessageBoardSectionId() {
+
+		return _mbCategory.getCategoryId();
+	}
+
+	@Override
 	protected MessageBoardThread
 			testGetMessageBoardThreadsRankedPage_addMessageBoardThread(
 				MessageBoardThread messageBoardThread)
