@@ -32,6 +32,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lock.Lock;
 import com.liferay.portal.kernel.lock.LockManager;
 import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.InlineSQLHelper;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -309,6 +311,36 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 
 		return _mbMessageFinder.filterCountByG_U_C_A_S(
 			groupId, userId, categoryIds, false, status);
+	}
+
+	@Override
+	public List<MBThread> getMessageBoardSectionMessageBoardThreadsPage(
+			long groupId, long categoryId, String hasValidAnswer,
+			String numberOfMessageBoardMessages,
+			QueryDefinition<MBThread> queryDefinition, String search,
+			Sort[] sorts, String tag)
+		throws PrincipalException {
+
+		return mbThreadLocalService.
+			getMessageBoardSectionMessageBoardThreadsPage(
+				groupId, getUserId(), categoryId, hasValidAnswer,
+				numberOfMessageBoardMessages, queryDefinition, search, sorts,
+				tag);
+	}
+
+	@Override
+	public int getMessageBoardSectionMessageBoardThreadsPageCount(
+			long groupId, long categoryId, String hasValidAnswer,
+			String numberOfMessageBoardMessages,
+			QueryDefinition<MBThread> queryDefinition, String search,
+			Sort[] sorts, String tag)
+		throws PrincipalException {
+
+		return mbThreadLocalService.
+			getMessageBoardSectionMessageBoardThreadsPageCount(
+				groupId, getUserId(), categoryId, hasValidAnswer,
+				numberOfMessageBoardMessages, queryDefinition, search, sorts,
+				tag);
 	}
 
 	@Override
