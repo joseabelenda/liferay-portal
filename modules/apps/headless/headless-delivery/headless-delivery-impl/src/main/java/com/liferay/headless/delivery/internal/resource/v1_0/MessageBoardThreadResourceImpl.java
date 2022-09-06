@@ -145,6 +145,43 @@ public class MessageBoardThreadResourceImpl
 
 	@Override
 	public Page<MessageBoardThread>
+	getMessageBoardSectionFilteredMessageBoardThreadsPage(
+		Long messageBoardSectionId, Boolean hasValidAnswer,
+		Long numberOfMessageBoardMessages, String search, String tag,
+		Aggregation aggregation, Filter filter, Pagination pagination,
+		Sort[] sorts)
+		throws Exception {
+
+		MBCategory mbCategory = _mbCategoryService.getCategory(
+			messageBoardSectionId);
+
+		int status = WorkflowConstants.STATUS_APPROVED;
+
+		return Page.of(
+			TransformUtil.transform(
+				_mbThreadService.getMessageBoardSectionMessageBoardThreadsPage(
+					mbCategory.getGroupId(), messageBoardSectionId,
+					hasValidAnswer, numberOfMessageBoardMessages,
+					new QueryDefinition<>(
+						status, contextUser.getUserId(), true,
+						pagination.getStartPosition(),
+						pagination.getEndPosition(),
+						new ThreadCreateDateComparator()),
+					search, sorts, tag),
+				this::_toMessageBoardThread),
+			pagination,
+			_mbThreadService.getMessageBoardSectionMessageBoardThreadsPageCount(
+				mbCategory.getGroupId(), messageBoardSectionId, hasValidAnswer,
+				numberOfMessageBoardMessages,
+				new QueryDefinition<>(
+					status, contextUser.getUserId(), true,
+					pagination.getStartPosition(), pagination.getEndPosition(),
+					new ThreadCreateDateComparator()),
+				search, sorts, tag));
+	}
+
+	@Override
+	public Page<MessageBoardThread>
 			getMessageBoardSectionMessageBoardThreadsPage(
 				Long messageBoardSectionId, String search,
 				Aggregation aggregation, Filter filter, Pagination pagination,
