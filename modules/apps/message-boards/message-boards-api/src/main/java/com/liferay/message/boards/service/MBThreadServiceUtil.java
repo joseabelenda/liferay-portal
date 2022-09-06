@@ -123,6 +123,34 @@ public class MBThreadServiceUtil {
 			groupId, userId, status, subscribed, includeAnonymous);
 	}
 
+	public static List<MBThread> getMessageBoardSectionMessageBoardThreadsPage(
+			long groupId, long categoryId, Boolean hasValidAnswer,
+			Long numberOfMessageBoardMessages,
+			com.liferay.portal.kernel.dao.orm.QueryDefinition<MBThread>
+				queryDefinition,
+			String search, com.liferay.portal.kernel.search.Sort[] sorts,
+			String tag)
+		throws PortalException {
+
+		return getService().getMessageBoardSectionMessageBoardThreadsPage(
+			groupId, categoryId, hasValidAnswer, numberOfMessageBoardMessages,
+			queryDefinition, search, sorts, tag);
+	}
+
+	public static int getMessageBoardSectionMessageBoardThreadsPageCount(
+			long groupId, long categoryId, Boolean hasValidAnswer,
+			Long numberOfMessageBoardMessages,
+			com.liferay.portal.kernel.dao.orm.QueryDefinition<MBThread>
+				queryDefinition,
+			String search, com.liferay.portal.kernel.search.Sort[] sorts,
+			String tag)
+		throws PortalException {
+
+		return getService().getMessageBoardSectionMessageBoardThreadsPageCount(
+			groupId, categoryId, hasValidAnswer, numberOfMessageBoardMessages,
+			queryDefinition, search, sorts, tag);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
