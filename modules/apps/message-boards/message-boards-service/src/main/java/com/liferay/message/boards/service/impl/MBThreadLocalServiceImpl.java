@@ -501,28 +501,29 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 				));
 		}
 
-		if (!hasValidAnswer) {
-			predicate = predicate.and(
-				MBThreadTable.INSTANCE.threadId.notIn(
-					DSLQueryFactoryUtil.select(
-						MBMessageTable.INSTANCE.threadId
-					).from(
-						MBMessageTable.INSTANCE
-					).where(
-						MBMessageTable.INSTANCE.answer.eq(true)
-					)));
-		}
-
-		if (hasValidAnswer) {
-			predicate = predicate.and(
-				MBThreadTable.INSTANCE.threadId.in(
-					DSLQueryFactoryUtil.select(
-						MBMessageTable.INSTANCE.threadId
-					).from(
-						MBMessageTable.INSTANCE
-					).where(
-						MBMessageTable.INSTANCE.answer.eq(true)
-					)));
+		if (hasValidAnswer != null) {
+			if (hasValidAnswer) {
+				predicate = predicate.and(
+					MBThreadTable.INSTANCE.threadId.in(
+						DSLQueryFactoryUtil.select(
+							MBMessageTable.INSTANCE.threadId
+						).from(
+							MBMessageTable.INSTANCE
+						).where(
+							MBMessageTable.INSTANCE.answer.eq(true)
+						)));
+			}
+			else {
+				predicate = predicate.and(
+					MBThreadTable.INSTANCE.threadId.notIn(
+						DSLQueryFactoryUtil.select(
+							MBMessageTable.INSTANCE.threadId
+						).from(
+							MBMessageTable.INSTANCE
+						).where(
+							MBMessageTable.INSTANCE.answer.eq(true)
+						)));
+			}
 		}
 
 		if (Validator.isNotNull(tag)) {
@@ -688,28 +689,29 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 				));
 		}
 
-		if (!hasValidAnswer) {
-			predicate = predicate.and(
-				MBThreadTable.INSTANCE.threadId.notIn(
-					DSLQueryFactoryUtil.select(
-						MBMessageTable.INSTANCE.threadId
-					).from(
-						MBMessageTable.INSTANCE
-					).where(
-						MBMessageTable.INSTANCE.answer.eq(true)
-					)));
-		}
-
-		if (hasValidAnswer) {
-			predicate = predicate.and(
-				MBThreadTable.INSTANCE.threadId.in(
-					DSLQueryFactoryUtil.select(
-						MBMessageTable.INSTANCE.threadId
-					).from(
-						MBMessageTable.INSTANCE
-					).where(
-						MBMessageTable.INSTANCE.answer.eq(true)
-					)));
+		if (hasValidAnswer != null) {
+			if (hasValidAnswer) {
+				predicate = predicate.and(
+					MBThreadTable.INSTANCE.threadId.in(
+						DSLQueryFactoryUtil.select(
+							MBMessageTable.INSTANCE.threadId
+						).from(
+							MBMessageTable.INSTANCE
+						).where(
+							MBMessageTable.INSTANCE.answer.eq(true)
+						)));
+			}
+			else {
+				predicate = predicate.and(
+					MBThreadTable.INSTANCE.threadId.notIn(
+						DSLQueryFactoryUtil.select(
+							MBMessageTable.INSTANCE.threadId
+						).from(
+							MBMessageTable.INSTANCE
+						).where(
+							MBMessageTable.INSTANCE.answer.eq(true)
+						)));
+			}
 		}
 
 		if (Validator.isNotNull(tag)) {
