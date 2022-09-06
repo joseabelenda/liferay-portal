@@ -62,6 +62,14 @@ public interface MessageBoardThreadResource {
 	}
 
 	public Page<MessageBoardThread>
+			getMessageBoardSectionFilteredMessageBoardThreadsPage(
+				Long messageBoardSectionId, Boolean hasValidAnswer,
+				Long numberOfMessageBoardMessages, String tag, String search,
+				com.liferay.portal.vulcan.aggregation.Aggregation aggregation,
+				Filter filter, Pagination pagination, Sort[] sorts)
+		throws Exception;
+
+	public Page<MessageBoardThread>
 			getMessageBoardSectionMessageBoardThreadsPage(
 				Long messageBoardSectionId, String search,
 				com.liferay.portal.vulcan.aggregation.Aggregation aggregation,
