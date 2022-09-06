@@ -166,14 +166,14 @@ public class MessageBoardThreadResourceTest
 
 	@Override
 	protected Long
-		testGetMessageBoardSectionMessageBoardThreadsPage_getMessageBoardSectionId() {
+		testGetMessageBoardSectionFilteredMessageBoardThreadsPage_getMessageBoardSectionId() {
 
 		return _mbCategory.getCategoryId();
 	}
 
 	@Override
 	protected Long
-	testGetMessageBoardSectionFilteredMessageBoardThreadsPage_getMessageBoardSectionId() {
+		testGetMessageBoardSectionMessageBoardThreadsPage_getMessageBoardSectionId() {
 
 		return _mbCategory.getCategoryId();
 	}

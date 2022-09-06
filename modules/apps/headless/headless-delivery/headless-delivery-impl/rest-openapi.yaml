@@ -9698,7 +9698,7 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/MessageBoardThread"
                                 type: array
-            tags: [ "MessageBoardThread" ]
+            tags: ["MessageBoardThread"]
     "/message-board-sections/{messageBoardSectionId}/message-board-threads":
         get:
             description:

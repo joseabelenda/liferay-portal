@@ -145,11 +145,11 @@ public class MessageBoardThreadResourceImpl
 
 	@Override
 	public Page<MessageBoardThread>
-	getMessageBoardSectionFilteredMessageBoardThreadsPage(
-		Long messageBoardSectionId, Boolean hasValidAnswer,
-		Long numberOfMessageBoardMessages, String search, String tag,
-		Aggregation aggregation, Filter filter, Pagination pagination,
-		Sort[] sorts)
+			getMessageBoardSectionFilteredMessageBoardThreadsPage(
+				Long messageBoardSectionId, Boolean hasValidAnswer,
+				Long numberOfMessageBoardMessages, String search, String tag,
+				Aggregation aggregation, Filter filter, Pagination pagination,
+				Sort[] sorts)
 		throws Exception {
 
 		MBCategory mbCategory = _mbCategoryService.getCategory(
