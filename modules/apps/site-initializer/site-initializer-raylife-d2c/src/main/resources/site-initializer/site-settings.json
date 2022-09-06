@@ -1,0 +1,64 @@
+[
+	{
+		"pid": "com.liferay.frontend.js.walkthrough.web.internal.configuration.WalkthroughConfiguration",
+		"properties": {
+			"enabled": "true",
+			"steps": {
+				"pages": {
+					"/web/raylife-d2c/business-insurance": [
+						"step-1",
+						"step-2",
+						"step-3",
+						"step-4",
+						"step-5",
+						"step-6"
+					]
+				},
+				"steps": [
+					{
+						"content": "<span>This page is the home page of Raylife D2C flow.</span>",
+						"darkbg": true,
+						"id": "step-1",
+						"nodeToHighlight": "#public-navbar .container .align-items-center",
+						"title": "Raylife D2C"
+					},
+					{
+						"content": "<span>In this section our philosophy is described.</span>",
+						"darkbg": true,
+						"id": "step-2",
+						"nodeToHighlight": "#our-philosophy .container .product-actions-title",
+						"title": "Our Philosophy section"
+					},
+					{
+						"content": "<span>This section contains the most asked questions about insurance.</span>",
+						"darkbg": true,
+						"id": "step-3",
+						"nodeToHighlight": "#colorful-head",
+						"title": "Questions and Answers section"
+					},
+					{
+						"content": "<span>This section contains all navigation links.</span>",
+						"darkbg": true,
+						"id": "step-4",
+						"nodeToHighlight": "#public-footer .d-flex.flex-wrap.px-0",
+						"title": "Footer section"
+					},
+					{
+						"content": "<span>After filling the zip code, click here to start quote insurance.</span>",
+						"darkbg": true,
+						"id": "step-4",
+						"nodeToHighlight": "#zip",
+						"title": "Start Quoting"
+					},
+					{
+						"content": "<span>After filling the zip code, click here to start quote insurance.</span>",
+						"darkbg": true,
+						"id": "step-5",
+						"nodeToHighlight": "#retrieve-quote .action-button-text",
+						"title": "Start Quoting"
+					}
+				]
+			}
+		}
+	}
+]
