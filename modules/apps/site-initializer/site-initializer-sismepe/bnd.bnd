@@ -1,0 +1,6 @@
+Bundle-Name: Liferay Site Initializer SISMEPE
+Bundle-SymbolicName: com.liferay.site.initializer.sismepe
+Bundle-Version: 1.0.0
+Liferay-Site-Initializer-Name: SISMEPE
+Provide-Capability: liferay.site.initializer
+Web-ContextPath: /site-initializer-sismepe
