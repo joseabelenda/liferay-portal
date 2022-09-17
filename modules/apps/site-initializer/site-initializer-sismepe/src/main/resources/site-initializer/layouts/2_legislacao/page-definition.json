@@ -1,0 +1,106 @@
+{
+	"pageElement": {
+		"pageElements": [
+			{
+				"definition": {
+					"backgroundColor": "",
+					"backgroundFragmentImage": {
+					},
+					"fragmentStyle": {
+						"backgroundColor": "",
+						"backgroundFragmentImage": {
+						},
+						"borderRadius": "",
+						"borderWidth": "0",
+						"fontFamily": "",
+						"fontSize": "",
+						"fontWeight": "",
+						"height": "",
+						"marginBottom": "0",
+						"marginLeft": "0",
+						"marginRight": "0",
+						"marginTop": "0",
+						"maxHeight": "",
+						"maxWidth": "",
+						"minHeight": "",
+						"minWidth": "",
+						"opacity": "100",
+						"overflow": "",
+						"paddingBottom": "6",
+						"paddingLeft": "0",
+						"paddingRight": "0",
+						"paddingTop": "6",
+						"shadow": "",
+						"textAlign": "",
+						"width": ""
+					},
+					"layout": {
+						"borderWidth": 0,
+						"marginBottom": 0,
+						"marginLeft": 0,
+						"marginRight": 0,
+						"marginTop": 0,
+						"opacity": 100,
+						"paddingBottom": 6,
+						"paddingLeft": 0,
+						"paddingRight": 0,
+						"paddingTop": 6,
+						"widthType": "Fluid"
+					}
+				},
+				"pageElements": [
+					{
+						"definition": {
+							"widgetInstance": {
+								"widgetConfig": {
+									"showActions": "false",
+									"enableCommentRatings": "false",
+									"entryColumns": "name",
+									"enableRatings": "false",
+									"rootFolderId": "[$DOCUMENT_FOLDER_ID:/site-initializer/documents/group/legislacao$]",
+									"entriesPerPage": "20",
+									"displayViews": "list"
+								},
+								"widgetName": "com_liferay_document_library_web_portlet_DLPortlet",
+								"widgetPermissions": [
+									{
+										"actionKeys": [
+											"ADD_PORTLET_DISPLAY_TEMPLATE",
+											"PERMISSIONS",
+											"PREFERENCES",
+											"CONFIGURATION",
+											"VIEW",
+											"ADD_TO_PAGE"
+										],
+										"roleKey": "Owner"
+									},
+									{
+										"actionKeys": [
+											"VIEW"
+										],
+										"roleKey": "Site Member"
+									},
+									{
+										"actionKeys": [
+											"PREFERENCES",
+											"VIEW"
+										],
+										"roleKey": "Guest"
+									}
+								]
+							}
+						},
+						"type": "Widget"
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "public"
+		}
+	}
+}
