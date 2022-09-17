@@ -842,8 +842,9 @@ public class BundleSiteInitializer implements SiteInitializer {
 	}
 
 	private Long _addDocumentFolder(
-			Long documentFolderId, long groupId, String resourcePath,
-			ServiceContext serviceContext)
+			Long documentFolderId,
+			Map<String, String> documentsStringUtilReplaceValues, long groupId,
+			String resourcePath, ServiceContext serviceContext)
 		throws Exception {
 
 		DocumentFolderResource.Builder documentFolderResourceBuilder =
@@ -900,6 +901,10 @@ public class BundleSiteInitializer implements SiteInitializer {
 				existingDocumentFolder.getId(), documentFolder);
 		}
 
+		documentsStringUtilReplaceValues.put(
+			"DOCUMENT_FOLDER_ID:" + resourcePath,
+			String.valueOf(documentFolder.getId()));
+
 		return documentFolder.getId();
 	}
 
@@ -931,8 +936,8 @@ public class BundleSiteInitializer implements SiteInitializer {
 				documentsStringUtilReplaceValues.putAll(
 					_addDocuments(
 						_addDocumentFolder(
-							documentFolderId, groupId, resourcePath,
-							serviceContext),
+							documentFolderId, documentsStringUtilReplaceValues,
+							groupId, resourcePath, serviceContext),
 						groupId, resourcePath, serviceContext,
 						siteNavigationMenuItemSettingsBuilder));
 
