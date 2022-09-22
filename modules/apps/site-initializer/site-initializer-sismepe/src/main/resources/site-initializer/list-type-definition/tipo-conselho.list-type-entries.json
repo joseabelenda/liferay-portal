@@ -1,0 +1,72 @@
+[
+	{
+		"key": "biomedicina",
+		"name": "Biomedicina",
+		"name_i18n": {
+			"en-US": "Biomedicina"
+		}
+	},
+	{
+		"key": "enfermagem",
+		"name": "Enfermagem",
+		"name_i18n": {
+			"en-US": "Enfermagem"
+		}
+	},
+	{
+		"key": "farmacia",
+		"name": "Farmacia",
+		"name_i18n": {
+			"en-US": "Farmácia"
+		}
+	},
+	{
+		"key": "fisioterapiaTerapiaOcupacional",
+		"name": "Fisioterapia e Terapia Ocupacional",
+		"name_i18n": {
+			"en-US": "Fisioterapia e Terapia Ocupacional"
+		}
+	},
+	{
+		"key": "medicina",
+		"name": "Medicina",
+		"name_i18n": {
+			"en-US": "Medicina"
+		}
+	},
+	{
+		"key": "nutricao",
+		"name": "Nutrição",
+		"name_i18n": {
+			"en-US": "Nutrição"
+		}
+	},
+	{
+		"key": "odontologia",
+		"name": "Odontologia",
+		"name_i18n": {
+			"en-US": "Odontologia"
+		}
+	},
+	{
+		"key": "psicologia",
+		"name": "Psicologia",
+		"name_i18n": {
+			"en-US": "Psicologia"
+		}
+	},
+	{
+		"key": "quimicaBioquimica",
+		"name": "Química e Bioquímica",
+		"name_i18n": {
+			"en-US": "Química e Bioquímica"
+		}
+	},
+	{
+		"key": "servicoSocial",
+		"name": "Serviço Social",
+		"name_i18n": {
+			"en-US": "Serviço Social"
+		}
+	}
+]
