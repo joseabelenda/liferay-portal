@@ -45,7 +45,8 @@ public class DocumentsLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.dc.service.impl.DocumentsLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static Documents addDocument(
-		String name, String description, String link) {
+			String name, String description, String link)
+		throws PortalException {
 
 		return getService().addDocument(name, description, link);
 	}

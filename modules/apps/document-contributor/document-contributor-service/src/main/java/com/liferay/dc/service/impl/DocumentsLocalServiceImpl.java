@@ -31,7 +31,7 @@ import com.liferay.dc.model.Documents;
 public class DocumentsLocalServiceImpl extends DocumentsLocalServiceBaseImpl {
 
 	@Override
-	public Documents addDocument(String name, String description, String link) {
+	public Documents addDocument(String name, String description, String link) throws PortalException {
 		long documentId = counterLocalService.increment(Documents.class.getName());
 
 		Documents documents = createDocuments(documentId);
