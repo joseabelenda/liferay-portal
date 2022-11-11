@@ -38,7 +38,8 @@ public class DocumentsLocalServiceWrapper
 
 	@Override
 	public com.liferay.dc.model.Documents addDocument(
-		String name, String description, String link) {
+			String name, String description, String link)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _documentsLocalService.addDocument(name, description, link);
 	}
