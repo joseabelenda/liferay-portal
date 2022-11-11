@@ -18,6 +18,8 @@ import com.liferay.dc.service.base.DocumentsLocalServiceBaseImpl;
 import com.liferay.dc.service.persistence.DocumentsPersistence;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import org.osgi.service.component.annotations.Component;
 import com.liferay.dc.model.Documents;
 
@@ -30,6 +32,7 @@ import com.liferay.dc.model.Documents;
 )
 public class DocumentsLocalServiceImpl extends DocumentsLocalServiceBaseImpl {
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public Documents addDocument(String name, String description, String link) throws PortalException {
 		long documentId = counterLocalService.increment(Documents.class.getName());
@@ -42,11 +45,13 @@ public class DocumentsLocalServiceImpl extends DocumentsLocalServiceBaseImpl {
 		return _documentsPersistence.update(documents);
 	}
 
+	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public Documents deleteDocument(long documentId) throws PortalException {
 		return _documentsPersistence.remove(documentId);
 	}
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public Documents updateDocument(long documentId, String name, String description, String link) {
 
