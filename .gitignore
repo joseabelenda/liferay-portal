@@ -52,6 +52,8 @@
 /modules/private/node_modules_cache
 /nbproject/private
 /out
+pom.xml
+*.jar
 /portal-impl/*.ipr
 /portal-impl/*.iws
 /portal-impl/ServiceBuilder.temp
