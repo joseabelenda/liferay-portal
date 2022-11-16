@@ -1,0 +1,8 @@
+Bundle-Name: Document Contributor API
+Bundle-SymbolicName: com.liferay.dc.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.dc.exception,\
+	com.liferay.dc.model,\
+	com.liferay.dc.service,\
+	com.liferay.dc.service.persistence

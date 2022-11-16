@@ -14,6 +14,7 @@
 
 package com.liferay.info.collection.provider.item.selector.web.internal.item.selector;
 
+import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.info.collection.provider.InfoCollectionProvider;
 import com.liferay.info.collection.provider.item.selector.criterion.InfoCollectionProviderItemSelectorCriterion;
 import com.liferay.info.item.InfoItemServiceRegistry;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -47,7 +47,10 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Eudaldo Alonso
  */
-@Component(service = ItemSelectorView.class)
+@Component(
+	property = "item.selector.view.order:Integer=200",
+	service = ItemSelectorView.class
+)
 public class InfoCollectionProviderItemSelectorView
 	implements ItemSelectorView<InfoCollectionProviderItemSelectorCriterion> {
 
@@ -90,46 +93,39 @@ public class InfoCollectionProviderItemSelectorView
 				_infoItemServiceRegistry));
 	}
 
-	private List<InfoCollectionProvider<?>> _getAllInfoCollectionProviders() {
-		return ListUtil.filter(
-			_infoItemServiceRegistry.getAllInfoItemServices(
-				(Class<InfoCollectionProvider<?>>)
-					(Class<?>)InfoCollectionProvider.class),
-			InfoCollectionProvider::isAvailable);
-	}
-
 	private List<InfoCollectionProvider<?>> _getInfoCollectionProviders(
 		InfoCollectionProviderItemSelectorCriterion
 			infoCollectionProviderItemSelectorCriterion) {
 
-		List<String> itemTypes =
-			infoCollectionProviderItemSelectorCriterion.getItemTypes();
+		if (infoCollectionProviderItemSelectorCriterion.getType() ==
+				InfoCollectionProviderItemSelectorCriterion.Type.
+					SUPPORTED_INFO_FRAMEWORK_COLLECTIONS) {
 
-		if (ListUtil.isEmpty(itemTypes)) {
 			return Collections.unmodifiableList(
-				_getAllInfoCollectionProviders());
+				ListUtil.filter(
+					_infoItemServiceRegistry.getAllInfoItemServices(
+						(Class<InfoCollectionProvider<?>>)
+							(Class<?>)InfoCollectionProvider.class),
+					InfoCollectionProvider::isAvailable));
 		}
 
-		List<InfoCollectionProvider<?>> infoCollectionProviders =
-			new ArrayList<>();
+		String itemType =
+			infoCollectionProviderItemSelectorCriterion.getItemType();
 
-		for (String itemType : itemTypes) {
-			infoCollectionProviders.addAll(
-				_getInfoCollectionProviders(itemType));
+		if (infoCollectionProviderItemSelectorCriterion.getType() ==
+				InfoCollectionProviderItemSelectorCriterion.Type.
+					ALL_COLLECTIONS) {
+
+			itemType = AssetEntry.class.getName();
 		}
 
-		return Collections.unmodifiableList(infoCollectionProviders);
-	}
-
-	private List<InfoCollectionProvider<?>> _getInfoCollectionProviders(
-		String itemType) {
-
-		return ListUtil.filter(
-			_infoItemServiceRegistry.getAllInfoItemServices(
-				(Class<InfoCollectionProvider<?>>)
-					(Class<?>)InfoCollectionProvider.class,
-				itemType),
-			InfoCollectionProvider::isAvailable);
+		return Collections.unmodifiableList(
+			ListUtil.filter(
+				_infoItemServiceRegistry.getAllInfoItemServices(
+					(Class<InfoCollectionProvider<?>>)
+						(Class<?>)InfoCollectionProvider.class,
+					itemType),
+				InfoCollectionProvider::isAvailable));
 	}
 
 	private static final List<ItemSelectorReturnType>

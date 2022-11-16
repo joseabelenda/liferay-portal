@@ -207,6 +207,7 @@ export default function ({
 			txtaiHostAddress,
 		},
 		validate: _handleFormikValidate,
+		validateOnMount: true,
 	});
 
 	const _handleCheckboxChange = (name) => (event) => {
@@ -372,6 +373,7 @@ export default function ({
 						formik.values.embeddingVectorDimensions
 					}
 					enableGPU={formik.values.enableGPU}
+					errors={formik.errors}
 					huggingFaceAccessToken={
 						formik.values.huggingFaceAccessToken
 					}

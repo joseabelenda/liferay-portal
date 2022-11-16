@@ -34,7 +34,6 @@ import com.liferay.info.item.InfoItemFieldValues;
 import com.liferay.info.item.InfoItemReference;
 import com.liferay.info.item.InfoItemServiceRegistry;
 import com.liferay.info.item.provider.InfoItemFieldValuesProvider;
-import com.liferay.info.item.provider.InfoItemFormProvider;
 import com.liferay.info.item.provider.InfoItemObjectProvider;
 import com.liferay.info.list.provider.item.selector.criterion.InfoListProviderItemSelectorReturnType;
 import com.liferay.info.list.renderer.DefaultInfoListRendererContext;
@@ -43,7 +42,6 @@ import com.liferay.info.list.renderer.InfoListRendererRegistry;
 import com.liferay.info.search.InfoSearchClassMapperRegistry;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.criteria.InfoListItemSelectorReturnType;
-import com.liferay.item.selector.criteria.info.item.criterion.InfoListItemSelectorCriterion;
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortletKeys;
 import com.liferay.layout.content.page.editor.web.internal.util.LayoutObjectReferenceUtil;
 import com.liferay.layout.helper.CollectionPaginationHelper;
@@ -350,24 +348,17 @@ public class GetCollectionFieldMVCResourceCommand
 		HttpServletRequest httpServletRequest, String itemType,
 		String namespace) {
 
-		InfoListItemSelectorCriterion infoListItemSelectorCriterion =
-			new InfoListItemSelectorCriterion();
-
-		infoListItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			new InfoListItemSelectorReturnType());
-
-		List<String> itemTypes = _getInfoItemFormProviderSearchClassNames();
-
-		infoListItemSelectorCriterion.setItemTypes(itemTypes);
-
 		InfoCollectionProviderItemSelectorCriterion
 			infoCollectionProviderItemSelectorCriterion =
 				new InfoCollectionProviderItemSelectorCriterion();
 
 		infoCollectionProviderItemSelectorCriterion.
 			setDesiredItemSelectorReturnTypes(
+				new InfoListItemSelectorReturnType(),
 				new InfoListProviderItemSelectorReturnType());
-		infoCollectionProviderItemSelectorCriterion.setItemTypes(itemTypes);
+		infoCollectionProviderItemSelectorCriterion.setType(
+			InfoCollectionProviderItemSelectorCriterion.Type.
+				SUPPORTED_INFO_FRAMEWORK_COLLECTIONS);
 
 		RelatedInfoItemCollectionProviderItemSelectorCriterion
 			relatedInfoItemCollectionProviderItemSelectorCriterion =
@@ -397,7 +388,7 @@ public class GetCollectionFieldMVCResourceCommand
 
 		PortletURL infoListSelectorURL = _itemSelector.getItemSelectorURL(
 			RequestBackedPortletURLFactoryUtil.create(httpServletRequest),
-			namespace + "selectInfoList", infoListItemSelectorCriterion,
+			namespace + "selectInfoList",
 			infoCollectionProviderItemSelectorCriterion,
 			relatedInfoItemCollectionProviderItemSelectorCriterion);
 
@@ -498,20 +489,6 @@ public class GetCollectionFieldMVCResourceCommand
 		}
 
 		return null;
-	}
-
-	private List<String> _getInfoItemFormProviderSearchClassNames() {
-		List<String> infoItemClassNames = new ArrayList<>();
-
-		for (String className :
-				_infoItemServiceRegistry.getInfoItemClassNames(
-					InfoItemFormProvider.class)) {
-
-			infoItemClassNames.add(
-				_infoSearchClassMapperRegistry.getSearchClassName(className));
-		}
-
-		return infoItemClassNames;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
