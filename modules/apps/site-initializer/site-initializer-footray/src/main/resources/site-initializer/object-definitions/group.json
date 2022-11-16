@@ -1,0 +1,54 @@
+{
+    "objectFields": [
+        {
+            "indexed": true,
+            "defaultValue": "",
+            "objectFieldSettings": [
+                {
+                    "name": "showCounter",
+                    "value": "false"
+                }
+            ],
+            "DBType": "String",
+            "label": {
+                "en_US": "Name"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "name",
+            "state": false,
+            "businessType": "Text"
+        }
+    ],
+    "scope": "company",
+    "portlet": false,
+    "parameterRequired": false,
+    "enableObjectEntryHistory": false,
+    "titleObjectFieldName": "name",
+    "active": true,
+    "label": {
+        "en_US": "Group"
+    },
+    "panelCategoryKey": "control_panel.object",
+    "pluralLabel": {
+        "en_US": "Groups"
+    },
+    "objectLayouts": [],
+    "system": false,
+    "objectViews": [],
+    "name": "Group",
+    "actions": {
+        "permissions": {},
+        "get": {},
+        "update": {},
+        "delete": {}
+    },
+    "status": {
+        "label_i18n": "Approved",
+        "code": 0,
+        "label": "approved"
+    }
+}
