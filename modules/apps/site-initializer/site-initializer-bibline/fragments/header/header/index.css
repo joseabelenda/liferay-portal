@@ -1,0 +1,31 @@
+#menu-h {
+float:right;
+}
+
+#menu-h ul {
+    max-width: 800px;
+    list-style: none;
+    padding: 0;
+}
+
+
+#menu-h ul li {
+    display: inline;
+}
+
+#menu-h ul li a {
+    color: #FFF;
+    padding: 20px;
+    display: inline-block;
+    text-decoration: none;
+    transition: background .4s;
+}
+
+#menu-h ul li a:hover {
+    background-color: Brown;
+}
+
+#menu-h ul li:a {
+    float: right;
+    background-color: Brown;
+}
