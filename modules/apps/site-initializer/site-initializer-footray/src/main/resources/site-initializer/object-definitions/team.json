@@ -41,28 +41,6 @@
             ],
             "DBType": "String",
             "label": {
-                "en_US": "Flag URL"
-            },
-            "type": "String",
-            "required": false,
-            "indexedAsKeyword": false,
-            "system": false,
-            "indexedLanguageId": "en_US",
-            "name": "flagUrl",
-            "state": false,
-            "businessType": "Text"
-        },
-        {
-            "indexed": true,
-            "defaultValue": "",
-            "objectFieldSettings": [
-                {
-                    "name": "showCounter",
-                    "value": "false"
-                }
-            ],
-            "DBType": "String",
-            "label": {
                 "en_US": "Name"
             },
             "type": "String",
