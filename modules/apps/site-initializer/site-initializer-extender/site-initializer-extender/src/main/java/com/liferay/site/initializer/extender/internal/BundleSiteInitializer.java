@@ -79,15 +79,18 @@ import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.notification.rest.dto.v1_0.NotificationTemplate;
 import com.liferay.notification.rest.resource.v1_0.NotificationTemplateResource;
 import com.liferay.object.admin.rest.dto.v1_0.ObjectDefinition;
+import com.liferay.object.admin.rest.dto.v1_0.ObjectField;
 import com.liferay.object.admin.rest.dto.v1_0.ObjectRelationship;
 import com.liferay.object.admin.rest.dto.v1_0.util.ObjectActionUtil;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectDefinitionResource;
+import com.liferay.object.admin.rest.resource.v1_0.ObjectFieldResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectRelationshipResource;
 import com.liferay.object.constants.ObjectDefinitionConstants;
 import com.liferay.object.model.ObjectEntry;
 import com.liferay.object.service.ObjectActionLocalService;
 import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.service.ObjectEntryLocalService;
+import com.liferay.object.service.ObjectFieldLocalService;
 import com.liferay.object.service.ObjectRelationshipLocalService;
 import com.liferay.petra.function.UnsafeRunnable;
 import com.liferay.petra.function.UnsafeSupplier;
@@ -242,9 +245,11 @@ public class BundleSiteInitializer implements SiteInitializer {
 		ObjectActionLocalService objectActionLocalService,
 		ObjectDefinitionLocalService objectDefinitionLocalService,
 		ObjectDefinitionResource.Factory objectDefinitionResourceFactory,
+		ObjectEntryLocalService objectEntryLocalService,
+		ObjectFieldLocalService objectFieldLocalService,
+		ObjectFieldResource.Factory objectFieldResourceFactory,
 		ObjectRelationshipLocalService objectRelationshipLocalService,
 		ObjectRelationshipResource.Factory objectRelationshipResourceFactory,
-		ObjectEntryLocalService objectEntryLocalService,
 		OrganizationLocalService organizationLocalService,
 		OrganizationResource.Factory organizationResourceFactory, Portal portal,
 		ResourceActionLocalService resourceActionLocalService,
@@ -308,9 +313,11 @@ public class BundleSiteInitializer implements SiteInitializer {
 		_objectActionLocalService = objectActionLocalService;
 		_objectDefinitionLocalService = objectDefinitionLocalService;
 		_objectDefinitionResourceFactory = objectDefinitionResourceFactory;
+		_objectEntryLocalService = objectEntryLocalService;
+		_objectFieldLocalService = objectFieldLocalService;
+		_objectFieldResourceFactory = objectFieldResourceFactory;
 		_objectRelationshipLocalService = objectRelationshipLocalService;
 		_objectRelationshipResourceFactory = objectRelationshipResourceFactory;
-		_objectEntryLocalService = objectEntryLocalService;
 		_organizationLocalService = organizationLocalService;
 		_organizationResourceFactory = organizationResourceFactory;
 		_portal = portal;
@@ -1173,6 +1180,10 @@ public class BundleSiteInitializer implements SiteInitializer {
 
 		_invoke(
 			() -> _addOrUpdateObjectRelationships(
+				objectDefinitionIdsStringUtilReplaceValues, serviceContext));
+
+		_invoke(
+			() -> _addOrUpdateObjectFields(
 				objectDefinitionIdsStringUtilReplaceValues, serviceContext));
 
 		Map<String, String> objectEntryIdsStringUtilReplaceValues = _invoke(
@@ -2567,6 +2578,55 @@ public class BundleSiteInitializer implements SiteInitializer {
 		}
 
 		return objectEntryIdsStringUtilReplaceValues;
+	}
+
+	private void _addOrUpdateObjectFields(
+			Map<String, String> objectDefinitionIdsStringUtilReplaceValues,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		Set<String> resourcePaths = _servletContext.getResourcePaths(
+			"/site-initializer/object-fields");
+
+		if (SetUtil.isEmpty(resourcePaths)) {
+			return;
+		}
+
+		ObjectFieldResource.Builder objectFieldResourceBuilder =
+			_objectFieldResourceFactory.create();
+
+		ObjectFieldResource objectFieldResource =
+			objectFieldResourceBuilder.user(
+				serviceContext.fetchUser()
+			).build();
+
+		for (String resourcePath : resourcePaths) {
+			String json = SiteInitializerUtil.read(
+				resourcePath, _servletContext);
+
+			json = _replace(json, objectDefinitionIdsStringUtilReplaceValues);
+
+			JSONObject jsonObject = _jsonFactory.createJSONObject(json);
+
+			Long objectDefinitionId = Long.valueOf(
+				(String)jsonObject.remove("objectDefinitionId"));
+
+			ObjectField objectField = ObjectField.toDTO(
+				JSONUtil.toString(jsonObject));
+
+			com.liferay.object.model.ObjectField existingObjectField =
+				_objectFieldLocalService.fetchObjectField(
+					objectDefinitionId, objectField.getName());
+
+			if (existingObjectField == null) {
+				objectFieldResource.postObjectDefinitionObjectField(
+					objectDefinitionId, objectField);
+			}
+			else {
+				objectFieldResource.putObjectField(
+					existingObjectField.getObjectFieldId(), objectField);
+			}
+		}
 	}
 
 	private void _addOrUpdateObjectRelationships(
@@ -4342,6 +4402,8 @@ public class BundleSiteInitializer implements SiteInitializer {
 	private final ObjectDefinitionResource.Factory
 		_objectDefinitionResourceFactory;
 	private final ObjectEntryLocalService _objectEntryLocalService;
+	private final ObjectFieldLocalService _objectFieldLocalService;
+	private final ObjectFieldResource.Factory _objectFieldResourceFactory;
 	private final ObjectRelationshipLocalService
 		_objectRelationshipLocalService;
 	private final ObjectRelationshipResource.Factory
