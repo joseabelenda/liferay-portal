@@ -1,0 +1,35 @@
+.footer{
+	padding-top: 40px;
+	padding-left: 100px;
+	padding-right: 20px;
+	color: black;
+}
+
+.main {
+	font-size: 40px;
+	color: black;
+}
+
+.location{
+	line-height: 1;
+	padding-left: 38px;
+	font-size: 18px;
+}
+
+.buttonClass{
+	padding-right: 80px;
+	padding-bottom: 100px
+}
+
+.buttonClass #button {
+ 	float: right;
+ 	font-family: sans-serif;
+	height: 100vh;
+	background: var(--brand-color-1);
+	color: #FFFFFF;
+  	width: 150px;
+  	height: 50px;
+  	border-radius: 2px solid black;
+  	box-shadow: 5px 5px var(--brand-color-2);
+	font-size: 20px;
+}
