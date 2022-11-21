@@ -76,36 +76,20 @@
 				"pageElements": [
 					{
 						"definition": {
-							"backgroundColor": "",
-							"backgroundFragmentImage": {
-							},
 							"fragmentStyle": {
 								"backgroundColor": "",
-								"backgroundFragmentImage": {
-								},
 								"borderRadius": "",
 								"borderWidth": "0",
-								"fontFamily": "",
-								"fontSize": "",
-								"fontWeight": "",
-								"height": "",
 								"marginBottom": "",
 								"marginLeft": "",
 								"marginRight": "",
 								"marginTop": "",
-								"maxHeight": "",
-								"maxWidth": "",
-								"minHeight": "",
-								"minWidth": "",
-								"opacity": "100",
-								"overflow": "",
 								"paddingBottom": "",
 								"paddingLeft": "2",
 								"paddingRight": "2",
 								"paddingTop": "",
 								"shadow": "",
-								"textAlign": "",
-								"width": ""
+								"textAlign": ""
 							},
 							"fragmentViewports": [
 								{
@@ -131,15 +115,12 @@
 									"id": "tablet"
 								}
 							],
+							"indexed": true,
 							"layout": {
 								"borderWidth": 0,
-								"marginBottom": 0,
-								"marginLeft": 0,
-								"marginRight": 0,
-								"marginTop": 0,
 								"opacity": 100,
-								"paddingBottom": 0,
-								"paddingTop": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
 								"widthType": "Fixed"
 							}
 						},
@@ -147,31 +128,17 @@
 							{
 								"definition": {
 									"fragmentStyle": {
-										"backgroundFragmentImage": {
-										},
 										"borderRadius": "",
 										"borderWidth": "0",
-										"fontFamily": "",
-										"fontSize": "",
-										"fontWeight": "",
-										"height": "",
 										"marginBottom": "",
 										"marginLeft": "",
 										"marginRight": "",
 										"marginTop": "",
-										"maxHeight": "",
-										"maxWidth": "",
-										"minHeight": "",
-										"minWidth": "",
-										"opacity": "100",
-										"overflow": "",
 										"paddingBottom": "",
-										"paddingLeft": "0",
 										"paddingRight": "",
 										"paddingTop": "",
 										"shadow": "",
-										"textAlign": "",
-										"width": ""
+										"textAlign": ""
 									},
 									"fragmentViewports": [
 										{
@@ -183,19 +150,18 @@
 										}
 									],
 									"gutters": true,
+									"indexed": true,
 									"modulesPerRow": 2,
 									"numberOfColumns": 2,
 									"reverseOrder": false,
 									"rowViewports": [
 										{
 											"id": "landscapeMobile",
-											"rowViewportDefinition": {
-											}
+											"rowViewportDefinition": {}
 										},
 										{
 											"id": "portraitMobile",
-											"rowViewportDefinition": {
-											}
+											"rowViewportDefinition": {}
 										},
 										{
 											"id": "tablet",
@@ -212,13 +178,11 @@
 										"definition": {
 											"columnViewports": [
 												{
-													"columnViewportDefinition": {
-													},
+													"columnViewportDefinition": {},
 													"id": "landscapeMobile"
 												},
 												{
-													"columnViewportDefinition": {
-													},
+													"columnViewportDefinition": {},
 													"id": "portraitMobile"
 												},
 												{
@@ -243,14 +207,8 @@
 														{
 															"id": "element-text",
 															"value": {
-																"fragmentLink": {
-																	"value_i18n": {
-																	}
-																},
+																"fragmentLink": {},
 																"text": {
-																	"value": {
-																		"title": "Welcome to FootRay"
-																	},
 																	"value_i18n": {
 																		"en_US": "Welcome to FootRay"
 																	}
@@ -259,31 +217,18 @@
 														}
 													],
 													"fragmentStyle": {
-														"backgroundFragmentImage": {
-														},
 														"borderRadius": "",
 														"borderWidth": "0",
-														"fontFamily": "",
-														"fontSize": "",
-														"fontWeight": "",
-														"height": "",
 														"marginBottom": "3",
 														"marginLeft": "",
 														"marginRight": "",
-														"marginTop": "0",
-														"maxHeight": "",
-														"maxWidth": "",
-														"minHeight": "",
-														"minWidth": "",
-														"opacity": "100",
-														"overflow": "",
 														"paddingBottom": "",
 														"paddingLeft": "",
 														"paddingRight": "",
 														"paddingTop": "",
 														"shadow": "",
-														"textAlign": "left",
-														"width": ""
+														"textAlign": "center",
+														"textColor": "colorNeutral9"
 													},
 													"fragmentViewports": [
 														{
@@ -298,7 +243,42 @@
 															},
 															"id": "tablet"
 														}
-													]
+													],
+													"indexed": true
+												},
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-image"
+													},
+													"fragmentConfig": {
+														"imageSize": "w-0"
+													},
+													"fragmentFields": [
+														{
+															"id": "image-square",
+															"value": {
+																"fragmentImage": {
+																	"url": {
+																		"mapping": {
+																			"fieldKey": "FileEntry_fileURL",
+																			"itemReference": {
+																				"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																				"classPK": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/2022_FIFA_World_Cup_logo.png$]"
+																			}
+																		}
+																	}
+																},
+																"fragmentLink": {}
+															}
+														}
+													],
+													"fragmentStyle": {
+														"textAlign": "center"
+													},
+													"indexed": true
 												},
 												"type": "Fragment"
 											}
@@ -309,13 +289,11 @@
 										"definition": {
 											"columnViewports": [
 												{
-													"columnViewportDefinition": {
-													},
+													"columnViewportDefinition": {},
 													"id": "landscapeMobile"
 												},
 												{
-													"columnViewportDefinition": {
-													},
+													"columnViewportDefinition": {},
 													"id": "portraitMobile"
 												},
 												{
@@ -351,39 +329,22 @@
 																		}
 																	}
 																},
-																"fragmentLink": {
-																	"value_i18n": {
-																	}
-																}
+																"fragmentLink": {}
 															}
 														}
 													],
 													"fragmentStyle": {
-														"backgroundFragmentImage": {
-														},
 														"borderRadius": "",
 														"borderWidth": "0",
-														"fontFamily": "",
-														"fontSize": "",
-														"fontWeight": "",
-														"height": "",
 														"marginBottom": "",
-														"marginLeft": "0",
 														"marginRight": "",
 														"marginTop": "",
-														"maxHeight": "",
-														"maxWidth": "",
-														"minHeight": "",
-														"minWidth": "",
-														"opacity": "100",
-														"overflow": "",
 														"paddingBottom": "",
 														"paddingLeft": "",
 														"paddingRight": "",
 														"paddingTop": "",
 														"shadow": "",
-														"textAlign": "",
-														"width": ""
+														"textAlign": ""
 													},
 													"fragmentViewports": [
 														{
@@ -406,7 +367,8 @@
 															},
 															"id": "tablet"
 														}
-													]
+													],
+													"indexed": true
 												},
 												"type": "Fragment"
 											}
