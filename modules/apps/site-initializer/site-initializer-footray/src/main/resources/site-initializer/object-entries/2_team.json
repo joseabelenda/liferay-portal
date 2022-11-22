@@ -63,7 +63,7 @@
 		{
 			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Australia.png$]",
 			"name": "Australia",
-			"r_groupToTeams_c_groupId": "[$Group#GROUP_E$]"
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_D$]"
 		},
 		{
 			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Denmark.png$]",
