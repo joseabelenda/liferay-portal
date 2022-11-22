@@ -3,7 +3,7 @@
   "jsPath": "index.js",
   "htmlPath": "index.html",
   "cssPath": "index.css",
-  "icon": "paragraph",
-  "name": "paragraph",
-  "type": "component"
+  "icon": "code",
+  "name": "cabecalho",
+  "type": "section"
 }

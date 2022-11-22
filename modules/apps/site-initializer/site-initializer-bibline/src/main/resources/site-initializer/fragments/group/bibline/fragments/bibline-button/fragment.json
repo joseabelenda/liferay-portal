@@ -4,6 +4,6 @@
   "htmlPath": "index.html",
   "cssPath": "index.css",
   "icon": "heading",
-  "name": "CONTACT",
+  "name": "button",
   "type": "component"
 }

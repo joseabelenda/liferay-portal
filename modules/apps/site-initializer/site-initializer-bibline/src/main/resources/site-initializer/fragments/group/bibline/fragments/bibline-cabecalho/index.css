@@ -1,0 +1,27 @@
+#pdr {
+float:right;
+}
+
+#pdr ul {
+    max-width: 8000px;
+  
+    padding: 0;
+}
+
+
+#pdr ul li {
+    display: inline-grid;
+}
+
+#pdr ul li a {
+    color: azure;
+    padding: 35px;
+	display: inline;
+    text-decoration: none;
+    transition: background 0s;
+		
+}
+
+#pdr ul li a:hover {
+    background-color: gray;
+}

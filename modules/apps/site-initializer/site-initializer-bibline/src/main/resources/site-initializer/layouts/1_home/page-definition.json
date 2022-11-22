@@ -1,0 +1,808 @@
+{
+	"pageElement": {
+		"pageElements": [
+			{
+				"definition": {
+					"fragmentStyle": {
+						"backgroundFragmentImage": {
+							"title": {
+								"value": "alto.jpeg"
+							},
+							"url": {
+								"value": "/documents/d/bibline100/alto-jpeg-1?download=true"
+							}
+						},
+						"borderRadius": "",
+						"borderWidth": "0",
+						"shadow": "",
+						"textAlign": ""
+					},
+					"indexed": true,
+					"layout": {
+						"borderWidth": 0,
+						"marginBottom": 0,
+						"marginLeft": 0,
+						"marginRight": 0,
+						"marginTop": 0,
+						"opacity": 100,
+						"paddingBottom": 0,
+						"paddingLeft": 0,
+						"paddingRight": 0,
+						"paddingTop": 0,
+						"widthType": "Fluid"
+					}
+				},
+				"pageElements": [
+					{
+						"definition": {
+							"fragmentStyle": {
+								"borderWidth": "0"
+							},
+							"indexed": true,
+							"layout": {
+								"borderWidth": 0,
+								"marginBottom": 0,
+								"marginLeft": 0,
+								"marginRight": 0,
+								"marginTop": 0,
+								"opacity": 100,
+								"paddingBottom": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
+								"paddingTop": 0,
+								"widthType": "Fluid"
+							}
+						},
+						"pageElements": [
+							{
+								"definition": {
+									"fragment": {
+										"key": "bibline-cabecalho"
+									},
+									"fragmentConfig": {},
+									"fragmentFields": [
+										{
+											"id": "cabecalho",
+											"value": {
+												"fragmentLink": {}
+											}
+										}
+									],
+									"fragmentStyle": {
+										"backgroundColor": "#1C2D41",
+										"borderRadius": "",
+										"height": "100px",
+										"shadow": "",
+										"textAlign": "",
+										"textColor": "#1C2D41"
+									},
+									"indexed": true
+								},
+								"type": "Fragment"
+							}
+						],
+						"type": "Section"
+					},
+					{
+						"definition": {
+							"fragmentStyle": {
+								"backgroundColor": "#1C2D41"
+							},
+							"indexed": true,
+							"layout": {
+								"borderWidth": 0,
+								"marginBottom": 0,
+								"marginLeft": 0,
+								"marginRight": 0,
+								"marginTop": 0,
+								"opacity": 100,
+								"paddingBottom": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
+								"paddingTop": 0,
+								"widthType": "Fluid"
+							}
+						},
+						"pageElements": [
+							{
+								"definition": {
+									"fragment": {
+										"key": "bibline-image"
+									},
+									"fragmentConfig": {},
+									"fragmentFields": [
+										{
+											"id": "imageLogo1",
+											"value": {
+												"fragmentImage": {
+													"description": {
+														"value_i18n": {
+															"en_US": ""
+														}
+													},
+													"url": {
+														"value_i18n": {
+															"en_US": "/documents/d/biblinetest/de61c71b-4c87-4bf4-86ff-268596059046-jpeg?download=true"
+														}
+													}
+												},
+												"fragmentLink": {}
+											}
+										}
+									],
+									"fragmentStyle": {
+										"textColor": "#30313f"
+									},
+									"indexed": true
+								},
+								"type": "Fragment"
+							}
+						],
+						"type": "Section"
+					},
+					{
+						"definition": {
+							"fragmentStyle": {
+								"borderRadius": "",
+								"borderWidth": "0",
+								"shadow": "",
+								"textAlign": ""
+							},
+							"indexed": true,
+							"layout": {
+								"borderWidth": 0,
+								"marginBottom": 0,
+								"marginLeft": 0,
+								"marginRight": 0,
+								"marginTop": 0,
+								"opacity": 100,
+								"paddingBottom": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
+								"paddingTop": 0,
+								"widthType": "Fluid"
+							}
+						},
+						"pageElements": [
+							{
+								"definition": {
+									"fragment": {
+										"key": "bibline-paragraph"
+									},
+									"fragmentConfig": {
+										"headingLevel": "h1"
+									},
+									"fragmentFields": [
+										{
+											"id": "element-text",
+											"value": {
+												"fragmentLink": {},
+												"text": {
+													"value_i18n": {
+														"en_US": "<h1 style=\"text-align:center\"><span class=\"text-primary\">Raising generations</span><br />\n<br />\n<span class=\"text-primary\">of&nbsp;</span><span class=\"text-danger\">CHRIST</span><span class=\"text-primary\">&nbsp;followers<br />\n<br />\nwho bleed</span>&nbsp;<span class=\"text-danger\">BIBLINE</span></h1>\n"
+													}
+												}
+											}
+										}
+									],
+									"fragmentStyle": {
+										"backgroundColor": "#1C2D41",
+										"borderRadius": "",
+										"height": "115px",
+										"shadow": "",
+										"textAlign": "center",
+										"textColor": "#30313f"
+									},
+									"indexed": true
+								},
+								"type": "Fragment"
+							},
+							{
+								"definition": {
+									"fragmentStyle": {
+										"backgroundColor": "#ffffff",
+										"borderRadius": "50px",
+										"borderWidth": "0",
+										"height": "400px",
+										"marginTop": "30.5rem",
+										"opacity": "50",
+										"paddingTop": "5",
+										"shadow": "",
+										"textAlign": ""
+									},
+									"indexed": true,
+									"layout": {
+										"borderWidth": 0,
+										"marginBottom": 0,
+										"marginLeft": 0,
+										"marginRight": 0,
+										"marginTop": 0,
+										"opacity": 50,
+										"paddingBottom": 0,
+										"paddingLeft": 0,
+										"paddingRight": 0,
+										"paddingTop": 4,
+										"widthType": "Fluid"
+									}
+								},
+								"pageElements": [
+									{
+										"definition": {
+											"gutters": true,
+											"indexed": true,
+											"modulesPerRow": 3,
+											"numberOfColumns": 3,
+											"reverseOrder": false,
+											"rowViewports": [
+												{
+													"id": "landscapeMobile",
+													"rowViewportDefinition": {
+														"modulesPerRow": 1
+													}
+												},
+												{
+													"id": "portraitMobile",
+													"rowViewportDefinition": {}
+												},
+												{
+													"id": "tablet",
+													"rowViewportDefinition": {}
+												}
+											],
+											"verticalAlignment": "top"
+										},
+										"pageElements": [
+											{
+												"definition": {
+													"columnViewports": [
+														{
+															"columnViewportDefinition": {
+																"size": 12
+															},
+															"id": "landscapeMobile"
+														},
+														{
+															"columnViewportDefinition": {},
+															"id": "portraitMobile"
+														},
+														{
+															"columnViewportDefinition": {},
+															"id": "tablet"
+														}
+													],
+													"size": 4
+												},
+												"pageElements": [
+													{
+														"definition": {
+															"fragmentStyle": {
+																"borderRadius": "",
+																"borderWidth": "0",
+																"height": "320px",
+																"marginLeft": "15rem",
+																"shadow": "",
+																"textAlign": "",
+																"width": "300px"
+															},
+															"indexed": true,
+															"layout": {
+																"borderWidth": 0,
+																"marginBottom": 0,
+																"marginLeft": 0,
+																"marginRight": 0,
+																"marginTop": 0,
+																"opacity": 100,
+																"paddingBottom": 0,
+																"paddingLeft": 0,
+																"paddingRight": 0,
+																"paddingTop": 0,
+																"widthType": "Fluid"
+															}
+														},
+														"pageElements": [
+															{
+																"definition": {
+																	"fragmentStyle": {
+																		"backgroundFragmentImage": {
+																			"title": {
+																				"value": "ABOUT (3).png"
+																			},
+																			"url": {
+																				"value": "/documents/d/bibline/about-3-png?download=true"
+																			}
+																		},
+																		"borderRadius": "180px",
+																		"borderWidth": "13px",
+																		"height": "250px",
+																		"marginLeft": "2rem",
+																		"shadow": "",
+																		"textAlign": "",
+																		"width": "250px"
+																	},
+																	"indexed": true,
+																	"layout": {
+																		"borderWidth": 0,
+																		"marginBottom": 0,
+																		"marginLeft": 0,
+																		"marginRight": 0,
+																		"marginTop": 0,
+																		"opacity": 100,
+																		"paddingBottom": 0,
+																		"paddingLeft": 0,
+																		"paddingRight": 0,
+																		"paddingTop": 0,
+																		"widthType": "Fluid"
+																	}
+																},
+																"type": "Section"
+															},
+															{
+																"definition": {
+																	"fragmentStyle": {
+																		"borderRadius": "",
+																		"borderWidth": "0",
+																		"height": "70px",
+																		"marginLeft": "2rem",
+																		"shadow": "",
+																		"textAlign": "",
+																		"width": "250px"
+																	},
+																	"indexed": true,
+																	"layout": {
+																		"borderWidth": 0,
+																		"marginBottom": 0,
+																		"marginLeft": 0,
+																		"marginRight": 0,
+																		"marginTop": 0,
+																		"opacity": 100,
+																		"paddingBottom": 0,
+																		"paddingLeft": 0,
+																		"paddingRight": 0,
+																		"paddingTop": 0,
+																		"widthType": "Fluid"
+																	}
+																},
+																"pageElements": [
+																	{
+																		"definition": {
+																			"fragment": {
+																				"key": "bibline-button"
+																			},
+																			"fragmentConfig": {
+																				"headingLevel": "h1"
+																			},
+																			"fragmentFields": [
+																				{
+																					"id": "btn",
+																					"value": {
+																						"fragmentLink": {},
+																						"text": {
+																							"value_i18n": {
+																								"en_US": "<h4><span class=\"text-dark\">ABOUT</span></h4>\n"
+																							}
+																						}
+																					}
+																				}
+																			],
+																			"fragmentStyle": {
+																				"paddingLeft": "4rem"
+																			},
+																			"indexed": true
+																		},
+																		"type": "Fragment"
+																	}
+																],
+																"type": "Section"
+															}
+														],
+														"type": "Section"
+													}
+												],
+												"type": "Column"
+											},
+											{
+												"definition": {
+													"columnViewports": [
+														{
+															"columnViewportDefinition": {
+																"size": 12
+															},
+															"id": "landscapeMobile"
+														},
+														{
+															"columnViewportDefinition": {},
+															"id": "portraitMobile"
+														},
+														{
+															"columnViewportDefinition": {},
+															"id": "tablet"
+														}
+													],
+													"size": 4
+												},
+												"pageElements": [
+													{
+														"definition": {
+															"fragmentStyle": {
+																"borderRadius": "",
+																"borderWidth": "0",
+																"height": "320px",
+																"marginLeft": "9rem",
+																"shadow": "",
+																"textAlign": "",
+																"width": "300px"
+															},
+															"indexed": true,
+															"layout": {
+																"borderWidth": 0,
+																"marginBottom": 0,
+																"marginLeft": 0,
+																"marginRight": 0,
+																"marginTop": 0,
+																"opacity": 100,
+																"paddingBottom": 0,
+																"paddingLeft": 0,
+																"paddingRight": 0,
+																"paddingTop": 0,
+																"widthType": "Fluid"
+															}
+														},
+														"pageElements": [
+															{
+																"definition": {
+																	"fragmentStyle": {
+																		"backgroundFragmentImage": {
+																			"title": {
+																				"value": "invest.jpg"
+																			},
+																			"url": {
+																				"value": "/documents/d/bibline/invest-jpg?download=true"
+																			}
+																		},
+																		"borderRadius": "180px",
+																		"borderWidth": "13px",
+																		"height": "250px",
+																		"marginLeft": "2rem",
+																		"shadow": "",
+																		"textAlign": "",
+																		"width": "250px"
+																	},
+																	"indexed": true,
+																	"layout": {
+																		"borderWidth": 0,
+																		"marginBottom": 0,
+																		"marginLeft": 0,
+																		"marginRight": 0,
+																		"marginTop": 0,
+																		"opacity": 100,
+																		"paddingBottom": 0,
+																		"paddingLeft": 0,
+																		"paddingRight": 0,
+																		"paddingTop": 0,
+																		"widthType": "Fluid"
+																	}
+																},
+																"type": "Section"
+															},
+															{
+																"definition": {
+																	"fragmentStyle": {
+																		"borderRadius": "",
+																		"borderWidth": "0",
+																		"height": "70px",
+																		"marginLeft": "2rem",
+																		"shadow": "",
+																		"textAlign": "",
+																		"width": "250px"
+																	},
+																	"indexed": true,
+																	"layout": {
+																		"borderWidth": 0,
+																		"marginBottom": 0,
+																		"marginLeft": 0,
+																		"marginRight": 0,
+																		"marginTop": 0,
+																		"opacity": 100,
+																		"paddingBottom": 0,
+																		"paddingLeft": 0,
+																		"paddingRight": 0,
+																		"paddingTop": 0,
+																		"widthType": "Fluid"
+																	}
+																},
+																"pageElements": [
+																	{
+																		"definition": {
+																			"fragment": {
+																				"key": "bibline-button"
+																			},
+																			"fragmentConfig": {
+																				"headingLevel": "h1"
+																			},
+																			"fragmentFields": [
+																				{
+																					"id": "btn",
+																					"value": {
+																						"fragmentLink": {},
+																						"text": {
+																							"value_i18n": {
+																								"en_US": "<h4><span class=\"text-danger\">INVEST</span></h4>\n"
+																							}
+																						}
+																					}
+																				}
+																			],
+																			"fragmentStyle": {
+																				"paddingLeft": "4rem"
+																			},
+																			"indexed": true
+																		},
+																		"type": "Fragment"
+																	}
+																],
+																"type": "Section"
+															}
+														],
+														"type": "Section"
+													}
+												],
+												"type": "Column"
+											},
+											{
+												"definition": {
+													"columnViewports": [
+														{
+															"columnViewportDefinition": {
+																"size": 12
+															},
+															"id": "landscapeMobile"
+														},
+														{
+															"columnViewportDefinition": {},
+															"id": "portraitMobile"
+														},
+														{
+															"columnViewportDefinition": {},
+															"id": "tablet"
+														}
+													],
+													"size": 4
+												},
+												"pageElements": [
+													{
+														"definition": {
+															"fragmentStyle": {
+																"borderRadius": "",
+																"borderWidth": "0",
+																"height": "320px",
+																"marginLeft": "9rem",
+																"shadow": "",
+																"textAlign": "",
+																"width": "300px"
+															},
+															"indexed": true,
+															"layout": {
+																"borderWidth": 0,
+																"marginBottom": 0,
+																"marginLeft": 0,
+																"marginRight": 0,
+																"marginTop": 0,
+																"opacity": 100,
+																"paddingBottom": 0,
+																"paddingLeft": 0,
+																"paddingRight": 0,
+																"paddingTop": 0,
+																"widthType": "Fluid"
+															}
+														},
+														"pageElements": [
+															{
+																"definition": {
+																	"fragmentStyle": {
+																		"backgroundFragmentImage": {
+																			"title": {
+																				"value": "EMAIL (2).png"
+																			},
+																			"url": {
+																				"value": "/documents/d/bibline/email-2-png?download=true"
+																			}
+																		},
+																		"borderRadius": "180px",
+																		"borderWidth": "13px",
+																		"height": "250px",
+																		"marginLeft": "2rem",
+																		"shadow": "",
+																		"textAlign": "",
+																		"width": "250px"
+																	},
+																	"indexed": true,
+																	"layout": {
+																		"borderWidth": 0,
+																		"marginBottom": 0,
+																		"marginLeft": 0,
+																		"marginRight": 0,
+																		"marginTop": 0,
+																		"opacity": 100,
+																		"paddingBottom": 0,
+																		"paddingLeft": 0,
+																		"paddingRight": 0,
+																		"paddingTop": 0,
+																		"widthType": "Fluid"
+																	}
+																},
+																"type": "Section"
+															},
+															{
+																"definition": {
+																	"fragmentStyle": {
+																		"borderRadius": "",
+																		"borderWidth": "0",
+																		"height": "70px",
+																		"marginLeft": "2rem",
+																		"shadow": "",
+																		"textAlign": "",
+																		"width": "250px"
+																	},
+																	"indexed": true,
+																	"layout": {
+																		"borderWidth": 0,
+																		"marginBottom": 0,
+																		"marginLeft": 0,
+																		"marginRight": 0,
+																		"marginTop": 0,
+																		"opacity": 100,
+																		"paddingBottom": 0,
+																		"paddingLeft": 0,
+																		"paddingRight": 0,
+																		"paddingTop": 0,
+																		"widthType": "Fluid"
+																	}
+																},
+																"pageElements": [
+																	{
+																		"definition": {
+																			"fragment": {
+																				"key": "bibline-button"
+																			},
+																			"fragmentConfig": {
+																				"headingLevel": "h1"
+																			},
+																			"fragmentFields": [
+																				{
+																					"id": "btn",
+																					"value": {
+																						"fragmentLink": {},
+																						"text": {
+																							"value_i18n": {
+																								"en_US": "<h4><span class=\"text-dark\">CONTACT</span></h4>\n"
+																							}
+																						}
+																					}
+																				}
+																			],
+																			"fragmentStyle": {
+																				"paddingLeft": "4rem"
+																			},
+																			"indexed": true
+																		},
+																		"type": "Fragment"
+																	}
+																],
+																"type": "Section"
+															}
+														],
+														"type": "Section"
+													}
+												],
+												"type": "Column"
+											}
+										],
+										"type": "Row"
+									}
+								],
+								"type": "Section"
+							}
+						],
+						"type": "Section"
+					},
+					{
+						"definition": {
+							"fragmentStyle": {
+								"backgroundColor": "gray900Color",
+								"borderRadius": "",
+								"borderWidth": "0",
+								"height": "200px",
+								"shadow": "",
+								"textAlign": ""
+							},
+							"indexed": true,
+							"layout": {
+								"borderWidth": 0,
+								"marginBottom": 0,
+								"marginLeft": 0,
+								"marginRight": 0,
+								"marginTop": 0,
+								"opacity": 100,
+								"paddingBottom": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
+								"paddingTop": 0,
+								"widthType": "Fluid"
+							}
+						},
+						"pageElements": [
+							{
+								"definition": {
+									"fragment": {
+										"key": "bibline-rodape"
+									},
+									"fragmentConfig": {},
+									"fragmentFields": [
+										{
+											"id": "contact",
+											"value": {
+												"fragmentLink": {
+													"value": {
+														"href": {
+															"mapping": {
+																"itemReference": {
+																	"className": "com.liferay.portal.kernel.model.Layout",
+																	"fields": [
+																		{
+																			"fieldName": "friendlyURL",
+																			"fieldValue": "/about-us"
+																		},
+																		{
+																			"fieldName": "privatePage",
+																			"fieldValue": "false"
+																		},
+																		{
+																			"fieldName": "siteKey",
+																			"fieldValue": "bibline100"
+																		}
+																	]
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										{
+											"id": "Name",
+											"value": {
+												"fragmentLink": {}
+											}
+										},
+										{
+											"id": "Name2",
+											"value": {
+												"fragmentLink": {}
+											}
+										}
+									],
+									"fragmentStyle": {
+										"borderRadius": "",
+										"height": "150px",
+										"shadow": "",
+										"textAlign": ""
+									},
+									"indexed": true
+								},
+								"type": "Fragment"
+							}
+						],
+						"type": "Section"
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "main-2"
+		}
+	}
+}

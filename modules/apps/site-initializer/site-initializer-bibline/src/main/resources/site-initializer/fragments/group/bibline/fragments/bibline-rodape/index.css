@@ -11,9 +11,9 @@
 }
 
 .contact-info a {
-	display: block;
+	display: flex;
 	font-weight: var(--font-weight-bold);
-	transform: translateY(-3px);
+	transform: translateY(3px);
 }
 
 .page-header {
@@ -32,4 +32,8 @@
 	color: var(--white);
 	font-size: var(--h3-font-size);
 	font-weight: var(--font-weight-normal);
+}
+
+.page-header .page-header-title span {
+padding:70px;
 }

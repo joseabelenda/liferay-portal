@@ -3,7 +3,7 @@
   "jsPath": "index.js",
   "htmlPath": "index.html",
   "cssPath": "index.css",
-  "icon": "paragraph",
-  "name": "paragraph",
+  "icon": "code",
+  "name": "image",
   "type": "component"
 }
