@@ -312,7 +312,7 @@
 														"key": "BASIC_COMPONENT-image"
 													},
 													"fragmentConfig": {
-														"imageSize": "w-100"
+														"imageSize": "w-0"
 													},
 													"fragmentFields": [
 														{
@@ -344,7 +344,7 @@
 														"paddingRight": "",
 														"paddingTop": "",
 														"shadow": "",
-														"textAlign": ""
+														"textAlign": "center"
 													},
 													"fragmentViewports": [
 														{
