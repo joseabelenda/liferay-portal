@@ -1,0 +1,44 @@
+[
+	{
+		"key": "group",
+		"name": "Group",
+		"name_i18n": {
+			"en-US": "Group"
+		}
+	},
+	{
+		"key": "roundOf16",
+		"name": "Round of 16",
+		"name_i18n": {
+			"en-US": "Round of 16"
+		}
+	},
+	{
+		"key": "quarterFinal",
+		"name": "Quarter-Final",
+		"name_i18n": {
+			"en-US": "Quarter-Final"
+		}
+	},
+	{
+		"key": "semiFinal",
+		"name": "Semi-Final",
+		"name_i18n": {
+			"en-US": "Semi-Final"
+		}
+	},
+	{
+		"key": "thirdPlace",
+		"name": "Third Place",
+		"name_i18n": {
+			"en-US": "Third Place"
+		}
+	},
+	{
+		"key": "final",
+		"name": "Final",
+		"name_i18n": {
+			"en-US": "Final"
+		}
+	}
+]

@@ -1,0 +1,21 @@
+{
+	"object-entries": [
+		{
+			"date": "2022-11-20T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 2,
+			"r_teamAToMatch_c_teamId": "[$Team#QATAR$]",
+			"r_teamBToMatch_c_teamId": "[$Team#ECUADOR$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-21T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#USA$]",
+			"r_teamBToMatch_c_teamId": "[$Team#WALES$]",
+			"type": "group"
+		}
+	],
+	"objectDefinitionName": "Match"
+}

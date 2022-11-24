@@ -1,0 +1,86 @@
+{
+    "objectFields": [
+        {
+            "indexed": true,
+            "defaultValue": "",
+            "DBType": "Date",
+            "label": {
+                "en_US": "Date"
+            },
+            "type": "Date",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "name": "date",
+            "state": false,
+            "businessType": "Date"
+        },
+        {
+            "indexed": true,
+            "defaultValue": "",
+            "DBType": "Integer",
+            "label": {
+                "en_US": "Goals Team A"
+            },
+            "type": "Integer",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "name": "goalsTeamA",
+            "state": false,
+            "businessType": "Integer"
+        },
+        {
+            "indexed": true,
+            "defaultValue": "",
+            "DBType": "Integer",
+            "label": {
+                "en_US": "Goals Team B"
+            },
+            "type": "Integer",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "name": "goalsTeamB",
+            "state": false,
+            "businessType": "Integer"
+        },
+        {
+            "indexed": true,
+            "defaultValue": "",
+            "DBType": "String",
+            "label": {
+                "en_US": "Type"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "listTypeDefinitionId": "[$LIST_TYPE_DEFINITION_ID:Match Type$]",
+            "name": "type",
+            "state": false,
+            "businessType": "Picklist"
+        }
+    ],
+    "scope": "company",
+    "portlet": false,
+    "parameterRequired": false,
+    "enableObjectEntryHistory": false,
+    "titleObjectFieldName": "goalsTeamA",
+    "active": true,
+    "label": {
+        "en_US": "Match"
+    },
+    "panelCategoryKey": "control_panel.object",
+    "pluralLabel": {
+        "en_US": "Matches"
+    },
+    "system": false,
+    "name": "Match",
+    "status": {
+        "label_i18n": "Approved",
+        "code": 0,
+        "label": "approved"
+    }
+}

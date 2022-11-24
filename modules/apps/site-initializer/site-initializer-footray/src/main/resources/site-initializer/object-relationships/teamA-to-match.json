@@ -1,0 +1,11 @@
+{
+   "deletionType": "cascade",
+   "label": {
+      "en_US": "Team A"
+   },
+   "name": "teamAToMatch",
+   "objectDefinitionId1": "[$OBJECT_DEFINITION_ID:Team$]",
+   "objectDefinitionId2": "[$OBJECT_DEFINITION_ID:Match$]",
+   "objectDefinitionName2": "Match",
+   "type": "oneToMany"
+}

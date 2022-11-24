@@ -1,0 +1,37 @@
+{
+	"object-entries": [
+		{
+			"externalReferenceCode": "GROUP_A",
+			"name": "Group A"
+		},
+		{
+			"externalReferenceCode": "GROUP_B",
+			"name": "Group B"
+		},
+		{
+			"externalReferenceCode": "GROUP_C",
+			"name": "Group C"
+		},
+		{
+			"externalReferenceCode": "GROUP_D",
+			"name": "Group D"
+		},
+		{
+			"externalReferenceCode": "GROUP_E",
+			"name": "Group E"
+		},
+		{
+			"externalReferenceCode": "GROUP_F",
+			"name": "Group F"
+		},
+		{
+			"externalReferenceCode": "GROUP_G",
+			"name": "Group G"
+		},
+		{
+			"externalReferenceCode": "GROUP_H",
+			"name": "Group H"
+		}
+	],
+	"objectDefinitionName": "Group"
+}

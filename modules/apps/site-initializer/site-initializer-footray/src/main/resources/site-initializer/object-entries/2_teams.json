@@ -1,0 +1,197 @@
+{
+	"object-entries": [
+		{
+			"externalReferenceCode": "ECUADOR",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Ecuador.png$]",
+			"name": "Ecuador",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_A$]"
+		},
+		{
+			"externalReferenceCode": "QATAR",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Qatar.png$]",
+			"name": "Qatar",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_A$]"
+		},
+		{
+			"externalReferenceCode": "NETHERLANDS",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Netherlands.png$]",
+			"name": "Netherlands",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_A$]"
+		},
+		{
+			"externalReferenceCode": "SENEGAL",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Senegal.png$]",
+			"name": "Senegal",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_A$]"
+		},
+		{
+			"externalReferenceCode": "ENGLAND",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/England.png$]",
+			"name": "England",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_B$]"
+		},
+		{
+			"externalReferenceCode": "IRAN",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Iran.png$]",
+			"name": "Iran",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_B$]"
+		},
+		{
+			"externalReferenceCode": "USA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/USA.png$]",
+			"name": "USA",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_B$]"
+		},
+		{
+			"externalReferenceCode": "WALES",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Wales.png$]",
+			"name": "Wales",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_B$]"
+		},
+		{
+			"externalReferenceCode": "ARGENTINA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Argentina.png$]",
+			"name": "Argentina",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_C$]"
+		},
+		{
+			"externalReferenceCode": "MEXICO",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Mexico.png$]",
+			"name": "Mexico",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_C$]"
+		},
+		{
+			"externalReferenceCode": "POLAND",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Poland.png$]",
+			"name": "Poland",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_C$]"
+		},
+		{
+			"externalReferenceCode": "SAUDI_ARABIA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Saudi_Arabia.png$]",
+			"name": "Saudi Arabia",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_C$]"
+		},
+		{
+			"externalReferenceCode": "AUSTRALIA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Australia.png$]",
+			"name": "Australia",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_D$]"
+		},
+		{
+			"externalReferenceCode": "DENMARK",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Denmark.png$]",
+			"name": "Denmark",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_D$]"
+		},
+		{
+			"externalReferenceCode": "FRANCE",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/France.png$]",
+			"name": "France",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_D$]"
+		},
+		{
+			"externalReferenceCode": "TUNISIA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Tunisia.png$]",
+			"name": "Tunisia",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_D$]"
+		},
+		{
+			"externalReferenceCode": "COSTA_RICA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Costa_Rica.png$]",
+			"name": "Costa Rica",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_E$]"
+		},
+		{
+			"externalReferenceCode": "GERMANY",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Germany.png$]",
+			"name": "Germany",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_E$]"
+		},
+		{
+			"externalReferenceCode": "JAPAN",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Japan.png$]",
+			"name": "Japan",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_E$]"
+		},
+		{
+			"externalReferenceCode": "SPAIN",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Spain.png$]",
+			"name": "Spain",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_E$]"
+		},
+		{
+			"externalReferenceCode": "BELGIUM",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Belgium.png$]",
+			"name": "Belgium",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_F$]"
+		},
+		{
+			"externalReferenceCode": "CANADA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Canada.png$]",
+			"name": "Canada",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_F$]"
+		},
+		{
+			"externalReferenceCode": "CROATIA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Croatia.png$]",
+			"name": "Croatia",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_F$]"
+		},
+		{
+			"externalReferenceCode": "MAROCCO",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Marocco.png$]",
+			"name": "Marocco",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_F$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Brazil.png$]",
+			"name": "Brazil",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_G$]"
+		},
+		{
+			"externalReferenceCode": "CAMEROON",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Cameroon.png$]",
+			"name": "Cameroon",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_G$]"
+		},
+		{
+			"externalReferenceCode": "SERBIA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Serbia.png$]",
+			"name": "Serbia",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_G$]"
+		},
+		{
+			"externalReferenceCode": "SWITZERLAND",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Switzerland.png$]",
+			"name": "Switzerland",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_G$]"
+		},
+		{
+			"externalReferenceCode": "GHANA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Ghana.png$]",
+			"name": "Ghana",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_H$]"
+		},
+		{
+			"externalReferenceCode": "PORTUGAL",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Portugal.png$]",
+			"name": "Portugal",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_H$]"
+		},
+		{
+			"externalReferenceCode": "SOUTH_KOREA",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/South_Korea.png$]",
+			"name": "South Korea",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_H$]"
+		},
+		{
+			"externalReferenceCode": "URUGUAY",
+			"flag": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/flags/Uruguay.png$]",
+			"name": "Uruguay",
+			"r_groupToTeams_c_groupId": "[$Group#GROUP_H$]"
+		}
+	],
+	"objectDefinitionName": "Team"
+}
