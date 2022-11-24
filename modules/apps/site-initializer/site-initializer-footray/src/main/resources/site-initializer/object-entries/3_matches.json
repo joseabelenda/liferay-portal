@@ -10,10 +10,91 @@
 		},
 		{
 			"date": "2022-11-21T00:00:00Z",
+			"goalsTeamA": 6,
+			"goalsTeamB": 2,
+			"r_teamAToMatch_c_teamId": "[$Team#ENGLAND$]",
+			"r_teamBToMatch_c_teamId": "[$Team#IRAN$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-21T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 2,
+			"r_teamAToMatch_c_teamId": "[$Team#SENEGAL$]",
+			"r_teamBToMatch_c_teamId": "[$Team#NETHERLANDS$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-21T00:00:00Z",
 			"goalsTeamA": 1,
 			"goalsTeamB": 1,
 			"r_teamAToMatch_c_teamId": "[$Team#USA$]",
 			"r_teamBToMatch_c_teamId": "[$Team#WALES$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-22T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 2,
+			"r_teamAToMatch_c_teamId": "[$Team#ARGENTINA$]",
+			"r_teamBToMatch_c_teamId": "[$Team#SAUDI_ARABIA$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-22T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#DENMARK$]",
+			"r_teamBToMatch_c_teamId": "[$Team#TUNISIA$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-22T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#MEXICO$]",
+			"r_teamBToMatch_c_teamId": "[$Team#POLAND$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-22T00:00:00Z",
+			"goalsTeamA": 4,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#FRANCE$]",
+			"r_teamBToMatch_c_teamId": "[$Team#AUSTRALIA$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-23T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#MAROCCO$]",
+			"r_teamBToMatch_c_teamId": "[$Team#CROATIA$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-23T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 2,
+			"r_teamAToMatch_c_teamId": "[$Team#GERMANY$]",
+			"r_teamBToMatch_c_teamId": "[$Team#JAPAN$]",
+			"type": "group"
+		},
+		{
+			"date": "2022-11-23T00:00:00Z",
+			"goalsTeamA": 7,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#SPAIN$]",
+			"r_teamBToMatch_c_teamId": "[$Team#COSTA_RICA$]",
+			"type": "group"
+		}
+		,
+		{
+			"date": "2022-11-23T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#BELGIUM$]",
+			"r_teamBToMatch_c_teamId": "[$Team#CANADA$]",
 			"type": "group"
 		}
 	],
