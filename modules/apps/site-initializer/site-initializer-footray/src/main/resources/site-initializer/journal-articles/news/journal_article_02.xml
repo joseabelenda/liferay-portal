@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element index-type="keyword" instance-id="viretmub" name="title" type="text">
+		<dynamic-content language-id="en_US"><![CDATA[Spain's Magnificent Seven]]></dynamic-content>
+	</dynamic-element>
+    <dynamic-element index-type="keyword" instance-id="viretmub" name="body" type="text">
+		<dynamic-content language-id="en_US"><![CDATA[Spain attempted 1056 passes, had a pass completion of 94% and 72% of possession. They also created a new record in their FIFA World Cup history, scoring seven goals in a 7-0 defeat of Costa Rica.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element index-type="keyword" instance-id="viretmub" name="image" type="image">
+		<dynamic-content language-id="en_US"><![CDATA[[$DOCUMENT_JSON:/site-initializer/documents/group/news_02.png$]]]></dynamic-content>
+	</dynamic-element>
+    
+</root>
