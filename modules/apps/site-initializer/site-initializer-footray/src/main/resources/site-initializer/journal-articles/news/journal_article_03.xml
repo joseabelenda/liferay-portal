@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element index-type="keyword" instance-id="viretmub" name="title" type="text">
+		<dynamic-content language-id="en_US"><![CDATA[IR Iran left this message in their dressing room after today's win over Wales]]></dynamic-content>
+	</dynamic-element>
+    <dynamic-element index-type="keyword" instance-id="viretmub" name="body" type="text">
+		<dynamic-content language-id="en_US"><![CDATA[IR Iran left this message in their dressing room after today's win over Wales. They wrote: All of us in Iran National Football Team, would like to say: Thank you very much. See you nnext game.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element index-type="keyword" instance-id="viretmub" name="image" type="image">
+		<dynamic-content language-id="en_US"><![CDATA[[$DOCUMENT_JSON:/site-initializer/documents/group/news_03.png$]]]></dynamic-content>
+	</dynamic-element>
+    
+</root>
