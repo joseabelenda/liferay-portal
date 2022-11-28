@@ -16,6 +16,21 @@
             "businessType": "Date"
         },
         {
+            "DBType": "Boolean",
+            "businessType": "Boolean",
+            "defaultValue": "",
+            "indexed": true,
+            "indexedAsKeyword": false,
+            "label": {
+                "en_US": "Finished"
+            },
+            "name": "finished",
+            "required": false,
+            "state": false,
+            "system": false,
+            "type": "Boolean"
+        },
+        {
             "indexed": true,
             "defaultValue": "",
             "DBType": "Integer",

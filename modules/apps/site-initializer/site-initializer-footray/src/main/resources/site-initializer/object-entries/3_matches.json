@@ -2,6 +2,7 @@
 	"object-entries": [
 		{
 			"externalReferenceCode": "MATCH1",
+			"finished": true,
 			"date": "2022-11-20T00:00:00Z",
 			"goalsTeamA": 0,
 			"goalsTeamB": 2,
@@ -11,6 +12,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH2",
+			"finished": true,
 			"date": "2022-11-21T00:00:00Z",
 			"goalsTeamA": 6,
 			"goalsTeamB": 2,
@@ -20,6 +22,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH3",
+			"finished": true,
 			"date": "2022-11-21T00:00:00Z",
 			"goalsTeamA": 0,
 			"goalsTeamB": 2,
@@ -29,6 +32,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH4",
+			"finished": true,
 			"date": "2022-11-21T00:00:00Z",
 			"goalsTeamA": 1,
 			"goalsTeamB": 1,
@@ -38,6 +42,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH5",
+			"finished": true,
 			"date": "2022-11-22T00:00:00Z",
 			"goalsTeamA": 1,
 			"goalsTeamB": 2,
@@ -47,6 +52,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH6",
+			"finished": true,
 			"date": "2022-11-22T00:00:00Z",
 			"goalsTeamA": 0,
 			"goalsTeamB": 0,
@@ -56,6 +62,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH7",
+			"finished": true,
 			"date": "2022-11-22T00:00:00Z",
 			"goalsTeamA": 0,
 			"goalsTeamB": 0,
@@ -65,6 +72,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH8",
+			"finished": true,
 			"date": "2022-11-22T00:00:00Z",
 			"goalsTeamA": 4,
 			"goalsTeamB": 1,
@@ -74,6 +82,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH9",
+			"finished": true,
 			"date": "2022-11-23T00:00:00Z",
 			"goalsTeamA": 0,
 			"goalsTeamB": 0,
@@ -83,6 +92,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH10",
+			"finished": true,
 			"date": "2022-11-23T00:00:00Z",
 			"goalsTeamA": 1,
 			"goalsTeamB": 2,
@@ -92,6 +102,7 @@
 		},
 		{
 			"externalReferenceCode": "MATCH11",
+			"finished": true,
 			"date": "2022-11-23T00:00:00Z",
 			"goalsTeamA": 7,
 			"goalsTeamB": 0,
@@ -102,11 +113,212 @@
 		,
 		{
 			"externalReferenceCode": "MATCH12",
+			"finished": true,
 			"date": "2022-11-23T00:00:00Z",
 			"goalsTeamA": 1,
 			"goalsTeamB": 0,
 			"r_teamAToMatch_c_teamId": "[$Team#BELGIUM$]",
 			"r_teamBToMatch_c_teamId": "[$Team#CANADA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH13",
+			"finished": true,
+			"date": "2022-11-24T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#SWITZERLAND$]",
+			"r_teamBToMatch_c_teamId": "[$Team#CAMEROON$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH14",
+			"finished": true,
+			"date": "2022-11-24T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#URUGUAY$]",
+			"r_teamBToMatch_c_teamId": "[$Team#SOUTH_KOREA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH15",
+			"finished": true,
+			"date": "2022-11-24T00:00:00Z",
+			"goalsTeamA": 3,
+			"goalsTeamB": 2,
+			"r_teamAToMatch_c_teamId": "[$Team#PORTUGAL$]",
+			"r_teamBToMatch_c_teamId": "[$Team#GHANA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH16",
+			"finished": true,
+			"date": "2022-11-24T00:00:00Z",
+			"goalsTeamA": 2,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#BRAZIL$]",
+			"r_teamBToMatch_c_teamId": "[$Team#SERBIA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH17",
+			"finished": true,
+			"date": "2022-11-25T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 2,
+			"r_teamAToMatch_c_teamId": "[$Team#WALES$]",
+			"r_teamBToMatch_c_teamId": "[$Team#IRAN$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH18",
+			"finished": true,
+			"date": "2022-11-25T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 3,
+			"r_teamAToMatch_c_teamId": "[$Team#QATAR$]",
+			"r_teamBToMatch_c_teamId": "[$Team#SENEGAL$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH19",
+			"finished": true,
+			"date": "2022-11-25T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#NETHERLANDS$]",
+			"r_teamBToMatch_c_teamId": "[$Team#ECUADOR$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH20",
+			"finished": true,
+			"date": "2022-11-25T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#ENGLAND$]",
+			"r_teamBToMatch_c_teamId": "[$Team#USA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH21",
+			"finished": true,
+			"date": "2022-11-26T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#TUNISIA$]",
+			"r_teamBToMatch_c_teamId": "[$Team#AUSTRALIA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH22",
+			"finished": true,
+			"date": "2022-11-26T00:00:00Z",
+			"goalsTeamA": 2,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#POLAND$]",
+			"r_teamBToMatch_c_teamId": "[$Team#SAUDI_ARABIA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH23",
+			"finished": true,
+			"date": "2022-11-26T00:00:00Z",
+			"goalsTeamA": 2,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#FRANCE$]",
+			"r_teamBToMatch_c_teamId": "[$Team#DENMARK$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH24",
+			"finished": true,
+			"date": "2022-11-26T00:00:00Z",
+			"goalsTeamA": 2,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#ARGENTINA$]",
+			"r_teamBToMatch_c_teamId": "[$Team#MEXICO$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH25",
+			"finished": true,
+			"date": "2022-11-27T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#JAPAN$]",
+			"r_teamBToMatch_c_teamId": "[$Team#COSTA_RICA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH26",
+			"finished": true,
+			"date": "2022-11-27T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 2,
+			"r_teamAToMatch_c_teamId": "[$Team#BELGIUM$]",
+			"r_teamBToMatch_c_teamId": "[$Team#MAROCCO$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH27",
+			"finished": true,
+			"date": "2022-11-27T00:00:00Z",
+			"goalsTeamA": 4,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#CROATIA$]",
+			"r_teamBToMatch_c_teamId": "[$Team#CANADA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH28",
+			"finished": true,
+			"date": "2022-11-27T00:00:00Z",
+			"goalsTeamA": 1,
+			"goalsTeamB": 1,
+			"r_teamAToMatch_c_teamId": "[$Team#SPAIN$]",
+			"r_teamBToMatch_c_teamId": "[$Team#GERMANY$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH29",
+			"finished": false,
+			"date": "2022-11-28T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#CAMEROON$]",
+			"r_teamBToMatch_c_teamId": "[$Team#SERBIA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH30",
+			"finished": false,
+			"date": "2022-11-28T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#SOUTH_KOREA$]",
+			"r_teamBToMatch_c_teamId": "[$Team#GHANA$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH31",
+			"finished": false,
+			"date": "2022-11-28T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#BRAZIL$]",
+			"r_teamBToMatch_c_teamId": "[$Team#SWITZERLAND$]",
+			"type": "group"
+		},
+		{
+			"externalReferenceCode": "MATCH32",
+			"finished": false,
+			"date": "2022-11-28T00:00:00Z",
+			"goalsTeamA": 0,
+			"goalsTeamB": 0,
+			"r_teamAToMatch_c_teamId": "[$Team#PORTUGAL$]",
+			"r_teamBToMatch_c_teamId": "[$Team#URUGUAY$]",
 			"type": "group"
 		}
 	],
