@@ -1,0 +1,187 @@
+{
+	"object-entries": [
+		{
+			"externalReferenceCode": "BRAZIL1",
+			"name": "Alisson",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Alisson.png$]",
+			"position": "GOALKEEPER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL2",
+			"name": "Weverton",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Weverton.png$]",
+			"position": "GOALKEEPER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL3",
+			"name": "Ederson",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Ederson.png$]",
+			"position": "GOALKEEPER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL4",
+			"name": "Danilo",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Danilo.png$]",
+			"position": "DEFENDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL5",
+			"name": "Thiago Silva",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Thiago_Silva.png$]",
+			"position": "DEFENDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL6",
+			"name": "Marquinhos",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Marquinhos.png$]",
+			"position": "DEFENDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL7",
+			"name": "Alex Sandro",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Alex_Sandro.png$]",
+			"position": "DEFENDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL8",
+			"name": "Daniel Alves",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Daniel_Alves.png$]",
+			"position": "DEFENDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL9",
+			"name": "Eder Militão",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Eder_Militao.png$]",
+			"position": "DEFENDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL10",
+			"name": "Alex Telles",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Alex_Telles.png$]",
+			"position": "DEFENDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL11",
+			"name": "Bremer",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Bremer.png$]",
+			"position": "DEFENDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL12",
+			"name": "Casemiro",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Casemiro.png$]",
+			"position": "MIDFIELDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL13",
+			"name": "Lucas Paqueta",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Lucas_Paqueta.png$]",
+			"position": "MIDFIELDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL14",
+			"name": "Fred",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Fred.png$]",
+			"position": "MIDFIELDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL15",
+			"name": "Fabinho",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Fabinho.png$]",
+			"position": "MIDFIELDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL16",
+			"name": "Bruno Guinarães",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Bruno_Guimaraes.png$]",
+			"position": "MIDFIELDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL17",
+			"name": "Everton Ribeiro",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Everton_Ribeiro.png$]",
+			"position": "MIDFIELDER",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL18",
+			"name": "Richarlison",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Richarlison.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL19",
+			"name": "Neymar",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Neymar.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL20",
+			"name": "Raphinha",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Raphinha.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL21",
+			"name": "Gabriel Jesus",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Gabriel_Jesus.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL22",
+			"name": "Antony",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Antony.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL23",
+			"name": "Vinícius Jr",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Vinicius_Jr.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL24",
+			"name": "Rodrygo",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Rodrygo.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL25",
+			"name": "Pedro",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Pedro.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		},
+		{
+			"externalReferenceCode": "BRAZIL26",
+			"name": "Gabriel Martinelli",
+			"photo": "[$DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/players/brazil/Gabriel_Martinelli.png$]",
+			"position": "FORWARD",
+			"r_teamToPlayers_c_teamId": "[$Team#BRAZIL$]"
+		}
+	],
+	"objectDefinitionName": "Player"
+}

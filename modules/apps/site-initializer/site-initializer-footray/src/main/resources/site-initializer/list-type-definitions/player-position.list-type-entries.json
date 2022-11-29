@@ -1,0 +1,30 @@
+[
+	{
+		"key": "GOALKEEPER",
+		"name": "Goalkeeper",
+		"name_i18n": {
+			"en-US": "Goalkeeper"
+		}
+	},
+	{
+		"key": "DEFENDER",
+		"name": "Defender",
+		"name_i18n": {
+			"en-US": "Defender"
+		}
+	},
+	{
+		"key": "MIDFIELDER",
+		"name": "Midfielder",
+		"name_i18n": {
+			"en-US": "Midfielder"
+		}
+	},
+	{
+		"key": "FORWARD",
+		"name": "Forward",
+		"name_i18n": {
+			"en-US": "Forward"
+		}
+	}
+]

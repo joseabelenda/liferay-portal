@@ -1,0 +1,101 @@
+{
+    "objectFields": [
+        {
+            "indexed": true,
+            "defaultValue": "",
+            "objectFieldSettings": [
+                {
+                    "name": "acceptedFileExtensions",
+                    "value": "jpeg, jpg, pdf, png"
+                },
+                {
+                    "name": "maximumFileSize",
+                    "value": "100"
+                },
+                {
+                    "name": "fileSource",
+                    "value": "documentsAndMedia"
+                }
+            ],
+            "DBType": "Long",
+            "label": {
+                "en_US": "Photo"
+            },
+            "type": "Long",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "photo",
+            "state": false,
+            "businessType": "Attachment"
+        },
+        {
+            "indexed": true,
+            "defaultValue": "",
+            "objectFieldSettings": [
+                {
+                    "name": "showCounter",
+                    "value": "false"
+                }
+            ],
+            "DBType": "String",
+            "label": {
+                "en_US": "Name"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "name",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": true,
+            "defaultValue": "",
+            "DBType": "String",
+            "label": {
+                "en_US": "Position"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "listTypeDefinitionId": "[$LIST_TYPE_DEFINITION_ID:Player Position$]",
+            "name": "position",
+            "state": false,
+            "businessType": "Picklist"
+        }
+    ],
+    "scope": "company",
+    "portlet": false,
+    "parameterRequired": false,
+    "enableObjectEntryHistory": false,
+    "titleObjectFieldName": "name",
+    "active": true,
+    "label": {
+        "en_US": "Player"
+    },
+    "panelCategoryKey": "control_panel.object",
+    "pluralLabel": {
+        "en_US": "Players"
+    },
+    "objectLayouts": [],
+    "system": false,
+    "objectViews": [],
+    "name": "Player",
+    "actions": {
+        "permissions": {},
+        "get": {},
+        "update": {},
+        "delete": {}
+    },
+    "status": {
+        "label_i18n": "Approved",
+        "code": 0,
+        "label": "approved"
+    }
+}
