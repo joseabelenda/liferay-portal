@@ -1,0 +1,12 @@
+[
+  {
+    "active": true,
+    "description": "Send push notification with match score",
+    "name": "Push Notification",
+    "objectActionExecutorKey": "webhook",
+    "objectActionTriggerKey": "onAfterUpdate",
+    "parameters": {
+      "url": "http://localhost:3000"
+    }
+  }
+]
