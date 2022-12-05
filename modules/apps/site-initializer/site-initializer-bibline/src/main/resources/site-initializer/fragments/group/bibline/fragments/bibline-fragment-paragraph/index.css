@@ -1,0 +1,12 @@
+h1 {
+color: var(--brand-color-2);
+	line-height:1.6;
+}
+
+#color1 {
+color: var(--brand-color-1);
+}
+
+#color3 {
+color: var(--brand-color-3);
+}

@@ -1,0 +1,22 @@
+.section-header .section-header-logo {
+	height: 130px;
+}
+
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: red;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}

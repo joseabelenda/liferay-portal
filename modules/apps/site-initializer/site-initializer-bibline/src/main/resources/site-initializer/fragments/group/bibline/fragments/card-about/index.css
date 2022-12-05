@@ -1,0 +1,19 @@
+.123 {
+	text-align: center;
+
+}
+
+.img {
+	height:250px;
+	width:250px;
+	border-radius:30px;
+	margin: auto;
+	display: flex;
+  justify-content: center;
+	border: 8px solid #CED0DE;
+}
+
+h3 {
+	text-align:center;
+	margin: auto; 
+}
