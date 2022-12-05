@@ -1,0 +1,13 @@
+.btn{
+	font-size:19.9px;
+	margin:120px
+  width:200px;
+	margin-left:80px;
+	color: var(--brand-color-4);
+	background:transparent;
+	border-radius:20px;
+}
+.btn:hover{
+  background: var(--brand-color-4);
+	color: var(--brand-color-3);
+}

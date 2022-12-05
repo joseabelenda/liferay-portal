@@ -1,0 +1,10 @@
+{
+  "configurationPath": "configuration.json",
+  "jsPath": "index.js",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "icon": "code",
+  "name": "Footer Nav Dark (Copy)",
+  "thumbnailPath": "thumbnail.png",
+  "type": "section"
+}
