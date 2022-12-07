@@ -1,4 +1,4 @@
-Bundle-Name:  Liferay Site Initializer Bibline
+Bundle-Name: Liferay Site Initializer Bibline
 Bundle-SymbolicName: com.liferay.site.initializer.bibline
 Bundle-Version: 1.0.0
 Provide-Capability: liferay.site.initializer
