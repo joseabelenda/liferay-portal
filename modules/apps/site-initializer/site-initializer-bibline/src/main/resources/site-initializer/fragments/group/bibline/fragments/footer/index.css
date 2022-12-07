@@ -1,0 +1,23 @@
+.footerBibline {
+	background-color: var(--brand-color-4);
+	padding: 30px;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	color: var(--brand-color-1);
+	display: grid;
+	grid-template-columns: max-content auto max-content;
+}
+
+.footerBold{
+	font-weight: bold
+}
+
+#year{
+	padding-right: 1vw
+}
+
+#contact{
+	position: relative;
+	margin-top: 50px;
+	text-decoration: none
+}

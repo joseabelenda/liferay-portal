@@ -1,0 +1,11 @@
+.textBibline {
+	position: relative;
+	top: 15vh;
+	left: 800px;
+	max-width: 100vh
+}
+
+#textBiblineUp{
+	font-size: 7vh;
+	margin:0
+}
