@@ -1,4 +1,6 @@
 {
-    "name": "new",
-    "frontendTokensValuesPath": "frontend-tokens-values.json"
+	"defaultStyleBookEntry": true,
+	"frontendTokensValuesPath": "frontend-tokens-values.json",
+	"name": "Bibline",
+	"thumbnailPath": "thumbnail.png"
 }
