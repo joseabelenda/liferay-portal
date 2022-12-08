@@ -1,0 +1,19 @@
+.gota{
+  width: 100px;
+  height: 100px;
+  background: grey;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5%;
+  border: none;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.gota:hover {
+  background: #e34343;
+	color: #68E9F5;
+}
