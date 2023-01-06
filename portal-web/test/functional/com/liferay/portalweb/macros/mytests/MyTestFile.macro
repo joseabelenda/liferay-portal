@@ -51,5 +51,5 @@ definition {
 			key_rowEntry = "${rowEntry}",
 			locator1 = "MyTestFile#ENTRY_CONTENT_ENTRY_EITHER");
 	}
-    
+
 }
