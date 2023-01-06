@@ -1,0 +1,55 @@
+definition {
+
+	macro backSimulation {
+		Click(locator1 = "MyTestFile#BACK_SIMULATION");
+	}
+
+	macro goToApplicationsMenu {
+		Click(locator1 = "MyTestFile#APPLICATIONS_MENU");
+
+		Click(
+			key_applicationsMenuOption = "${applicationsMenuOption}",
+			locator1 = "MyTestFile#APPLICATIONS_MENU_OPTION");
+	}
+
+	macro goToForm {
+		WaitForElementPresent(locator1 = "MyTestFile#BUTTON_HOME");
+
+		Click(locator1 = "MyTestFile#BUTTON_HOME");
+
+		WaitForElementPresent(locator1 = "MyTestFile#BUTTON_CONTENT_DATA");
+
+		Click(locator1 = "MyTestFile#BUTTON_CONTENT_DATA");
+
+		WaitForElementPresent(locator1 = "MyTestFile#BUTTON_FORMS");
+
+		Click(locator1 = "MyTestFile#BUTTON_FORMS");
+	}
+
+	macro openSimulationOptions {
+		Click(locator1 = "MyTestFile#OPEN_SIMULATION");
+
+		Click(
+			key_deviceTypeSimulation = "${deviceTypeSimulation}",
+			locator1 = "MyTestFile#OPTION_SIMULATION");
+	}
+
+	macro setSize {
+		Type(
+			locator1 = "MyTestFile#CUSTOM_SIMULATION_HEIGHT",
+			value1 = "${heightValue}");
+
+		Type(
+			locator1 = "MyTestFile#CUSTOM_SIMULATION_WIDHT",
+			value1 = "${widhtValue}");
+	}
+
+	macro viewEntryContents {
+		AssertElementPresent(
+			key_languageOption = "${languageOption}",
+			key_rowAny = "${rowAny}",
+			key_rowEntry = "${rowEntry}",
+			locator1 = "MyTestFile#ENTRY_CONTENT_ENTRY_EITHER");
+	}
+    
+}
