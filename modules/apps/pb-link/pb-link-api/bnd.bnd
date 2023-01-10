@@ -1,0 +1,8 @@
+Bundle-Name: PB Link API
+Bundle-SymbolicName: com.liferay.pblink.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.pblink.exception,\
+	com.liferay.pblink.model,\
+	com.liferay.pblink.service,\
+	com.liferay.pblink.service.persistence

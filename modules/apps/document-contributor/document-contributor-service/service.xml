@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder auto-namespace-tables="true" dependency-injector="ds" package-path="com.liferay.dc">
+    <namespace>Documents</namespace>
+    <entity local-service="true" name="Documents" remote-service="true">
+
+        <!-- PK fields -->
+
+        <column name="documentId" primary="true" type="long" />
+
+        <!-- Group instance -->
+
+        <column name="groupId" type="long" />
+
+        <!-- Audit fields -->
+
+        <column name="companyId" type="long" />
+        <column name="userId" type="long" />
+        <column name="userName" type="String" />
+        <column name="createDate" type="Date" />
+        <column name="modifiedDate" type="Date" />
+
+        <!-- Other fields -->
+
+        <column name="name" type="String" />
+        <column name="description" type="String" />
+        <column name="link" type="String" />
+        <column name="status" type="int" />
+        <column name="statusByUserId" type="long" />
+        <column name="statusByUserName" type="String" />
+        <column name="statusDate" type="Date" />
+
+        <!-- Order -->
+
+        <order by="desc">
+            <order-column name="createDate" />
+        </order>
+
+        <!-- Finder methods -->
+
+        <finder name="documentId" return-type="Collection">
+            <finder-column name="documentId" />
+        </finder>
+        <finder name="Name" return-type="Collection">
+            <finder-column name="name" />
+        </finder>
+        <finder name="D_D_N" return-type="DocumentEntry">
+            <finder-column name="documentId" />
+            <finder-column name="description" />
+            <finder-column name="name" />
+        </finder>
+
+        <!--    Status Finders    -->
+        <finder name="Status" return-type="Collection">
+            <finder-column name="status" />
+        </finder>
+
+        <finder name="G_S" return-type="Collection">
+            <finder-column name="groupId" />
+            <finder-column name="status" />
+        </finder>
+
+        <!-- References -->
+
+        <reference entity="Group" package-path="com.liferay.portal" />
+        <reference entity="AssetEntry"
+                   package-path="com.liferay.portlet.asset"></reference>
+        <reference entity="AssetLink"
+                   package-path="com.liferay.portlet.asset"></reference>
+        <reference entity="AssetTag"
+                   package-path="com.liferay.portlet.asset"></reference>
+    </entity>
+    <exceptions>
+		<exception>DuplicateDocumentEntryKey</exception>
+	</exceptions>
+</service-builder>
