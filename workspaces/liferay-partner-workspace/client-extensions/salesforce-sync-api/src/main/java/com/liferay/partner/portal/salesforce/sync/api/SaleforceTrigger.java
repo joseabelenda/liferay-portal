@@ -1,5 +1,10 @@
 package com.liferay.partner.portal.salesforce.sync.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.http.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -7,25 +12,58 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class SaleforceTrigger {
 
-  @GetMapping(
-      produces = MediaType.APPLICATION_JSON_VALUE,
-      value = "/salesforce/trigger")
-  public ResponseEntity<String> trigger(
-      @AuthenticationPrincipal Jwt jwt)
-    throws JsonMappingException, JsonProcessingException {
+        @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/salesforce/trigger")
+        public ResponseEntity<String> trigger(@AuthenticationPrincipal Jwt jwt)
+                        throws JsonMappingException, JsonProcessingException {
 
-    System.out.println("JWT ID: " + jwt.getId());
-    System.out.println("JWT SUBJECT: " + jwt.getSubject());
-    System.out.println("JWT CLAIMS: " + jwt.getClaims());
+                System.out.println("JWT ID: " + jwt.getId());
+                System.out.println("JWT SUBJECT: " + jwt.getSubject());
+                System.out.println("JWT CLAIMS: " + jwt.getClaims());
+                System.out.println("JWT TOKEN VALUE: " + jwt.getTokenValue());
 
-    return new ResponseEntity<>(HttpStatus.OK);
-  }
+                updateObjectEntry("30", jwt);
+
+                return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        private void updateObjectEntry(String age, Jwt jwt) {
+                WebClient _webClient = WebClient.builder().baseUrl(
+                                "https://".concat("dxp.lfr.dev")).defaultHeader(
+                                                HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                                .defaultHeader(
+                                                HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                                .build();
+
+                _webClient.post().uri(
+                                "/o/c/employees/").header(
+                                                HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue())
+                                .bodyValue(
+                                                new ObjectMapper().createObjectNode().put(
+                                                                "age", age))
+                                .exchangeToMono(
+                                                r -> {
+                                                        if (r.statusCode().equals(
+                                                                        HttpStatus.OK)) {
+
+                                                                return r.bodyToMono(String.class);
+                                                        } else if (r.statusCode().is4xxClientError()) {
+
+                                                                return Mono.just("Error response");
+                                                        }
+
+                                                        return r.createException().flatMap(
+                                                                        Mono::error);
+                                                })
+                                .doOnNext(
+                                                System.out::println)
+                                .subscribe();
+        }
 
 }
