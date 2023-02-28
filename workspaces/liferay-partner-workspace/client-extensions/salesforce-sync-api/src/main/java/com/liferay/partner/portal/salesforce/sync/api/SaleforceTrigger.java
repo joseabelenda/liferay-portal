@@ -28,22 +28,58 @@ public class SaleforceTrigger {
                 System.out.println("JWT CLAIMS: " + jwt.getClaims());
                 System.out.println("JWT TOKEN VALUE: " + jwt.getTokenValue());
 
-                updateObjectEntry("30", jwt);
+                getObjectEntries("employee",jwt);
+                createObjectEntry("employee","1", jwt);
+                updateObjectEntry("employee",55943,"00", jwt );
+                getObjectEntries("employee",jwt);
 
                 return new ResponseEntity<>(HttpStatus.OK);
+                
         }
+        private void getObjectEntries(String objectName, Jwt jwt) {
+        HttpHeaders headers = new HttpHeaders();
 
-        private void updateObjectEntry(String age, Jwt jwt) {
+        WebClient _webClient = WebClient.builder().baseUrl(
+                        "https://".concat("dxp.lfr.dev")).defaultHeader(
+                        HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                .defaultHeader(
+                        HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+
+        _webClient.get().uri(
+                        "/o/c/"+objectName+"/").header(
+                        HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()).exchangeToMono(
+                        r -> {
+                            if (r.statusCode().equals(
+                                    HttpStatus.OK)) {
+
+                                return r.bodyToMono(String.class);
+                            } else if (r.statusCode().is4xxClientError()) {
+
+                                return Mono.just("Error response");
+                            }
+
+                            return r.createException().flatMap(
+                                    Mono::error);
+                        })
+                .doOnNext(
+                        System.out::println)
+                .subscribe();
+    }
+        private void createObjectEntry(String objectName,String age, Jwt jwt) {
+
+                HttpHeaders headers = new HttpHeaders();
+
                 WebClient _webClient = WebClient.builder().baseUrl(
                                 "https://".concat("dxp.lfr.dev")).defaultHeader(
-                                                HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                                        HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                                 .defaultHeader(
                                                 HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                                 .build();
 
                 _webClient.post().uri(
-                                "/o/c/employees/").header(
-                                                HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue())
+                                "/o/c/"+objectName+"/").header(
+                                         HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue())
                                 .bodyValue(
                                                 new ObjectMapper().createObjectNode().put(
                                                                 "age", age))
@@ -64,6 +100,41 @@ public class SaleforceTrigger {
                                 .doOnNext(
                                                 System.out::println)
                                 .subscribe();
+        }
+        private void updateObjectEntry(String objectName,int objectEntryId, String age, Jwt jwt){
+
+            HttpHeaders headers = new HttpHeaders();
+
+            WebClient _webClient = WebClient.builder().baseUrl(
+                            "https://".concat("dxp.lfr.dev")).defaultHeader(
+                            HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                    .defaultHeader(
+                            HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                    .build();
+
+            _webClient.patch().uri(
+                            "/o/c/"+objectName+"/"+objectEntryId).header(
+                            HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue())
+                    .bodyValue(
+                            new ObjectMapper().createObjectNode().put(
+                                    "age", age))
+                    .exchangeToMono(
+                            r -> {
+                                if (r.statusCode().equals(
+                                        HttpStatus.OK)) {
+
+                                    return r.bodyToMono(String.class);
+                                } else if (r.statusCode().is4xxClientError()) {
+
+                                    return Mono.just("Error response");
+                                }
+
+                                return r.createException().flatMap(
+                                        Mono::error);
+                            })
+                    .doOnNext(
+                            System.out::println)
+                    .subscribe();
         }
 
 }
