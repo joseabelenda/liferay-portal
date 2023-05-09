@@ -65,7 +65,7 @@ public class CPOptionCategoriesImporter {
 		return cpOptionCategories;
 	}
 
-	private CPOptionCategory _importCPOptionCategory(
+	private CPOptionCategory madeo_importCPOptionCategory(
 			JSONObject jsonObject, double defaultPriority,
 			ServiceContext serviceContext)
 		throws PortalException {

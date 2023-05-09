@@ -18,6 +18,7 @@ import com.liferay.commerce.account.constants.CommerceAccountConstants;
 import com.liferay.commerce.account.util.CommerceAccountRoleHelper;
 import com.liferay.commerce.currency.service.CommerceCurrencyLocalService;
 import com.liferay.commerce.initializer.util.CPDefinitionsImporter;
+import com.liferay.commerce.initializer.util.CPOptionCategoriesImporter;
 import com.liferay.commerce.initializer.util.CPOptionsImporter;
 import com.liferay.commerce.initializer.util.CPSpecificationOptionsImporter;
 import com.liferay.commerce.initializer.util.CommerceInventoryWarehousesImporter;
@@ -125,7 +126,33 @@ public class CommerceSiteInitializer {
 			bundle, channel.getId(), documentsStringUtilReplaceValues,
 			objectDefinitionIdsStringUtilReplaceValues, serviceContext,
 			servletContext);
+
+		_addCommerceSpecificationsGroup(  serviceContext,
+			 servletContext);
 	}
+
+	private void _addCommerceSpecificationsGroup(
+		 ServiceContext serviceContext,
+		ServletContext servletContext)
+		throws Exception {
+
+		String resourcePath = "/site-initializer/commerce-specification-groups.json";
+
+		String json = SiteInitializerUtil.read(resourcePath, servletContext);
+
+		if (json == null) {
+			return;
+		}
+
+		JSONArray jsonArray = _jsonFactory.createJSONArray(json);
+		
+		_cpOptionCategoriesImporter.importCPOptionCategories(
+			jsonArray, serviceContext.getScopeGroupId(),
+			serviceContext.getUserId());
+
+	}
+
+
 
 	public void addPortletSettings(
 			ClassLoader classLoader, ServiceContext serviceContext,
@@ -872,6 +899,9 @@ public class CommerceSiteInitializer {
 
 	@Reference
 	private CPSpecificationOptionsImporter _cpSpecificationOptionsImporter;
+
+	@Reference
+	private CPOptionCategoriesImporter _cpOptionCategoriesImporter;
 
 	@Reference
 	private GroupLocalService _groupLocalService;
