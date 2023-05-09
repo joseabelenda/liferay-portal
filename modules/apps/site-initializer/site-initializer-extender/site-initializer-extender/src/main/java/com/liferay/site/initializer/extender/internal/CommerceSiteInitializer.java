@@ -127,32 +127,8 @@ public class CommerceSiteInitializer {
 			objectDefinitionIdsStringUtilReplaceValues, serviceContext,
 			servletContext);
 
-		_addCommerceSpecificationsGroup(  serviceContext,
-			 servletContext);
+		_addCommerceSpecificationsGroup(serviceContext, servletContext);
 	}
-
-	private void _addCommerceSpecificationsGroup(
-		 ServiceContext serviceContext,
-		ServletContext servletContext)
-		throws Exception {
-
-		String resourcePath = "/site-initializer/commerce-specification-groups.json";
-
-		String json = SiteInitializerUtil.read(resourcePath, servletContext);
-
-		if (json == null) {
-			return;
-		}
-
-		JSONArray jsonArray = _jsonFactory.createJSONArray(json);
-		
-		_cpOptionCategoriesImporter.importCPOptionCategories(
-			jsonArray, serviceContext.getScopeGroupId(),
-			serviceContext.getUserId());
-
-	}
-
-
 
 	public void addPortletSettings(
 			ClassLoader classLoader, ServiceContext serviceContext,
@@ -337,6 +313,26 @@ public class CommerceSiteInitializer {
 			productSpecificationResource.postProductIdProductSpecification(
 				cpDefinition.getCPDefinitionId(), productSpecification);
 		}
+	}
+
+	private void _addCommerceSpecificationsGroup(
+			ServiceContext serviceContext, ServletContext servletContext)
+		throws Exception {
+
+		String resourcePath =
+			"/site-initializer/commerce-specification-groups.json";
+
+		String json = SiteInitializerUtil.read(resourcePath, servletContext);
+
+		if (json == null) {
+			return;
+		}
+
+		JSONArray jsonArray = _jsonFactory.createJSONArray(json);
+
+		_cpOptionCategoriesImporter.importCPOptionCategories(
+			jsonArray, serviceContext.getScopeGroupId(),
+			serviceContext.getUserId());
 	}
 
 	private void _addCPDefinitions(
@@ -892,6 +888,9 @@ public class CommerceSiteInitializer {
 	private CPMeasurementUnitLocalService _cpMeasurementUnitLocalService;
 
 	@Reference
+	private CPOptionCategoriesImporter _cpOptionCategoriesImporter;
+
+	@Reference
 	private CPOptionLocalService _cpOptionLocalService;
 
 	@Reference
@@ -899,9 +898,6 @@ public class CommerceSiteInitializer {
 
 	@Reference
 	private CPSpecificationOptionsImporter _cpSpecificationOptionsImporter;
-
-	@Reference
-	private CPOptionCategoriesImporter _cpOptionCategoriesImporter;
 
 	@Reference
 	private GroupLocalService _groupLocalService;
