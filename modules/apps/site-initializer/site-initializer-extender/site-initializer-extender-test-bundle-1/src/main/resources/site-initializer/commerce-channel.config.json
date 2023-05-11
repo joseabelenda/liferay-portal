@@ -4,7 +4,6 @@
 	},
 	"com.liferay.commerce.order": {
 		"checkoutRequestedDeliveryDateEnabled": true,
-		"commerceSiteType": "B2B",
 		"guestCheckoutEnabled": false,
 		"hideShippingPriceZero": true,
 		"showPurchaseOrderNumber": true

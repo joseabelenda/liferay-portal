@@ -589,24 +589,18 @@ public class BundleSiteInitializerTest {
 	private void _assertCommerceChannelConfiguration1(
 			CommerceChannel commerceChannel)
 		throws Exception {
-
-
 		Settings settings = _settingsFactory.getSettings(
 			new GroupServiceSettingsLocator(
 				commerceChannel.getGroupId(),
 				CommerceConstants.SERVICE_NAME_COMMERCE_ORDER));
 
-
 			ModifiableSettings modifiableSettings =
 			settings.getModifiableSettings();
-
 
 		Assert.assertEquals(
 			"true",
 			modifiableSettings.getValue(
 				"checkoutRequestedDeliveryDateEnabled", null));
-		Assert.assertEquals(
-			"B2B", modifiableSettings.getValue("commerceSiteType", null));
 		Assert.assertEquals(
 			"false", modifiableSettings.getValue("guestCheckoutEnabled", null));
 		Assert.assertEquals(
@@ -614,19 +608,6 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			"true",
 			modifiableSettings.getValue("showPurchaseOrderNumber", null));
-
-
-		settings = _settingsFactory.getSettings(
-			new GroupServiceSettingsLocator(
-				commerceChannel.getGroupId(),
-				CommerceAccountConstants.SERVICE_NAME));
-
-		modifiableSettings = settings.getModifiableSettings();
-
-		Assert.assertEquals(
-			"2", modifiableSettings.getValue("commerceSiteType", null));
-
-
 
 		settings = _settingsFactory.getSettings(
 			new GroupServiceSettingsLocator(
@@ -637,6 +618,16 @@ public class BundleSiteInitializerTest {
 
 		Assert.assertEquals(
 			"3", modifiableSettings.getValue("accountCartMaxAllowed", null));
+
+		settings = _settingsFactory.getSettings(
+			new GroupServiceSettingsLocator(
+				commerceChannel.getGroupId(),
+				CommerceAccountConstants.SERVICE_NAME));
+
+		modifiableSettings = settings.getModifiableSettings();
+
+		Assert.assertEquals(
+			"2", modifiableSettings.getValue("commerceSiteType", null));
 	}
 
 	private void _assertCommerceChannelConfiguration2(
@@ -656,8 +647,6 @@ public class BundleSiteInitializerTest {
 			modifiableSettings.getValue(
 				"checkoutRequestedDeliveryDateEnabled", null));
 		Assert.assertEquals(
-			"B2X", modifiableSettings.getValue("commerceSiteType", null));
-		Assert.assertEquals(
 			"true", modifiableSettings.getValue("guestCheckoutEnabled", null));
 		Assert.assertEquals(
 			"false",
@@ -675,6 +664,16 @@ public class BundleSiteInitializerTest {
 
 		Assert.assertEquals(
 			"5", modifiableSettings.getValue("accountCartMaxAllowed", null));
+
+		settings = _settingsFactory.getSettings(
+			new GroupServiceSettingsLocator(
+				commerceChannel.getGroupId(),
+				CommerceAccountConstants.SERVICE_NAME));
+
+		modifiableSettings = settings.getModifiableSettings();
+
+		Assert.assertEquals(
+			"1", modifiableSettings.getValue("commerceSiteType", null));
 	}
 
 	private void _assertCommerceInventoryWarehouse() {
