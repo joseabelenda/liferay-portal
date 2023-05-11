@@ -25,6 +25,7 @@ import com.liferay.client.extension.model.ClientExtensionEntry;
 import com.liferay.client.extension.service.ClientExtensionEntryLocalService;
 import com.liferay.client.extension.type.CustomElementCET;
 import com.liferay.client.extension.type.factory.CETFactory;
+import com.liferay.commerce.account.constants.CommerceAccountConstants;
 import com.liferay.commerce.constants.CommerceConstants;
 import com.liferay.commerce.inventory.model.CommerceInventoryWarehouse;
 import com.liferay.commerce.inventory.service.CommerceInventoryWarehouseLocalService;
@@ -589,13 +590,16 @@ public class BundleSiteInitializerTest {
 			CommerceChannel commerceChannel)
 		throws Exception {
 
+
 		Settings settings = _settingsFactory.getSettings(
 			new GroupServiceSettingsLocator(
 				commerceChannel.getGroupId(),
 				CommerceConstants.SERVICE_NAME_COMMERCE_ORDER));
 
-		ModifiableSettings modifiableSettings =
+
+			ModifiableSettings modifiableSettings =
 			settings.getModifiableSettings();
+
 
 		Assert.assertEquals(
 			"true",
@@ -610,6 +614,19 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			"true",
 			modifiableSettings.getValue("showPurchaseOrderNumber", null));
+
+
+		settings = _settingsFactory.getSettings(
+			new GroupServiceSettingsLocator(
+				commerceChannel.getGroupId(),
+				CommerceAccountConstants.SERVICE_NAME));
+
+		modifiableSettings = settings.getModifiableSettings();
+
+		Assert.assertEquals(
+			"2", modifiableSettings.getValue("commerceSiteType", null));
+
+
 
 		settings = _settingsFactory.getSettings(
 			new GroupServiceSettingsLocator(
