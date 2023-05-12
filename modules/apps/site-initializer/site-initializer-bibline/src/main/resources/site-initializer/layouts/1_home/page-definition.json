@@ -1,0 +1,815 @@
+{
+	"pageElement": {
+		"pageElements": [{
+			"definition": {
+				"indexed": true,
+				"layout": {
+					"borderWidth": 0,
+					"marginBottom": 0,
+					"marginLeft": 0,
+					"marginRight": 0,
+					"marginTop": 0,
+					"opacity": 100,
+					"paddingBottom": 0,
+					"paddingLeft": 0,
+					"paddingRight": 0,
+					"paddingTop": 0,
+					"widthType": "Fluid"
+				}
+			},
+			"pageElements": [
+				{
+					"definition": {
+						"fragmentStyle": {
+							"backgroundColor": "brandColor1",
+							"height": "300px"
+						},
+						"indexed": true,
+						"layout": {
+							"borderWidth": 0,
+							"marginBottom": 0,
+							"marginLeft": 0,
+							"marginRight": 0,
+							"marginTop": 0,
+							"opacity": 100,
+							"paddingBottom": 0,
+							"paddingLeft": 0,
+							"paddingRight": 0,
+							"paddingTop": 0,
+							"widthType": "Fluid"
+						}
+					},
+					"pageElements": [
+						{
+							"definition": {
+								"gutters": true,
+								"indexed": true,
+								"modulesPerRow": 3,
+								"numberOfColumns": 3,
+								"reverseOrder": false,
+								"rowViewports": [
+									{
+										"id": "landscapeMobile",
+										"rowViewportDefinition": {
+											"modulesPerRow": 1
+										}
+									},
+									{
+										"id": "portraitMobile",
+										"rowViewportDefinition": {}
+									},
+									{
+										"id": "tablet",
+										"rowViewportDefinition": {}
+									}
+								],
+								"verticalAlignment": "top"
+							},
+							"pageElements": [
+								{
+									"definition": {
+										"columnViewports": [
+											{
+												"columnViewportDefinition": {
+													"size": 12
+												},
+												"id": "landscapeMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "portraitMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "tablet"
+											}
+										],
+										"size": 4
+									},
+									"pageElements": [
+										{
+											"definition": {
+												"fragment": {
+													"key": "footer-nav-dark-(copy)-0"
+												},
+												"fragmentConfig": {},
+												"fragmentFields": [
+													{
+														"id": "01-logo",
+														"value": {
+															"fragmentImage": {
+																"description": {
+																	"value_i18n": {
+																		"en_US": ""
+																	}
+																},
+																"url": {
+																	"value_i18n": {
+																		"en_US": "/documents/d/bi/d02316a8-a548-4725-91dd-52b31b4ecec8-jpeg?download=true"
+																	}
+																}
+															},
+															"fragmentLink": {}
+														}
+													}
+												],
+												"indexed": true
+											},
+											"type": "Fragment"
+										}
+									],
+									"type": "Column"
+								},
+								{
+									"definition": {
+										"columnViewports": [
+											{
+												"columnViewportDefinition": {
+													"size": 12
+												},
+												"id": "landscapeMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "portraitMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "tablet"
+											}
+										],
+										"size": 4
+									},
+									"type": "Column"
+								},
+								{
+									"definition": {
+										"columnViewports": [
+											{
+												"columnViewportDefinition": {
+													"size": 12
+												},
+												"id": "landscapeMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "portraitMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "tablet"
+											}
+										],
+										"size": 4
+									},
+									"pageElements": [
+										{
+											"definition": {
+												"fragment": {
+													"key": "footer-nav-dark-(copy)"
+												},
+												"fragmentConfig": {},
+												"fragmentFields": [
+													{
+														"id": "01-logo",
+														"value": {
+															"fragmentLink": {},
+															"text": {
+																"value_i18n": {
+																	"en_US": "{\"fileEntryId\":\"63490\",\"url\":\"/documents/d/bi/314482996_851881442923416_6371147322208918134_n-jpg?download=true\"}"
+																}
+															}
+														}
+													},
+													{
+														"id": "01-link",
+														"value": {
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value": "https://www.instagram.com/projeto.solideogloria/"
+																	}
+																}
+															}
+														}
+													},
+													{
+														"id": "01link",
+														"value": {
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value": "#"
+																	}
+																}
+															}
+														}
+													},
+													{
+														"id": "3-link",
+														"value": {
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value": "#"
+																	}
+																}
+															}
+														}
+													},
+													{
+														"id": "02link",
+														"value": {
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value": "#"
+																	}
+																}
+															}
+														}
+													},
+													{
+														"id": "03-link",
+														"value": {
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value_i18n": {
+																			"0": "#",
+																			"en_US": "http://localhost:8080/mbjl-"
+																		}
+																	}
+																}
+															},
+															"text": {
+																"value_i18n": {
+																	"en_US": "INVEST"
+																}
+															}
+														}
+													},
+													{
+														"id": "1link",
+														"value": {
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value": "#"
+																	}
+																}
+															}
+														}
+													},
+													{
+														"id": "02-link",
+														"value": {
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value_i18n": {
+																			"22": "o",
+																			"23": "m",
+																			"24": "/",
+																			"25": "e",
+																			"26": "s",
+																			"27": "p",
+																			"28": "a",
+																			"29": "c",
+																			"30": "o",
+																			"31": "m",
+																			"10": "w",
+																			"32": "o",
+																			"11": ".",
+																			"33": "n",
+																			"12": "f",
+																			"34": "t",
+																			"13": "a",
+																			"35": "e",
+																			"14": "c",
+																			"36": "m",
+																			"15": "e",
+																			"37": "o",
+																			"16": "b",
+																			"38": "r",
+																			"17": "o",
+																			"39": "i",
+																			"18": "o",
+																			"19": "k",
+																			"0": "h",
+																			"1": "t",
+																			"2": "t",
+																			"3": "p",
+																			"4": "s",
+																			"5": ":",
+																			"6": "/",
+																			"en_US": "https://www.facebook.com/espacomontemoriah/",
+																			"7": "/",
+																			"8": "w",
+																			"9": "w",
+																			"40": "a",
+																			"41": "h",
+																			"20": ".",
+																			"42": "/",
+																			"21": "c"
+																		}
+																	}
+																}
+															}
+														}
+													},
+													{
+														"id": "2link",
+														"value": {
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value": "#"
+																	}
+																}
+															}
+														}
+													}
+												],
+												"fragmentStyle": {
+													"fontFamily": "fontFamilyBase",
+													"fontSize": "fontSizeLg",
+													"fontWeight": "fontWeightLighter",
+													"paddingRight": "4"
+												},
+												"indexed": true
+											},
+											"type": "Fragment"
+										}
+									],
+									"type": "Column"
+								}
+							],
+							"type": "Row"
+						}
+					],
+					"type": "Section"
+				},
+				{
+					"definition": {
+						"fragmentStyle": {
+							"backgroundFragmentImage": {
+								"title": {
+									"value": "Bible-book-cross_1920x1200.jpg"
+								},
+								"url": {
+									"value": "/documents/d/bi/bible-book-cross_1920x1200-jpg?download=true"
+								}
+							},
+							"height": "1333px"
+						},
+						"indexed": true,
+						"layout": {
+							"borderWidth": 0,
+							"marginBottom": 0,
+							"marginLeft": 0,
+							"marginRight": 0,
+							"marginTop": 0,
+							"opacity": 100,
+							"paddingBottom": 0,
+							"paddingLeft": 0,
+							"paddingRight": 0,
+							"paddingTop": 0,
+							"widthType": "Fluid"
+						}
+					},
+					"type": "Section"
+				},
+				{
+					"definition": {
+						"cssClasses": [
+							"borda"
+						],
+						"customCSS": ".borda{\n border-radius:0px 0px 40px 40px;\n}",
+						"fragmentStyle": {
+							"backgroundColor": "brandColor1",
+							"height": "72px",
+							"marginBottom": "93rem",
+							"marginTop": "-1352px"
+						},
+						"indexed": true,
+						"layout": {
+							"borderWidth": 0,
+							"marginBottom": 0,
+							"marginLeft": 0,
+							"marginRight": 0,
+							"marginTop": 0,
+							"opacity": 100,
+							"paddingBottom": 0,
+							"paddingLeft": 0,
+							"paddingRight": 0,
+							"paddingTop": 0,
+							"widthType": "Fluid"
+						}
+					},
+					"type": "Section"
+				},
+				{
+					"definition": {
+						"fragmentStyle": {
+							"height": "311px",
+							"marginBottom": "73rem",
+							"marginTop": "-1633px"
+						},
+						"indexed": true,
+						"layout": {
+							"borderWidth": 0,
+							"marginBottom": 0,
+							"marginLeft": 0,
+							"marginRight": 0,
+							"marginTop": 0,
+							"opacity": 100,
+							"paddingBottom": 0,
+							"paddingLeft": 0,
+							"paddingRight": 0,
+							"paddingTop": 0,
+							"widthType": "Fluid"
+						}
+					},
+					"pageElements": [
+						{
+							"definition": {
+								"cssClasses": [
+									"font"
+								],
+								"fragment": {
+									"key": "text"
+								},
+								"fragmentConfig": {},
+								"fragmentFields": [],
+								"fragmentStyle": {
+									"marginTop": "-69px",
+									"paddingRight": "15rem"
+								},
+								"indexed": true
+							},
+							"type": "Fragment"
+						}
+					],
+					"type": "Section"
+				},
+				{
+					"definition": {
+						"cssClasses": [
+							"curva"
+						],
+						"customCSS": ".curva {\n border-radius:40px 40px 0px 0px;\n}",
+						"fragmentStyle": {
+							"backgroundColor": "brandColor1",
+							"height": "493px",
+							"marginBottom": "8",
+							"marginTop": "-613px",
+							"opacity": "80",
+							"paddingTop": "3"
+						},
+						"indexed": true,
+						"layout": {
+							"borderWidth": 0,
+							"marginBottom": 10,
+							"marginLeft": 0,
+							"marginRight": 0,
+							"marginTop": 0,
+							"opacity": 80,
+							"paddingBottom": 0,
+							"paddingLeft": 0,
+							"paddingRight": 0,
+							"paddingTop": 1,
+							"widthType": "Fluid"
+						}
+					},
+					"pageElements": [
+						{
+							"definition": {
+								"fragmentStyle": {
+									"opacity": "180",
+									"paddingTop": "5"
+								},
+								"gutters": true,
+								"indexed": true,
+								"modulesPerRow": 3,
+								"numberOfColumns": 3,
+								"reverseOrder": false,
+								"rowViewports": [
+									{
+										"id": "landscapeMobile",
+										"rowViewportDefinition": {
+											"modulesPerRow": 1
+										}
+									},
+									{
+										"id": "portraitMobile",
+										"rowViewportDefinition": {}
+									},
+									{
+										"id": "tablet",
+										"rowViewportDefinition": {}
+									}
+								],
+								"verticalAlignment": "top"
+							},
+							"pageElements": [
+								{
+									"definition": {
+										"columnViewports": [
+											{
+												"columnViewportDefinition": {
+													"size": 12
+												},
+												"id": "landscapeMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "portraitMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "tablet"
+											}
+										],
+										"size": 4
+									},
+									"pageElements": [
+										{
+											"definition": {
+												"fragment": {
+													"key": "card-(copy)"
+												},
+												"fragmentConfig": {
+													"imageSize": "w-100"
+												},
+												"fragmentFields": [
+													{
+														"id": "04-link",
+														"value": {
+															"fragmentLink": {},
+															"text": {
+																"value_i18n": {
+																	"en_US": "ABOUT"
+																}
+															}
+														}
+													},
+													{
+														"id": "01-img",
+														"value": {
+															"fragmentImage": {
+																"description": {
+																	"value_i18n": {
+																		"en_US": ""
+																	}
+																},
+																"url": {
+																	"value_i18n": {
+																		"en_US": "/documents/d/bi/gota-de-agua-png?download=true"
+																	}
+																}
+															},
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value_i18n": {
+																			"en_US": "https://www.instagram.com/projeto.solideogloria/"
+																		}
+																	}
+																}
+															}
+														}
+													}
+												],
+												"fragmentStyle": {
+													"backgroundFragmentImage": {},
+													"paddingLeft": "37%"
+												},
+												"indexed": true
+											},
+											"type": "Fragment"
+										}
+									],
+									"type": "Column"
+								},
+								{
+									"definition": {
+										"columnViewports": [
+											{
+												"columnViewportDefinition": {
+													"size": 12
+												},
+												"id": "landscapeMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "portraitMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "tablet"
+											}
+										],
+										"size": 4
+									},
+									"pageElements": [
+										{
+											"definition": {
+												"fragment": {
+													"key": "card-(copy)"
+												},
+												"fragmentConfig": {
+													"imageSize": "w-100"
+												},
+												"fragmentFields": [
+													{
+														"id": "04-link",
+														"value": {
+															"fragmentLink": {},
+															"text": {
+																"value_i18n": {
+																	"en_US": "INVEST"
+																}
+															}
+														}
+													},
+													{
+														"id": "01-img",
+														"value": {
+															"fragmentImage": {
+																"description": {
+																	"value_i18n": {
+																		"en_US": ""
+																	}
+																},
+																"url": {
+																	"value_i18n": {
+																		"en_US": "/documents/d/bi/grafico-de-barras-png?download=true"
+																	}
+																}
+															},
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value_i18n": {
+																			"en_US": "http://localhost:8080/mbjl-"
+																		}
+																	},
+																	"target": "Blank"
+																}
+															}
+														}
+													}
+												],
+												"fragmentStyle": {
+													"paddingLeft": "30%"
+												},
+												"indexed": true
+											},
+											"type": "Fragment"
+										}
+									],
+									"type": "Column"
+								},
+								{
+									"definition": {
+										"columnViewports": [
+											{
+												"columnViewportDefinition": {
+													"size": 12
+												},
+												"id": "landscapeMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "portraitMobile"
+											},
+											{
+												"columnViewportDefinition": {},
+												"id": "tablet"
+											}
+										],
+										"size": 4
+									},
+									"pageElements": [
+										{
+											"definition": {
+												"fragment": {
+													"key": "card-(copy)"
+												},
+												"fragmentConfig": {
+													"imageSize": "w-100"
+												},
+												"fragmentFields": [
+													{
+														"id": "04-link",
+														"value": {
+															"fragmentLink": {},
+															"text": {
+																"value_i18n": {
+																	"en_US": "CONTACT"
+																}
+															}
+														}
+													},
+													{
+														"id": "01-img",
+														"value": {
+															"fragmentImage": {
+																"description": {
+																	"value_i18n": {
+																		"en_US": ""
+																	}
+																},
+																"url": {
+																	"value_i18n": {
+																		"en_US": "/documents/d/bi/o-email-png?download=true"
+																	}
+																}
+															},
+															"fragmentLink": {
+																"value": {
+																	"href": {
+																		"value_i18n": {
+																			"en_US": "https://www.facebook.com/espacomontemoriah/"
+																		}
+																	}
+																}
+															}
+														}
+													}
+												],
+												"fragmentStyle": {
+													"borderColor": "#ffffff",
+													"paddingLeft": "25%",
+													"width": "480px"
+												},
+												"indexed": true
+											},
+											"type": "Fragment"
+										}
+									],
+									"type": "Column"
+								}
+							],
+							"type": "Row"
+						}
+					],
+					"type": "Section"
+				},
+				{
+					"definition": {
+						"cssClasses": [
+							"curva",
+							"cinza"
+						],
+						"customCSS": ".cinza {\n  z-index: 3;\n  position: relative;\n}",
+						"fragmentStyle": {
+							"backgroundColor": "brandColor2",
+							"height": "312px",
+							"marginTop": "-145px"
+						},
+						"indexed": true,
+						"layout": {
+							"borderWidth": 0,
+							"marginBottom": 0,
+							"marginLeft": 0,
+							"marginRight": 0,
+							"marginTop": 0,
+							"opacity": 100,
+							"paddingBottom": 0,
+							"paddingLeft": 0,
+							"paddingRight": 0,
+							"paddingTop": 0,
+							"widthType": "Fluid"
+						}
+					},
+					"pageElements": [
+						{
+							"definition": {
+								"fragment": {
+									"key": "frase"
+								},
+								"fragmentConfig": {},
+								"fragmentFields": [],
+								"fragmentStyle": {
+									"paddingLeft": "1%"
+								},
+								"indexed": true
+							},
+							"type": "Fragment"
+						}
+					],
+					"type": "Section"
+				}
+			],
+			"type": "Section"
+		}],
+		"type": "Root"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "public"
+		}
+	}
+}

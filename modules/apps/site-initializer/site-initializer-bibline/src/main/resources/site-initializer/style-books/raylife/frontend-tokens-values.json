@@ -1,0 +1,66 @@
+{
+    "spacer10": {
+        "cssVariableMapping": "spacer-10",
+        "value": "10rem"
+    },
+    "spacer0": {
+        "cssVariableMapping": "spacer-0",
+        "value": "0"
+    },
+    "borderRadius": {
+        "cssVariableMapping": "border-radius",
+        "value": "0.25rem"
+    },
+    "brandColor2": {
+        "cssVariableMapping": "brand-color-2",
+        "value": "#AECDEE"
+    },
+    "spacer1": {
+        "cssVariableMapping": "spacer-1",
+        "value": "0.25rem"
+    },
+    "brandColor3": {
+        "cssVariableMapping": "brand-color-3",
+        "value": "#BF4350"
+    },
+    "spacer2": {
+        "cssVariableMapping": "spacer-2",
+        "value": "2.5rem"
+    },
+    "spacer3": {
+        "cssVariableMapping": "spacer-3",
+        "value": "-1rem"
+    },
+    "brandColor1": {
+        "cssVariableMapping": "brand-color-1",
+        "value": "#1B2D41"
+    },
+    "spacer4": {
+        "cssVariableMapping": "spacer-4",
+        "value": "8.5rem"
+    },
+    "spacer5": {
+        "cssVariableMapping": "spacer-5",
+        "value": "3rem"
+    },
+    "spacer6": {
+        "cssVariableMapping": "spacer-6",
+        "value": "2.5rem"
+    },
+    "brandColor4": {
+        "cssVariableMapping": "brand-color-4",
+        "value": "#FFFFFF"
+    },
+    "spacer7": {
+        "cssVariableMapping": "spacer-7",
+        "value": "6rem"
+    },
+    "spacer8": {
+        "cssVariableMapping": "spacer-8",
+        "value": "7.5rem"
+    },
+    "spacer9": {
+        "cssVariableMapping": "spacer-9",
+        "value": "9rem"
+    }
+}

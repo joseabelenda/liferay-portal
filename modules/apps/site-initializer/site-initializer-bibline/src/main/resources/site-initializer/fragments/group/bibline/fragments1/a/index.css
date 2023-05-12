@@ -1,0 +1,15 @@
+.contact{
+  background-color: transparent;
+  color: black;
+	padding:2px;
+	margin:5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+	border-radius:5px;
+	margin-left:900px;
+}
+
+.contact:hover {
+  color: white;
+}
