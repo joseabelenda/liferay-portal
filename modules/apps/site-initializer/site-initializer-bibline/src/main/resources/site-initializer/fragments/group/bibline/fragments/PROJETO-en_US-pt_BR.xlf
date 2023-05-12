@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-US" trgLang="pt-BR" version="2.0">
+	<file id="com.liferay.portal.kernel.model.Layout:12">
+		<unit id="Layout_name">
+			<segment>
+				<source><![CDATA[PROJETO]]></source>
+				<target><![CDATA[PROJETO]]></target>
+			</segment>
+		</unit>
+		<unit id="FragmentEntryLink_42454:02-copy">
+			<segment>
+				<source><![CDATA[
+				<h3>
+					©2022 Bibline Fundation
+				</h3>
+				<h5>
+					ㅤㅤㅤㅤAlameda Pau Ferro, 835 - Guabiraba,<br>ㅤㅤㅤㅤ Recife - PE, 54789-770
+				</h5>
+			]]></source>
+				<target><![CDATA[
+				<h3>
+					©2022 Bibline Fundation
+				</h3>
+				<h5>
+					ㅤㅤㅤㅤAlameda Pau Ferro, 835 - Guabiraba,<br>ㅤㅤㅤㅤ Recife - PE, 54789-770
+				</h5>
+			]]></target>
+			</segment>
+		</unit>
+		<unit id="FragmentEntryLink_42460:element-text">
+			<segment>
+				<source><![CDATA[<h1><span class="text-primary">Raising Generations</span></h1>
+]]></source>
+				<target><![CDATA[<h1><span class="text-primary">Raising Generations</span></h1>
+]]></target>
+			</segment>
+		</unit>
+		<unit id="FragmentEntryLink_42462:element-text">
+			<segment>
+				<source><![CDATA[<h1><span class="text-primary">of </span><span class="text-danger">CHRIST</span><span class="text-primary"> followers</span></h1>
+]]></source>
+				<target><![CDATA[<h1><span class="text-primary">of </span><span class="text-danger">CHRIST</span><span class="text-primary"> followers</span></h1>
+]]></target>
+			</segment>
+		</unit>
+		<unit id="FragmentEntryLink_42464:element-text">
+			<segment>
+				<source><![CDATA[<h1><span class="text-dark">who bleed </span><span class="text-danger">BIBLINE</span></h1>
+]]></source>
+				<target><![CDATA[<h1><span class="text-dark">who bleed </span><span class="text-danger">BIBLINE</span></h1>
+]]></target>
+			</segment>
+		</unit>
+	</file>
+</xliff>

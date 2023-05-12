@@ -1,0 +1,600 @@
+{
+	"pageElement": {
+		"pageElements": [
+			{
+				"definition": {
+					"fragmentStyle": {
+						"backgroundFragmentImage": {
+							"title": {
+								"value": "IMG_5941.jpg"
+							},
+							"url": {
+								"value": "/documents/d/guest/img_5941-jpg?download=true"
+							}
+						},
+						"borderRadius": "",
+						"borderWidth": "0",
+						"marginTop": "5px",
+						"shadow": "",
+						"textAlign": "center"
+					},
+					"indexed": true,
+					"layout": {
+						"borderWidth": 0,
+						"marginBottom": 0,
+						"marginLeft": 0,
+						"marginRight": 0,
+						"marginTop": 0,
+						"opacity": 100,
+						"paddingBottom": 0,
+						"paddingLeft": 0,
+						"paddingRight": 0,
+						"paddingTop": 0,
+						"widthType": "Fluid"
+					}
+				},
+				"pageElements": [
+					{
+						"definition": {
+							"fragmentStyle": {
+								"borderRadius": "",
+								"borderWidth": "0",
+								"shadow": "",
+								"textAlign": ""
+							},
+							"indexed": true,
+							"layout": {
+								"borderWidth": 0,
+								"marginBottom": 0,
+								"marginLeft": 0,
+								"marginRight": 0,
+								"marginTop": 0,
+								"opacity": 100,
+								"paddingBottom": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
+								"paddingTop": 0,
+								"widthType": "Fluid"
+							}
+						},
+						"pageElements": [
+							{
+								"definition": {
+									"fragment": {
+										"key": "bibline-heading"
+									},
+									"fragmentConfig": {},
+									"fragmentFields": [
+										{
+											"id": "01-logo",
+											"value": {
+												"fragmentImage": {
+													"description": {
+														"value_i18n": {
+															"en_US": ""
+														}
+													},
+													"url": {
+														"value_i18n": {
+															"en_US": "/documents/d/dgsdg/1668774179382-png?download=true"
+														}
+													}
+												},
+												"fragmentLink": {}
+											}
+										},
+										{
+											"id": "01-link",
+											"value": {
+												"fragmentLink": {
+													"value": {
+														"href": {
+															"value": "#"
+														}
+													}
+												}
+											}
+										},
+										{
+											"id": "03-link",
+											"value": {
+												"fragmentLink": {}
+											}
+										},
+										{
+											"id": "02-link",
+											"value": {
+												"fragmentLink": {
+													"value": {
+														"href": {
+															"value": "#"
+														}
+													}
+												}
+											}
+										}
+									],
+									"indexed": true
+								},
+								"type": "Fragment"
+							}
+						],
+						"type": "Section"
+					},
+					{
+						"definition": {
+							"fragmentStyle": {
+								"backgroundColor": "#272833",
+								"borderRadius": "",
+								"borderWidth": "0",
+								"height": "90px",
+								"shadow": "",
+								"textAlign": ""
+							},
+							"indexed": true,
+							"layout": {
+								"borderWidth": 0,
+								"marginBottom": 0,
+								"marginLeft": 0,
+								"marginRight": 0,
+								"marginTop": 0,
+								"opacity": 100,
+								"paddingBottom": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
+								"paddingTop": 0,
+								"widthType": "Fluid"
+							}
+						},
+						"type": "Section"
+					},
+					{
+						"definition": {
+							"fragmentStyle": {
+								"borderRadius": "",
+								"borderWidth": "0",
+								"marginTop": "-4.4rem",
+								"shadow": "",
+								"textAlign": ""
+							},
+							"indexed": true,
+							"layout": {
+								"borderWidth": 0,
+								"marginBottom": 0,
+								"marginLeft": 0,
+								"marginRight": 0,
+								"marginTop": 0,
+								"opacity": 100,
+								"paddingBottom": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
+								"paddingTop": 0,
+								"widthType": "Fluid"
+							}
+						},
+						"pageElements": [
+							{
+								"definition": {
+									"fragment": {
+										"key": "paragraph-(copy)"
+									},
+									"fragmentConfig": {},
+									"fragmentFields": [
+										{
+											"id": "element-text",
+											"value": {
+												"fragmentLink": {},
+												"text": {
+													"value_i18n": {
+														"en_US": "<h1><span class=\"text-primary\">Raising generation</span></h1>\n"
+													}
+												}
+											}
+										}
+									],
+									"fragmentStyle": {
+										"borderRadius": "",
+										"shadow": "",
+										"textAlign": "center"
+									},
+									"indexed": true
+								},
+								"type": "Fragment"
+							},
+							{
+								"definition": {
+									"fragment": {
+										"key": "paragraph-(copy)"
+									},
+									"fragmentConfig": {},
+									"fragmentFields": [
+										{
+											"id": "element-text",
+											"value": {
+												"fragmentLink": {},
+												"text": {
+													"value_i18n": {
+														"en_US": "<h1><span class=\"text-primary\">of </span><span class=\"text-danger\">CHRIST</span><span class=\"text-primary\"> followers</span></h1>\n"
+													}
+												}
+											}
+										}
+									],
+									"indexed": true
+								},
+								"type": "Fragment"
+							},
+							{
+								"definition": {
+									"fragment": {
+										"key": "paragraph-(copy)"
+									},
+									"fragmentConfig": {},
+									"fragmentFields": [
+										{
+											"id": "element-text",
+											"value": {
+												"fragmentLink": {},
+												"text": {
+													"value_i18n": {
+														"en_US": "<h1>who bleed <span class=\"text-danger\">BIBLINE</span></h1>\n"
+													}
+												}
+											}
+										}
+									],
+									"indexed": true
+								},
+								"type": "Fragment"
+							}
+						],
+						"type": "Section"
+					},
+					{
+						"definition": {
+							"fragmentStyle": {
+								"backgroundColor": "#272833",
+								"borderRadius": "",
+								"borderWidth": "0",
+								"height": "360px",
+								"marginTop": "33.4rem",
+								"opacity": "77",
+								"shadow": "",
+								"textAlign": ""
+							},
+							"indexed": true,
+							"layout": {
+								"borderWidth": 0,
+								"marginBottom": 0,
+								"marginLeft": 0,
+								"marginRight": 0,
+								"marginTop": 0,
+								"opacity": 77,
+								"paddingBottom": 0,
+								"paddingLeft": 0,
+								"paddingRight": 0,
+								"paddingTop": 0,
+								"widthType": "Fluid"
+							}
+						},
+						"pageElements": [
+							{
+								"definition": {
+									"fragmentStyle": {
+										"borderRadius": "",
+										"marginTop": "0px",
+										"paddingTop": "35px",
+										"shadow": "",
+										"textAlign": ""
+									},
+									"gutters": true,
+									"indexed": true,
+									"modulesPerRow": 3,
+									"numberOfColumns": 3,
+									"reverseOrder": false,
+									"rowViewports": [
+										{
+											"id": "landscapeMobile",
+											"rowViewportDefinition": {
+												"modulesPerRow": 1
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"rowViewportDefinition": {}
+										},
+										{
+											"id": "tablet",
+											"rowViewportDefinition": {}
+										}
+									],
+									"verticalAlignment": "top"
+								},
+								"pageElements": [
+									{
+										"definition": {
+											"columnViewports": [
+												{
+													"columnViewportDefinition": {
+														"size": 12
+													},
+													"id": "landscapeMobile"
+												},
+												{
+													"columnViewportDefinition": {},
+													"id": "portraitMobile"
+												},
+												{
+													"columnViewportDefinition": {},
+													"id": "tablet"
+												}
+											],
+											"size": 4
+										},
+										"pageElements": [
+											{
+												"definition": {
+													"fragmentStyle": {
+														"borderColor": "#ffffff",
+														"borderRadius": "24px",
+														"borderWidth": "8px",
+														"height": "300px",
+														"marginLeft": "12rem",
+														"marginTop": "0px",
+														"shadow": "",
+														"textAlign": "",
+														"width": "270px"
+													},
+													"indexed": true,
+													"layout": {
+														"borderColor": "#ffffff",
+														"borderWidth": 0,
+														"marginBottom": 0,
+														"marginLeft": 0,
+														"marginRight": 0,
+														"marginTop": 0,
+														"opacity": 100,
+														"paddingBottom": 0,
+														"paddingLeft": 0,
+														"paddingRight": 0,
+														"paddingTop": 0,
+														"widthType": "Fluid"
+													}
+												},
+												"pageElements": [
+													{
+														"definition": {
+															"fragment": {
+																"key": "card-about"
+															},
+															"fragmentConfig": {
+																"imageSize": "w-100"
+															},
+															"fragmentFields": [
+																{
+																	"id": "01-img",
+																	"value": {
+																		"fragmentImage": {
+																			"title": {
+																				"value": "information.png"
+																			},
+																			"url": {
+																				"value_i18n": {
+																					"en_US": "/documents/d/dvx/information-png?download=true"
+																				}
+																			}
+																		},
+																		"fragmentLink": {}
+																	}
+																}
+															],
+															"indexed": true
+														},
+														"type": "Fragment"
+													}
+												],
+												"type": "Section"
+											}
+										],
+										"type": "Column"
+									},
+									{
+										"definition": {
+											"columnViewports": [
+												{
+													"columnViewportDefinition": {
+														"size": 12
+													},
+													"id": "landscapeMobile"
+												},
+												{
+													"columnViewportDefinition": {},
+													"id": "portraitMobile"
+												},
+												{
+													"columnViewportDefinition": {},
+													"id": "tablet"
+												}
+											],
+											"size": 4
+										},
+										"pageElements": [
+											{
+												"definition": {
+													"fragmentStyle": {
+														"borderColor": "#ffffff",
+														"borderRadius": "24px",
+														"borderWidth": "8px",
+														"height": "300px",
+														"marginLeft": "12rem",
+														"marginTop": "0px",
+														"shadow": "",
+														"textAlign": "",
+														"width": "270px"
+													},
+													"indexed": true,
+													"layout": {
+														"borderColor": "#ffffff",
+														"borderWidth": 0,
+														"marginBottom": 0,
+														"marginLeft": 0,
+														"marginRight": 0,
+														"marginTop": 0,
+														"opacity": 100,
+														"paddingBottom": 0,
+														"paddingLeft": 0,
+														"paddingRight": 0,
+														"paddingTop": 0,
+														"widthType": "Fluid"
+													}
+												},
+												"pageElements": [
+													{
+														"definition": {
+															"fragment": {
+																"key": "card-invest"
+															},
+															"fragmentConfig": {
+																"imageSize": "w-100"
+															},
+															"fragmentFields": [
+																{
+																	"id": "01-img",
+																	"value": {
+																		"fragmentImage": {
+																			"url": {
+																				"value_i18n": {
+																					"en_US": "/documents/d/dgsdg/invested-1-jpg?download=true"
+																				}
+																			}
+																		},
+																		"fragmentLink": {}
+																	}
+																}
+															],
+															"indexed": true
+														},
+														"type": "Fragment"
+													}
+												],
+												"type": "Section"
+											}
+										],
+										"type": "Column"
+									},
+									{
+										"definition": {
+											"columnViewports": [
+												{
+													"columnViewportDefinition": {
+														"size": 12
+													},
+													"id": "landscapeMobile"
+												},
+												{
+													"columnViewportDefinition": {},
+													"id": "portraitMobile"
+												},
+												{
+													"columnViewportDefinition": {},
+													"id": "tablet"
+												}
+											],
+											"size": 4
+										},
+										"pageElements": [
+											{
+												"definition": {
+													"fragmentStyle": {
+														"borderColor": "#ffffff",
+														"borderRadius": "24px",
+														"borderWidth": "8px",
+														"height": "300px",
+														"marginLeft": "12rem",
+														"marginTop": "0px",
+														"shadow": "",
+														"textAlign": "",
+														"width": "270px"
+													},
+													"indexed": true,
+													"layout": {
+														"borderColor": "#ffffff",
+														"borderWidth": 0,
+														"marginBottom": 0,
+														"marginLeft": 0,
+														"marginRight": 0,
+														"marginTop": 0,
+														"opacity": 100,
+														"paddingBottom": 0,
+														"paddingLeft": 0,
+														"paddingRight": 0,
+														"paddingTop": 0,
+														"widthType": "Fluid"
+													}
+												},
+												"pageElements": [
+													{
+														"definition": {
+															"fragment": {
+																"key": "card-contact"
+															},
+															"fragmentConfig": {
+																"imageSize": "w-100"
+															},
+															"fragmentFields": [
+																{
+																	"id": "01-img",
+																	"value": {
+																		"fragmentImage": {
+																			"url": {
+																				"value_i18n": {
+																					"en_US": "/documents/d/dgsdg/contato-1-jpg?download=true"
+																				}
+																			}
+																		},
+																		"fragmentLink": {}
+																	}
+																}
+															],
+															"indexed": true
+														},
+														"type": "Fragment"
+													}
+												],
+												"type": "Section"
+											}
+										],
+										"type": "Column"
+									}
+								],
+								"type": "Row"
+							}
+						],
+						"type": "Section"
+					},
+					{
+						"definition": {
+							"fragment": {
+								"key": "inferior-address"
+							},
+							"fragmentConfig": {},
+							"fragmentFields": [
+								{
+									"id": "02-copy",
+									"value": {
+										"fragmentLink": {}
+									}
+								}
+							],
+							"indexed": true
+						},
+						"type": "Fragment"
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	}
+	
+}
