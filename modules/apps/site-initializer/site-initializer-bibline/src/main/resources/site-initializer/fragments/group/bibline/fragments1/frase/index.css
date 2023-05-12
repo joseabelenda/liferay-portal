@@ -1,0 +1,24 @@
+.bom{
+	margin:25px;
+	padding:25px;
+	margin-left:300px;
+	color: var(--brand-color-1);
+}
+p{
+  margin-left:393px;
+}
+.contact{
+  background-color: transparent;
+  color: var(--brand-color-1);
+	padding:2px;
+	margin:5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+	border-radius:5px;
+	margin-left:2390px;
+}
+
+.contact:hover {
+  color: var(--brand-color-4);
+}

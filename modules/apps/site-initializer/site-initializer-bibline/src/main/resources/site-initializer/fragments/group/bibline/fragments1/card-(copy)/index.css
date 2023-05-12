@@ -1,0 +1,30 @@
+.card3{
+  text-decoration:none;
+	width:380px;
+	height:400px;
+	border:20px solid var(--brand-color-4);
+}
+.card3:hover,.card3:hover .link{
+	background: var(--brand-color-4);
+	opacity:95%;
+  color: var(--brand-color-3);	
+	font-size:30px;
+	
+}
+.img {
+	margin:auto;
+	width:340px;
+	height:300px;
+	align-items:center;
+	
+}
+
+.card-body{
+	width:341px;
+  text-align:center;	
+}
+.link{
+  color: var(--brand-color-2);	
+	font-size:20px;
+	margin:auto;
+}

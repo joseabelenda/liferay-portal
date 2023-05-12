@@ -1,0 +1,10 @@
+{
+  "configurationPath": "configuration.json",
+  "jsPath": "index.js",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "icon": "separator",
+  "name": "Spacer (Copy)",
+  "thumbnailPath": "thumbnail.png",
+  "type": "component"
+}

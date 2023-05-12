@@ -1,0 +1,16 @@
+.foto1{
+  margin:22px;
+	padding:50px;
+
+	margin-left:19%;
+	margin-right:55%;	
+}
+img{
+  margin:10px;
+	padding:70px;
+	background:red;
+}
+.foto1:hover{
+	height:300px;
+	width:250px;
+}
