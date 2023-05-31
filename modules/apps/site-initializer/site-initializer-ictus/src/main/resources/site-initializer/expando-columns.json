@@ -43,7 +43,7 @@
 	},
 	{
 		"dataType": 16,
-		"defaultValue": ["", "Male","Female"],
+		"defaultValue": ["", "male","female"],
 		"modelResource": "com.liferay.portal.kernel.model.User",
 		"name": "gender",
 		"properties": {
@@ -143,7 +143,7 @@
 	},
 	{
 		"dataType": 16,
-		"defaultValue": ["", "Married","Divorced","Single","Widowed"],
+		"defaultValue": ["", "married","divorced","single","widowed"],
 		"modelResource": "com.liferay.portal.kernel.model.User",
 		"name": "marital-status",
 		"properties": {
