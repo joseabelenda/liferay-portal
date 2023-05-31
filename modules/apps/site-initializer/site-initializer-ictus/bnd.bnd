@@ -1,0 +1,6 @@
+Bundle-Name: Liferay Site Initializer Ictus
+Bundle-SymbolicName: com.liferay.site.initializer.ictus
+Bundle-Version: 1.0.0
+Liferay-Site-Initializer-Name: Ictus
+Provide-Capability: liferay.site.initializer
+Web-ContextPath: /site-initializer-ictus

@@ -1,0 +1,54 @@
+{
+    "externalReferenceCode": "member-status",
+    "listTypeEntries": [
+      {
+        "externalReferenceCode": "communion",
+        "key": "communion",
+        "name": "Communion",
+        "name_i18n": {
+          "en-US": "Communion",
+          "pt-BR": "Em Comunhão"
+        }
+      },
+      {
+        "externalReferenceCode": "discipline",
+        "key": "discipline",
+        "name": "Discipline",
+        "name_i18n": {
+          "en-US": "Discipline",
+          "pt-BR": "Em Disciplina"
+        }
+      },
+      {
+        "externalReferenceCode": "transferring",
+        "key": "transferring",
+        "name": "Transferring",
+        "name_i18n": {
+          "en-US": "Transferring",
+          "pt-BR": "Em Transferência"
+        }
+      },
+      {
+        "externalReferenceCode": "inactive",
+        "key": "inactive",
+        "name": "Inactive",
+        "name_i18n": {
+          "en-US": "Inactive",
+          "pt-BR": "Inativo"
+        }
+      },
+      {
+        "externalReferenceCode": "apart",
+        "key": "apart",
+        "name": "Apart",
+        "name_i18n": {
+          "en-US": "Apart",
+          "pt-BR": "Em Separado"
+        }
+      }
+    ],
+    "name": "Member Status",
+    "name_i18n": {
+      "en-US": "Member Status"
+    }
+  }

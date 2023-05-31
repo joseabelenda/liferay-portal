@@ -1,0 +1,172 @@
+{
+  "active": true,
+  "defaultLanguageId": "en_US",
+  "enableCategorization": true,
+  "enableComments": true,
+  "enableObjectEntryHistory": true,
+  "externalReferenceCode": "member-registration",
+  "label": {
+    "en_US": "Member Registration"
+  },
+  "name": "MemberRegistration",
+  "objectFields": [
+    {
+      "DBType": "Date",
+      "businessType": "Date",
+      "indexed": false,
+      "indexedAsKeyword": false,
+      "label": {
+        "en_US": "Create Date"
+      },
+      "name": "createDate",
+      "required": false,
+      "state": false,
+      "system": true,
+      "type": "Date"
+    },
+    {
+      "DBType": "String",
+      "businessType": "Text",
+      "indexed": false,
+      "indexedAsKeyword": false,
+      "label": {
+        "en_US": "Author"
+      },
+      "name": "creator",
+      "required": false,
+      "state": false,
+      "system": true,
+      "type": "String"
+    },
+    {
+      "DBType": "Date",
+      "businessType": "Date",
+      "indexed": true,
+      "indexedAsKeyword": false,
+      "label": {
+        "en_US": "Date"
+      },
+      "name": "date",
+      "required": true,
+      "state": false,
+      "system": false,
+      "type": "Date"
+    },
+    {
+      "DBType": "Date",
+      "businessType": "Date",
+      "indexed": true,
+      "indexedAsKeyword": false,
+      "indexedLanguageId": "",
+      "label": {
+        "en_US": "Document Date"
+      },
+      "name": "documentDate",
+      "required": false,
+      "state": false,
+      "system": false,
+      "type": "Date"
+    },
+    {
+      "DBType": "String",
+      "businessType": "Text",
+      "indexed": true,
+      "indexedAsKeyword": false,
+      "indexedLanguageId": "en_US",
+      "label": {
+        "en_US": "Document Number"
+      },
+      "name": "documentNumber",
+      "required": false,
+      "state": false,
+      "system": false,
+      "type": "String"
+    },
+    {
+      "DBType": "String",
+      "businessType": "Text",
+      "indexed": false,
+      "indexedAsKeyword": false,
+      "label": {
+        "en_US": "External Reference Code"
+      },
+      "name": "externalReferenceCode",
+      "required": false,
+      "state": false,
+      "system": true,
+      "type": "String"
+    },
+    {
+      "DBType": "Long",
+      "businessType": "LongInteger",
+      "indexed": true,
+      "indexedAsKeyword": true,
+      "label": {
+        "en_US": "ID"
+      },
+      "name": "id",
+      "required": false,
+      "state": false,
+      "system": true,
+      "type": "Long"
+    },
+    {
+      "DBType": "Date",
+      "businessType": "Date",
+      "indexed": false,
+      "indexedAsKeyword": false,
+      "label": {
+        "en_US": "Modified Date"
+      },
+      "name": "modifiedDate",
+      "required": false,
+      "state": false,
+      "system": true,
+      "type": "Date"
+    },
+    {
+      "DBType": "Clob",
+      "businessType": "LongText",
+      "indexed": true,
+      "indexedAsKeyword": false,
+      "indexedLanguageId": "en_US",
+      "label": {
+        "en_US": "Note"
+      },
+      "name": "note",
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": false
+        }
+      ],
+      "required": false,
+      "state": false,
+      "system": false,
+      "type": "Clob"
+    },
+    {
+      "DBType": "String",
+      "businessType": "Text",
+      "indexed": false,
+      "indexedAsKeyword": false,
+      "label": {
+        "en_US": "Status"
+      },
+      "name": "status",
+      "required": false,
+      "state": false,
+      "system": true,
+      "type": "String"
+    }
+  ],
+  "panelCategoryKey": "control_panel.object",
+  "parameterRequired": false,
+  "pluralLabel": {
+    "en_US": "Member Registrations"
+  },
+  "portlet": false,
+  "scope": "company",
+  "system": false,
+  "titleObjectFieldName": "id"
+}

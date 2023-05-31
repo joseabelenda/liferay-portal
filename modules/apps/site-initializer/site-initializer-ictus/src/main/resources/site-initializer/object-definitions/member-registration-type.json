@@ -1,0 +1,152 @@
+{
+    "active": true,
+    "defaultLanguageId": "en_US",
+    "enableCategorization": true,
+    "enableComments": true,
+    "enableObjectEntryHistory": true,
+    "externalReferenceCode": "member-registration-type",
+    "label": {
+      "en_US": "Member Registration Type"
+    },
+    "name": "MemberRegistrationType",
+    "objectFields": [
+      {
+        "DBType": "Date",
+        "businessType": "Date",
+        "indexed": false,
+        "indexedAsKeyword": false,
+        "label": {
+          "en_US": "Create Date"
+        },
+        "name": "createDate",
+        "required": false,
+        "state": false,
+        "system": true,
+        "type": "Date"
+      },
+      {
+        "DBType": "String",
+        "businessType": "Text",
+        "indexed": false,
+        "indexedAsKeyword": false,
+        "label": {
+          "en_US": "Author"
+        },
+        "name": "creator",
+        "required": false,
+        "state": false,
+        "system": true,
+        "type": "String"
+      },
+      {
+        "DBType": "String",
+        "businessType": "Text",
+        "indexed": true,
+        "indexedAsKeyword": false,
+        "indexedLanguageId": "en_US",
+        "label": {
+          "en_US": "Description"
+        },
+        "name": "description",
+        "required": false,
+        "state": false,
+        "system": false,
+        "type": "String"
+      },
+      {
+        "DBType": "String",
+        "businessType": "Text",
+        "indexed": false,
+        "indexedAsKeyword": false,
+        "label": {
+          "en_US": "External Reference Code"
+        },
+        "name": "externalReferenceCode",
+        "required": false,
+        "state": false,
+        "system": true,
+        "type": "String"
+      },
+      {
+        "DBType": "Long",
+        "businessType": "LongInteger",
+        "indexed": true,
+        "indexedAsKeyword": true,
+        "label": {
+          "en_US": "ID"
+        },
+        "name": "id",
+        "required": false,
+        "state": false,
+        "system": true,
+        "type": "Long"
+      },
+      {
+        "DBType": "Date",
+        "businessType": "Date",
+        "indexed": false,
+        "indexedAsKeyword": false,
+        "label": {
+          "en_US": "Modified Date"
+        },
+        "name": "modifiedDate",
+        "required": false,
+        "state": false,
+        "system": true,
+        "type": "Date"
+      },
+      {
+        "DBType": "String",
+        "businessType": "Text",
+        "indexed": true,
+        "indexedAsKeyword": false,
+        "indexedLanguageId": "en_US",
+        "label": {
+          "en_US": "Name"
+        },
+        "name": "name",
+        "required": true,
+        "state": false,
+        "system": false,
+        "type": "String"
+      },
+      {
+        "DBType": "String",
+        "businessType": "Text",
+        "indexed": false,
+        "indexedAsKeyword": false,
+        "label": {
+          "en_US": "Status"
+        },
+        "name": "status",
+        "required": false,
+        "state": false,
+        "system": true,
+        "type": "String"
+      },
+      {
+        "DBType": "String",
+        "businessType": "Picklist",
+        "indexed": true,
+        "indexedAsKeyword": false,
+        "indexedLanguageId": "en_US",
+        "label": {
+          "en_US": "Type"
+        },
+        "listTypeDefinitionExternalReferenceCode": "member-registration-type",
+        "name": "type",
+        "required": true,
+        "state": false,
+        "system": false,
+        "type": "String"
+      }
+    ],
+    "panelCategoryKey": "control_panel.object",
+    "parameterRequired": false,
+    "pluralLabel": {
+      "en_US": "Member Registration Types"
+    },
+    "portlet": false,
+    "scope": "company",
+    "titleObjectFieldName": "name"
+  }

@@ -1,0 +1,27 @@
+{
+  "externalReferenceCode": "member-registration-type",
+  "listTypeEntries": [
+    {
+      "externalReferenceCode": "incoming",
+      "key": "incoming",
+      "name": "Incoming",
+      "name_i18n": {
+        "en-US": "Incoming",
+        "pt-BR": "Entrada"
+      }
+    },
+    {
+      "externalReferenceCode": "outgoing",
+      "key": "outgoing",
+      "name": "Outgoing",
+      "name_i18n": {
+        "en-US": "Outgoing",
+        "pt-BR": "Saída"
+      }
+    }
+  ],
+  "name": "Member Registration Type",
+  "name_i18n": {
+    "en-US": "Member Registration Type"
+  }
+}

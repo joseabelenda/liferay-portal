@@ -1,0 +1,27 @@
+{
+    "externalReferenceCode": "member-type",
+    "listTypeEntries": [
+      {
+        "externalReferenceCode": "communicant",
+        "key": "communicant",
+        "name": "Communicant",
+        "name_i18n": {
+          "en-US": "Communicant",
+          "pt-BR": "Comungante"
+        }
+      },
+      {
+        "externalReferenceCode": "notCommunicant",
+        "key": "notCommunicant",
+        "name": "Not Communicant",
+        "name_i18n": {
+          "en-US": "Not Communicant",
+          "pt-BR": "Não Comungante"
+        }
+      }
+    ],
+    "name": "Member Type",
+    "name_i18n": {
+      "en-US": "Member Type"
+    }
+  }

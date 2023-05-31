@@ -1,0 +1,11 @@
+{
+	"deletionType": "prevent",
+	"label": {
+		"en_US": "Member"
+	},
+	"name": "memberToMemberRegistration",
+	"objectDefinitionId1": "[$OBJECT_DEFINITION_ID:Member$]",
+	"objectDefinitionId2": "[$OBJECT_DEFINITION_ID:MemberRegistration$]",
+	"objectDefinitionName2": "MemberRegistration",
+	"type": "oneToMany"
+}
