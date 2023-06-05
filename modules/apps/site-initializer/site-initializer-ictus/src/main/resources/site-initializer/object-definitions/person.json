@@ -103,7 +103,7 @@
             "indexedAsKeyword": false,
             "system": false,
             "indexedLanguageId": "en_US",
-            "name": "email",
+            "name": "emailAdress",
             "state": false,
             "businessType": "Text"
         },
@@ -416,7 +416,7 @@
                     {
                         "objectLayoutColumns": [
                           {
-                            "objectFieldName": "email",
+                            "objectFieldName": "emailAdress",
                             "priority": 0,
                             "size": 12
                           }
