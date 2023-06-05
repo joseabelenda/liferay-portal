@@ -1,0 +1,46 @@
+{
+    "externalReferenceCode": "marital-status",
+    "listTypeEntries": [
+      {
+        "externalReferenceCode": "single",
+        "key": "single",
+        "name": "Single",
+        "name_i18n": {
+          "en-US": "Single",
+          "pt-BR": "Solteiro"
+        }
+      },
+      {
+        "externalReferenceCode": "married",
+        "key": "married",
+        "name": "Married",
+        "name_i18n": {
+          "en-US": "Married",
+          "pt-BR": "Casado(a)"
+        }
+      },
+      {
+        "externalReferenceCode": "divorced",
+        "key": "divorced",
+        "name": "Divorced",
+        "name_i18n": {
+          "en-US": "Divorced",
+          "pt-BR": "Divorciado(a)"
+        }
+      },
+      {
+        "externalReferenceCode": "widowed",
+        "key": "widowed",
+        "name": "Widowed",
+        "name_i18n": {
+          "en-US": "Widowed",
+          "pt-BR": "Viúvo(a)"
+        }
+      }
+    ],
+    "name": "Marital Status",
+    "name_i18n": {
+      "en-US": "Marital Status",
+      "pt-BR": "Estado Civil"
+    }
+  }

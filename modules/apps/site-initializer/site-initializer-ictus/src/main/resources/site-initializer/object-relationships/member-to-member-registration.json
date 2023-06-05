@@ -1,7 +1,8 @@
 {
 	"deletionType": "prevent",
 	"label": {
-		"en_US": "Member"
+		"en_US": "Member",
+		"pt_BR": "Membro"
 	},
 	"name": "memberToMemberRegistration",
 	"objectDefinitionId1": "[$OBJECT_DEFINITION_ID:Member$]",

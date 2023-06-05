@@ -1,0 +1,28 @@
+{
+    "externalReferenceCode": "gender",
+    "listTypeEntries": [
+      {
+        "externalReferenceCode": "male",
+        "key": "male",
+        "name": "Male",
+        "name_i18n": {
+          "en-US": "Male",
+          "pt-BR": "Masculino"
+        }
+      },
+      {
+        "externalReferenceCode": "female",
+        "key": "female",
+        "name": "Female",
+        "name_i18n": {
+          "en-US": "Female",
+          "pt-BR": "Feminino"
+        }
+      }
+    ],
+    "name": "Gender",
+    "name_i18n": {
+      "en-US": "Gender",
+      "pt-BR": "Sexo"
+    }
+  }

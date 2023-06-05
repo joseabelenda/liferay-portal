@@ -1,0 +1,12 @@
+{
+	"deletionType": "prevent",
+	"label": {
+		"en_US": "Person",
+		"pt_BR": "Pessoa"
+	},
+	"name": "personToMember",
+	"objectDefinitionId1": "[$OBJECT_DEFINITION_ID:Person$]",
+	"objectDefinitionId2": "[$OBJECT_DEFINITION_ID:Member$]",
+	"objectDefinitionName2": "Member",
+	"type": "oneToMany"
+}

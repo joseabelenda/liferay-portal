@@ -6,7 +6,8 @@
   "enableObjectEntryHistory": true,
   "externalReferenceCode": "member-registration",
   "label": {
-    "en_US": "Member Registration"
+    "en_US": "Member Registration",
+    "pt_BR": "Entrada e Saída de Membro"
   },
   "name": "MemberRegistration",
   "objectFields": [
@@ -16,7 +17,8 @@
       "indexed": false,
       "indexedAsKeyword": false,
       "label": {
-        "en_US": "Create Date"
+        "en_US": "Create Date",
+        "pt_BR": "Data de Criação"
       },
       "name": "createDate",
       "required": false,
@@ -30,7 +32,8 @@
       "indexed": false,
       "indexedAsKeyword": false,
       "label": {
-        "en_US": "Author"
+        "en_US": "Author",
+        "pt_BR": "Autor"
       },
       "name": "creator",
       "required": false,
@@ -44,7 +47,8 @@
       "indexed": true,
       "indexedAsKeyword": false,
       "label": {
-        "en_US": "Date"
+        "en_US": "Date",
+        "pt_BR": "Data"
       },
       "name": "date",
       "required": true,
@@ -59,7 +63,8 @@
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
       "label": {
-        "en_US": "Document Date"
+        "en_US": "Document Date",
+        "pt_BR": "Data da Ata"
       },
       "name": "documentDate",
       "required": false,
@@ -74,7 +79,8 @@
       "indexedAsKeyword": false,
       "indexedLanguageId": "en_US",
       "label": {
-        "en_US": "Document Number"
+        "en_US": "Document Number",
+        "pt_BR": "Número da Ata"
       },
       "name": "documentNumber",
       "required": false,
@@ -116,7 +122,8 @@
       "indexed": false,
       "indexedAsKeyword": false,
       "label": {
-        "en_US": "Modified Date"
+        "en_US": "Modified Date",
+        "pt_BR": "Data de Modificação"
       },
       "name": "modifiedDate",
       "required": false,
@@ -131,7 +138,8 @@
       "indexedAsKeyword": false,
       "indexedLanguageId": "en_US",
       "label": {
-        "en_US": "Note"
+        "en_US": "Note",
+        "pt_BR": "Observação"
       },
       "name": "note",
       "objectFieldSettings": [
@@ -163,7 +171,8 @@
   "panelCategoryKey": "control_panel.object",
   "parameterRequired": false,
   "pluralLabel": {
-    "en_US": "Member Registrations"
+    "en_US": "Member Registrations",
+    "pt_BR": "Entrada e Saída de Membros"
   },
   "portlet": false,
   "scope": "company",

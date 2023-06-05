@@ -6,7 +6,8 @@
     "enableObjectEntryHistory": true,
     "externalReferenceCode": "member-registration-type",
     "label": {
-      "en_US": "Member Registration Type"
+      "en_US": "Member Registration Type",
+      "pt_BR": "Tipo de Movimentação de Membro"
     },
     "name": "MemberRegistrationType",
     "objectFields": [
@@ -16,7 +17,8 @@
         "indexed": false,
         "indexedAsKeyword": false,
         "label": {
-          "en_US": "Create Date"
+          "en_US": "Create Date",
+          "pt_BR": "Data de Criação"
         },
         "name": "createDate",
         "required": false,
@@ -30,7 +32,8 @@
         "indexed": false,
         "indexedAsKeyword": false,
         "label": {
-          "en_US": "Author"
+          "en_US": "Author",
+          "pt_BR": "Autor"
         },
         "name": "creator",
         "required": false,
@@ -45,7 +48,8 @@
         "indexedAsKeyword": false,
         "indexedLanguageId": "en_US",
         "label": {
-          "en_US": "Description"
+          "en_US": "Description",
+          "pt_BR": "Descrição"
         },
         "name": "description",
         "required": false,
@@ -87,7 +91,8 @@
         "indexed": false,
         "indexedAsKeyword": false,
         "label": {
-          "en_US": "Modified Date"
+          "en_US": "Modified Date",
+          "pt_BR": "Data de Modificação"
         },
         "name": "modifiedDate",
         "required": false,
@@ -102,7 +107,8 @@
         "indexedAsKeyword": false,
         "indexedLanguageId": "en_US",
         "label": {
-          "en_US": "Name"
+          "en_US": "Name",
+          "pt_BR": "Nome"
         },
         "name": "name",
         "required": true,
@@ -131,7 +137,8 @@
         "indexedAsKeyword": false,
         "indexedLanguageId": "en_US",
         "label": {
-          "en_US": "Type"
+          "en_US": "Type",
+          "pt_BR": "Tipo"
         },
         "listTypeDefinitionExternalReferenceCode": "member-registration-type",
         "name": "type",
@@ -144,7 +151,8 @@
     "panelCategoryKey": "control_panel.object",
     "parameterRequired": false,
     "pluralLabel": {
-      "en_US": "Member Registration Types"
+      "en_US": "Member Registration Types",
+      "pt_BR": "Tipos de Entrada e Saída de Membros"
     },
     "portlet": false,
     "scope": "company",

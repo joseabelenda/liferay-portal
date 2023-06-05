@@ -1,0 +1,506 @@
+{
+    "enableComments": false,
+    "enableCategorization": true,
+    "accountEntryRestricted": false,
+    "externalReferenceCode": "person",
+    "objectFields": [
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "Date",
+            "label": {
+                "en_US": "Birthday",
+                "pt_BR": "Data de Nascimento"
+            },
+            "type": "Date",
+            "required": true,
+            "indexedAsKeyword": false,
+            "system": false,
+            "name": "birthday",
+            "state": false,
+            "businessType": "Date"
+        },
+        {
+            "indexed": true,
+            "objectFieldSettings": [
+                {
+                    "name": "uniqueValues",
+                    "value": true
+                }
+            ],
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "CPF",
+                "pt_BR": "CPF"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "cpf",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": false,
+            "readOnly": "true",
+            "DBType": "Date",
+            "label": {
+                "en_US": "Create Date",
+                "pt_BR": "Data de Criação"
+            },
+            "type": "Date",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": true,
+            "name": "createDate",
+            "state": false,
+            "businessType": "Date"
+        },
+        {
+            "indexed": false,
+            "readOnly": "true",
+            "DBType": "String",
+            "label": {
+                "en_US": "Author",
+                "pt_BR": "Autor"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": true,
+            "name": "creator",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": false,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "External Reference Code"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": true,
+            "name": "externalReferenceCode",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "E-mail",
+                "pt_BR": "E-mail"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "email",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Father's Name",
+                "pt_BR": "Nome do Pai"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "fatherName",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "listTypeDefinitionExternalReferenceCode": "gender",
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Gender",
+                "pt_BR": "Sexo"
+            },
+            "type": "String",
+            "required": true,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "gender",
+            "state": false,
+            "businessType": "Picklist"
+        },
+        {
+            "indexed": true,
+            "readOnly": "true",
+            "DBType": "Long",
+            "label": {
+                "en_US": "ID"
+            },
+            "type": "Long",
+            "required": false,
+            "indexedAsKeyword": true,
+            "system": true,
+            "name": "id",
+            "state": false,
+            "businessType": "LongInteger"
+        },
+        {
+            "listTypeDefinitionExternalReferenceCode": "marital-status",
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Marital Status",
+                "pt_BR": "Estado Civil"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "maritalStatus",
+            "state": false,
+            "businessType": "Picklist"
+        },
+        {
+            "indexed": false,
+            "readOnly": "true",
+            "DBType": "Date",
+            "label": {
+                "en_US": "Modified Date",
+                "pt_BR": "Data de Modificação"
+            },
+            "type": "Date",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": true,
+            "indexedLanguageId": "",
+            "name": "modifiedDate",
+            "state": false,
+            "businessType": "Date"
+        },
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Mother's Name",
+                "pt_BR": "Nome da Mãe"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "motherName",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Name",
+                "pt_BR": "Nome"
+            },
+            "type": "String",
+            "required": true,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "name",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Nickname",
+                "pt_BR": "Apelido"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "nickname",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Occupation",
+                "pt_BR": "Profissão"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "occupation",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": true,
+            "objectFieldSettings": [
+                {
+                    "name": "acceptedFileExtensions",
+                    "value": "jpeg, jpg, pdf, png"
+                },
+                {
+                    "name": "maximumFileSize",
+                    "value": 5
+                },
+                {
+                    "name": "fileSource",
+                    "value": "documentsAndMedia"
+                }
+            ],
+            "readOnly": "false",
+            "DBType": "Long",
+            "label": {
+                "en_US": "Photo",
+                "pt_BR": "Foto"
+            },
+            "type": "Long",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "photo",
+            "state": false,
+            "businessType": "Attachment"
+        },
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Place of Birth",
+                "pt_BR": "Naturalidade"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "placeOfBirth",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": true,
+            "readOnly": "false",
+            "DBType": "String",
+            "label": {
+                "en_US": "Spouse",
+                "pt_BR": "Cônjuge"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": false,
+            "indexedLanguageId": "en_US",
+            "name": "spouse",
+            "state": false,
+            "businessType": "Text"
+        },
+        {
+            "indexed": false,
+            "readOnly": "true",
+            "DBType": "String",
+            "label": {
+                "en_US": "Status"
+            },
+            "type": "String",
+            "required": false,
+            "indexedAsKeyword": false,
+            "system": true,
+            "indexedLanguageId": "",
+            "name": "status",
+            "state": false,
+            "businessType": "Text"
+        }
+    ],
+    "objectLayouts": [
+        {
+          "defaultObjectLayout": true,
+          "name": {
+            "en_US": "Default Layout"
+          },
+          "objectDefinitionExternalReferenceCode": "person",
+          "objectLayoutTabs": [
+            {
+              "name": {
+                "en_US": "Personal Data",
+                "pt_BR": "Dados Pessoais"
+              },
+              "objectLayoutBoxes": [
+                {
+                  "collapsable": false,
+                  "name": {
+                    "en_US": "Personal Data",
+                    "pt_BR": "Dados Pessoais"
+                  },
+                  "objectLayoutRows": [
+                    {
+                      "objectLayoutColumns": [
+                        {
+                          "objectFieldName": "name",
+                          "priority": 0,
+                          "size": 12
+                        }
+                      ],
+                      "priority": 0
+                    },
+                    {
+                      "objectLayoutColumns": [
+                        {
+                          "objectFieldName": "birthday",
+                          "priority": 0,
+                          "size": 4
+                        },
+                        {
+                          "objectFieldName": "gender",
+                          "priority": 0,
+                          "size": 4
+                        },
+                        {
+                          "objectFieldName": "maritalStatus",
+                          "priority": 0,
+                          "size": 4
+                        }
+                      ],
+                      "priority": 0
+                    },
+                    {
+                      "objectLayoutColumns": [
+                        {
+                          "objectFieldName": "cpf",
+                          "priority": 0,
+                          "size": 4
+                        },
+                        {
+                          "objectFieldName": "nickname",
+                          "priority": 0,
+                          "size": 4
+                        },
+                        {
+                          "objectFieldName": "photo",
+                          "priority": 0,
+                          "size": 4
+                        }
+                      ],
+                      "priority": 0
+                    },
+                    {
+                        "objectLayoutColumns": [
+                          {
+                            "objectFieldName": "email",
+                            "priority": 0,
+                            "size": 12
+                          }
+                        ],
+                        "priority": 0
+                      },
+                    {
+                      "objectLayoutColumns": [
+                        {
+                          "objectFieldName": "placeOfBirth",
+                          "priority": 0,
+                          "size": 6
+                        },
+                        {
+                          "objectFieldName": "occupation",
+                          "priority": 0,
+                          "size": 6
+                        }
+                      ],
+                      "priority": 0
+                    },
+                    {
+                      "objectLayoutColumns": [
+                        {
+                          "objectFieldName": "spouse",
+                          "priority": 0,
+                          "size": 12
+                        }
+                      ],
+                      "priority": 0
+                    },
+                    {
+                      "objectLayoutColumns": [
+                        {
+                          "objectFieldName": "motherName",
+                          "priority": 0,
+                          "size": 12
+                        }
+                      ],
+                      "priority": 0
+                    },
+                    {
+                      "objectLayoutColumns": [
+                        {
+                          "objectFieldName": "fatherName",
+                          "priority": 0,
+                          "size": 12
+                        }
+                      ],
+                      "priority": 0
+                    }
+                  ],
+                  "priority": 0,
+                  "type": "regular"
+                }
+              ],
+              "objectRelationshipId": 0,
+              "priority": 0
+            }
+          ]
+        }
+    ],
+    "restContextPath": "/o/c/persons",
+    "scope": "company",
+    "portlet": false,
+    "parameterRequired": false,
+    "enableObjectEntryHistory": true,
+    "titleObjectFieldName": "name",
+    "active": true,
+    "defaultLanguageId": "en_US",
+    "label": {
+        "en_US": "Person",
+        "pt_BR": "Pessoa"
+    },
+    "panelCategoryKey": "control_panel.object",
+    "pluralLabel": {
+        "en_US": "Persons",
+        "pt_BR": "Pessoas"
+    },
+    "system": false,
+    "name": "Person",
+    "status": {
+        "label_i18n": "Approved",
+        "code": 0,
+        "label": "approved"
+    }
+}
