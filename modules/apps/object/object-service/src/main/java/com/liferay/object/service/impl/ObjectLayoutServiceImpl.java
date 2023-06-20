@@ -46,6 +46,26 @@ public class ObjectLayoutServiceImpl extends ObjectLayoutServiceBaseImpl {
 
 	@Override
 	public ObjectLayout addObjectLayout(
+			String externalReferenceCode, long objectDefinitionId,
+			boolean defaultObjectLayout, Map<Locale, String> nameMap,
+			List<ObjectLayoutTab> objectLayoutTabs)
+		throws PortalException {
+
+		ObjectDefinition objectDefinition =
+			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId);
+
+		_objectDefinitionModelResourcePermission.check(
+			getPermissionChecker(), objectDefinition.getObjectDefinitionId(),
+			ActionKeys.UPDATE);
+
+		return objectLayoutLocalService.addObjectLayout(
+			externalReferenceCode, getUserId(), objectDefinitionId,
+			defaultObjectLayout, nameMap, objectLayoutTabs);
+	}
+
+	@Override
+	public ObjectLayout addOrUpdateObjectLayout(
+			String externalReferenceCode, long objectLayoutId, long userId,
 			long objectDefinitionId, boolean defaultObjectLayout,
 			Map<Locale, String> nameMap, List<ObjectLayoutTab> objectLayoutTabs)
 		throws PortalException {
@@ -57,9 +77,9 @@ public class ObjectLayoutServiceImpl extends ObjectLayoutServiceBaseImpl {
 			getPermissionChecker(), objectDefinition.getObjectDefinitionId(),
 			ActionKeys.UPDATE);
 
-		return objectLayoutLocalService.addObjectLayout(
-			getUserId(), objectDefinitionId, defaultObjectLayout, nameMap,
-			objectLayoutTabs);
+		return objectLayoutLocalService.addOrUpdateObjectLayout(
+			externalReferenceCode, objectLayoutId, getUserId(),
+			objectDefinitionId, defaultObjectLayout, nameMap, objectLayoutTabs);
 	}
 
 	@Override
@@ -92,8 +112,9 @@ public class ObjectLayoutServiceImpl extends ObjectLayoutServiceBaseImpl {
 
 	@Override
 	public ObjectLayout updateObjectLayout(
-			long objectLayoutId, boolean defaultObjectLayout,
-			Map<Locale, String> nameMap, List<ObjectLayoutTab> objectLayoutTabs)
+			String externalReferenceCode, long objectLayoutId,
+			boolean defaultObjectLayout, Map<Locale, String> nameMap,
+			List<ObjectLayoutTab> objectLayoutTabs)
 		throws PortalException {
 
 		ObjectLayout objectLayout = objectLayoutPersistence.findByPrimaryKey(
@@ -104,7 +125,8 @@ public class ObjectLayoutServiceImpl extends ObjectLayoutServiceBaseImpl {
 			ActionKeys.UPDATE);
 
 		return objectLayoutLocalService.updateObjectLayout(
-			objectLayoutId, defaultObjectLayout, nameMap, objectLayoutTabs);
+			externalReferenceCode, objectLayoutId, defaultObjectLayout, nameMap,
+			objectLayoutTabs);
 	}
 
 	@Reference(
