@@ -3,6 +3,7 @@
     "name": {
         "en_US": "Default Layout"
     },
+    "externalReferenceCode": "MEMBER-LAYOUT",
     "objectDefinitionExternalReferenceCode": "member",
     "objectLayoutTabs": [
         {
