@@ -1,0 +1,136 @@
+{
+    "defaultObjectLayout": true,
+    "name": {
+      "en_US": "Default Layout"
+    },
+    "externalReferenceCode": "PERSON-LAYOUT",
+    "objectDefinitionExternalReferenceCode": "person",
+    "objectLayoutTabs": [
+      {
+        "name": {
+          "en_US": "Personal Data",
+          "pt_BR": "Dados Pessoais"
+        },
+        "objectLayoutBoxes": [
+          {
+            "collapsable": false,
+            "name": {
+              "en_US": "Personal Data",
+              "pt_BR": "Dados Pessoais"
+            },
+            "objectLayoutRows": [
+              {
+                "objectLayoutColumns": [
+                  {
+                    "objectFieldName": "name",
+                    "priority": 0,
+                    "size": 12
+                  }
+                ],
+                "priority": 0
+              },
+              {
+                "objectLayoutColumns": [
+                  {
+                    "objectFieldName": "birthday",
+                    "priority": 0,
+                    "size": 4
+                  },
+                  {
+                    "objectFieldName": "gender",
+                    "priority": 0,
+                    "size": 4
+                  },
+                  {
+                    "objectFieldName": "maritalStatus",
+                    "priority": 0,
+                    "size": 4
+                  }
+                ],
+                "priority": 0
+              },
+              {
+                "objectLayoutColumns": [
+                  {
+                    "objectFieldName": "cpf",
+                    "priority": 0,
+                    "size": 4
+                  },
+                  {
+                    "objectFieldName": "nickname",
+                    "priority": 0,
+                    "size": 4
+                  },
+                  {
+                    "objectFieldName": "photo",
+                    "priority": 0,
+                    "size": 4
+                  }
+                ],
+                "priority": 0
+              },
+              {
+                "objectLayoutColumns": [
+                  {
+                    "objectFieldName": "emailAdress",
+                    "priority": 0,
+                    "size": 12
+                  }
+                ],
+                "priority": 0
+              },
+              {
+                "objectLayoutColumns": [
+                  {
+                    "objectFieldName": "placeOfBirth",
+                    "priority": 0,
+                    "size": 6
+                  },
+                  {
+                    "objectFieldName": "occupation",
+                    "priority": 0,
+                    "size": 6
+                  }
+                ],
+                "priority": 0
+              },
+              {
+                "objectLayoutColumns": [
+                  {
+                    "objectFieldName": "spouse",
+                    "priority": 0,
+                    "size": 12
+                  }
+                ],
+                "priority": 0
+              },
+              {
+                "objectLayoutColumns": [
+                  {
+                    "objectFieldName": "motherName",
+                    "priority": 0,
+                    "size": 12
+                  }
+                ],
+                "priority": 0
+              },
+              {
+                "objectLayoutColumns": [
+                  {
+                    "objectFieldName": "fatherName",
+                    "priority": 0,
+                    "size": 12
+                  }
+                ],
+                "priority": 0
+              }
+            ],
+            "priority": 0,
+            "type": "regular"
+          }
+        ],
+        "objectRelationshipId": 0,
+        "priority": 0
+      }
+    ]
+  }
