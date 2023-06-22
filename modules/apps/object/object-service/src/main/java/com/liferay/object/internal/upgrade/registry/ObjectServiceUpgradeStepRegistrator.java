@@ -306,7 +306,10 @@ public class ObjectServiceUpgradeStepRegistrator
 
 				@Override
 				protected String[][] getTableAndPrimaryKeyColumnNames() {
-					return new String[][] {{"ObjectView", "objectViewId"}};
+					return new String[][] {
+						{"ObjectLayout", "objectLayoutId"},
+						{"ObjectView", "objectViewId"}
+					};
 				}
 
 			});
