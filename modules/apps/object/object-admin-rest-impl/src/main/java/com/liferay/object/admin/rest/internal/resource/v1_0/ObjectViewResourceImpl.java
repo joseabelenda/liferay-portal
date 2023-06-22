@@ -58,6 +58,20 @@ public class ObjectViewResourceImpl extends BaseObjectViewResourceImpl {
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
 		return _entityModel;
 	}
+	
+	public ObjectView
+			getObjectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectViewByExternalReferenceCodeObjectViewExternalReferenceCode(
+				String objectDefinitionExternalReferenceCode,
+				String objectViewExternalReferenceCode)
+		throws Exception {
+
+		return _toObjectView(
+			_objectViewService.
+				fetchObjectViewByObjectDefinitionExternalReferenceCodeObjectViewExternalReferenceCode(
+					objectDefinitionExternalReferenceCode,
+					objectViewExternalReferenceCode,
+					contextCompany.getCompanyId()));
+	}
 
 	@Override
 	public Page<ObjectView>
