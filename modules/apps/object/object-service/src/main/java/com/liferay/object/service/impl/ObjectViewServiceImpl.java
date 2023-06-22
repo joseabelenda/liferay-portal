@@ -38,6 +38,29 @@ public class ObjectViewServiceImpl extends ObjectViewServiceBaseImpl {
 
 	@Override
 	public ObjectView addObjectView(
+			String externalReferenceCode, long objectDefinitionId,
+			boolean defaultObjectView, Map<Locale, String> nameMap,
+			List<ObjectViewColumn> objectViewColumns,
+			List<ObjectViewFilterColumn> objectViewFilterColumns,
+			List<ObjectViewSortColumn> objectViewSortColumns)
+		throws PortalException {
+
+		ObjectDefinition objectDefinition =
+			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId);
+
+		_objectDefinitionModelResourcePermission.check(
+			getPermissionChecker(), objectDefinition.getObjectDefinitionId(),
+			ActionKeys.UPDATE);
+
+		return objectViewLocalService.addObjectView(
+			externalReferenceCode, getUserId(), objectDefinitionId,
+			defaultObjectView, nameMap, objectViewColumns,
+			objectViewFilterColumns, objectViewSortColumns);
+	}
+
+	@Override
+	public ObjectView addOrUpdateObjectView(
+			String externalReferenceCode, long objectViewId, long userId,
 			long objectDefinitionId, boolean defaultObjectView,
 			Map<Locale, String> nameMap,
 			List<ObjectViewColumn> objectViewColumns,
@@ -52,9 +75,10 @@ public class ObjectViewServiceImpl extends ObjectViewServiceBaseImpl {
 			getPermissionChecker(), objectDefinition.getObjectDefinitionId(),
 			ActionKeys.UPDATE);
 
-		return objectViewLocalService.addObjectView(
-			getUserId(), objectDefinitionId, defaultObjectView, nameMap,
-			objectViewColumns, objectViewFilterColumns, objectViewSortColumns);
+		return objectViewLocalService.addOrUpdateObjectView(
+			externalReferenceCode, objectViewId, getUserId(),
+			objectDefinitionId, defaultObjectView, nameMap, objectViewColumns,
+			objectViewFilterColumns, objectViewSortColumns);
 	}
 
 	@Override
@@ -85,8 +109,8 @@ public class ObjectViewServiceImpl extends ObjectViewServiceBaseImpl {
 
 	@Override
 	public ObjectView updateObjectView(
-			long objectViewId, boolean defaultObjectView,
-			Map<Locale, String> nameMap,
+			String externalReferenceCode, long objectViewId,
+			boolean defaultObjectView, Map<Locale, String> nameMap,
 			List<ObjectViewColumn> objectViewColumns,
 			List<ObjectViewFilterColumn> objectViewFilterColumns,
 			List<ObjectViewSortColumn> objectViewSortColumns)
@@ -100,8 +124,8 @@ public class ObjectViewServiceImpl extends ObjectViewServiceBaseImpl {
 			ActionKeys.UPDATE);
 
 		return objectViewLocalService.updateObjectView(
-			objectViewId, defaultObjectView, nameMap, objectViewColumns,
-			objectViewFilterColumns, objectViewSortColumns);
+			externalReferenceCode, objectViewId, defaultObjectView, nameMap,
+			objectViewColumns, objectViewFilterColumns, objectViewSortColumns);
 	}
 
 	@Reference(
