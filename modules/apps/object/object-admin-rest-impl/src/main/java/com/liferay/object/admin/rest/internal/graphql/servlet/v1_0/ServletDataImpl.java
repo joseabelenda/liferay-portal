@@ -304,6 +304,11 @@ public class ServletDataImpl implements ServletData {
 							ObjectLayoutResourceImpl.class,
 							"postObjectDefinitionByExternalReferenceCodeObjectLayout"));
 					put(
+						"mutation#updateObjectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectLayoutByExternalReferenceCodeObjectLayoutExternalReferenceCode",
+						new ObjectValuePair<>(
+							ObjectLayoutResourceImpl.class,
+							"putObjectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectLayoutByExternalReferenceCodeObjectLayoutExternalReferenceCode"));
+					put(
 						"mutation#createObjectDefinitionObjectLayoutsPageExportBatch",
 						new ObjectValuePair<>(
 							ObjectLayoutResourceImpl.class,
@@ -533,6 +538,11 @@ public class ServletDataImpl implements ServletData {
 						new ObjectValuePair<>(
 							ObjectLayoutResourceImpl.class,
 							"getObjectDefinitionByExternalReferenceCodeObjectLayoutsPage"));
+					put(
+						"query#objectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectLayoutByExternalReferenceCodeObjectLayoutExternalReferenceCode",
+						new ObjectValuePair<>(
+							ObjectLayoutResourceImpl.class,
+							"getObjectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectLayoutByExternalReferenceCodeObjectLayoutExternalReferenceCode"));
 					put(
 						"query#objectDefinitionObjectLayouts",
 						new ObjectValuePair<>(
