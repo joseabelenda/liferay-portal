@@ -55,6 +55,13 @@ public interface ObjectLayoutService extends BaseService {
 	 * Never modify this interface directly. Add custom service methods to <code>com.liferay.object.service.impl.ObjectLayoutServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the object layout remote service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link ObjectLayoutServiceUtil} if injection and service tracking are not available.
 	 */
 	public ObjectLayout addObjectLayout(
+			String externalReferenceCode, long objectDefinitionId,
+			boolean defaultObjectLayout, Map<Locale, String> nameMap,
+			List<ObjectLayoutTab> objectLayoutTabs)
+		throws PortalException;
+
+	public ObjectLayout addOrUpdateObjectLayout(
+			String externalReferenceCode, long objectLayoutId, long userId,
 			long objectDefinitionId, boolean defaultObjectLayout,
 			Map<Locale, String> nameMap, List<ObjectLayoutTab> objectLayoutTabs)
 		throws PortalException;
@@ -74,8 +81,9 @@ public interface ObjectLayoutService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	public ObjectLayout updateObjectLayout(
-			long objectLayoutId, boolean defaultObjectLayout,
-			Map<Locale, String> nameMap, List<ObjectLayoutTab> objectLayoutTabs)
+			String externalReferenceCode, long objectLayoutId,
+			boolean defaultObjectLayout, Map<Locale, String> nameMap,
+			List<ObjectLayoutTab> objectLayoutTabs)
 		throws PortalException;
 
 }
