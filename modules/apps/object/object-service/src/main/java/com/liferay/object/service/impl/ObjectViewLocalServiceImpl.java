@@ -7,6 +7,7 @@ package com.liferay.object.service.impl;
 
 import com.liferay.object.constants.ObjectFieldConstants;
 import com.liferay.object.exception.DefaultObjectViewException;
+import com.liferay.object.exception.DuplicateObjectViewExternalReferenceCodeException;
 import com.liferay.object.exception.ObjectDefinitionModifiableException;
 import com.liferay.object.exception.ObjectViewColumnFieldNameException;
 import com.liferay.object.exception.ObjectViewSortColumnException;
@@ -34,6 +35,7 @@ import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -57,8 +59,8 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public ObjectView addObjectView(
-			long userId, long objectDefinitionId, boolean defaultObjectView,
-			Map<Locale, String> nameMap,
+			String externalReferenceCode, long userId, long objectDefinitionId,
+			boolean defaultObjectView, Map<Locale, String> nameMap,
 			List<ObjectViewColumn> objectViewColumns,
 			List<ObjectViewFilterColumn> objectViewFilterColumns,
 			List<ObjectViewSortColumn> objectViewSortColumns)
@@ -75,8 +77,14 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 			_validateDefaultObjectView(0, objectDefinitionId);
 		}
 
+		_validateExternalReferenceCode(
+			externalReferenceCode, 0, objectDefinition.getCompanyId(),
+			objectDefinitionId);
+
 		ObjectView objectView = objectViewPersistence.create(
 			counterLocalService.increment());
+
+		objectView.setExternalReferenceCode(externalReferenceCode);
 
 		User user = _userLocalService.getUser(userId);
 
@@ -102,6 +110,49 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 				user, objectView, objectViewColumns, objectViewSortColumns));
 
 		return objectView;
+	}
+
+	@Indexable(type = IndexableType.REINDEX)
+	@Override
+	public ObjectView addOrUpdateObjectView(
+			String externalReferenceCode, long objectViewId, long userId,
+			long objectDefinitionId, boolean defaultObjectView,
+			Map<Locale, String> nameMap,
+			List<ObjectViewColumn> objectViewColumns,
+			List<ObjectViewFilterColumn> objectViewFilterColumns,
+			List<ObjectViewSortColumn> objectViewSortColumns)
+		throws PortalException {
+
+		ObjectView existingObjectView = null;
+
+		if (objectViewId > 0) {
+			existingObjectView = objectViewPersistence.fetchByPrimaryKey(
+				objectViewId);
+		}
+
+		if ((existingObjectView == null) &&
+			Validator.isNotNull(externalReferenceCode)) {
+
+			ObjectDefinition objectDefinition =
+				_objectDefinitionPersistence.findByPrimaryKey(
+					objectDefinitionId);
+
+			existingObjectView = objectViewPersistence.fetchByERC_C_ODI(
+				externalReferenceCode, objectDefinition.getCompanyId(),
+				objectDefinitionId);
+		}
+
+		if (existingObjectView != null) {
+			return updateObjectView(
+				externalReferenceCode, existingObjectView.getObjectViewId(),
+				defaultObjectView, nameMap, objectViewColumns,
+				objectViewFilterColumns, objectViewSortColumns);
+		}
+
+		return addObjectView(
+			externalReferenceCode, userId, objectDefinitionId,
+			defaultObjectView, nameMap, objectViewColumns,
+			objectViewFilterColumns, objectViewSortColumns);
 	}
 
 	@Indexable(type = IndexableType.DELETE)
@@ -222,8 +273,8 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public ObjectView updateObjectView(
-			long objectViewId, boolean defaultObjectView,
-			Map<Locale, String> nameMap,
+			String externalReferenceCode, long objectViewId,
+			boolean defaultObjectView, Map<Locale, String> nameMap,
 			List<ObjectViewColumn> objectViewColumns,
 			List<ObjectViewFilterColumn> objectViewFilterColumns,
 			List<ObjectViewSortColumn> objectViewSortColumns)
@@ -231,6 +282,10 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 
 		ObjectView objectView = objectViewPersistence.findByPrimaryKey(
 			objectViewId);
+
+		_validateExternalReferenceCode(
+			externalReferenceCode, objectViewId, objectView.getCompanyId(),
+			objectView.getObjectDefinitionId());
 
 		if (defaultObjectView) {
 			_validateDefaultObjectView(
@@ -242,6 +297,10 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 		_objectViewFilterColumnPersistence.removeByObjectViewId(objectViewId);
 
 		_objectViewSortColumnPersistence.removeByObjectViewId(objectViewId);
+
+		if (Validator.isNotNull(externalReferenceCode)) {
+			objectView.setExternalReferenceCode(externalReferenceCode);
+		}
 
 		objectView.setDefaultObjectView(defaultObjectView);
 		objectView.setNameMap(nameMap);
@@ -349,6 +408,25 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 
 			throw new DefaultObjectViewException(
 				"There can only be one default object view");
+		}
+	}
+
+	private void _validateExternalReferenceCode(
+			String externalReferenceCode, long objectViewId, long companyId,
+			long objectDefinitionId)
+		throws PortalException {
+
+		if (Validator.isNull(externalReferenceCode)) {
+			return;
+		}
+
+		ObjectView objectView = objectViewPersistence.fetchByERC_C_ODI(
+			externalReferenceCode, companyId, objectDefinitionId);
+
+		if ((objectView != null) &&
+			(objectView.getObjectViewId() != objectViewId)) {
+
+			throw new DuplicateObjectViewExternalReferenceCodeException();
 		}
 	}
 
