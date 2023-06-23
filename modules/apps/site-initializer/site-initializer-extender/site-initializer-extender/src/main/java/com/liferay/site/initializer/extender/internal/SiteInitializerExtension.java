@@ -45,6 +45,7 @@ import com.liferay.object.admin.rest.resource.v1_0.ObjectDefinitionResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectFieldResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectLayoutResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectRelationshipResource;
+import com.liferay.object.admin.rest.resource.v1_0.ObjectViewResource;
 import com.liferay.object.rest.manager.v1_0.ObjectEntryManager;
 import com.liferay.object.service.ObjectActionLocalService;
 import com.liferay.object.service.ObjectDefinitionLocalService;
@@ -144,6 +145,7 @@ public class SiteInitializerExtension {
 		ObjectFieldLocalService objectFieldLocalService,
 		ObjectFieldResource.Factory objectFieldResourceFactory,
 		ObjectLayoutResource.Factory objectLayoutResourceFactory,
+		ObjectViewResource.Factory objectViewResourceFactory,
 		ObjectRelationshipLocalService objectRelationshipLocalService,
 		ObjectRelationshipResource.Factory objectRelationshipResourceFactory,
 		OrganizationLocalService organizationLocalService,
@@ -201,12 +203,12 @@ public class SiteInitializerExtension {
 			objectDefinitionResourceFactory, objectEntryLocalService,
 			objectEntryManager, objectFieldLocalService,
 			objectFieldResourceFactory, objectLayoutResourceFactory,
-			objectRelationshipLocalService, objectRelationshipResourceFactory,
-			organizationLocalService, organizationResourceFactory,
-			ploEntryLocalService, portal, resourceActionLocalService,
-			resourcePermissionLocalService, roleLocalService,
-			sapEntryLocalService, segmentsEntryLocalService,
-			segmentsExperienceLocalService, archivedSettingsFactory,
+			objectViewResourceFactory, objectRelationshipLocalService,
+			objectRelationshipResourceFactory, organizationLocalService,
+			organizationResourceFactory, ploEntryLocalService, portal,
+			resourceActionLocalService, resourcePermissionLocalService,
+			roleLocalService, sapEntryLocalService, segmentsEntryLocalService,
+			segmentsExperienceLocalService, settingsFactory,
 			siteNavigationMenuItemLocalService,
 			siteNavigationMenuItemTypeRegistry, siteNavigationMenuLocalService,
 			structuredContentFolderResourceFactory, styleBookEntryZipProcessor,

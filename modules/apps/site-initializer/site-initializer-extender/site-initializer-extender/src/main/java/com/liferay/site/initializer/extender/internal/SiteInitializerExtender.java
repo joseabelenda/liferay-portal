@@ -45,6 +45,7 @@ import com.liferay.object.admin.rest.resource.v1_0.ObjectDefinitionResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectFieldResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectLayoutResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectRelationshipResource;
+import com.liferay.object.admin.rest.resource.v1_0.ObjectViewResource;
 import com.liferay.object.rest.manager.v1_0.ObjectEntryManager;
 import com.liferay.object.service.ObjectActionLocalService;
 import com.liferay.object.service.ObjectDefinitionLocalService;
@@ -153,7 +154,8 @@ public class SiteInitializerExtender
 				_objectDefinitionLocalService, _objectDefinitionResourceFactory,
 				_objectEntryLocalService, _objectEntryManager,
 				_objectFieldLocalService, _objectFieldResourceFactory,
-				_objectLayoutResourceFactory, _objectRelationshipLocalService,
+				_objectLayoutResourceFactory, _objectViewResourceFactory,
+				_objectRelationshipLocalService,
 				_objectRelationshipResourceFactory, _organizationLocalService,
 				_organizationResourceFactory, _ploEntryLocalService, _portal,
 				_resourceActionLocalService, _resourcePermissionLocalService,
@@ -274,7 +276,8 @@ public class SiteInitializerExtender
 				_objectDefinitionLocalService, _objectDefinitionResourceFactory,
 				_objectEntryLocalService, _objectEntryManager,
 				_objectFieldLocalService, _objectFieldResourceFactory,
-				_objectLayoutResourceFactory, _objectRelationshipLocalService,
+				_objectLayoutResourceFactory, _objectViewResourceFactory,
+				_objectRelationshipLocalService,
 				_objectRelationshipResourceFactory, _organizationLocalService,
 				_organizationResourceFactory, _ploEntryLocalService, _portal,
 				_resourceActionLocalService, _resourcePermissionLocalService,
@@ -463,6 +466,9 @@ public class SiteInitializerExtender
 	@Reference
 	private ObjectRelationshipResource.Factory
 		_objectRelationshipResourceFactory;
+
+	@Reference
+	private ObjectViewResource.Factory _objectViewResourceFactory;
 
 	@Reference
 	private OrganizationLocalService _organizationLocalService;
