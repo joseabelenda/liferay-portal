@@ -43,6 +43,7 @@ import com.liferay.list.type.service.ListTypeEntryLocalService;
 import com.liferay.notification.rest.resource.v1_0.NotificationTemplateResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectDefinitionResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectFieldResource;
+import com.liferay.object.admin.rest.resource.v1_0.ObjectLayoutResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectRelationshipResource;
 import com.liferay.object.rest.manager.v1_0.ObjectEntryManager;
 import com.liferay.object.service.ObjectActionLocalService;
@@ -141,6 +142,7 @@ public class SiteInitializerExtension {
 		ObjectEntryManager objectEntryManager,
 		ObjectFieldLocalService objectFieldLocalService,
 		ObjectFieldResource.Factory objectFieldResourceFactory,
+		ObjectLayoutResource.Factory objectLayoutResourceFactory,
 		ObjectRelationshipLocalService objectRelationshipLocalService,
 		ObjectRelationshipResource.Factory objectRelationshipResourceFactory,
 		OrganizationLocalService organizationLocalService,
@@ -189,13 +191,14 @@ public class SiteInitializerExtension {
 			layoutLocalService, layoutPageTemplateEntryLocalService,
 			layoutsImporter, layoutPageTemplateStructureLocalService,
 			layoutPageTemplateStructureRelLocalService, layoutSetLocalService,
-			layoutUtilityPageEntryLocalService, listTypeDefinitionResource,
-			listTypeDefinitionResourceFactory, listTypeEntryLocalService,
-			listTypeEntryResource, listTypeEntryResourceFactory,
-			notificationTemplateResourceFactory, objectActionLocalService,
-			objectDefinitionLocalService, objectDefinitionResourceFactory,
-			objectEntryLocalService, objectEntryManager,
-			objectFieldLocalService, objectFieldResourceFactory,
+			layoutUtilityPageEntryLocalService, listTypeDefinitionLocalService,
+			listTypeDefinitionResource, listTypeDefinitionResourceFactory,
+			listTypeEntryLocalService, listTypeEntryResource,
+			listTypeEntryResourceFactory, notificationTemplateResourceFactory,
+			objectActionLocalService, objectDefinitionLocalService,
+			objectDefinitionResourceFactory, objectEntryLocalService,
+			objectEntryManager, objectFieldLocalService,
+			objectFieldResourceFactory, objectLayoutResourceFactory,
 			objectRelationshipLocalService, objectRelationshipResourceFactory,
 			organizationLocalService, organizationResourceFactory,
 			ploEntryLocalService, portal, resourceActionLocalService,
