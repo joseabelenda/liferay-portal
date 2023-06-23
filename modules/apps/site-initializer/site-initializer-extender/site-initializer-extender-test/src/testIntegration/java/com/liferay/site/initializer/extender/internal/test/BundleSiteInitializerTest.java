@@ -1892,6 +1892,7 @@ public class BundleSiteInitializerTest {
 		Assert.assertTrue(
 			objectDefinition.getAccountEntryRestrictedObjectFieldId() > 0);
 		Assert.assertFalse(objectDefinition.isSystem());
+
 		Assert.assertEquals(
 			objectDefinition4.getStatus(), WorkflowConstants.STATUS_APPROVED);
 

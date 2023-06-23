@@ -494,8 +494,8 @@ public class ObjectLayoutLocalServiceTest {
 			screenNavigationCategories.toString(), 1,
 			screenNavigationCategories.size());
 
-		Assert.assertEquals(externalReferenceCode,
-			objectLayout.getExternalReferenceCode());
+		Assert.assertEquals(
+			externalReferenceCode, objectLayout.getExternalReferenceCode());
 
 		_objectLayoutLocalService.updateObjectLayout(
 			objectLayout.getExternalReferenceCode(),
@@ -509,8 +509,8 @@ public class ObjectLayoutLocalServiceTest {
 
 		Assert.assertTrue(screenNavigationCategories.isEmpty());
 
-		Assert.assertEquals(externalReferenceCode,
-			objectLayout.getExternalReferenceCode());
+		Assert.assertEquals(
+			externalReferenceCode, objectLayout.getExternalReferenceCode());
 	}
 
 	private long _addObjectField() throws Exception {
