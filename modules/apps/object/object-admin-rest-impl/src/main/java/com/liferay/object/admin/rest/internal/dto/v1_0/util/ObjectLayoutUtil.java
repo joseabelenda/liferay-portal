@@ -46,6 +46,8 @@ public class ObjectLayoutUtil {
 				dateModified = serviceBuilderObjectLayout.getModifiedDate();
 				defaultObjectLayout =
 					serviceBuilderObjectLayout.getDefaultObjectLayout();
+				externalReferenceCode =
+					serviceBuilderObjectLayout.getExternalReferenceCode();
 				id = serviceBuilderObjectLayout.getObjectLayoutId();
 				name = LocalizedMapUtil.getLanguageIdMap(
 					serviceBuilderObjectLayout.getNameMap());
