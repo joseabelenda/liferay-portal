@@ -457,10 +457,10 @@ public class ObjectLayoutLocalServiceTest {
 
 		ObjectLayoutTab objectLayoutTab1 = _addObjectLayoutTab();
 
-		String externalReferenceCode = RandomTestUtil.randomString();
+		String externalReferenceCode1 = RandomTestUtil.randomString();
 
 		ObjectLayout objectLayout = _objectLayoutLocalService.addObjectLayout(
-			externalReferenceCode, TestPropsValues.getUserId(),
+			externalReferenceCode1, TestPropsValues.getUserId(),
 			_objectDefinition.getObjectDefinitionId(), true,
 			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 			Collections.singletonList(objectLayoutTab1));
@@ -485,13 +485,14 @@ public class ObjectLayoutLocalServiceTest {
 			screenNavigationCategories.toString(), 1,
 			screenNavigationCategories.size());
 
-		Assert.assertEquals(externalReferenceCode,
-			objectLayout.getExternalReferenceCode());
+		Assert.assertEquals(
+			externalReferenceCode1, objectLayout.getExternalReferenceCode());
 
-		_objectLayoutLocalService.updateObjectLayout(
-			objectLayout.getExternalReferenceCode(),
-			objectLayout.getObjectLayoutId(), false, objectLayout.getNameMap(),
-			Arrays.asList(objectLayoutTab1));
+		String externalReferenceCode2 = RandomTestUtil.randomString();
+
+		objectLayout = _objectLayoutLocalService.updateObjectLayout(
+			externalReferenceCode2, objectLayout.getObjectLayoutId(), false,
+			objectLayout.getNameMap(), Arrays.asList(objectLayoutTab1));
 
 		screenNavigationCategories =
 			_screenNavigationRegistry.getScreenNavigationCategories(
@@ -500,8 +501,8 @@ public class ObjectLayoutLocalServiceTest {
 
 		Assert.assertTrue(screenNavigationCategories.isEmpty());
 
-		Assert.assertEquals(externalReferenceCode,
-			objectLayout.getExternalReferenceCode());
+		Assert.assertEquals(
+			externalReferenceCode2, objectLayout.getExternalReferenceCode());
 	}
 
 	private long _addObjectField() throws Exception {
