@@ -262,8 +262,10 @@ public class ObjectViewLocalServiceTest {
 	public void testUpdateObjectView() throws Exception {
 		ObjectView objectView = _addObjectView();
 
+		String externalReferenceCode = RandomTestUtil.randomString();
+
 		objectView = _objectViewLocalService.updateObjectView(
-			objectView.getExternalReferenceCode(), objectView.getObjectViewId(),
+			externalReferenceCode, objectView.getObjectViewId(),
 			objectView.isDefaultObjectView(), objectView.getNameMap(),
 			Collections.singletonList(_createObjectViewColumn("Fox", "fox")),
 			Collections.emptyList(),
@@ -281,6 +283,9 @@ public class ObjectViewLocalServiceTest {
 
 		Assert.assertEquals(
 			objectViewSortColumns.toString(), 1, objectViewSortColumns.size());
+
+		Assert.assertEquals(
+			externalReferenceCode, objectView.getExternalReferenceCode());
 
 		_assertFailureAddOrUpdateObjectView(
 			ObjectViewColumnFieldNameException.class,
