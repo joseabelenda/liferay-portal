@@ -555,7 +555,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 					_ddmStructureLocalService, _ddmTemplateLocalService,
 					documentsStringUtilReplaceValues, serviceContext,
 					siteNavigationMenuItemSettingsBuilder));
-			
+
 			_invoke(() -> _addOrUpdateObjectLayouts(serviceContext));
 			_invoke(() -> _addOrUpdateObjectViews(serviceContext));
 

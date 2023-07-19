@@ -1246,7 +1246,7 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ObjectLayout"
-            tags: [ "ObjectLayout" ]
+            tags: ["ObjectLayout"]
         put:
             operationId: putObjectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectLayoutByExternalReferenceCodeObjectLayoutExternalReferenceCode
             parameters:
@@ -1332,7 +1332,7 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ObjectView"
-            tags: [ "ObjectView" ]
+            tags: ["ObjectView"]
     "/object-definitions/{objectDefinitionId}":
         delete:
             operationId: deleteObjectDefinition
