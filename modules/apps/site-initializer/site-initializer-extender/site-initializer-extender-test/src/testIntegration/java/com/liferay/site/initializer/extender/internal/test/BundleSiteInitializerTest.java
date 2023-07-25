@@ -1960,9 +1960,9 @@ public class BundleSiteInitializerTest {
 		_assertObjectActions(4, objectDefinition);
 		_assertObjectEntries(_group.getGroupId(), objectDefinition, 0);
 		_assertObjectFields(objectDefinition, 10);
-		_assertObjectLayouts(2, objectDefinition);
+		_assertObjectLayouts(objectDefinition, 2);
 		_assertObjectRelationships1(objectDefinition, _serviceContext);
-		_assertObjectViews(2, objectDefinition);
+		_assertObjectViews(objectDefinition, 2);
 
 		objectDefinition = _objectDefinitionLocalService.fetchObjectDefinition(
 			_group.getCompanyId(), "C_TestObjectDefinition2");
@@ -1975,8 +1975,8 @@ public class BundleSiteInitializerTest {
 		_assertObjectActions(2, objectDefinition);
 		_assertObjectEntries(_group.getGroupId(), objectDefinition, 0);
 		_assertObjectFields(objectDefinition, 8);
-		_assertObjectLayouts(0, objectDefinition);
-		_assertObjectViews(0, objectDefinition);
+		_assertObjectLayouts(objectDefinition, 0);
+		_assertObjectViews(objectDefinition, 0);
 
 		objectDefinition = _objectDefinitionLocalService.fetchObjectDefinition(
 			_group.getCompanyId(), "C_TestObjectDefinition3");
@@ -1991,8 +1991,8 @@ public class BundleSiteInitializerTest {
 		_assertObjectActions(0, objectDefinition);
 		_assertObjectEntries(0, objectDefinition, 5);
 		_assertObjectFields(objectDefinition, 7);
-		_assertObjectLayouts(1, objectDefinition);
-		_assertObjectViews(1, objectDefinition);
+		_assertObjectLayouts(objectDefinition, 1);
+		_assertObjectViews(objectDefinition, 1);
 
 		objectDefinition = _objectDefinitionLocalService.fetchObjectDefinition(
 			_group.getCompanyId(), "C_TestObjectDefinition4");
@@ -2004,8 +2004,8 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			objectDefinition.getStatus(), WorkflowConstants.STATUS_APPROVED);
 
-		_assertObjectLayouts(0, objectDefinition);
-		_assertObjectViews(0, objectDefinition);
+		_assertObjectLayouts(objectDefinition, 0);
+		_assertObjectViews(objectDefinition, 0);
 	}
 
 	private void _assertObjectDefinitions2() throws Exception {
@@ -2114,7 +2114,7 @@ public class BundleSiteInitializerTest {
 	}
 
 	private void _assertObjectLayouts(
-		int objectLayoutsCount, ObjectDefinition objectDefinition) {
+		ObjectDefinition objectDefinition, int objectLayoutsCount) {
 
 		List<ObjectLayout> objectLayouts =
 			_objectLayoutLocalService.getObjectLayouts(
@@ -2306,7 +2306,7 @@ public class BundleSiteInitializerTest {
 	}
 
 	private void _assertObjectViews(
-		int objectViewsCount, ObjectDefinition objectDefinition) {
+		ObjectDefinition objectDefinition, int objectViewsCount) {
 
 		List<ObjectView> objectViews = _objectViewLocalService.getObjectViews(
 			objectDefinition.getObjectDefinitionId());
