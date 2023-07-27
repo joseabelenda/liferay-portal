@@ -88,17 +88,15 @@ public class ObjectLayoutServiceImpl extends ObjectLayoutServiceBaseImpl {
 	}
 
 	@Override
-	public ObjectLayout
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-				String objectDefinitionExternalReferenceCode,
-				String objectLayoutExternalReferenceCode, long companyId)
+	public ObjectLayout fetchObjectLayoutByExternalRefererenceCode(
+			String objectDefinitionExternalReferenceCode,
+			String objectLayoutExternalReferenceCode, long companyId)
 		throws PortalException {
 
 		ObjectLayout objectLayout =
-			objectLayoutLocalService.
-				fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-					objectDefinitionExternalReferenceCode,
-					objectLayoutExternalReferenceCode, companyId);
+			objectLayoutLocalService.fetchObjectLayoutByExternalRefererenceCode(
+				objectDefinitionExternalReferenceCode,
+				objectLayoutExternalReferenceCode, companyId);
 
 		_objectDefinitionModelResourcePermission.check(
 			getPermissionChecker(), objectLayout.getObjectDefinitionId(),

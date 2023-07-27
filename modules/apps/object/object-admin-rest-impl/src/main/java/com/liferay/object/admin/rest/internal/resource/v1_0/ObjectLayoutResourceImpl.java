@@ -69,11 +69,10 @@ public class ObjectLayoutResourceImpl extends BaseObjectLayoutResourceImpl {
 		throws Exception {
 
 		return _toObjectLayout(
-			_objectLayoutService.
-				fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-					objectDefinitionExternalReferenceCode,
-					objectLayoutExternalReferenceCode,
-					contextCompany.getCompanyId()));
+			_objectLayoutService.fetchObjectLayoutByExternalRefererenceCode(
+				objectDefinitionExternalReferenceCode,
+				objectLayoutExternalReferenceCode,
+				contextCompany.getCompanyId()));
 	}
 
 	@Override
