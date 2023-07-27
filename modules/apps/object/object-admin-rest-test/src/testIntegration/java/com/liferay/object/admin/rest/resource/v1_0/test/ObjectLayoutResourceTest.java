@@ -183,6 +183,7 @@ public class ObjectLayoutResourceTest extends BaseObjectLayoutResourceTestCase {
 			_objectDefinition.getObjectDefinitionId(), randomObjectLayout());
 	}
 
+	@Override
 	protected ObjectLayout
 			testGetObjectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectLayoutByExternalReferenceCodeObjectLayoutExternalReferenceCode_addObjectLayout()
 		throws Exception {
@@ -246,6 +247,7 @@ public class ObjectLayoutResourceTest extends BaseObjectLayoutResourceTestCase {
 				_objectDefinition.getExternalReferenceCode(), objectLayout);
 	}
 
+	@Override
 	protected ObjectLayout
 			testPutObjectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectLayoutByExternalReferenceCodeObjectLayoutExternalReferenceCode_addObjectLayout()
 		throws Exception {
