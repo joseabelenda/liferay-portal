@@ -61,10 +61,9 @@ public interface ObjectLayoutService extends BaseService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ObjectLayout
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-				String objectDefinitionExternalReferenceCode,
-				String objectLayoutExternalReferenceCode, long companyId)
+	public ObjectLayout fetchObjectLayoutByExternalRefererenceCode(
+			String objectDefinitionExternalReferenceCode,
+			String objectLayoutExternalReferenceCode, long companyId)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

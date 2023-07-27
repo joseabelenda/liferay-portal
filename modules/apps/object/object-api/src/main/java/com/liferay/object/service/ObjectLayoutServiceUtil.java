@@ -59,16 +59,14 @@ public class ObjectLayoutServiceUtil {
 		return getService().deleteObjectLayout(objectLayoutId);
 	}
 
-	public static ObjectLayout
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-				String objectDefinitionExternalReferenceCode,
-				String objectLayoutExternalReferenceCode, long companyId)
+	public static ObjectLayout fetchObjectLayoutByExternalRefererenceCode(
+			String objectDefinitionExternalReferenceCode,
+			String objectLayoutExternalReferenceCode, long companyId)
 		throws PortalException {
 
-		return getService().
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-				objectDefinitionExternalReferenceCode,
-				objectLayoutExternalReferenceCode, companyId);
+		return getService().fetchObjectLayoutByExternalRefererenceCode(
+			objectDefinitionExternalReferenceCode,
+			objectLayoutExternalReferenceCode, companyId);
 	}
 
 	public static ObjectLayout getObjectLayout(long objectLayoutId)

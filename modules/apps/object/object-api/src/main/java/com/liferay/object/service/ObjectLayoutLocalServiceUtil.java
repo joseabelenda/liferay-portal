@@ -239,16 +239,14 @@ public class ObjectLayoutLocalServiceUtil {
 		return getService().fetchObjectLayout(objectLayoutId);
 	}
 
-	public static ObjectLayout
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-				String objectDefinitionExternalReferenceCode,
-				String objectLayoutExternalReferenceCode, long companyId)
+	public static ObjectLayout fetchObjectLayoutByExternalRefererenceCode(
+			String objectDefinitionExternalReferenceCode,
+			String objectLayoutExternalReferenceCode, long companyId)
 		throws PortalException {
 
-		return getService().
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-				objectDefinitionExternalReferenceCode,
-				objectLayoutExternalReferenceCode, companyId);
+		return getService().fetchObjectLayoutByExternalRefererenceCode(
+			objectDefinitionExternalReferenceCode,
+			objectLayoutExternalReferenceCode, companyId);
 	}
 
 	/**

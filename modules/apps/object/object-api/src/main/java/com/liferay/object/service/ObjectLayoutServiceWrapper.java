@@ -63,15 +63,14 @@ public class ObjectLayoutServiceWrapper
 
 	@Override
 	public com.liferay.object.model.ObjectLayout
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
+			fetchObjectLayoutByExternalRefererenceCode(
 				String objectDefinitionExternalReferenceCode,
 				String objectLayoutExternalReferenceCode, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _objectLayoutService.
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-				objectDefinitionExternalReferenceCode,
-				objectLayoutExternalReferenceCode, companyId);
+		return _objectLayoutService.fetchObjectLayoutByExternalRefererenceCode(
+			objectDefinitionExternalReferenceCode,
+			objectLayoutExternalReferenceCode, companyId);
 	}
 
 	@Override

@@ -222,10 +222,9 @@ public interface ObjectLayoutLocalService
 	public ObjectLayout fetchObjectLayout(long objectLayoutId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ObjectLayout
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
-				String objectDefinitionExternalReferenceCode,
-				String objectLayoutExternalReferenceCode, long companyId)
+	public ObjectLayout fetchObjectLayoutByExternalRefererenceCode(
+			String objectDefinitionExternalReferenceCode,
+			String objectLayoutExternalReferenceCode, long companyId)
 		throws PortalException;
 
 	/**

@@ -174,7 +174,7 @@ public class ObjectLayoutServiceHttp {
 	}
 
 	public static com.liferay.object.model.ObjectLayout
-			fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode(
+			fetchObjectLayoutByExternalRefererenceCode(
 				HttpPrincipal httpPrincipal,
 				String objectDefinitionExternalReferenceCode,
 				String objectLayoutExternalReferenceCode, long companyId)
@@ -183,8 +183,8 @@ public class ObjectLayoutServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				ObjectLayoutServiceUtil.class,
-				"fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCode",
-				_fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCodeParameterTypes3);
+				"fetchObjectLayoutByExternalRefererenceCode",
+				_fetchObjectLayoutByExternalRefererenceCodeParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, objectDefinitionExternalReferenceCode,
@@ -319,7 +319,7 @@ public class ObjectLayoutServiceHttp {
 	private static final Class<?>[] _deleteObjectLayoutParameterTypes2 =
 		new Class[] {long.class};
 	private static final Class<?>[]
-		_fetchObjectLayoutByObjectDefinitionExternalReferenceCodeObjectLayoutExternalReferenceCodeParameterTypes3 =
+		_fetchObjectLayoutByExternalRefererenceCodeParameterTypes3 =
 			new Class[] {String.class, String.class, long.class};
 	private static final Class<?>[] _getObjectLayoutParameterTypes4 =
 		new Class[] {long.class};
