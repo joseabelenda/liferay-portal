@@ -330,6 +330,17 @@ public class ObjectServiceUpgradeStepRegistrator
 			"7.1.1", "8.0.0",
 			new com.liferay.object.internal.upgrade.v8_0_0.
 				ObjectFolderItemUpgradeProcess(_portalUUID));
+
+		registry.register(
+			"8.0.0", "8.0.1",
+			new BaseExternalReferenceCodeUpgradeProcess() {
+
+				@Override
+				protected String[][] getTableAndPrimaryKeyColumnNames() {
+					return new String[][] {{"ObjectView", "objectViewId"}};
+				}
+
+			});
 	}
 
 	@Reference
