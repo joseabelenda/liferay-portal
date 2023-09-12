@@ -45,6 +45,7 @@ import com.liferay.notification.rest.resource.v1_0.NotificationTemplateResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectDefinitionResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectFieldResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectRelationshipResource;
+import com.liferay.object.admin.rest.resource.v1_0.ObjectViewResource;
 import com.liferay.object.rest.manager.v1_0.ObjectEntryManager;
 import com.liferay.object.service.ObjectActionLocalService;
 import com.liferay.object.service.ObjectDefinitionLocalService;
@@ -148,6 +149,7 @@ public class SiteInitializerExtension {
 		ObjectFieldResource.Factory objectFieldResourceFactory,
 		ObjectRelationshipLocalService objectRelationshipLocalService,
 		ObjectRelationshipResource.Factory objectRelationshipResourceFactory,
+		ObjectViewResource.Factory objectViewResourceFactory,
 		OrganizationLocalService organizationLocalService,
 		OrganizationResource.Factory organizationResourceFactory,
 		PLOEntryLocalService ploEntryLocalService, Portal portal,
@@ -206,10 +208,11 @@ public class SiteInitializerExtension {
 			objectEntryLocalService, objectEntryManager,
 			objectFieldLocalService, objectFieldResourceFactory,
 			objectRelationshipLocalService, objectRelationshipResourceFactory,
-			organizationLocalService, organizationResourceFactory,
-			ploEntryLocalService, portal, portletPreferencesLocalService,
-			resourceActionLocalService, resourcePermissionLocalService,
-			roleLocalService, sapEntryLocalService, segmentsEntryLocalService,
+			objectViewResourceFactory, organizationLocalService,
+			organizationResourceFactory, ploEntryLocalService, portal,
+			portletPreferencesLocalService, resourceActionLocalService,
+			resourcePermissionLocalService, roleLocalService,
+			sapEntryLocalService, segmentsEntryLocalService,
 			segmentsExperienceLocalService, archivedSettingsFactory,
 			siteNavigationMenuItemLocalService,
 			siteNavigationMenuItemTypeRegistry, siteNavigationMenuLocalService,

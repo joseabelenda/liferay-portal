@@ -45,6 +45,7 @@ import com.liferay.notification.rest.resource.v1_0.NotificationTemplateResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectDefinitionResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectFieldResource;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectRelationshipResource;
+import com.liferay.object.admin.rest.resource.v1_0.ObjectViewResource;
 import com.liferay.object.rest.manager.v1_0.ObjectEntryManager;
 import com.liferay.object.service.ObjectActionLocalService;
 import com.liferay.object.service.ObjectDefinitionLocalService;
@@ -156,12 +157,13 @@ public class SiteInitializerExtender
 				_objectEntryLocalService, _objectEntryManager,
 				_objectFieldLocalService, _objectFieldResourceFactory,
 				_objectRelationshipLocalService,
-				_objectRelationshipResourceFactory, _organizationLocalService,
-				_organizationResourceFactory, _ploEntryLocalService, _portal,
-				_portletPreferencesLocalService, _resourceActionLocalService,
-				_resourcePermissionLocalService, _roleLocalService,
-				_sapEntryLocalService, _segmentsEntryLocalService,
-				_segmentsExperienceLocalService, null, _archivedSettingsFactory,
+				_objectRelationshipResourceFactory, _objectViewResourceFactory,
+				_organizationLocalService, _organizationResourceFactory,
+				_ploEntryLocalService, _portal, _portletPreferencesLocalService,
+				_resourceActionLocalService, _resourcePermissionLocalService,
+				_roleLocalService, _sapEntryLocalService,
+				_segmentsEntryLocalService, _segmentsExperienceLocalService,
+				null, _archivedSettingsFactory,
 				_siteNavigationMenuItemLocalService,
 				_siteNavigationMenuItemTypeRegistry,
 				_siteNavigationMenuLocalService,
@@ -277,12 +279,12 @@ public class SiteInitializerExtender
 				_objectEntryLocalService, _objectEntryManager,
 				_objectFieldLocalService, _objectFieldResourceFactory,
 				_objectRelationshipLocalService,
-				_objectRelationshipResourceFactory, _organizationLocalService,
-				_organizationResourceFactory, _ploEntryLocalService, _portal,
-				_portletPreferencesLocalService, _resourceActionLocalService,
-				_resourcePermissionLocalService, _roleLocalService,
-				_sapEntryLocalService, _segmentsEntryLocalService,
-				_segmentsExperienceLocalService,
+				_objectRelationshipResourceFactory, _objectViewResourceFactory,
+				_organizationLocalService, _organizationResourceFactory,
+				_ploEntryLocalService, _portal, _portletPreferencesLocalService,
+				_resourceActionLocalService, _resourcePermissionLocalService,
+				_roleLocalService, _sapEntryLocalService,
+				_segmentsEntryLocalService, _segmentsExperienceLocalService,
 				ProxyUtil.newDelegateProxyInstance(
 					ServletContext.class.getClassLoader(), ServletContext.class,
 					new FileBackedServletContextDelegate(
@@ -466,6 +468,9 @@ public class SiteInitializerExtender
 	@Reference
 	private ObjectRelationshipResource.Factory
 		_objectRelationshipResourceFactory;
+
+	@Reference
+	private ObjectViewResource.Factory _objectViewResourceFactory;
 
 	@Reference
 	private OrganizationLocalService _organizationLocalService;
