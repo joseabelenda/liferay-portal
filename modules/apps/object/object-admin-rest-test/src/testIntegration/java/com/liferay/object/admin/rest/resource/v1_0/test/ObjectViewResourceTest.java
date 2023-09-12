@@ -190,11 +190,6 @@ public class ObjectViewResourceTest extends BaseObjectViewResourceTestCase {
 		assertValid(copiedObjectView);
 	}
 
-	@Override
-	protected String[] getIgnoredEntityFieldNames() {
-		return new String[] {"label"};
-	}
-	
 	@Test
 	public void testPutObjectDefinitionByExternalReferenceCodeObjectDefinitionExternalReferenceCodeObjectViewByExternalReferenceCodeObjectViewExternalReferenceCode()
 		throws Exception {
@@ -224,6 +219,11 @@ public class ObjectViewResourceTest extends BaseObjectViewResourceTestCase {
 
 		assertEquals(randomObjectView, getObjectView);
 		assertValid(getObjectView);
+	}
+
+	@Override
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[] {"label"};
 	}
 
 	@Override
