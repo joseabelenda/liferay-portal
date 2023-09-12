@@ -28,23 +28,6 @@ public class ObjectViewLocalServiceWrapper
 		_objectViewLocalService = objectViewLocalService;
 	}
 
-	@Override
-	public com.liferay.object.model.ObjectView addObjectView(
-			long userId, long objectDefinitionId, boolean defaultObjectView,
-			java.util.Map<java.util.Locale, String> nameMap,
-			java.util.List<com.liferay.object.model.ObjectViewColumn>
-				objectViewColumns,
-			java.util.List<com.liferay.object.model.ObjectViewFilterColumn>
-				objectViewFilterColumns,
-			java.util.List<com.liferay.object.model.ObjectViewSortColumn>
-				objectViewSortColumns)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _objectViewLocalService.addObjectView(
-			userId, objectDefinitionId, defaultObjectView, nameMap,
-			objectViewColumns, objectViewFilterColumns, objectViewSortColumns);
-	}
-
 	/**
 	 * Adds the object view to the database. Also notifies the appropriate model listeners.
 	 *
@@ -60,6 +43,44 @@ public class ObjectViewLocalServiceWrapper
 		com.liferay.object.model.ObjectView objectView) {
 
 		return _objectViewLocalService.addObjectView(objectView);
+	}
+
+	@Override
+	public com.liferay.object.model.ObjectView addObjectView(
+			String externalReferenceCode, long userId, long objectDefinitionId,
+			boolean defaultObjectView,
+			java.util.Map<java.util.Locale, String> nameMap,
+			java.util.List<com.liferay.object.model.ObjectViewColumn>
+				objectViewColumns,
+			java.util.List<com.liferay.object.model.ObjectViewFilterColumn>
+				objectViewFilterColumns,
+			java.util.List<com.liferay.object.model.ObjectViewSortColumn>
+				objectViewSortColumns)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _objectViewLocalService.addObjectView(
+			externalReferenceCode, userId, objectDefinitionId,
+			defaultObjectView, nameMap, objectViewColumns,
+			objectViewFilterColumns, objectViewSortColumns);
+	}
+
+	@Override
+	public com.liferay.object.model.ObjectView addOrUpdateObjectView(
+			String externalReferenceCode, long objectViewId, long userId,
+			long objectDefinitionId, boolean defaultObjectView,
+			java.util.Map<java.util.Locale, String> nameMap,
+			java.util.List<com.liferay.object.model.ObjectViewColumn>
+				objectViewColumns,
+			java.util.List<com.liferay.object.model.ObjectViewFilterColumn>
+				objectViewFilterColumns,
+			java.util.List<com.liferay.object.model.ObjectViewSortColumn>
+				objectViewSortColumns)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _objectViewLocalService.addOrUpdateObjectView(
+			externalReferenceCode, objectViewId, userId, objectDefinitionId,
+			defaultObjectView, nameMap, objectViewColumns,
+			objectViewFilterColumns, objectViewSortColumns);
 	}
 
 	/**
@@ -251,6 +272,19 @@ public class ObjectViewLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.object.model.ObjectView
+			fetchObjectLayoutByExternalRefererenceCode(
+				String objectDefinitionExternalReferenceCode,
+				String objectViewExternalReferenceCode, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _objectViewLocalService.
+			fetchObjectLayoutByExternalRefererenceCode(
+				objectDefinitionExternalReferenceCode,
+				objectViewExternalReferenceCode, companyId);
+	}
+
+	@Override
 	public com.liferay.object.model.ObjectView fetchObjectView(
 		long objectViewId) {
 
@@ -390,23 +424,6 @@ public class ObjectViewLocalServiceWrapper
 		_objectViewLocalService.unassociateObjectField(objectField);
 	}
 
-	@Override
-	public com.liferay.object.model.ObjectView updateObjectView(
-			long objectViewId, boolean defaultObjectView,
-			java.util.Map<java.util.Locale, String> nameMap,
-			java.util.List<com.liferay.object.model.ObjectViewColumn>
-				objectViewColumns,
-			java.util.List<com.liferay.object.model.ObjectViewFilterColumn>
-				objectViewFilterColumns,
-			java.util.List<com.liferay.object.model.ObjectViewSortColumn>
-				objectViewSortColumns)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _objectViewLocalService.updateObjectView(
-			objectViewId, defaultObjectView, nameMap, objectViewColumns,
-			objectViewFilterColumns, objectViewSortColumns);
-	}
-
 	/**
 	 * Updates the object view in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
@@ -422,6 +439,24 @@ public class ObjectViewLocalServiceWrapper
 		com.liferay.object.model.ObjectView objectView) {
 
 		return _objectViewLocalService.updateObjectView(objectView);
+	}
+
+	@Override
+	public com.liferay.object.model.ObjectView updateObjectView(
+			String externalReferenceCode, long objectViewId,
+			boolean defaultObjectView,
+			java.util.Map<java.util.Locale, String> nameMap,
+			java.util.List<com.liferay.object.model.ObjectViewColumn>
+				objectViewColumns,
+			java.util.List<com.liferay.object.model.ObjectViewFilterColumn>
+				objectViewFilterColumns,
+			java.util.List<com.liferay.object.model.ObjectViewSortColumn>
+				objectViewSortColumns)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _objectViewLocalService.updateObjectView(
+			externalReferenceCode, objectViewId, defaultObjectView, nameMap,
+			objectViewColumns, objectViewFilterColumns, objectViewSortColumns);
 	}
 
 	@Override

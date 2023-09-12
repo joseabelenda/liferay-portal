@@ -62,14 +62,6 @@ public interface ObjectViewLocalService
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>com.liferay.object.service.impl.ObjectViewLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the object view local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link ObjectViewLocalServiceUtil} if injection and service tracking are not available.
 	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public ObjectView addObjectView(
-			long userId, long objectDefinitionId, boolean defaultObjectView,
-			Map<Locale, String> nameMap,
-			List<ObjectViewColumn> objectViewColumns,
-			List<ObjectViewFilterColumn> objectViewFilterColumns,
-			List<ObjectViewSortColumn> objectViewSortColumns)
-		throws PortalException;
 
 	/**
 	 * Adds the object view to the database. Also notifies the appropriate model listeners.
@@ -83,6 +75,25 @@ public interface ObjectViewLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public ObjectView addObjectView(ObjectView objectView);
+
+	@Indexable(type = IndexableType.REINDEX)
+	public ObjectView addObjectView(
+			String externalReferenceCode, long userId, long objectDefinitionId,
+			boolean defaultObjectView, Map<Locale, String> nameMap,
+			List<ObjectViewColumn> objectViewColumns,
+			List<ObjectViewFilterColumn> objectViewFilterColumns,
+			List<ObjectViewSortColumn> objectViewSortColumns)
+		throws PortalException;
+
+	@Indexable(type = IndexableType.REINDEX)
+	public ObjectView addOrUpdateObjectView(
+			String externalReferenceCode, long objectViewId, long userId,
+			long objectDefinitionId, boolean defaultObjectView,
+			Map<Locale, String> nameMap,
+			List<ObjectViewColumn> objectViewColumns,
+			List<ObjectViewFilterColumn> objectViewFilterColumns,
+			List<ObjectViewSortColumn> objectViewSortColumns)
+		throws PortalException;
 
 	/**
 	 * Creates a new object view with the primary key. Does not add the object view to the database.
@@ -214,6 +225,12 @@ public interface ObjectViewLocalService
 	public ObjectView fetchDefaultObjectView(long objectDefinitionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ObjectView fetchObjectLayoutByExternalRefererenceCode(
+			String objectDefinitionExternalReferenceCode,
+			String objectViewExternalReferenceCode, long companyId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ObjectView fetchObjectView(long objectViewId);
 
 	/**
@@ -302,15 +319,6 @@ public interface ObjectViewLocalService
 
 	public void unassociateObjectField(ObjectField objectField);
 
-	@Indexable(type = IndexableType.REINDEX)
-	public ObjectView updateObjectView(
-			long objectViewId, boolean defaultObjectView,
-			Map<Locale, String> nameMap,
-			List<ObjectViewColumn> objectViewColumns,
-			List<ObjectViewFilterColumn> objectViewFilterColumns,
-			List<ObjectViewSortColumn> objectViewSortColumns)
-		throws PortalException;
-
 	/**
 	 * Updates the object view in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
@@ -323,5 +331,14 @@ public interface ObjectViewLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public ObjectView updateObjectView(ObjectView objectView);
+
+	@Indexable(type = IndexableType.REINDEX)
+	public ObjectView updateObjectView(
+			String externalReferenceCode, long objectViewId,
+			boolean defaultObjectView, Map<Locale, String> nameMap,
+			List<ObjectViewColumn> objectViewColumns,
+			List<ObjectViewFilterColumn> objectViewFilterColumns,
+			List<ObjectViewSortColumn> objectViewSortColumns)
+		throws PortalException;
 
 }
