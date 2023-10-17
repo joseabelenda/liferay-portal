@@ -1,0 +1,51 @@
+[
+	{
+		"key": "action",
+		"name": "Action",
+		"name_i18n": {
+			"en-US": "Action"
+		}
+	},
+	{
+		"key": "comedy",
+		"name": "Comedy",
+		"name_i18n": {
+			"en-US": "Comedy"
+		}
+	},
+	{
+		"key": "drama",
+		"name": "Drama",
+		"name_i18n": {
+			"en-US": "Drama"
+		}
+	},
+	{
+		"key": "fantasy",
+		"name": "Fantasy",
+		"name_i18n": {
+			"en-US": "Fantasy"
+		}
+	},
+	{
+		"key": "horror",
+		"name": "Horror",
+		"name_i18n": {
+			"en-US": "Horror"
+		}
+	},
+	{
+		"key": "mistery",
+		"name": "Mistery",
+		"name_i18n": {
+			"en-US": "Mistery"
+		}
+	},
+	{
+		"key": "romance",
+		"name": "Romance",
+		"name_i18n": {
+			"en-US": "Romance"
+		}
+	}
+]

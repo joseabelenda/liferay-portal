@@ -1,0 +1,12 @@
+{
+	"description": "MovieRay Vocabulary",
+	"description_i18n": {
+		"en_US": "MovieRay Vocabulary"
+	},
+	"externalReferenceCode": "MOVIERAYVOCABULARY",
+	"name": "MovieRay",
+	"name_i18n": {
+		"en_US": "MovieRay"
+	},
+	"viewableBy": "Anyone"
+}

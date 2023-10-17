@@ -1,0 +1,6 @@
+Bundle-Name: Liferay Site Initializer MovieRay
+Bundle-SymbolicName: com.liferay.site.initializer.movieray
+Bundle-Version: 1.0.0
+Liferay-Site-Initializer-Name: MovieRay
+Provide-Capability: liferay.site.initializer
+Web-ContextPath: /site-initializer-movieray

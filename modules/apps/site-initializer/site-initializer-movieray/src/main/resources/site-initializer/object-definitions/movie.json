@@ -1,0 +1,239 @@
+{
+	"accountEntryRestricted": false,
+	"accountEntryRestrictedObjectFieldName": "",
+	"active": false,
+	"defaultLanguageId": "en_US",
+	"enableCategorization": true,
+	"enableComments": true,
+	"enableLocalization": true,
+	"enableObjectEntryHistory": false,
+	"externalReferenceCode": "MOVIE",
+	"label": {
+	  "en_US": "Movie"
+	},
+	"name": "Movie",
+	"objectFields": [
+	  {
+		"DBType": "String",
+		"businessType": "Text",
+		"indexed": false,
+		"indexedAsKeyword": false,
+		"label": {
+		  "en_US": "Author"
+		},
+		"localized": false,
+		"name": "creator",
+		"readOnly": "true",
+		"required": false,
+		"state": false,
+		"system": true,
+		"type": "String"
+	  },
+	  {
+		"DBType": "Date",
+		"businessType": "Date",
+		"indexed": false,
+		"indexedAsKeyword": false,
+		"label": {
+		  "en_US": "Create Date"
+		},
+		"localized": false,
+		"name": "createDate",
+		"readOnly": "true",
+		"required": false,
+		"state": false,
+		"system": true,
+		"type": "Date"
+	  },
+	  {
+		"DBType": "String",
+		"businessType": "Text",
+		"indexed": false,
+		"indexedAsKeyword": false,
+		"label": {
+		  "en_US": "External Reference Code"
+		},
+		"localized": false,
+		"name": "externalReferenceCode",
+		"readOnly": "false",
+		"required": false,
+		"state": false,
+		"system": true,
+		"type": "String"
+	  },
+	  {
+		"DBType": "Long",
+		"businessType": "LongInteger",
+		"indexed": true,
+		"indexedAsKeyword": true,
+		"label": {
+		  "en_US": "ID"
+		},
+		"localized": false,
+		"name": "id",
+		"readOnly": "true",
+		"required": false,
+		"state": false,
+		"system": true,
+		"type": "Long"
+	  },
+	  {
+		"DBType": "Date",
+		"businessType": "Date",
+		"indexed": false,
+		"indexedAsKeyword": false,
+		"label": {
+		  "en_US": "Modified Date"
+		},
+		"localized": false,
+		"name": "modifiedDate",
+		"readOnly": "true",
+		"required": false,
+		"state": false,
+		"system": true,
+		"type": "Date"
+	  },
+	  {
+		"DBType": "String",
+		"businessType": "Text",
+		"indexed": false,
+		"indexedAsKeyword": false,
+		"label": {
+		  "en_US": "Status"
+		},
+		"localized": false,
+		"name": "status",
+		"readOnly": "true",
+		"required": false,
+		"state": false,
+		"system": true,
+		"type": "String"
+	  },
+	  {
+		"DBType": "String",
+		"businessType": "Text",
+		"indexed": true,
+		"indexedAsKeyword": false,
+		"indexedLanguageId": "en_US",
+		"label": {
+		  "en_US": "Title"
+		},
+		"localized": true,
+		"name": "title",
+		"readOnly": "false",
+		"required": false,
+		"state": false,
+		"system": false,
+		"type": "String"
+	  },
+	  {
+		"DBType": "String",
+		"businessType": "Text",
+		"indexed": true,
+		"indexedAsKeyword": false,
+		"indexedLanguageId": "en_US",
+		"label": {
+		  "en_US": "Overview"
+		},
+		"localized": true,
+		"name": "overview",
+		"readOnly": "false",
+		"required": false,
+		"state": false,
+		"system": false,
+		"type": "String"
+	  },
+	  {
+		"DBType": "Double",
+		"businessType": "Decimal",
+		"indexed": true,
+		"indexedAsKeyword": false,
+		"label": {
+		  "en_US": "Score"
+		},
+		"localized": false,
+		"name": "score",
+		"readOnly": "false",
+		"required": false,
+		"state": false,
+		"system": false,
+		"type": "Double"
+	  },
+	  {
+		"DBType": "Integer",
+		"businessType": "Integer",
+		"indexed": true,
+		"indexedAsKeyword": false,
+		"label": {
+		  "en_US": "Duration"
+		},
+		"localized": false,
+		"name": "duration",
+		"readOnly": "false",
+		"required": false,
+		"state": false,
+		"system": false,
+		"type": "Integer"
+	  },
+	  {
+		"DBType": "Integer",
+		"businessType": "Integer",
+		"indexed": true,
+		"indexedAsKeyword": false,
+		"label": {
+		  "en_US": "Year"
+		},
+		"localized": false,
+		"name": "year",
+		"readOnly": "false",
+		"required": true,
+		"state": false,
+		"system": false,
+		"type": "Integer"
+	  },
+	  {
+		"DBType": "String",
+		"businessType": "Text",
+		"indexed": true,
+		"indexedAsKeyword": false,
+		"indexedLanguageId": "en_US",
+		"label": {
+		  "en_US": "Director"
+		},
+		"localized": true,
+		"name": "director",
+		"readOnly": "false",
+		"required": false,
+		"state": false,
+		"system": false,
+		"type": "String"
+	  },
+	  {
+		"DBType": "String",
+		"businessType": "Text",
+		"indexed": true,
+		"indexedAsKeyword": false,
+		"indexedLanguageId": "en_US",
+		"label": {
+		  "en_US": "Stars"
+		},
+		"localized": true,
+		"name": "stars",
+		"readOnly": "false",
+		"required": false,
+		"state": false,
+		"system": false,
+		"type": "String"
+	  }
+	],
+	"panelCategoryKey": "control_panel.object",
+	"parameterRequired": false,
+	"pluralLabel": {
+	  "en_US": "Movies"
+	},
+	"portlet": true,
+	"restContextPath": "/o/c/movies",
+	"scope": "company",
+	"system": false,
+	"titleObjectFieldName": "title"
+  }
