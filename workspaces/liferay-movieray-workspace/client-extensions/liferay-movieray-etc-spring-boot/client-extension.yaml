@@ -1,0 +1,7 @@
+assemble:
+    - fromTask: bootJar
+liferay-movieray-etc-spring-boot-object-action-1:
+    name: Liferay MovieRay Etc Spring Boot Add Order
+    oAuth2ApplicationExternalReferenceCode: liferay-movieray-etc-spring-boot-oauth-application-user-agent
+    resourcePath: /object/action/1
+    type: objectAction
