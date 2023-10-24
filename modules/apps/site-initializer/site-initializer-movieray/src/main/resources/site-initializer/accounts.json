@@ -1,0 +1,12 @@
+[
+	{
+		"externalReferenceCode": "BASIC",
+		"name": "Basic",
+		"type": "business"
+	},
+	{
+		"externalReferenceCode": "PREMIUM",
+		"name": "Premium",
+		"type": "business"
+	}
+]

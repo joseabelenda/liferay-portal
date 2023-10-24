@@ -1,0 +1,20 @@
+[
+	{
+		"cpDefinitionExternalReferenceCode": "MOVIERAY1",
+		"cpInstanceProperties": [
+			{
+				"cpInstanceSku": "BASIC",
+				"propertyType": "UPDATE_PRICE",
+				"skuPrice": 10,
+				"skuPromoPrice": 10
+			},
+			{
+				"cpInstanceSku": "PREMIUM",
+				"propertyType": "UPDATE_PRICE",
+				"skuPrice": 15,
+				"skuPromoPrice": 15
+			}
+		],
+		"optionKey": "plan-option"
+	}
+]

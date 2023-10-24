@@ -1,0 +1,25 @@
+[
+	{
+		"externalReferenceCode": "PLAN_OPTION",
+		"facetable": false,
+		"fieldType": "select",
+		"key": "plan-option",
+		"name": "Plan Option",
+		"required": true,
+		"skuContributor": true,
+		"values": [
+			{
+				"externalReferenceCode": "BASIC",
+				"key": "basic",
+				"name": "Basic",
+				"priority": 0
+			},
+			{
+				"externalReferenceCode": "PREMIUM",
+				"key": "premium",
+				"name": "Premium",
+				"priority": 1
+			}
+		]
+	}
+]

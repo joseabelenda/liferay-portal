@@ -1,7 +1,7 @@
 {
-	"accountEntryRestricted": false,
-	"accountEntryRestrictedObjectFieldName": "",
-	"active": false,
+	"accountEntryRestricted": true,
+	"accountEntryRestrictedObjectFieldName": "r_accountToMovies_accountEntryId",
+	"active": true,
 	"defaultLanguageId": "en_US",
 	"enableCategorization": true,
 	"enableComments": true,

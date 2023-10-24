@@ -1,0 +1,11 @@
+{
+	"deletionType": "prevent",
+	"label": {
+		"en_US": "Account"
+	},
+	"name": "accountToMovies",
+	"objectDefinitionId1": "[$OBJECT_DEFINITION_ID:AccountEntry$]",
+	"objectDefinitionId2": "[$OBJECT_DEFINITION_ID:Movie$]",
+	"objectDefinitionName2": "Movie",
+	"type": "oneToMany"
+}
