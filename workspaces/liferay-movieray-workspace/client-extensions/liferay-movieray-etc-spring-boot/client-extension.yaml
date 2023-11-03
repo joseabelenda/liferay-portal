@@ -1,7 +1,14 @@
 assemble:
     - fromTask: bootJar
-liferay-movieray-etc-spring-boot-object-action-1:
-    name: Liferay MovieRay Etc Spring Boot Add Order
-    oAuth2ApplicationExternalReferenceCode: liferay-movieray-etc-spring-boot-oauth-application-user-agent
-    resourcePath: /object/action/1
+lug-spring-boot-oauth-application-user-agent:
+    .serviceAddress: localhost:58081
+    .serviceScheme: http
+    name: Lug Spring Boot OAuth Application User Agent
+    scopes:
+        - C_Movie.everything
+    type: oAuthApplicationUserAgent
+lug-spring-boot-object-action-documentation-referral:
+    name: Lug Spring Boot Object Action Documentation Referral
+    oAuth2ApplicationExternalReferenceCode: lug-spring-boot-oauth-application-user-agent
+    resourcePath: /lug/object/action/1
     type: objectAction

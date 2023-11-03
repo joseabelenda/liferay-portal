@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author Raymond Augé
- * @author Gregory Amerson
- * @author Brian Wing Shun Chan
+ * @author José Abelenda
  */
-@RequestMapping("/object/action/1")
+@RequestMapping("/lug/action/1")
 @RestController
 public class ObjectAction1RestController extends BaseRestController {
 
 	@PostMapping
 	public ResponseEntity<String> post(
 		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
+
+			System.out.println("post");
 
 		log(jwt, _log, json);
 
