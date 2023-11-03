@@ -1,0 +1,56 @@
+{
+  "pageElement" : {
+    "pageElements" : [ {
+      "definition" : {
+        "indexed" : true,
+        "layout" : {
+          "contentDisplay" : "FlexRow"
+        }
+      },
+      "pageElements" : [ {
+        "definition" : {
+          "fragment" : {
+            "key" : "COMMERCE_ACCOUNT_FRAGMENTS-account-selector"
+          },
+          "fragmentConfig" : { },
+          "fragmentFields" : [ ],
+          "indexed" : true
+        },
+        "type" : "Fragment"
+      }, {
+        "definition" : {
+          "fragment" : {
+            "key" : "COMMERCE_CART_FRAGMENTS-mini-cart"
+          },
+          "fragmentConfig" : {
+            "displayTotalItemsQuantity" : true,
+            "iconColor" : "var(--gray-600)"
+          },
+          "fragmentFields" : [ ],
+          "indexed" : true
+        },
+        "type" : "Fragment"
+      } ],
+      "type" : "Section"
+    }, {
+      "definition" : {
+        "fragmentSettings" : {
+          "unallowedFragments" : [ ]
+        }
+      },
+      "type" : "DropZone"
+    } ],
+    "type" : "Root"
+  },
+  "settings" : {
+    "colorSchemeName" : "01",
+    "themeName" : "Classic",
+    "themeSettings" : {
+      "lfr-theme:regular:show-header" : "false",
+      "lfr-theme:regular:wrap-widget-page-content" : "false",
+      "lfr-theme:regular:show-header-search" : "false",
+      "lfr-theme:regular:show-footer" : "false"
+    }
+  },
+  "version" : 1.0
+}

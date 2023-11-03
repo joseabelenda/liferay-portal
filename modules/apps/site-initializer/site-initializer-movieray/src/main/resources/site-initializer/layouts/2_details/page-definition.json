@@ -1,0 +1,36 @@
+{
+	"pageElement": {
+		"pageElements": [
+			{
+				"definition": {
+					"fragmentStyle": {
+						"marginTop": "5"
+					},
+					"indexed": true,
+					"layout": {
+						"marginTop": 4,
+						"widthType": "Fixed"
+					}
+				},
+				"pageElements": [
+					{
+						"definition": {
+							"widgetInstance": {
+								"widgetConfig": {},
+								"widgetName": "com_liferay_commerce_product_content_web_internal_portlet_CPContentPortlet"
+							}
+						},
+						"type": "Widget"
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "Lug"
+		}
+	}
+}

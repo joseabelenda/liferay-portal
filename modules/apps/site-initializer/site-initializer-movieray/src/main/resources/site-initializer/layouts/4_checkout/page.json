@@ -1,0 +1,17 @@
+{
+	"friendlyURL": "/checkout",
+	"hidden": false,
+	"name_i18n": {
+		"en_US": "Checkout"
+	},
+	"priority": 4,
+	"private": false,
+	"system": false,
+	"type": "Content",
+	"typeSettings": [
+		{
+			"key": "published",
+			"value": "true"
+		}
+	]
+}

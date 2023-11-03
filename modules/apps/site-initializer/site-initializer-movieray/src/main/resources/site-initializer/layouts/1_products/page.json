@@ -1,0 +1,17 @@
+{
+	"friendlyURL": "/products",
+	"hidden": false,
+	"name_i18n": {
+		"en_US": "Products"
+	},
+	"priority": 0,
+	"private": false,
+	"system": false,
+	"type": "Content",
+	"typeSettings": [
+		{
+			"key": "published",
+			"value": "true"
+		}
+	]
+}

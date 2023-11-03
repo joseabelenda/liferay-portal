@@ -1,0 +1,43 @@
+{
+  "pageElement" : {
+    "pageElements" : [ {
+      "definition" : {
+        "indexed" : true,
+        "layout" : {
+          "widthType" : "Fixed"
+        }
+      },
+      "pageElements" : [ {
+        "definition" : {
+          "widgetInstance" : {
+            "widgetConfig" : {
+              "selectionStyle" : "custom",
+              "simple--cpTypeRendererKey" : "default",
+              "diagram--cpTypeRendererKey" : "diagram",
+              "grouped--cpTypeRendererKey" : "default",
+              "virtual--cpTypeRendererKey" : "default"
+            },
+            "widgetName" : "com_liferay_commerce_product_content_web_internal_portlet_CPContentPortlet"
+          }
+        },
+        "type" : "Widget"
+      } ],
+      "type" : "Section"
+    } ],
+    "type" : "Root"
+  },
+  "settings" : {
+    "colorSchemeName" : "01",
+    "masterPage" : {
+      "key" : "lug"
+    },
+    "themeName" : "Classic",
+    "themeSettings" : {
+      "lfr-theme:regular:show-header" : "false",
+      "lfr-theme:regular:wrap-widget-page-content" : "false",
+      "lfr-theme:regular:show-header-search" : "false",
+      "lfr-theme:regular:show-footer" : "false"
+    }
+  },
+  "version" : 1.0
+}

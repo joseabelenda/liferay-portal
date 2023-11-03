@@ -6,6 +6,7 @@
 		"productType": "virtual",
 		"promoPrice": 0.0,
 		"shippable": false,
-		"sku": "MOVIERAY1"
+		"sku": "MOVIERAY1",
+		"warehouse1": 1000
 	}
 ]
