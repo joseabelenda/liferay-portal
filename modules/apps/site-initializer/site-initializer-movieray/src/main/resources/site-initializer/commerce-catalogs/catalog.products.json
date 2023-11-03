@@ -3,7 +3,9 @@
 		"externalReferenceCode": "MOVIERAY1",
 		"name": "MovieRay Subscription",
 		"price": 0.0,
+		"productType": "virtual",
 		"promoPrice": 0.0,
+		"shippable": false,
 		"sku": "MOVIERAY1"
 	}
 ]
