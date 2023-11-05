@@ -7,8 +7,8 @@ lug-spring-boot-oauth-application-user-agent:
     scopes:
         - C_Movie.everything
     type: oAuthApplicationUserAgent
-lug-spring-boot-object-action-documentation-referral:
-    name: Lug Spring Boot Object Action Documentation Referral
+lug-spring-boot-object-action-order-status-update:
+    name: Lug Spring Boot Object Action Orde Status Update
     oAuth2ApplicationExternalReferenceCode: lug-spring-boot-oauth-application-user-agent
-    resourcePath: /lug/object/action/1
+    resourcePath: /lug/order/status/update
     type: objectAction

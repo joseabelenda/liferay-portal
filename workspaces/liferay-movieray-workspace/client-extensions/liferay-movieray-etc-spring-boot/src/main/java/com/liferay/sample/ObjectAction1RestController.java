@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author José Abelenda
  */
-@RequestMapping("/lug/action/1")
+@RequestMapping("/lug/order/status/update")
 @RestController
 public class ObjectAction1RestController extends BaseRestController {
 
