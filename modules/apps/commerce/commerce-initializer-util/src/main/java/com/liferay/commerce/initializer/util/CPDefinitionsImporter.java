@@ -238,7 +238,7 @@ public class CPDefinitionsImporter {
 		return _cpDefinitionLocalService.addCPDefinition(
 			externalReferenceCode, catalogGroupId, user.getUserId(), nameMap,
 			shortDescriptionMap, descriptionMap, nameMap, null, null, null,
-			"simple", true, shippable, false, false, 0D, width, height, depth,
+			"virtual", true, shippable, false, false, 0D, width, height, depth,
 			weight, _getCPTaxCategoryId(taxCategory, serviceContext), false,
 			false, null, true, displayDateMonth, displayDateDay,
 			displayDateYear, displayDateHour, displayDateMinute,
