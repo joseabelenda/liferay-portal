@@ -6,6 +6,8 @@ lug-spring-boot-oauth-application-user-agent:
     name: Lug Spring Boot OAuth Application User Agent
     scopes:
         - C_Movie.everything
+        - Liferay.Headless.Admin.User.everything
+        - Liferay.Headless.Commerce.Admin.Order.everything
     type: oAuthApplicationUserAgent
 lug-spring-boot-object-action-order-status-update:
     name: Lug Spring Boot Object Action Orde Status Update
