@@ -31,6 +31,10 @@ dependencies {
 
 }
 
+liferay {
+   deployDir = file("/Users/abelenda/liferay/bundles/master/osgi/client-extensions")
+}
+
 repositories {
 	maven {
 		url new File(rootProject.projectDir, "../../.m2-tmp")
