@@ -2,11 +2,11 @@
 	{
 		"childOrganizations": [
 			{
-				"externalReferenceCode": "BASIC",
-				"name": "Basic"
+				"externalReferenceCode": "BASIC2",
+				"name": "Basic2"
 			}
 		],
-		"externalReferenceCode": "PREMIUM",
-		"name": "Premium"
+		"externalReferenceCode": "PREMIUM2",
+		"name": "Premium2"
 	}
 ]

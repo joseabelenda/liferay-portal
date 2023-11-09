@@ -9,9 +9,9 @@
 	"enableObjectEntryHistory": false,
 	"externalReferenceCode": "MOVIE",
 	"label": {
-	  "en_US": "Movie"
+	  "en_US": "Test"
 	},
-	"name": "Movie",
+	"name": "Test",
 	"objectFields": [
 	  {
 		"DBType": "String",

@@ -35,68 +35,48 @@
 		{
 			"director": "Steven Spielberg",
 			"duration": 127,
-			"plot_i18n": {
-				"en_US": "A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose."
-			},
-			"poster": "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg",
+			"plot": "A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
+			"posterUrl": "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg",
 			"r_accountMovie_accountEntryERC": "BASIC",
 			"score": 8.2,
 			"stars": "Sam Neill, Laura Dern, Jeff Goldblum",
-			"title_i18n": {
-				"en_US": "Jurassic Park",
-				"pt_BR": "Jurassic Park"
-			},
+			"title": "Jurassic Park",
 			"writer": "Michael Crichton, David Koepp",
 			"year": 1993
 		},
 		{
 			"director": "Steven Spielberg",
 			"duration": 169,
-			"plot_i18n": {
-				"en_US": "Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action."
-			},
-			"poster": "https://m.media-amazon.com/images/M/MV5BZjhkMDM4MWItZTVjOC00ZDRhLThmYTAtM2I5NzBmNmNlMzI1XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SX300.jpg",
+			"plot_i18n": "Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.",
+			"posterUrl": "https://m.media-amazon.com/images/M/MV5BZjhkMDM4MWItZTVjOC00ZDRhLThmYTAtM2I5NzBmNmNlMzI1XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SX300.jpg",
 			"r_accountMovie_accountEntryERC": "BASIC",
 			"score": 8.6,
 			"stars": "Tom Hanks, Matt Damon, Tom Sizemore",
-			"title_i18n": {
-				"en_US": "Saving Private Ryan",
-				"pt_BR": "O Resgate do Soldado Ryan"
-			},
+			"title": "Saving Private Ryan",
 			"writer": "Robert Rodat",
 			"year": 1998
 		},
 		{
 			"director": "Ridley Scott",
 			"duration": 155,
-			"plot_i18n": {
-				"en_US": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery."
-			},
-			"poster": "https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+			"plot": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+			"posterUrl": "https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
 			"r_accountMovie_accountEntryERC": "PREMIUM",
 			"score": 8.5,
 			"stars": "Russell Crowe, Joaquin Phoenix, Connie Nielsen",
-			"title_i18n": {
-				"en_US": "Gladiator",
-				"pt_BR": "Gladiador"
-			},
+			"title": "Gladiator",
 			"writer": "David Franzoni, John Logan, William Nicholson",
 			"year": 2000
 		},
 		{
 			"director": "Joseph Kosinski",
 			"duration": 130,
-			"plot_i18n": {
-				"en_US": "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past when he leads TOP GUN's elite graduates on a mission that demands the ultimate sacrifice from those chosen to fly it."
-			},
-			"poster": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_SX300.jpg",
+			"plot": "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past when he leads TOP GUN's elite graduates on a mission that demands the ultimate sacrifice from those chosen to fly it.",
+			"posterUrl": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_SX300.jpg",
 			"r_accountMovie_accountEntryERC": "PREMIUM",
 			"score": 8.3,
 			"stars": "Tom Cruise, Jennifer Connelly, Miles Teller",
-			"title_i18n": {
-				"en_US": "Top Gun: Maverick",
-				"pt_BR": "Top Gun: Maverick"
-			},
+			"title": "Top Gun: Maverick",
 			"writer": "Jim Cash, Jack Epps Jr., Peter Craig",
 			"year": 2022
 		}
