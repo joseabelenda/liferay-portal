@@ -2187,14 +2187,6 @@ public interface GroupLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Group updateGroup(Group group);
 
-	public Group updateGroup(
-			long groupId, long parentGroupId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, int type,
-			boolean manualMembership, int membershipRestriction,
-			String friendlyURL, boolean inheritContent, boolean active,
-			ServiceContext serviceContext)
-		throws PortalException;
-
 	/**
 	 * Updates the group's type settings.
 	 *
@@ -2205,6 +2197,14 @@ public interface GroupLocalService
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public Group updateGroup(long groupId, String typeSettings)
+		throws PortalException;
+
+	public Group updateGroup(
+			String externalReferenceCode, long groupId, long parentGroupId,
+			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+			int type, boolean manualMembership, int membershipRestriction,
+			String friendlyURL, boolean inheritContent, boolean active,
+			ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
