@@ -101,6 +101,9 @@ public class EditDetailsMVCActionCommand
 		boolean active = ParamUtil.getBoolean(
 			actionRequest, "active", liveGroup.isActive());
 
+		String externalReferenceCode = ParamUtil.getString(
+			actionRequest, "externalReferenceCode");
+
 		if (!liveGroup.isGuest() && !liveGroup.isOrganization()) {
 			UnicodeProperties unicodeProperties =
 				PropertiesParamUtil.getProperties(
@@ -113,6 +116,7 @@ public class EditDetailsMVCActionCommand
 		}
 
 		_groupService.updateGroup(
+			externalReferenceCode,
 			liveGroupId, parentGroupId, nameMap, descriptionMap, type,
 			manualMembership, membershipRestriction, liveGroup.getFriendlyURL(),
 			inheritContent, active, serviceContext);

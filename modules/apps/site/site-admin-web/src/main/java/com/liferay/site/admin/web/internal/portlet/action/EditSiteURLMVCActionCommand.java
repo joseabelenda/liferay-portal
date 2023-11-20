@@ -65,6 +65,7 @@ public class EditSiteURLMVCActionCommand
 			friendlyURL, liveGroup.getFriendlyURL());
 
 		liveGroup = _groupService.updateGroup(
+			liveGroup.getExternalReferenceCode(),
 			liveGroupId, liveGroup.getParentGroupId(), liveGroup.getNameMap(),
 			liveGroup.getDescriptionMap(), liveGroup.getType(),
 			liveGroup.isManualMembership(),
