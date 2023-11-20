@@ -1620,7 +1620,8 @@ public class GroupServiceHttp {
 	}
 
 	public static com.liferay.portal.kernel.model.Group updateGroup(
-			HttpPrincipal httpPrincipal, long groupId, long parentGroupId,
+			HttpPrincipal httpPrincipal, String externalReferenceCode,
+			long groupId, long parentGroupId,
 			java.util.Map<java.util.Locale, String> nameMap,
 			java.util.Map<java.util.Locale, String> descriptionMap, int type,
 			boolean manualMembership, int membershipRestriction,
@@ -1634,9 +1635,10 @@ public class GroupServiceHttp {
 				_updateGroupParameterTypes39);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, parentGroupId, nameMap, descriptionMap,
-				type, manualMembership, membershipRestriction, friendlyURL,
-				inheritContent, active, serviceContext);
+				methodKey, externalReferenceCode, groupId, parentGroupId,
+				nameMap, descriptionMap, type, manualMembership,
+				membershipRestriction, friendlyURL, inheritContent, active,
+				serviceContext);
 
 			Object returnObj = null;
 
@@ -1858,9 +1860,10 @@ public class GroupServiceHttp {
 	private static final Class<?>[] _updateFriendlyURLParameterTypes38 =
 		new Class[] {long.class, String.class};
 	private static final Class<?>[] _updateGroupParameterTypes39 = new Class[] {
-		long.class, long.class, java.util.Map.class, java.util.Map.class,
-		int.class, boolean.class, int.class, String.class, boolean.class,
-		boolean.class, com.liferay.portal.kernel.service.ServiceContext.class
+		String.class, long.class, long.class, java.util.Map.class,
+		java.util.Map.class, int.class, boolean.class, int.class, String.class,
+		boolean.class, boolean.class,
+		com.liferay.portal.kernel.service.ServiceContext.class
 	};
 	private static final Class<?>[] _updateGroupParameterTypes40 = new Class[] {
 		long.class, String.class

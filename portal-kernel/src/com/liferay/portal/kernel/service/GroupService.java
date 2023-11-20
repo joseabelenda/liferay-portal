@@ -546,14 +546,6 @@ public interface GroupService extends BaseService {
 	public Group updateFriendlyURL(long groupId, String friendlyURL)
 		throws PortalException;
 
-	public Group updateGroup(
-			long groupId, long parentGroupId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, int type,
-			boolean manualMembership, int membershipRestriction,
-			String friendlyURL, boolean inheritContent, boolean active,
-			ServiceContext serviceContext)
-		throws PortalException;
-
 	/**
 	 * Updates the group's type settings.
 	 *
@@ -564,6 +556,14 @@ public interface GroupService extends BaseService {
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public Group updateGroup(long groupId, String typeSettings)
+		throws PortalException;
+
+	public Group updateGroup(
+			String externalReferenceCode, long groupId, long parentGroupId,
+			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+			int type, boolean manualMembership, int membershipRestriction,
+			String friendlyURL, boolean inheritContent, boolean active,
+			ServiceContext serviceContext)
 		throws PortalException;
 
 	public void updateStagedPortlets(

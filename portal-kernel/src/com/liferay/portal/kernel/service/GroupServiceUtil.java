@@ -641,21 +641,6 @@ public class GroupServiceUtil {
 		return getService().updateFriendlyURL(groupId, friendlyURL);
 	}
 
-	public static Group updateGroup(
-			long groupId, long parentGroupId,
-			Map<java.util.Locale, String> nameMap,
-			Map<java.util.Locale, String> descriptionMap, int type,
-			boolean manualMembership, int membershipRestriction,
-			String friendlyURL, boolean inheritContent, boolean active,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		return getService().updateGroup(
-			groupId, parentGroupId, nameMap, descriptionMap, type,
-			manualMembership, membershipRestriction, friendlyURL,
-			inheritContent, active, serviceContext);
-	}
-
 	/**
 	 * Updates the group's type settings.
 	 *
@@ -669,6 +654,21 @@ public class GroupServiceUtil {
 		throws PortalException {
 
 		return getService().updateGroup(groupId, typeSettings);
+	}
+
+	public static Group updateGroup(
+			String externalReferenceCode, long groupId, long parentGroupId,
+			Map<java.util.Locale, String> nameMap,
+			Map<java.util.Locale, String> descriptionMap, int type,
+			boolean manualMembership, int membershipRestriction,
+			String friendlyURL, boolean inheritContent, boolean active,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().updateGroup(
+			externalReferenceCode, groupId, parentGroupId, nameMap,
+			descriptionMap, type, manualMembership, membershipRestriction,
+			friendlyURL, inheritContent, active, serviceContext);
 	}
 
 	public static void updateStagedPortlets(

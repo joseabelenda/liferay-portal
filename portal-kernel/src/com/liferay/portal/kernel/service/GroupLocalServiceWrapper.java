@@ -2824,22 +2824,6 @@ public class GroupLocalServiceWrapper
 		return _groupLocalService.updateGroup(group);
 	}
 
-	@Override
-	public Group updateGroup(
-			long groupId, long parentGroupId,
-			java.util.Map<java.util.Locale, String> nameMap,
-			java.util.Map<java.util.Locale, String> descriptionMap, int type,
-			boolean manualMembership, int membershipRestriction,
-			String friendlyURL, boolean inheritContent, boolean active,
-			ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _groupLocalService.updateGroup(
-			groupId, parentGroupId, nameMap, descriptionMap, type,
-			manualMembership, membershipRestriction, friendlyURL,
-			inheritContent, active, serviceContext);
-	}
-
 	/**
 	 * Updates the group's type settings.
 	 *
@@ -2854,6 +2838,22 @@ public class GroupLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _groupLocalService.updateGroup(groupId, typeSettings);
+	}
+
+	@Override
+	public Group updateGroup(
+			String externalReferenceCode, long groupId, long parentGroupId,
+			java.util.Map<java.util.Locale, String> nameMap,
+			java.util.Map<java.util.Locale, String> descriptionMap, int type,
+			boolean manualMembership, int membershipRestriction,
+			String friendlyURL, boolean inheritContent, boolean active,
+			ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _groupLocalService.updateGroup(
+			externalReferenceCode, groupId, parentGroupId, nameMap,
+			descriptionMap, type, manualMembership, membershipRestriction,
+			friendlyURL, inheritContent, active, serviceContext);
 	}
 
 	/**
