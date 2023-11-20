@@ -57,9 +57,8 @@ public class DeactivateGroupMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, groupId);
 
 		_groupService.updateGroup(
-			group.getExternalReferenceCode(),
-			groupId, group.getParentGroupId(), group.getNameMap(),
-			group.getDescriptionMap(), group.getType(),
+			group.getExternalReferenceCode(), groupId, group.getParentGroupId(),
+			group.getNameMap(), group.getDescriptionMap(), group.getType(),
 			group.isManualMembership(), group.getMembershipRestriction(),
 			group.getFriendlyURL(), group.isInheritContent(), false,
 			serviceContext);

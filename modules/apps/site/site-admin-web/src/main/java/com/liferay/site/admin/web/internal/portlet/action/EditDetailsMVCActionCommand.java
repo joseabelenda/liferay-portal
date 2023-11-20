@@ -116,10 +116,9 @@ public class EditDetailsMVCActionCommand
 		}
 
 		_groupService.updateGroup(
-			externalReferenceCode,
-			liveGroupId, parentGroupId, nameMap, descriptionMap, type,
-			manualMembership, membershipRestriction, liveGroup.getFriendlyURL(),
-			inheritContent, active, serviceContext);
+			externalReferenceCode, liveGroupId, parentGroupId, nameMap,
+			descriptionMap, type, manualMembership, membershipRestriction,
+			liveGroup.getFriendlyURL(), inheritContent, active, serviceContext);
 
 		if (type == GroupConstants.TYPE_SITE_OPEN) {
 			ThemeDisplay themeDisplay =
