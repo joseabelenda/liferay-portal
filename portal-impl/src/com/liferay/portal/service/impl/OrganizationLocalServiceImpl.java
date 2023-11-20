@@ -2168,6 +2168,7 @@ public class OrganizationLocalServiceImpl
 
 		if (createSite || !oldName.equals(name) || organizationGroup) {
 			_groupLocalService.updateGroup(
+				group.getExternalReferenceCode(),
 				group.getGroupId(), parentGroupId, getLocalizationMap(name),
 				group.getDescriptionMap(), group.getType(),
 				group.isManualMembership(), group.getMembershipRestriction(),
