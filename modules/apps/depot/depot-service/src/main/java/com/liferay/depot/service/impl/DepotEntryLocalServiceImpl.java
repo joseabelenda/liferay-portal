@@ -287,7 +287,8 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 		}
 
 		group = _groupLocalService.updateGroup(
-			depotEntry.getGroup().getExternalReferenceCode(),
+			depotEntry.getGroup(
+			).getExternalReferenceCode(),
 			depotEntry.getGroupId(), group.getParentGroupId(), nameMap,
 			descriptionMap, group.getType(), group.isManualMembership(),
 			group.getMembershipRestriction(), group.getFriendlyURL(),

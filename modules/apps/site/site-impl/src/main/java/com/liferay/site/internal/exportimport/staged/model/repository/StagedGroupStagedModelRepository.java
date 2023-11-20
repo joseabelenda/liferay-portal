@@ -105,8 +105,8 @@ public class StagedGroupStagedModelRepository
 		Group group = stagedGroup.getGroup();
 
 		group = _groupLocalService.updateGroup(
-			group.getExternalReferenceCode(),
-			group.getGroupId(), group.getParentGroupId(), group.getNameMap(),
+			group.getExternalReferenceCode(), group.getGroupId(),
+			group.getParentGroupId(), group.getNameMap(),
 			group.getDescriptionMap(), group.getType(),
 			group.isManualMembership(), group.getMembershipRestriction(),
 			group.getFriendlyURL(), group.isInheritContent(), group.isActive(),

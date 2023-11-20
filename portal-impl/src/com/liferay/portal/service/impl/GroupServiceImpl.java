@@ -151,10 +151,11 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 			group = groupPersistence.update(group);
 		}
 		else {
-			group = updateGroup(externalReferenceCode,
-				group.getGroupId(), parentGroupId, nameMap, descriptionMap,
-				type, manualMembership, membershipRestriction, friendlyURL,
-				inheritContent, active, serviceContext);
+			group = updateGroup(
+				externalReferenceCode, group.getGroupId(), parentGroupId,
+				nameMap, descriptionMap, type, manualMembership,
+				membershipRestriction, friendlyURL, inheritContent, active,
+				serviceContext);
 		}
 
 		return group;
@@ -1037,66 +1038,6 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 		return groupLocalService.updateFriendlyURL(groupId, friendlyURL);
 	}
 
-	@Override
-	public Group updateGroup(
-		String externalReferenceCode,
-			long groupId, long parentGroupId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, int type,
-			boolean manualMembership, int membershipRestriction,
-			String friendlyURL, boolean inheritContent, boolean active,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		Group group = groupPersistence.findByPrimaryKey(groupId);
-
-		GroupPermissionUtil.check(
-			getPermissionChecker(), group, ActionKeys.UPDATE);
-
-		if (group.getParentGroupId() != parentGroupId) {
-			if (parentGroupId == GroupConstants.DEFAULT_PARENT_GROUP_ID) {
-				PortalPermissionUtil.check(
-					getPermissionChecker(), ActionKeys.ADD_COMMUNITY);
-			}
-			else {
-				GroupPermissionUtil.check(
-					getPermissionChecker(), parentGroupId,
-					ActionKeys.ADD_COMMUNITY);
-			}
-		}
-
-		if (group.isSite()) {
-			Group oldGroup = group;
-
-			List<AssetCategory> oldAssetCategories =
-				_assetCategoryLocalService.getCategories(
-					Group.class.getName(), groupId);
-
-			List<AssetTag> oldAssetTags = _assetTagLocalService.getTags(
-				Group.class.getName(), groupId);
-
-			ExpandoBridge oldExpandoBridge = oldGroup.getExpandoBridge();
-
-			Map<String, Serializable> oldExpandoAttributes =
-				oldExpandoBridge.getAttributes();
-
-			group = groupLocalService.updateGroup(externalReferenceCode,
-				groupId, parentGroupId, nameMap, descriptionMap, type,
-				manualMembership, membershipRestriction, friendlyURL,
-				inheritContent, active, serviceContext);
-
-			SiteMembershipPolicyUtil.verifyPolicy(
-				group, oldGroup, oldAssetCategories, oldAssetTags,
-				oldExpandoAttributes, null);
-
-			return group;
-		}
-
-		return groupLocalService.updateGroup(externalReferenceCode,
-			groupId, parentGroupId, nameMap, descriptionMap, type,
-			manualMembership, membershipRestriction, friendlyURL,
-			inheritContent, active, serviceContext);
-	}
-
 	/**
 	 * Updates the group's type settings.
 	 *
@@ -1135,6 +1076,65 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 		}
 
 		return groupLocalService.updateGroup(groupId, typeSettings);
+	}
+
+	@Override
+	public Group updateGroup(
+			String externalReferenceCode, long groupId, long parentGroupId,
+			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+			int type, boolean manualMembership, int membershipRestriction,
+			String friendlyURL, boolean inheritContent, boolean active,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		Group group = groupPersistence.findByPrimaryKey(groupId);
+
+		GroupPermissionUtil.check(
+			getPermissionChecker(), group, ActionKeys.UPDATE);
+
+		if (group.getParentGroupId() != parentGroupId) {
+			if (parentGroupId == GroupConstants.DEFAULT_PARENT_GROUP_ID) {
+				PortalPermissionUtil.check(
+					getPermissionChecker(), ActionKeys.ADD_COMMUNITY);
+			}
+			else {
+				GroupPermissionUtil.check(
+					getPermissionChecker(), parentGroupId,
+					ActionKeys.ADD_COMMUNITY);
+			}
+		}
+
+		if (group.isSite()) {
+			Group oldGroup = group;
+
+			List<AssetCategory> oldAssetCategories =
+				_assetCategoryLocalService.getCategories(
+					Group.class.getName(), groupId);
+
+			List<AssetTag> oldAssetTags = _assetTagLocalService.getTags(
+				Group.class.getName(), groupId);
+
+			ExpandoBridge oldExpandoBridge = oldGroup.getExpandoBridge();
+
+			Map<String, Serializable> oldExpandoAttributes =
+				oldExpandoBridge.getAttributes();
+
+			group = groupLocalService.updateGroup(
+				externalReferenceCode, groupId, parentGroupId, nameMap,
+				descriptionMap, type, manualMembership, membershipRestriction,
+				friendlyURL, inheritContent, active, serviceContext);
+
+			SiteMembershipPolicyUtil.verifyPolicy(
+				group, oldGroup, oldAssetCategories, oldAssetTags,
+				oldExpandoAttributes, null);
+
+			return group;
+		}
+
+		return groupLocalService.updateGroup(
+			externalReferenceCode, groupId, parentGroupId, nameMap,
+			descriptionMap, type, manualMembership, membershipRestriction,
+			friendlyURL, inheritContent, active, serviceContext);
 	}
 
 	@Override

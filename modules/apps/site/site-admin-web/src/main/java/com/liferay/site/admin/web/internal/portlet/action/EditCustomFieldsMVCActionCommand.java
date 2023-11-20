@@ -49,8 +49,8 @@ public class EditCustomFieldsMVCActionCommand
 		Group liveGroup = _groupLocalService.getGroup(liveGroupId);
 
 		_groupService.updateGroup(
-			liveGroup.getExternalReferenceCode(),
-			liveGroupId, liveGroup.getParentGroupId(), liveGroup.getNameMap(),
+			liveGroup.getExternalReferenceCode(), liveGroupId,
+			liveGroup.getParentGroupId(), liveGroup.getNameMap(),
 			liveGroup.getDescriptionMap(), liveGroup.getType(),
 			liveGroup.isManualMembership(),
 			liveGroup.getMembershipRestriction(), liveGroup.getFriendlyURL(),

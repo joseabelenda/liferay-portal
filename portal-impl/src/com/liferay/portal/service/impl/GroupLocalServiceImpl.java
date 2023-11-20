@@ -657,10 +657,11 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			group = groupPersistence.update(group);
 		}
 		else {
-			group = updateGroup(externalReferenceCode,
-				group.getGroupId(), parentGroupId, nameMap, descriptionMap,
-				type, manualMembership, membershipRestriction, friendlyURL,
-				inheritContent, active, serviceContext);
+			group = updateGroup(
+				externalReferenceCode, group.getGroupId(), parentGroupId,
+				nameMap, descriptionMap, type, manualMembership,
+				membershipRestriction, friendlyURL, inheritContent, active,
+				serviceContext);
 		}
 
 		return group;
@@ -3734,12 +3735,106 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		return groupPersistence.update(group);
 	}
 
+	/**
+	 * Updates the group's type settings.
+	 *
+	 * @param  groupId the primary key of the group
+	 * @param  typeSettings the group's new type settings (optionally
+	 *         <code>null</code>)
+	 * @return the group
+	 * @throws PortalException if a portal exception occurred
+	 */
+	@Override
+	public Group updateGroup(long groupId, String typeSettings)
+		throws PortalException {
+
+		Group group = groupPersistence.findByPrimaryKey(groupId);
+
+		UnicodeProperties oldTypeSettingsUnicodeProperties =
+			UnicodePropertiesBuilder.create(
+				true
+			).fastLoad(
+				group.getTypeSettings()
+			).build();
+
+		_validateGroupKeyChange(groupId, typeSettings);
+
+		group = groupPersistence.findByPrimaryKey(groupId);
+
+		UnicodeProperties typeSettingsUnicodeProperties =
+			UnicodePropertiesBuilder.create(
+				true
+			).fastLoad(
+				typeSettings
+			).build();
+
+		if (GetterUtil.getBoolean(
+				typeSettingsUnicodeProperties.getProperty(
+					GroupConstants.TYPE_SETTINGS_KEY_INHERIT_LOCALES),
+				true)) {
+
+			typeSettingsUnicodeProperties.setProperty(
+				PropsKeys.LOCALES,
+				StringUtil.merge(
+					LocaleUtil.toLanguageIds(
+						LanguageUtil.getAvailableLocales(groupId))));
+		}
+
+		String newLanguageIds = typeSettingsUnicodeProperties.getProperty(
+			PropsKeys.LOCALES);
+
+		if (Validator.isNotNull(newLanguageIds)) {
+			Group companyGroup = getCompanyGroup(group.getCompanyId());
+			String oldLanguageIds =
+				oldTypeSettingsUnicodeProperties.getProperty(
+					PropsKeys.LOCALES, StringPool.BLANK);
+			String defaultLanguageId =
+				typeSettingsUnicodeProperties.getProperty(
+					"languageId",
+					LocaleUtil.toLanguageId(LocaleUtil.getDefault()));
+
+			validateLanguageIds(
+				companyGroup.getGroupId(), defaultLanguageId, newLanguageIds);
+
+			if (!Objects.equals(
+					group.getDefaultLanguageId(), defaultLanguageId)) {
+
+				Locale defaultLocale = LocaleUtil.fromLanguageId(
+					defaultLanguageId);
+
+				Map<Locale, String> oldNameMap = group.getNameMap();
+
+				group.setNameMap(oldNameMap, defaultLocale);
+
+				Map<Locale, String> oldDescriptionMap =
+					group.getDescriptionMap();
+
+				group.setDescriptionMap(oldDescriptionMap, defaultLocale);
+
+				Map<Locale, String> nameMap = group.getNameMap();
+
+				if ((nameMap != null) &&
+					Validator.isNotNull(nameMap.get(defaultLocale))) {
+
+					group.setGroupKey(nameMap.get(defaultLocale));
+				}
+			}
+
+			if (!Objects.equals(oldLanguageIds, newLanguageIds)) {
+				LanguageUtil.resetAvailableGroupLocales(groupId);
+			}
+		}
+
+		group.setTypeSettingsProperties(typeSettingsUnicodeProperties);
+
+		return groupPersistence.update(group);
+	}
+
 	@Override
 	public Group updateGroup(
-		String externalReferenceCode,
-			long groupId, long parentGroupId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, int type,
-			boolean manualMembership, int membershipRestriction,
+			String externalReferenceCode, long groupId, long parentGroupId,
+			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+			int type, boolean manualMembership, int membershipRestriction,
 			String friendlyURL, boolean inheritContent, boolean active,
 			ServiceContext serviceContext)
 		throws PortalException {
@@ -3882,101 +3977,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			serviceContext.getAssetTagNames());
 
 		return group;
-	}
-
-	/**
-	 * Updates the group's type settings.
-	 *
-	 * @param  groupId the primary key of the group
-	 * @param  typeSettings the group's new type settings (optionally
-	 *         <code>null</code>)
-	 * @return the group
-	 * @throws PortalException if a portal exception occurred
-	 */
-	@Override
-	public Group updateGroup(long groupId, String typeSettings)
-		throws PortalException {
-
-		Group group = groupPersistence.findByPrimaryKey(groupId);
-
-		UnicodeProperties oldTypeSettingsUnicodeProperties =
-			UnicodePropertiesBuilder.create(
-				true
-			).fastLoad(
-				group.getTypeSettings()
-			).build();
-
-		_validateGroupKeyChange(groupId, typeSettings);
-
-		group = groupPersistence.findByPrimaryKey(groupId);
-
-		UnicodeProperties typeSettingsUnicodeProperties =
-			UnicodePropertiesBuilder.create(
-				true
-			).fastLoad(
-				typeSettings
-			).build();
-
-		if (GetterUtil.getBoolean(
-				typeSettingsUnicodeProperties.getProperty(
-					GroupConstants.TYPE_SETTINGS_KEY_INHERIT_LOCALES),
-				true)) {
-
-			typeSettingsUnicodeProperties.setProperty(
-				PropsKeys.LOCALES,
-				StringUtil.merge(
-					LocaleUtil.toLanguageIds(
-						LanguageUtil.getAvailableLocales(groupId))));
-		}
-
-		String newLanguageIds = typeSettingsUnicodeProperties.getProperty(
-			PropsKeys.LOCALES);
-
-		if (Validator.isNotNull(newLanguageIds)) {
-			Group companyGroup = getCompanyGroup(group.getCompanyId());
-			String oldLanguageIds =
-				oldTypeSettingsUnicodeProperties.getProperty(
-					PropsKeys.LOCALES, StringPool.BLANK);
-			String defaultLanguageId =
-				typeSettingsUnicodeProperties.getProperty(
-					"languageId",
-					LocaleUtil.toLanguageId(LocaleUtil.getDefault()));
-
-			validateLanguageIds(
-				companyGroup.getGroupId(), defaultLanguageId, newLanguageIds);
-
-			if (!Objects.equals(
-					group.getDefaultLanguageId(), defaultLanguageId)) {
-
-				Locale defaultLocale = LocaleUtil.fromLanguageId(
-					defaultLanguageId);
-
-				Map<Locale, String> oldNameMap = group.getNameMap();
-
-				group.setNameMap(oldNameMap, defaultLocale);
-
-				Map<Locale, String> oldDescriptionMap =
-					group.getDescriptionMap();
-
-				group.setDescriptionMap(oldDescriptionMap, defaultLocale);
-
-				Map<Locale, String> nameMap = group.getNameMap();
-
-				if ((nameMap != null) &&
-					Validator.isNotNull(nameMap.get(defaultLocale))) {
-
-					group.setGroupKey(nameMap.get(defaultLocale));
-				}
-			}
-
-			if (!Objects.equals(oldLanguageIds, newLanguageIds)) {
-				LanguageUtil.resetAvailableGroupLocales(groupId);
-			}
-		}
-
-		group.setTypeSettingsProperties(typeSettingsUnicodeProperties);
-
-		return groupPersistence.update(group);
 	}
 
 	/**
