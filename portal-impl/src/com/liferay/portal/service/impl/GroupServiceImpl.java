@@ -151,7 +151,7 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 			group = groupPersistence.update(group);
 		}
 		else {
-			group = updateGroup(
+			group = updateGroup(externalReferenceCode,
 				group.getGroupId(), parentGroupId, nameMap, descriptionMap,
 				type, manualMembership, membershipRestriction, friendlyURL,
 				inheritContent, active, serviceContext);
@@ -1039,6 +1039,7 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 
 	@Override
 	public Group updateGroup(
+		String externalReferenceCode,
 			long groupId, long parentGroupId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, int type,
 			boolean manualMembership, int membershipRestriction,
@@ -1078,7 +1079,7 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 			Map<String, Serializable> oldExpandoAttributes =
 				oldExpandoBridge.getAttributes();
 
-			group = groupLocalService.updateGroup(
+			group = groupLocalService.updateGroup(externalReferenceCode,
 				groupId, parentGroupId, nameMap, descriptionMap, type,
 				manualMembership, membershipRestriction, friendlyURL,
 				inheritContent, active, serviceContext);
@@ -1090,7 +1091,7 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 			return group;
 		}
 
-		return groupLocalService.updateGroup(
+		return groupLocalService.updateGroup(externalReferenceCode,
 			groupId, parentGroupId, nameMap, descriptionMap, type,
 			manualMembership, membershipRestriction, friendlyURL,
 			inheritContent, active, serviceContext);

@@ -657,7 +657,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			group = groupPersistence.update(group);
 		}
 		else {
-			group = updateGroup(
+			group = updateGroup(externalReferenceCode,
 				group.getGroupId(), parentGroupId, nameMap, descriptionMap,
 				type, manualMembership, membershipRestriction, friendlyURL,
 				inheritContent, active, serviceContext);
@@ -3736,6 +3736,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 	@Override
 	public Group updateGroup(
+		String externalReferenceCode,
 			long groupId, long parentGroupId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, int type,
 			boolean manualMembership, int membershipRestriction,
@@ -3813,6 +3814,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		validateParentGroup(group.getGroupId(), parentGroupId);
 
+		group.setExternalReferenceCode(externalReferenceCode);
 		group.setParentGroupId(parentGroupId);
 		group.setTreePath(group.buildTreePath());
 		group.setGroupKey(groupKey);
