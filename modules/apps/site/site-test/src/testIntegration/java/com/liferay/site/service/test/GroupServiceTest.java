@@ -133,10 +133,10 @@ public class GroupServiceTest {
 		GroupTestUtil.enableLocalStaging(childGroup);
 
 		childGroup = _groupService.updateGroup(
-			childGroup.getExternalReferenceCode(),
-			childGroup.getGroupId(), parentGroup.getGroupId(),
-			childGroup.getNameMap(), childGroup.getDescriptionMap(),
-			childGroup.getType(), childGroup.isManualMembership(),
+			childGroup.getExternalReferenceCode(), childGroup.getGroupId(),
+			parentGroup.getGroupId(), childGroup.getNameMap(),
+			childGroup.getDescriptionMap(), childGroup.getType(),
+			childGroup.isManualMembership(),
 			childGroup.getMembershipRestriction(), childGroup.getFriendlyURL(),
 			childGroup.isInheritContent(), childGroup.isActive(), null);
 
@@ -161,10 +161,10 @@ public class GroupServiceTest {
 		GroupTestUtil.enableLocalStaging(parentGroup);
 
 		childGroup = _groupService.updateGroup(
-			childGroup.getExternalReferenceCode(),
-			childGroup.getGroupId(), parentGroup.getGroupId(),
-			childGroup.getNameMap(), childGroup.getDescriptionMap(),
-			childGroup.getType(), childGroup.isManualMembership(),
+			childGroup.getExternalReferenceCode(), childGroup.getGroupId(),
+			parentGroup.getGroupId(), childGroup.getNameMap(),
+			childGroup.getDescriptionMap(), childGroup.getType(),
+			childGroup.isManualMembership(),
 			childGroup.getMembershipRestriction(), childGroup.getFriendlyURL(),
 			childGroup.isInheritContent(), childGroup.isActive(), null);
 
@@ -768,8 +768,8 @@ public class GroupServiceTest {
 			LocaleUtil.fromLanguageId(_group.getDefaultLanguageId()));
 
 		_group = _groupService.updateGroup(
-			_group.getExternalReferenceCode(),
-			_group.getGroupId(), _group.getParentGroupId(),
+			_group.getExternalReferenceCode(), _group.getGroupId(),
+			_group.getParentGroupId(),
 			HashMapBuilder.put(
 				LocaleUtil.getDefault(), _group.getGroupKey()
 			).put(
@@ -1050,18 +1050,18 @@ public class GroupServiceTest {
 		GroupTestUtil.enableLocalStaging(childGroup);
 
 		_groupService.updateGroup(
-			childGroup.getExternalReferenceCode(),
-			childGroup.getGroupId(), parentGroup.getGroupId(),
-			childGroup.getNameMap(), childGroup.getDescriptionMap(),
-			childGroup.getType(), childGroup.isManualMembership(),
+			childGroup.getExternalReferenceCode(), childGroup.getGroupId(),
+			parentGroup.getGroupId(), childGroup.getNameMap(),
+			childGroup.getDescriptionMap(), childGroup.getType(),
+			childGroup.isManualMembership(),
 			childGroup.getMembershipRestriction(), childGroup.getFriendlyURL(),
 			childGroup.isInheritContent(), childGroup.isActive(), null);
 
 		childGroup = _groupService.updateGroup(
-			childGroup.getExternalReferenceCode(),
-			childGroup.getGroupId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
-			childGroup.getNameMap(), childGroup.getDescriptionMap(),
-			childGroup.getType(), childGroup.isManualMembership(),
+			childGroup.getExternalReferenceCode(), childGroup.getGroupId(),
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, childGroup.getNameMap(),
+			childGroup.getDescriptionMap(), childGroup.getType(),
+			childGroup.isManualMembership(),
 			childGroup.getMembershipRestriction(), childGroup.getFriendlyURL(),
 			childGroup.isInheritContent(), childGroup.isActive(), null);
 
@@ -1087,18 +1087,18 @@ public class GroupServiceTest {
 		GroupTestUtil.enableLocalStaging(parentGroup);
 
 		_groupService.updateGroup(
-			childGroup.getExternalReferenceCode(),
-			childGroup.getGroupId(), parentGroup.getGroupId(),
-			childGroup.getNameMap(), childGroup.getDescriptionMap(),
-			childGroup.getType(), childGroup.isManualMembership(),
+			childGroup.getExternalReferenceCode(), childGroup.getGroupId(),
+			parentGroup.getGroupId(), childGroup.getNameMap(),
+			childGroup.getDescriptionMap(), childGroup.getType(),
+			childGroup.isManualMembership(),
 			childGroup.getMembershipRestriction(), childGroup.getFriendlyURL(),
 			childGroup.isInheritContent(), childGroup.isActive(), null);
 
 		childGroup = _groupService.updateGroup(
-			childGroup.getExternalReferenceCode(),
-			childGroup.getGroupId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
-			childGroup.getNameMap(), childGroup.getDescriptionMap(),
-			childGroup.getType(), childGroup.isManualMembership(),
+			childGroup.getExternalReferenceCode(), childGroup.getGroupId(),
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, childGroup.getNameMap(),
+			childGroup.getDescriptionMap(), childGroup.getType(),
+			childGroup.isManualMembership(),
 			childGroup.getMembershipRestriction(), childGroup.getFriendlyURL(),
 			childGroup.isInheritContent(), childGroup.isActive(), null);
 
@@ -1156,10 +1156,10 @@ public class GroupServiceTest {
 		_groups.addFirst(childGroup);
 
 		_groupService.updateGroup(
-			parentGroup.getExternalReferenceCode(),
-			parentGroup.getGroupId(), childGroup.getGroupId(),
-			parentGroup.getNameMap(), parentGroup.getDescriptionMap(),
-			parentGroup.getType(), parentGroup.isManualMembership(),
+			parentGroup.getExternalReferenceCode(), parentGroup.getGroupId(),
+			childGroup.getGroupId(), parentGroup.getNameMap(),
+			parentGroup.getDescriptionMap(), parentGroup.getType(),
+			parentGroup.isManualMembership(),
 			parentGroup.getMembershipRestriction(),
 			parentGroup.getFriendlyURL(), parentGroup.isInheritContent(),
 			parentGroup.isActive(), ServiceContextTestUtil.getServiceContext());
@@ -1184,8 +1184,8 @@ public class GroupServiceTest {
 		_groups.addFirst(group1111);
 
 		_groupService.updateGroup(
-			group1.getExternalReferenceCode(),
-			group1.getGroupId(), group1111.getGroupId(), group1.getNameMap(),
+			group1.getExternalReferenceCode(), group1.getGroupId(),
+			group1111.getGroupId(), group1.getNameMap(),
 			group1.getDescriptionMap(), group1.getType(),
 			group1.isManualMembership(), group1.getMembershipRestriction(),
 			group1.getFriendlyURL(), group1.isInheritContent(),
@@ -1203,10 +1203,10 @@ public class GroupServiceTest {
 		Group stagingGroup = _group.getStagingGroup();
 
 		_groupService.updateGroup(
-			stagingGroup.getExternalReferenceCode(),
-			stagingGroup.getGroupId(), _group.getGroupId(),
-			stagingGroup.getNameMap(), stagingGroup.getDescriptionMap(),
-			stagingGroup.getType(), stagingGroup.isManualMembership(),
+			stagingGroup.getExternalReferenceCode(), stagingGroup.getGroupId(),
+			_group.getGroupId(), stagingGroup.getNameMap(),
+			stagingGroup.getDescriptionMap(), stagingGroup.getType(),
+			stagingGroup.isManualMembership(),
 			stagingGroup.getMembershipRestriction(),
 			stagingGroup.getFriendlyURL(), stagingGroup.isInheritContent(),
 			stagingGroup.isActive(),
@@ -1218,8 +1218,8 @@ public class GroupServiceTest {
 		_group = GroupTestUtil.addGroup();
 
 		_groupService.updateGroup(
-			_group.getExternalReferenceCode(),
-			_group.getGroupId(), _group.getGroupId(), _group.getNameMap(),
+			_group.getExternalReferenceCode(), _group.getGroupId(),
+			_group.getGroupId(), _group.getNameMap(),
 			_group.getDescriptionMap(), _group.getType(),
 			_group.isManualMembership(), _group.getMembershipRestriction(),
 			_group.getFriendlyURL(), _group.isInheritContent(),
@@ -1308,18 +1308,18 @@ public class GroupServiceTest {
 		GroupTestUtil.enableLocalStaging(parentGroup2);
 
 		_groupService.updateGroup(
-			childGroup.getExternalReferenceCode(),
-			childGroup.getGroupId(), parentGroup1.getGroupId(),
-			childGroup.getNameMap(), childGroup.getDescriptionMap(),
-			childGroup.getType(), childGroup.isManualMembership(),
+			childGroup.getExternalReferenceCode(), childGroup.getGroupId(),
+			parentGroup1.getGroupId(), childGroup.getNameMap(),
+			childGroup.getDescriptionMap(), childGroup.getType(),
+			childGroup.isManualMembership(),
 			childGroup.getMembershipRestriction(), childGroup.getFriendlyURL(),
 			childGroup.isInheritContent(), childGroup.isActive(), null);
 
 		childGroup = _groupService.updateGroup(
-			childGroup.getExternalReferenceCode(),
-			childGroup.getGroupId(), parentGroup2.getGroupId(),
-			childGroup.getNameMap(), childGroup.getDescriptionMap(),
-			childGroup.getType(), childGroup.isManualMembership(),
+			childGroup.getExternalReferenceCode(), childGroup.getGroupId(),
+			parentGroup2.getGroupId(), childGroup.getNameMap(),
+			childGroup.getDescriptionMap(), childGroup.getType(),
+			childGroup.isManualMembership(),
 			childGroup.getMembershipRestriction(), childGroup.getFriendlyURL(),
 			childGroup.isInheritContent(), childGroup.isActive(), null);
 

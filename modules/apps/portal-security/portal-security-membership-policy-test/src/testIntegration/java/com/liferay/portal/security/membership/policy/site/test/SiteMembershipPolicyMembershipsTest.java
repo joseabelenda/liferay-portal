@@ -288,8 +288,8 @@ public class SiteMembershipPolicyMembershipsTest
 		Group group = MembershipPolicyTestUtil.addGroup();
 
 		GroupServiceUtil.updateGroup(
-			group.getExternalReferenceCode(),
-			group.getGroupId(), group.getParentGroupId(),
+			group.getExternalReferenceCode(), group.getGroupId(),
+			group.getParentGroupId(),
 			HashMapBuilder.put(
 				LocaleUtil.getDefault(), RandomTestUtil.randomString()
 			).build(),
