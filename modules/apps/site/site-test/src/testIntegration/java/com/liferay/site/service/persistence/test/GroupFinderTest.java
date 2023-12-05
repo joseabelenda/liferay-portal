@@ -305,10 +305,10 @@ public class GroupFinderTest {
 		LayoutTestUtil.addTypePortletLayout(childGroup2, true);
 
 		_groupLocalService.updateGroup(
-			parentGroup.getExternalReferenceCode(),
-			parentGroup.getGroupId(), parentGroup.getParentGroupId(),
-			parentGroup.getNameMap(), parentGroup.getDescriptionMap(),
-			parentGroup.getType(), parentGroup.isManualMembership(),
+			parentGroup.getExternalReferenceCode(), parentGroup.getGroupId(),
+			parentGroup.getParentGroupId(), parentGroup.getNameMap(),
+			parentGroup.getDescriptionMap(), parentGroup.getType(),
+			parentGroup.isManualMembership(),
 			parentGroup.getMembershipRestriction(),
 			parentGroup.getFriendlyURL(), parentGroup.isInheritContent(), false,
 			ServiceContextTestUtil.getServiceContext());
