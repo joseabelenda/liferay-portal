@@ -24,15 +24,23 @@ public class LearnCommandLineRunner
 
 	@Override
 	public void run(String... args) throws Exception {
-		post(
-			_liferayOAuth2AccessTokenManager.getAuthorization(
-				_liferayOAuthApplicationExternalReferenceCodes),
-			new JSONObject(
-			).put(
-				"synchronizationStatus", "InProgress"
-			).toString(),
-			"/o/c/p2s3examresultssynchronizations/scopes/guest");
+//		String dev = get(
+//				_liferayOAuth2AccessTokenManager.getAuthorization(
+//						"a7855d10-6a20-1f0e-7e21-53d8654a09d2"),
+//				"https://www-dev.liferay.com/o/headless-delivery/v1.0/content-structures/2354659/" +
+//						"structured-contents?sort=dateModified:asc&pageSize=1");
+//
+//		System.out.println("dev: " + dev);
+
+		String prd = get(
+				_liferayOAuth2AccessTokenManager.getAuthorization(
+						"9fc0c45b-d42f-1fcd-09c3-a4b8e6ec4268"),
+				"https://www.liferay.com/o/headless-delivery/v1.0/content-structures/2354659/" +
+						"structured-contents?sort=dateModified:asc&pageSize=1");
+
+		System.out.println("prd: " + prd);
 	}
+	
 
 	@Autowired
 	private LiferayOAuth2AccessTokenManager _liferayOAuth2AccessTokenManager;
@@ -40,4 +48,8 @@ public class LearnCommandLineRunner
 	@Value("${liferay.oauth.application.external.reference.codes}")
 	private String _liferayOAuthApplicationExternalReferenceCodes;
 
+	@Override
+	protected String getWebClientBaseURL() {
+		return "";
+	}
 }
