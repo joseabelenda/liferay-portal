@@ -9,6 +9,10 @@ export function validateFileExtension(
 	acceptedFileExtensions: string,
 	fileExtension: string
 ) {
+	if (acceptedFileExtensions.includes('*')) {
+		return;
+	}
+
 	const isValidExtension = acceptedFileExtensions
 		.split(/\s*,\s*/)
 		.some(
