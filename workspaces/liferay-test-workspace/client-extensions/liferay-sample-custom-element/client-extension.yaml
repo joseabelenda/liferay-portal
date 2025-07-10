@@ -1,0 +1,43 @@
+assemble:
+    -   from: build/static
+        into: static
+liferay-sample-custom-element-1:
+    friendlyURLMapping: liferay-sample-custom-element-1
+    htmlElementName: liferay-sample-custom-element-1
+    instanceable: true
+    name: Liferay Sample Custom Element 1
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        -   index.*.js
+    useESM: true
+liferay-sample-custom-element-2:
+    friendlyURLMapping: liferay-sample-custom-element-2
+    htmlElementName: liferay-sample-custom-element-2
+    instanceable: true
+    name: Liferay Sample Custom Element 2
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        -   index.*.js
+    useESM: true
+liferay-sample-custom-element-3:
+    friendlyURLMapping: liferay-sample-custom-element-3
+    htmlElementName: liferay-sample-custom-element-3
+    instanceable: true
+    name: Liferay Sample Custom Element 3
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        -   index.*.js
+    useESM: true
+liferay-sample-custom-element-4:
+    friendlyURLMapping: liferay-sample-custom-element-4
+    htmlElementName: liferay-sample-custom-element-4
+    instanceable: true
+    name: Liferay Sample Custom Element 4
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        -   index.*.js
+    useESM: true
