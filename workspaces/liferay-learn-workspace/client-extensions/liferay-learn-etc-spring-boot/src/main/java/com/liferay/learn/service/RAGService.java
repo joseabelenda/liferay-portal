@@ -9,7 +9,9 @@ import com.liferay.client.extension.util.spring.boot3.service.BaseService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.document.Document;
@@ -47,7 +49,7 @@ public class RAGService extends BaseService {
 		_vectorStore.doAdd(splittedDocuments);
 	}
 
-	public String search(String question) {
+	public Map<String, Object> search(String question) {
 		List<Document> vectorStoreResult = _vectorStore.doSimilaritySearch(
 			SearchRequest.builder(
 			).query(
@@ -58,6 +60,7 @@ public class RAGService extends BaseService {
 				0.6
 			).build());
 
+		List<Map<String, Object>> references = new ArrayList<>();
 		StringBundler sb = new StringBundler();
 
 		for (Document document : vectorStoreResult) {
@@ -66,17 +69,24 @@ public class RAGService extends BaseService {
 			).append(
 				System.lineSeparator()
 			);
+
+			references.add(document.getMetadata());
 		}
 
-		return _chatClient.prompt(
-		).user(
-			StringBundler.concat(
-				"You are the liferay learn assistant to provide accurate ",
-				"answers to the question in the QUESTION section. If unsure, ",
-				"simply state that you do not know. DOCUMENTS: ", sb,
-				"QUESTION: ", question)
-		).call(
-		).content();
+		return HashMapBuilder.<String, Object>put(
+			"reference", references
+		).put(
+			"response",
+			_chatClient.prompt(
+			).user(
+				StringBundler.concat(
+					"You are the liferay learn assistant to provide accurate ",
+					"answers to the question in the QUESTION section. If ",
+					"unsure, simply state that you do not know. DOCUMENTS: ",
+					sb, "QUESTION: ", question)
+			).call(
+			).content()
+		).build();
 	}
 
 	@Autowired
