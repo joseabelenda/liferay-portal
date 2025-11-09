@@ -1,0 +1,98 @@
+.ai-overview-card {
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid #4285f4;
+    padding: 20px;
+    margin-top: 25px;
+    background-color: #f7f9fc;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ai-overview-title {
+    color: #4285f4;
+    font-size: 1.4em;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #dcdcdc;
+    margin-bottom: 15px;
+}
+
+#summary-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.summary-collapsed {
+    max-height: 120px;
+}
+
+.summary-expanded {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in;
+}
+
+#summary-content p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.toggle-summary-button {
+    background: none;
+    border: none;
+    color: #1a0dab;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    padding: 5px 0;
+    margin-top: 5px;
+    display: block;
+    text-align: left;
+}
+
+.toggle-summary-button:hover {
+    text-decoration: underline;
+}
+
+.related-articles-title {
+    color: #4285f4;
+    font-size: 1.2em;
+    margin-top: 25px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted #dcdcdc;
+}
+
+#related-articles-list {
+    list-style: disc; 
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+#related-articles-list li {
+    margin-bottom: 8px;
+}
+
+#related-articles-list a {
+    color: #1a0dab;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+#related-articles-list a:hover {
+    text-decoration: underline;
+}
+
+.no-results-message {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ffcc00;
+    background-color: #fffacd;
+    color: #856404;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
