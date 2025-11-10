@@ -77,9 +77,9 @@ public class RAGService extends BaseService {
 		}
 
 		return HashMapBuilder.<String, Object>put(
-			"reference", references
+			"references", references
 		).put(
-			"response",
+			"summary",
 			_chatClient.prompt(
 			).user(
 				StringBundler.concat(
