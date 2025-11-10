@@ -89,6 +89,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -402,6 +403,8 @@ public class Main {
 							_getPermissions(
 								fileName, importedStructuredContent.getId()));
 
+					_putDocument(importedStructuredContent);
+
 					updatedStructuredContentCount++;
 				}
 				else {
@@ -465,6 +468,8 @@ public class Main {
 								structuredContent.
 									getStructuredContentFolderId(),
 								structuredContent);
+
+					_putDocument(importedStructuredContent);
 
 					addedStructuredContentCount++;
 				}
@@ -1463,6 +1468,42 @@ public class Main {
 		}
 	}
 
+	private void _putDocument(StructuredContent structuredContent)
+		throws Exception {
+
+		HttpPut httpPut = new HttpPut(
+			_RAG_SPRING_BOOT_SERVER_URL + "/rag/document");
+
+		httpPut.setEntity(
+			new StringEntity(
+				new JSONObject(
+				).put(
+					"assetEntryId", structuredContent.getId()
+				).put(
+					"assetEntryType", "Journal Article"
+				).put(
+					"description", structuredContent.getDescription()
+				).put(
+					"friendlyUrlPath", structuredContent.getFriendlyUrlPath()
+				).put(
+					"name", structuredContent.getTitle()
+				).toString()));
+
+		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+
+		try (CloseableHttpClient closeableHttpClient =
+				httpClientBuilder.build();
+			CloseableHttpResponse closeableHttpResponse =
+				closeableHttpClient.execute(httpPut)) {
+
+			StatusLine statusLine = closeableHttpResponse.getStatusLine();
+
+			if (statusLine.getStatusCode() != HttpStatus.SC_OK) {
+				throw new Exception("Unable to update AI Search resource");
+			}
+		}
+	}
+
 	private void _readHashFromFile(File dir) throws Exception {
 		File hashFile = new File(dir, _lastestHashFileName);
 
@@ -1722,6 +1763,9 @@ public class Main {
 
 		FileUtils.writeStringToFile(file, content, StandardCharsets.UTF_8);
 	}
+
+	private static final String _RAG_SPRING_BOOT_SERVER_URL =
+		"https://liferaylearnetcspringboot-exte5a2learn-extuat.lfr.cloud";
 
 	private static final Pattern _markdownLinkPattern = Pattern.compile(
 		"\\[(.*)\\]\\((.*)\\)");
