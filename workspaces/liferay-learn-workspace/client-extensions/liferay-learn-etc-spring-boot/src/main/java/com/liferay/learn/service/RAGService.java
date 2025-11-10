@@ -29,7 +29,8 @@ import org.springframework.stereotype.Service;
 public class RAGService extends BaseService {
 
 	public void addOrUpdateDocument(
-		long assetEntryId, String assetEntryType, String content, String name) {
+		long assetEntryId, String assetEntryType, String content,
+		String friendlyUrlPath, String name) {
 
 		Document document = new Document(
 			content,
@@ -37,6 +38,8 @@ public class RAGService extends BaseService {
 				"assetEntryId", assetEntryId
 			).put(
 				"assetEntryType", assetEntryType
+			).put(
+				"friendlyUrlPath", friendlyUrlPath
 			).put(
 				"name", name
 			).build());
