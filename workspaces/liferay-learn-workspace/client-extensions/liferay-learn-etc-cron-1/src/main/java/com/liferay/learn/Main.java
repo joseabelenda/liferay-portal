@@ -1487,6 +1487,8 @@ public class Main {
 				).put(
 					"assetEntryType", "Journal Article"
 				).put(
+					"content", structuredContent.getContentFields()[0].getContentFieldValue().getData()
+				).put(
 					"description", structuredContent.getDescription()
 				).put(
 					"friendlyUrlPath", structuredContent.getFriendlyUrlPath()
@@ -1503,8 +1505,8 @@ public class Main {
 
 			StatusLine statusLine = closeableHttpResponse.getStatusLine();
 
-			if (statusLine.getStatusCode() != HttpStatus.SC_OK) {
-				throw new Exception("Unable to update AI Search resource");
+			if (statusLine.getStatusCode() != HttpStatus.SC_NO_CONTENT) {
+				throw new Exception("Unable to update AI search content");
 			}
 		}
 	}
