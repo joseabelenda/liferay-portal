@@ -1489,7 +1489,7 @@ public class Main {
 				).put(
 					"description", structuredContent.getDescription()
 				).put(
-					"friendlyUrlPath", structuredContent.getFriendlyUrlPath()
+					"friendlyUrlPath", "/w/" + structuredContent.getFriendlyUrlPath()
 				).put(
 					"name", structuredContent.getTitle()
 				).toString()));
