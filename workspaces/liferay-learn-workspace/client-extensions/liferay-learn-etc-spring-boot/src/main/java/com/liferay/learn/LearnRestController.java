@@ -179,14 +179,11 @@ public class LearnRestController extends BaseRestController {
 						"filter", "quizId eq '" + quizId + "'"
 					).queryParam(
 						"fields",
-						StringBundler.concat(
-							"id,p2s3QuizQuestionToP2S3QuizAnswers,",
-							"p2s3QuizQuestionToP2S3QuizAnswers.answer,",
-							"p2s3QuizQuestionToP2S3QuizAnswers.id,",
-							"p2s3QuizQuestionToP2S3QuizAnswers.position,",
-							"position,question,questionType")
+						"id,position,question,questionType,quizAnswers," +
+							"quizAnswers.answer,quizAnswers.id," +
+								"quizAnswers.position"
 					).queryParam(
-						"nestedFields", "p2s3QuizQuestionToP2S3QuizAnswers"
+						"nestedFields", "quizAnswers"
 					).queryParam(
 						"pageSize", "500"
 					).queryParam(
@@ -225,9 +222,7 @@ public class LearnRestController extends BaseRestController {
 							",quizQuestions.quizAnswers.answer,quizQuestions.",
 							"quizAnswers.score")
 					).queryParam(
-						"nestedFields",
-						"p2s3QuizToP2S3QuizQuestions," +
-							"p2s3QuizQuestionToP2S3QuizAnswers"
+						"nestedFields", "quizQuestions,quizAnswers"
 					).queryParam(
 						"nestedFieldsDepth", "2"
 					).queryParam(
