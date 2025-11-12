@@ -86,12 +86,10 @@ public class CourseProgressDownloadRestController extends BaseRestController {
 				get(
 					_getAuthorization(),
 					UriComponentsBuilder.fromUriString(
-						"/o/c/p2s3quizes/"
+						"/o/c/quizes/"
 					).queryParam(
 						"fields",
-						"id,r_p2s3ModuleToP2S3Quizzes_c_p2s3Module," +
-							"r_p2s3ModuleToP2S3Quizzes_c_p2s3Module." +
-								"r_p2s3CourseToP2S3Modules_c_p2s3CourseId"
+						"id,r_quiz_c_module,r_quiz_c_module.r_module_c_courseId"
 					).queryParam(
 						"filter", "isKnowledgeCheck eq false"
 					).queryParam(
@@ -111,15 +109,14 @@ public class CourseProgressDownloadRestController extends BaseRestController {
 				JSONObject quizJSONObject = jsonArray.getJSONObject(j);
 
 				JSONObject moduleJSONObject = quizJSONObject.optJSONObject(
-					"r_p2s3ModuleToP2S3Quizzes_c_p2s3Module", null);
+					"r_quiz_c_module", null);
 
 				if (moduleJSONObject == null) {
 					continue;
 				}
 
 				_courseQuizzes.put(
-					moduleJSONObject.getLong(
-						"r_p2s3CourseToP2S3Modules_c_p2s3CourseId"),
+					moduleJSONObject.getLong("r_module_c_courseId"),
 					quizJSONObject.getLong("id"));
 			}
 		}
@@ -146,7 +143,7 @@ public class CourseProgressDownloadRestController extends BaseRestController {
 					get(
 						_getAuthorization(),
 						UriComponentsBuilder.fromUriString(
-							"/o/c/p2s3enrollments/"
+							"/o/c/enrollments/"
 						).queryParam(
 							"filter",
 							"active eq true and dateModified lt {endDate} " +
@@ -171,10 +168,10 @@ public class CourseProgressDownloadRestController extends BaseRestController {
 
 					JSONObject courseJSONObject =
 						enrollmentJSONObject.optJSONObject(
-							"r_p2s3CourseToP2S3Enrollments_c_p2s3Course");
+							"r_courseEnrollment_c_course");
 					JSONObject userJSONObject =
 						enrollmentJSONObject.optJSONObject(
-							"r_lUserToP2S3Enrollments_userId");
+							"r_userenrollments_user");
 
 					if ((courseJSONObject == null) ||
 						(userJSONObject == null)) {

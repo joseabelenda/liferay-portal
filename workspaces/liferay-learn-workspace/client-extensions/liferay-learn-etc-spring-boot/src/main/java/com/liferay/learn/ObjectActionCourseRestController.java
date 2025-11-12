@@ -39,7 +39,7 @@ public class ObjectActionCourseRestController extends BaseRestController {
 			get(
 				"Bearer " + jwt.getTokenValue(),
 				UriComponentsBuilder.fromPath(
-					"/o/c/p2s3courses"
+					"/o/c/courses"
 				).queryParam(
 					"fields",
 					StringBundler.concat(
@@ -65,7 +65,7 @@ public class ObjectActionCourseRestController extends BaseRestController {
 				itemJSONObject.getJSONArray("p2s3CourseToP2S3Modules")
 			).toString(),
 			UriComponentsBuilder.fromPath(
-				"/o/c/p2s3courses/" + itemJSONObject.getLong("id")
+				"/o/c/courses/" + itemJSONObject.getLong("id")
 			).build(
 			).toUri());
 
@@ -85,13 +85,11 @@ public class ObjectActionCourseRestController extends BaseRestController {
 		JSONObject valuesJSONObject = objectEntryJSONObject.getJSONObject(
 			"values");
 
-		if (valuesJSONObject.has("r_p2s3ModuleToP2S3Lessons_c_p2s3ModuleId")) {
-			return valuesJSONObject.getLong(
-				"r_p2s3ModuleToP2S3Lessons_c_p2s3ModuleId");
+		if (valuesJSONObject.has("r_lesson_c_moduleId")) {
+			return valuesJSONObject.getLong("r_lesson_c_moduleId");
 		}
 
-		return valuesJSONObject.getLong(
-			"r_p2s3ModuleToP2S3Quizzes_c_p2s3ModuleId");
+		return valuesJSONObject.getLong("r_quiz_c_moduleId");
 	}
 
 	private JSONObject _getPayloadJSONObject(JSONArray moduleJSONArray) {

@@ -62,7 +62,7 @@ public class LearnRestController extends BaseRestController {
 				get(
 					_getAuthorization(),
 					UriComponentsBuilder.fromPath(
-						"/o/c/p2s3lessons/" + lessonId
+						"/o/c/lessons/" + lessonId
 					).queryParam(
 						"fields", "contentRawText"
 					).build(
@@ -174,7 +174,7 @@ public class LearnRestController extends BaseRestController {
 				get(
 					_getAuthorization(),
 					UriComponentsBuilder.fromPath(
-						"/o/c/p2s3quizquestions"
+						"/o/c/quizquestions"
 					).queryParam(
 						"filter", "quizId eq '" + quizId + "'"
 					).queryParam(
@@ -212,28 +212,18 @@ public class LearnRestController extends BaseRestController {
 				get(
 					_getAuthorization(),
 					UriComponentsBuilder.fromPath(
-						"/o/c/p2s3quizes/" + quizId
+						"/o/c/quizes/" + quizId
 					).queryParam(
 						"fields",
 						StringBundler.concat(
-							"durationMinutes,id,isKnowledgeCheck,",
-							"p2s3QuizToP2S3QuizQuestions.id,",
-							"p2s3QuizToP2S3QuizQuestions.",
-							"p2s3QuizQuestionToP2S3QuizAnswers,",
-							"p2s3QuizToP2S3QuizQuestions.",
-							"p2s3QuizQuestionToP2S3QuizAnswers.answer,",
-							"p2s3QuizToP2S3QuizQuestions.",
-							"p2s3QuizQuestionToP2S3QuizAnswers.id,",
-							"p2s3QuizToP2S3QuizQuestions.",
-							"p2s3QuizQuestionToP2S3QuizAnswers.position,",
-							"p2s3QuizToP2S3QuizQuestions.",
-							"p2s3QuizQuestionToP2S3QuizAnswers.score,",
-							"p2s3QuizToP2S3QuizQuestions.position,",
-							"p2s3QuizToP2S3QuizQuestions.question,",
-							"p2s3QuizToP2S3QuizQuestions.questionTotalScore,",
-							"p2s3QuizToP2S3QuizQuestions.questionType,",
-							"passingScore,",
-							"r_p2s3ModuleToP2S3Quizzes_c_p2s3ModuleId")
+							"id,r_quiz_c_moduleId,durationMinutes,passingScore",
+							",isKnowledgeCheck,quizQuestions.id,quizQuestions.",
+							"position,quizQuestions.question,quizQuestions.",
+							"questionType,quizQuestions.questionTotalScore,",
+							"quizQuestions.quizAnswers,quizQuestions.",
+							"quizAnswers.id,quizQuestions.quizAnswers.position",
+							",quizQuestions.quizAnswers.answer,quizQuestions.",
+							"quizAnswers.score")
 					).queryParam(
 						"nestedFields",
 						"p2s3QuizToP2S3QuizQuestions," +
@@ -424,7 +414,7 @@ public class LearnRestController extends BaseRestController {
 			get(
 				_getAuthorization(),
 				UriComponentsBuilder.fromPath(
-					"/o/c/p2s3quizes/" + quizId + "/quizBadge"
+					"/o/c/quizes/" + quizId + "/quizBadge"
 				).queryParam(
 					"fields", "id"
 				).build(
@@ -443,7 +433,7 @@ public class LearnRestController extends BaseRestController {
 			get(
 				_getAuthorization(),
 				UriComponentsBuilder.fromPath(
-					"/o/c/p2s3userbadges"
+					"/o/c/userbadges"
 				).queryParam(
 					"filter",
 					StringBundler.concat(
@@ -464,10 +454,10 @@ public class LearnRestController extends BaseRestController {
 			).put(
 				"quizId", quizId
 			).put(
-				"r_lUserToP2S3UserBadges_userId", userId
+				"r_userBadges_userId", userId
 			).toString(),
 			UriComponentsBuilder.fromPath(
-				"/o/c/p2s3userbadges"
+				"/o/c/userbadges"
 			).build(
 			).toUri());
 	}
