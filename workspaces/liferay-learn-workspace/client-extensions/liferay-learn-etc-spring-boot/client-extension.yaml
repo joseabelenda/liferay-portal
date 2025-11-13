@@ -1,6 +1,6 @@
 assemble:
     -   fromTask: bootJar
-liferay-learn-etc-spring-boot-oahs:
+liferay-learn-etc-spring-boot-oauth-application-headless-server:
     .serviceAddress: localhost:58081
     .serviceScheme: http
     name: Liferay Learn Etc Spring Boot OAuth Application Headless Server
@@ -26,7 +26,7 @@ liferay-learn-etc-spring-boot-oahs:
         -   Liferay.Object.Admin.REST.everything.read
     type: oAuthApplicationHeadlessServer
     userAccountScreenName: default-service-account
-liferay-learn-etc-spring-boot-oaua:
+liferay-learn-etc-spring-boot-oauth-application-user-agent:
     .serviceAddress: localhost:58081
     .serviceScheme: http
     name: Liferay Learn Etc Spring Boot OAuth Application User Agent
@@ -40,16 +40,16 @@ liferay-learn-etc-spring-boot-oaua:
     type: oAuthApplicationUserAgent
 liferay-learn-etc-spring-boot-object-action-course:
     name: Liferay Learn Etc Spring Boot Object Action Course
-    oAuth2ApplicationExternalReferenceCode: liferay-learn-etc-spring-boot-oaua
+    oAuth2ApplicationExternalReferenceCode: liferay-learn-etc-spring-boot-oauth-application-user-agent
     resourcePath: /object/action/course
     type: objectAction
 liferay-learn-etc-spring-boot-object-action-exam-results-synchronization:
     name: Liferay Learn Etc Spring Boot Object Action Exam Result Synchronization
-    oAuth2ApplicationExternalReferenceCode: liferay-learn-etc-spring-boot-oaua
+    oAuth2ApplicationExternalReferenceCode: liferay-learn-etc-spring-boot-oauth-application-user-agent
     resourcePath: /object/action/exam/results/synchronization
     type: objectAction
 liferay-learn-etc-spring-boot-object-action-permission:
     name: Liferay Learn Etc Spring Boot Object Action Permission
-    oAuth2ApplicationExternalReferenceCode: liferay-learn-etc-spring-boot-oaua
+    oAuth2ApplicationExternalReferenceCode: liferay-learn-etc-spring-boot-oauth-application-user-agent
     resourcePath: /object/action/permission
     type: objectAction
