@@ -26,17 +26,19 @@
 			"env": {
 				"LIFERAY_LEARN_ETC_CRON_LIFERAY_URL": "https://learn.liferay.com",
 				"LIFERAY_LEARN_ETC_CRON_SLACK_CHANNEL": "#is-sites-learn-devops-prd",
-				"LIFERAY_LEARN_RESOURCE_DOMAIN": "https://resources.learn.liferay.com"
+				"LIFERAY_LEARN_RESOURCE_DOMAIN": "https://resources.learn.liferay.com",
+				"LIFERAY_LEARN_SPRING_BOOT_SERVER_URL": "https://liferaylearnetcspringboot2-exte5a2learn-extprd.lfr.cloud"
 			},
-			"schedule": "0 15 * * *"
+			"schedule": "30 16 * * *"
 		},
 		"extuat": {
 			"env": {
 				"LIFERAY_LEARN_ETC_CRON_LIFERAY_URL": "https://learn-uat.liferay.com",
 				"LIFERAY_LEARN_ETC_CRON_SLACK_CHANNEL": "#is-sites-learn-devops-uat",
-				"LIFERAY_LEARN_RESOURCE_DOMAIN": "https://resources.learn-uat.liferay.com"
+				"LIFERAY_LEARN_RESOURCE_DOMAIN": "https://resources.learn-uat.liferay.com",
+				"LIFERAY_LEARN_SPRING_BOOT_SERVER_URL": "https://liferaylearnetcspringboot2-exte5a2learn-extuat.lfr.cloud"
 			},
-			"schedule": "0 15 * * *"
+			"schedule": "45 18 * * *"
 		},
 		"infra": {
 			"deploy": false
