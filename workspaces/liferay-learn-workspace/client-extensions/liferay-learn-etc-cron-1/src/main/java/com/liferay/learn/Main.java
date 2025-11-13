@@ -1475,7 +1475,7 @@ public class Main {
 		throws Exception {
 
 		HttpPut httpPut = new HttpPut(
-			_RAG_SPRING_BOOT_SERVER_URL + "/rag/document");
+			System.getenv("LIFERAY_LEARN_SPRING_BOOT_SERVER_URL") + "/rag/document");
 
 		httpPut.setEntity(
 			new StringEntity(
@@ -1768,9 +1768,6 @@ public class Main {
 
 		FileUtils.writeStringToFile(file, content, StandardCharsets.UTF_8);
 	}
-
-	private static final String _RAG_SPRING_BOOT_SERVER_URL =
-		"https://liferaylearnetcspringboot-exte5a2learn-extuat.lfr.cloud";
 
 	private static final Pattern _markdownLinkPattern = Pattern.compile(
 		"\\[(.*)\\]\\((.*)\\)");
