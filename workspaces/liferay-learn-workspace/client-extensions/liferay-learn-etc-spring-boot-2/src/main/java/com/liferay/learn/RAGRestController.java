@@ -16,12 +16,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Nilton Vieira
@@ -29,6 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rag")
 @RestController
 public class RAGRestController extends BaseRestController {
+
+	@DeleteMapping("document/{assetEntryId}")
+	public ResponseEntity deleteDocument(@PathVariable long assetEntryId){
+		_ragService.deleteDocument(assetEntryId);
+
+		return ResponseEntity.ok().build();
+	}
 
 	@GetMapping("/search")
 	public ResponseEntity<Object> postSearch(@RequestParam String question) {
