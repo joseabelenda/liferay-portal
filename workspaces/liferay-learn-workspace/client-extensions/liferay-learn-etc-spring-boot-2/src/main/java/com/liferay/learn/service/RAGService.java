@@ -7,7 +7,9 @@ package com.liferay.learn.service;
 
 import com.liferay.client.extension.util.spring.boot3.service.BaseService;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.time.OffsetDateTime;
 
@@ -29,6 +31,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RAGService extends BaseService {
+
+	public void deleteDocument(long assetEntryId){
+		_vectorStore.delete("assetEntryId == '" + assetEntryId + "'");
+	}
 
 	public void addOrUpdateDocument(
 		long assetEntryId, String assetEntryType, String content,
@@ -54,15 +60,20 @@ public class RAGService extends BaseService {
 
 		_vectorStore.delete("assetEntryId == '" + assetEntryId + "'");
 
-		List<Document> splittedDocuments = new TokenTextSplitter(
-		).split(
-			document
-		);
+		TokenTextSplitter tokenTextSplitter = new TokenTextSplitter();
 
-		_vectorStore.doAdd(splittedDocuments);
+		_vectorStore.doAdd(tokenTextSplitter.split(document));
 	}
 
-	public Map<String, Object> search(String question) {
+	public Map<String, Object> search(String question) throws Exception {
+		if (Validator.isNull(question)) {
+			return HashMapBuilder.<String, Object>put(
+				"references", new ArrayList()
+			).put(
+				"summary", "No content was found for " + question
+			).build();
+		}
+
 		List<Document> vectorStoreResult = _vectorStore.doSimilaritySearch(
 			SearchRequest.builder(
 			).query(
@@ -73,38 +84,47 @@ public class RAGService extends BaseService {
 				0.8
 			).build());
 
+		if (vectorStoreResult.isEmpty()) {
+			return HashMapBuilder.<String, Object>put(
+				"references", new ArrayList()
+			).put(
+				"summary", "No content was found for " + question
+			).build();
+		}
+
+		List<Long> assetEntryIds = new ArrayList<>();
 		List<Map<String, Object>> references = new ArrayList<>();
 		StringBundler sb = new StringBundler();
 
 		for (Document document : vectorStoreResult) {
-			sb.append(
-				document.getText()
-			).append(
-				System.lineSeparator()
-			);
+			sb.append(document.getText());
+			sb.append(System.lineSeparator());
+
+			Map<String, Object> metadata = document.getMetadata();
+
+			if (assetEntryIds.contains(metadata.get("assetEntryId"))) {
+				continue;
+			}
 
 			references.add(document.getMetadata());
+			assetEntryIds.add(GetterUtil.getLong(metadata.get("assetEntryId")));
 		}
 
 		String system_prompt = """
 You are the Liferay Learn search assistant.
-Your primary goal is to help users understand how to use Liferay DXP and find what
-they are looking for on Liferay Learn site.
+Your primary goal is to help users understand how to use Liferay DXP and help them to find what they are looking for.
 
-Your task is NOT just to answer the query, but to SYNTHESIZE a structured overview
-about the desired Liferay feature in the QUESTION section using ONLY the provided DOCUMENTS as your source.
-You can also provide steps to guide the user about what they are searching for,
-and you can also include a final section named "You Might Also Be Looking For:"
-that you can list up to 4 relevant follow-up questions
+You should be able to SYNTHESIZE a structured overview about the desired Liferay feature in the QUERY section using ONLY the provided DOCUMENTS as your source.
+You can also provide steps to guide the user about what they are searching for
 
 ### RULES AND CONSTRAINTS
 
 * DOCUMENT-FOCUSED: Base your response *exclusively* on the `DOCUMENTS`. Do not invent steps or features not present in them.
 * FORBIDDEN PHRASES: NEVER use phrases like "Based on the information," "In the provided documents," "According to your search," or similar terms. Act as a direct expert.
 * FALLBACK: If the `DOCUMENTS` do not contain enough information to create this guide, or if the `QUERY` is too specific for a general guide, simply state that you cannot find an what they are looking for.
-* LIFERAY-ONLY: Consider that all questions are related only to Liferay DXP
+* LIFERAY-ONLY: Consider that all queries are related only to Liferay DXP
 
-DOCUMENTS: """ + sb + "\nQUESTION: " + question;
+DOCUMENTS: """ + sb + "\nQUERY: " + question;
 
 		return HashMapBuilder.<String, Object>put(
 			"references", references
