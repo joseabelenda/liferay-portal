@@ -1,3 +1,13 @@
 assemble:
     -   from: resources
     -   fromTask: bootJar
+liferay-learn-etc-spring-boot-2-oaua:
+    .serviceAddress: localhost:58081
+    .serviceScheme: http
+    name: Liferay Learn Etc Spring Boot 2 OAuth Application User Agent
+    type: oAuthApplicationUserAgent
+liferay-learn-etc-spring-boot-object-action-test:
+    name: Liferay Learn Etc Spring Boot Object Action Test
+    oAuth2ApplicationExternalReferenceCode: liferay-learn-etc-spring-boot-2-oaua
+    resourcePath: /object/action/test
+    type: objectAction
