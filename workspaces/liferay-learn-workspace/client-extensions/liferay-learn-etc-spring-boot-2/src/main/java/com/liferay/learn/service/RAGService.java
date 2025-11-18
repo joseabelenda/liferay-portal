@@ -9,6 +9,7 @@ import com.liferay.client.extension.util.spring.boot3.service.BaseService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.time.OffsetDateTime;
@@ -60,9 +61,15 @@ public class RAGService extends BaseService {
 
 		_vectorStore.delete("assetEntryId == '" + assetEntryId + "'");
 
-		TokenTextSplitter tokenTextSplitter = new TokenTextSplitter();
+		if(content.length() >= 3000){
+			TokenTextSplitter tokenTextSplitter = new TokenTextSplitter();
 
-		_vectorStore.doAdd(tokenTextSplitter.split(document));
+			_vectorStore.doAdd(tokenTextSplitter.split(document));
+
+			return;
+		}
+
+		_vectorStore.doAdd(ListUtil.fromArray(document));
 	}
 
 	public Map<String, Object> search(String question) throws Exception {
@@ -79,7 +86,7 @@ public class RAGService extends BaseService {
 			).query(
 				question
 			).topK(
-				3
+				4
 			).similarityThreshold(
 				0.8
 			).build());
@@ -114,8 +121,9 @@ public class RAGService extends BaseService {
 You are the Liferay Learn search assistant.
 Your primary goal is to help users understand how to use Liferay DXP and help them to find what they are looking for.
 
-You should be able to SYNTHESIZE a structured overview about the desired Liferay feature in the QUERY section using ONLY the provided DOCUMENTS as your source.
+You should SYNTHESIZE a structured overview about the desired Liferay feature in the QUERY section using ONLY the provided DOCUMENTS as your source.
 You can also provide steps to guide the user about what they are searching for
+Give as much detail as possible
 
 ### RULES AND CONSTRAINTS
 
