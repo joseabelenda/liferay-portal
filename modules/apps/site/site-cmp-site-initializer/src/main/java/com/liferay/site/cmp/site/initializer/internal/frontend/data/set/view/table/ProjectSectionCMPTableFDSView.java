@@ -10,10 +10,10 @@ import com.liferay.frontend.data.set.view.table.FDSTableSchema;
 import com.liferay.frontend.data.set.view.table.FDSTableSchemaBuilder;
 import com.liferay.frontend.data.set.view.table.FDSTableSchemaBuilderFactory;
 import com.liferay.site.cmp.site.initializer.internal.constants.CMPSiteInitializerFDSNames;
+import com.liferay.site.cms.site.initializer.frontend.data.set.view.table.BaseCMSTableFDSView;
 
 import java.util.Locale;
 
-import com.liferay.site.cms.site.initializer.frontend.data.set.view.table.BaseCMSTableFDSView;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
