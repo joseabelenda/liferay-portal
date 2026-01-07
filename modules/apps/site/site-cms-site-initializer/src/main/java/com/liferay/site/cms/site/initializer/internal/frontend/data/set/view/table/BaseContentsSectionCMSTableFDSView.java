@@ -11,6 +11,7 @@ import com.liferay.frontend.data.set.view.table.FDSTableSchemaBuilderFactory;
 
 import java.util.Locale;
 
+import com.liferay.site.cms.site.initializer.frontend.data.set.view.table.BaseCMSTableFDSView;
 import org.osgi.service.component.annotations.Reference;
 
 /**

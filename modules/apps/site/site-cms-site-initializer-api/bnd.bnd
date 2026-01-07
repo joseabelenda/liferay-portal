@@ -6,4 +6,5 @@ Export-Package:\
 	com.liferay.site.cms.site.initializer.constants,\
 	com.liferay.site.cms.site.initializer.display.context,\
 	com.liferay.site.cms.site.initializer.fragment.renderer,\
+	com.liferay.site.cms.site.initializer.frontend.data.set.view.table,\
 	com.liferay.site.cms.site.initializer.util
