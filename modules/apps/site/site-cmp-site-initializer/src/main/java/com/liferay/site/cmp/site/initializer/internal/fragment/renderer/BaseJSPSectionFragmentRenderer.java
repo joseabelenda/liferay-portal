@@ -78,7 +78,7 @@ public abstract class BaseJSPSectionFragmentRenderer<T>
 	protected Language language;
 
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.site.cms.site.initializer)"
+		target = "(osgi.web.symbolicname=com.liferay.site.cmp.site.initializer)"
 	)
 	protected ServletContext servletContext;
 
