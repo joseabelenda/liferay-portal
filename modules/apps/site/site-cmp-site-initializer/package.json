@@ -66,6 +66,7 @@
 			"<rootDir>/.*/__mocks__"
 		]
 	},
+	"main": "js/index.ts",
 	"name": "@liferay/site-cmp-site-initializer",
 	"scripts": {
 		"build": "node-scripts build",
