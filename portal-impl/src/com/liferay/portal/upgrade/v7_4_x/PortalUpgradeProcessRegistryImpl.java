@@ -771,6 +771,11 @@ public class PortalUpgradeProcessRegistryImpl
 			new Version(38, 4, 2),
 			UpgradeProcessFactory.addColumns(
 				"Ticket", "emailAddress VARCHAR(254) null"));
+
+		upgradeVersionTreeMap.put(
+			new Version(38, 4, 3),
+			UpgradeModulesFactory.create(
+				new String[] {"com.liferay.portal.vulcan.impl"}, null));
 	}
 
 }
