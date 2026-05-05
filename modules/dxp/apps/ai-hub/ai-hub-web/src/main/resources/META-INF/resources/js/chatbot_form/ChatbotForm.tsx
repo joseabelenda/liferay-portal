@@ -53,7 +53,7 @@ function getPortalURL(portalURL: string) {
 
 function generateEmbedCode(externalReferenceCode: string, portalURL: string) {
 	return `
-<link href="${portalURL}/documents/d/global/index-css" rel="stylesheet">
+<link href="${portalURL}/documents/d/global/index-min-css" rel="stylesheet">
 
 <script>
 	(function () {
@@ -67,7 +67,7 @@ function generateEmbedCode(externalReferenceCode: string, portalURL: string) {
 			scriptElement.id = 'aihub-chatbot-widget-script';
 			scriptElement.setAttribute('ai-hub-url', '${portalURL}');
 			scriptElement.setAttribute('chatbot-external-reference-code', '${externalReferenceCode}');
-			scriptElement.src = '${portalURL}/documents/d/global/index-js';
+			scriptElement.src = '${portalURL}/documents/d/global/index-min-js';
 
 			document.body.appendChild(scriptElement);
 		}

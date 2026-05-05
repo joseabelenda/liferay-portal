@@ -20,7 +20,7 @@ String clickToChatAIHubServiceURL = (String)request.getAttribute(ClickToChatWebK
 		var linkElement = document.createElement('link');
 
 		linkElement.href =
-			'<%= HtmlUtil.escapeJS(clickToChatAIHubServiceURL) %>/documents/d/global/index-css';
+			'<%= HtmlUtil.escapeJS(clickToChatAIHubServiceURL) %>/documents/d/global/index-min-css';
 		linkElement.rel = 'stylesheet';
 
 		document.head.appendChild(linkElement);
@@ -29,7 +29,7 @@ String clickToChatAIHubServiceURL = (String)request.getAttribute(ClickToChatWebK
 
 		scriptElement.id = 'aihub-chatbot-widget-script';
 		scriptElement.src =
-			'<%= HtmlUtil.escapeJS(clickToChatAIHubServiceURL) %>/documents/d/global/index-js';
+			'<%= HtmlUtil.escapeJS(clickToChatAIHubServiceURL) %>/documents/d/global/index-min-js';
 		scriptElement.setAttribute(
 			'ai-hub-url',
 			'<%= HtmlUtil.escapeJS(clickToChatAIHubServiceURL) %>'
