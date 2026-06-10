@@ -1,0 +1,19 @@
+{
+	"object-fields": [
+      {
+        "DBType": "Boolean",
+        "businessType": "Boolean",
+        "defaultValue": false,
+        "externalReferenceCode": "SYSTEM",
+        "indexed": true,
+        "label": {
+          "en_US": "System"
+        },
+        "name": "system",
+        "required": false,
+        "system": true,
+        "type": "Boolean"
+      }
+    ],
+	"objectDefinitionId": "[$OBJECT_DEFINITION_ID:AIHubInstructionDefinition$]"
+}
