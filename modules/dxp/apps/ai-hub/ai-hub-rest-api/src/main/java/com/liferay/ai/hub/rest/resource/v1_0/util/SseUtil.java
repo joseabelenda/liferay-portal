@@ -6,6 +6,8 @@
 package com.liferay.ai.hub.rest.resource.v1_0.util;
 
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalRunMode;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -66,19 +68,46 @@ public class SseUtil {
 		Sse sse = _sses.get(sseEventSinkKey);
 		SseEventSink sseEventSink = _sseEventSinks.get(sseEventSinkKey);
 
-		sseEventSink.send(
-			sse.newEventBuilder(
-			).data(
-				String.class,
-				JSONUtil.put(
-					"data", data
-				).put(
-					"nodeName", nodeName
-				).toString()
-			).name(
-				Validator.isBlank(name) ? nodeName : name
-			).build());
+		if ((sse == null) || (sseEventSink == null) ||
+			sseEventSink.isClosed()) {
+
+			_remove(sseEventSinkKey);
+
+			return;
+		}
+
+		try {
+			sseEventSink.send(
+				sse.newEventBuilder(
+				).data(
+					String.class,
+					JSONUtil.put(
+						"data", data
+					).put(
+						"nodeName", nodeName
+					).toString()
+				).name(
+					Validator.isBlank(name) ? nodeName : name
+				).build());
+		}
+		catch (RuntimeException runtimeException) {
+			_remove(sseEventSinkKey);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Removed SSE event sink " + sseEventSinkKey +
+						" after a failed send",
+					runtimeException);
+			}
+		}
 	}
+
+	private static void _remove(String sseEventSinkKey) {
+		_sseEventSinks.remove(sseEventSinkKey);
+		_sses.remove(sseEventSinkKey);
+	}
+
+	private static final Log _log = LogFactoryUtil.getLog(SseUtil.class);
 
 	private static Map<String, SseEventSink> _sseEventSinks =
 		new ConcurrentHashMap<>();
