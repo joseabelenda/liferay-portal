@@ -5,9 +5,13 @@
 
 package com.liferay.ai.hub.rest.resource.v1_0.util;
 
+import com.liferay.portal.kernel.cluster.ClusterExecutorUtil;
+import com.liferay.portal.kernel.cluster.ClusterRequest;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalRunMode;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -69,55 +73,24 @@ public class SseUtil {
 		String[] agentDefinitionExternalReferenceCodes, String data,
 		String name, String nodeName, String sseEventSinkKey) {
 
-		if (Validator.isBlank(sseEventSinkKey)) {
-			return;
-		}
-
-		Sse sse = _sses.get(sseEventSinkKey);
-		SseEventSink sseEventSink = _sseEventSinks.get(sseEventSinkKey);
-
-		if ((sse == null) || (sseEventSink == null) ||
-			sseEventSink.isClosed()) {
-
-			_remove(sseEventSinkKey);
+		if (Validator.isBlank(sseEventSinkKey) ||
+			_send(
+				agentDefinitionExternalReferenceCodes, data, name, nodeName,
+				sseEventSinkKey) ||
+			!ClusterExecutorUtil.isEnabled()) {
 
 			return;
 		}
 
-		try {
-			sseEventSink.send(
-				sse.newEventBuilder(
-				).data(
-					String.class,
-					JSONUtil.put(
-						"agentDefinitionExternalReferenceCodes",
-						() -> {
-							if (agentDefinitionExternalReferenceCodes == null) {
-								return null;
-							}
+		ClusterRequest clusterRequest = ClusterRequest.createMulticastRequest(
+			new MethodHandler(
+				_sendMethodKey, agentDefinitionExternalReferenceCodes, data,
+				name, nodeName, sseEventSinkKey),
+			true);
 
-							return JSONUtil.putAll(
-								agentDefinitionExternalReferenceCodes);
-						}
-					).put(
-						"data", data
-					).put(
-						"nodeName", nodeName
-					).toString()
-				).name(
-					Validator.isBlank(name) ? nodeName : name
-				).build());
-		}
-		catch (RuntimeException runtimeException) {
-			_remove(sseEventSinkKey);
+		clusterRequest.setFireAndForget(true);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Removed SSE event sink " + sseEventSinkKey +
-						" after a failed send",
-					runtimeException);
-			}
-		}
+		ClusterExecutorUtil.execute(clusterRequest);
 	}
 
 	public static Set<String> sendHeartbeats() {
@@ -170,8 +143,66 @@ public class SseUtil {
 		_sses.remove(sseEventSinkKey);
 	}
 
+	private static boolean _send(
+		String[] agentDefinitionExternalReferenceCodes, String data,
+		String name, String nodeName, String sseEventSinkKey) {
+
+		Sse sse = _sses.get(sseEventSinkKey);
+		SseEventSink sseEventSink = _sseEventSinks.get(sseEventSinkKey);
+
+		if ((sse == null) || (sseEventSink == null) ||
+			sseEventSink.isClosed()) {
+
+			_remove(sseEventSinkKey);
+
+			return false;
+		}
+
+		try {
+			sseEventSink.send(
+				sse.newEventBuilder(
+				).data(
+					String.class,
+					JSONUtil.put(
+						"agentDefinitionExternalReferenceCodes",
+						() -> {
+							if (agentDefinitionExternalReferenceCodes == null) {
+								return null;
+							}
+
+							return JSONUtil.putAll(
+								agentDefinitionExternalReferenceCodes);
+						}
+					).put(
+						"data", data
+					).put(
+						"nodeName", nodeName
+					).toString()
+				).name(
+					Validator.isBlank(name) ? nodeName : name
+				).build());
+
+			return true;
+		}
+		catch (RuntimeException runtimeException) {
+			_remove(sseEventSinkKey);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Removed SSE event sink " + sseEventSinkKey +
+						" after a failed send",
+					runtimeException);
+			}
+
+			return false;
+		}
+	}
+
 	private static final Log _log = LogFactoryUtil.getLog(SseUtil.class);
 
+	private static final MethodKey _sendMethodKey = new MethodKey(
+		SseUtil.class, "_send", String[].class, String.class, String.class,
+		String.class, String.class);
 	private static Map<String, SseEventSink> _sseEventSinks =
 		new ConcurrentHashMap<>();
 	private static Map<String, Sse> _sses = new ConcurrentHashMap<>();
