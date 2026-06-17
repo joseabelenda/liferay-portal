@@ -15,6 +15,7 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import jakarta.ws.rs.sse.Sse;
 import jakarta.ws.rs.sse.SseEventSink;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -100,6 +101,51 @@ public class SseUtil {
 					runtimeException);
 			}
 		}
+	}
+
+	public static Set<String> sendHeartbeats() {
+		Set<String> reapedSseEventSinkKeys = new HashSet<>();
+
+		for (Map.Entry<String, SseEventSink> entry :
+				_sseEventSinks.entrySet()) {
+
+			String sseEventSinkKey = entry.getKey();
+
+			SseEventSink sseEventSink = entry.getValue();
+			Sse sse = _sses.get(sseEventSinkKey);
+
+			if ((sse == null) || (sseEventSink == null) ||
+				sseEventSink.isClosed()) {
+
+				_remove(sseEventSinkKey);
+
+				reapedSseEventSinkKeys.add(sseEventSinkKey);
+
+				continue;
+			}
+
+			try {
+				sseEventSink.send(
+					sse.newEventBuilder(
+					).comment(
+						"heartbeat"
+					).build());
+			}
+			catch (RuntimeException runtimeException) {
+				_remove(sseEventSinkKey);
+
+				reapedSseEventSinkKeys.add(sseEventSinkKey);
+
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Removed SSE event sink " + sseEventSinkKey +
+							" after a failed heartbeat",
+						runtimeException);
+				}
+			}
+		}
+
+		return reapedSseEventSinkKeys;
 	}
 
 	private static void _remove(String sseEventSinkKey) {
