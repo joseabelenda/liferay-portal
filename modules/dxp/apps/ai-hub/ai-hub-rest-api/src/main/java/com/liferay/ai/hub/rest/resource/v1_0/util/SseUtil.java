@@ -22,6 +22,7 @@ import jakarta.ws.rs.sse.SseEventSink;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -107,7 +108,7 @@ public class SseUtil {
 			if ((sse == null) || (sseEventSink == null) ||
 				sseEventSink.isClosed()) {
 
-				_remove(sseEventSinkKey);
+				_close(sseEventSinkKey, sseEventSink);
 
 				reapedSseEventSinkKeys.add(sseEventSinkKey);
 
@@ -115,20 +116,27 @@ public class SseUtil {
 			}
 
 			try {
-				sseEventSink.send(
+				CompletionStage<?> completionStage = sseEventSink.send(
 					sse.newEventBuilder(
 					).comment(
 						"heartbeat"
 					).build());
+
+				completionStage.whenComplete(
+					(result, throwable) -> {
+						if (throwable != null) {
+							_close(sseEventSinkKey, sseEventSink);
+						}
+					});
 			}
 			catch (RuntimeException runtimeException) {
-				_remove(sseEventSinkKey);
+				_close(sseEventSinkKey, sseEventSink);
 
 				reapedSseEventSinkKeys.add(sseEventSinkKey);
 
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Removed SSE event sink " + sseEventSinkKey +
+						"Closed SSE event sink " + sseEventSinkKey +
 							" after a failed heartbeat",
 						runtimeException);
 				}
@@ -136,6 +144,27 @@ public class SseUtil {
 		}
 
 		return reapedSseEventSinkKeys;
+	}
+
+	private static void _close(
+		String sseEventSinkKey, SseEventSink sseEventSink) {
+
+		_remove(sseEventSinkKey);
+
+		if ((sseEventSink == null) || sseEventSink.isClosed()) {
+			return;
+		}
+
+		try {
+			sseEventSink.close();
+		}
+		catch (RuntimeException runtimeException) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Unable to close SSE event sink " + sseEventSinkKey,
+					runtimeException);
+			}
+		}
 	}
 
 	private static void _remove(String sseEventSinkKey) {
@@ -153,7 +182,7 @@ public class SseUtil {
 		if ((sse == null) || (sseEventSink == null) ||
 			sseEventSink.isClosed()) {
 
-			_remove(sseEventSinkKey);
+			_close(sseEventSinkKey, sseEventSink);
 
 			return false;
 		}
@@ -185,11 +214,11 @@ public class SseUtil {
 			return true;
 		}
 		catch (RuntimeException runtimeException) {
-			_remove(sseEventSinkKey);
+			_close(sseEventSinkKey, sseEventSink);
 
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Removed SSE event sink " + sseEventSinkKey +
+					"Closed SSE event sink " + sseEventSinkKey +
 						" after a failed send",
 					runtimeException);
 			}
