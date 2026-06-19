@@ -19,11 +19,11 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import jakarta.ws.rs.sse.Sse;
 import jakarta.ws.rs.sse.SseEventSink;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 
 /**
  * @author Feliphe Marinho
@@ -94,8 +94,8 @@ public class SseUtil {
 		ClusterExecutorUtil.execute(clusterRequest);
 	}
 
-	public static Set<String> sendHeartbeats() {
-		Set<String> reapedSseEventSinkKeys = new HashSet<>();
+	public static void sendHeartbeats(
+		Consumer<String> reapedSseEventSinkKeyConsumer) {
 
 		for (Map.Entry<String, SseEventSink> entry :
 				_sseEventSinks.entrySet()) {
@@ -110,7 +110,7 @@ public class SseUtil {
 
 				_close(sseEventSinkKey, sseEventSink);
 
-				reapedSseEventSinkKeys.add(sseEventSinkKey);
+				reapedSseEventSinkKeyConsumer.accept(sseEventSinkKey);
 
 				continue;
 			}
@@ -126,13 +126,16 @@ public class SseUtil {
 					(result, throwable) -> {
 						if (throwable != null) {
 							_close(sseEventSinkKey, sseEventSink);
+
+							reapedSseEventSinkKeyConsumer.accept(
+								sseEventSinkKey);
 						}
 					});
 			}
 			catch (RuntimeException runtimeException) {
 				_close(sseEventSinkKey, sseEventSink);
 
-				reapedSseEventSinkKeys.add(sseEventSinkKey);
+				reapedSseEventSinkKeyConsumer.accept(sseEventSinkKey);
 
 				if (_log.isWarnEnabled()) {
 					_log.warn(
@@ -142,8 +145,6 @@ public class SseUtil {
 				}
 			}
 		}
-
-		return reapedSseEventSinkKeys;
 	}
 
 	private static void _close(
