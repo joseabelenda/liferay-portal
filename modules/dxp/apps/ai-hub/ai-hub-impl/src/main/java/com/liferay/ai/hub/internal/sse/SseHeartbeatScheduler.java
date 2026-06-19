@@ -10,7 +10,6 @@ import com.liferay.ai.hub.rest.resource.v1_0.util.SseUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
-import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -42,11 +41,7 @@ public class SseHeartbeatScheduler {
 
 	private void _sendHeartbeats() {
 		try {
-			Set<String> reapedSseEventSinkKeys = SseUtil.sendHeartbeats();
-
-			for (String reapedSseEventSinkKey : reapedSseEventSinkKeys) {
-				ChatMemoryProviderUtil.evict(reapedSseEventSinkKey);
-			}
+			SseUtil.sendHeartbeats(ChatMemoryProviderUtil::evict);
 		}
 		catch (Exception exception) {
 			_log.error(exception);
