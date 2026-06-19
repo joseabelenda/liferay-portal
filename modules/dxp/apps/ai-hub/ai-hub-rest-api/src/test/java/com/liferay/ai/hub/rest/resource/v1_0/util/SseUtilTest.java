@@ -13,6 +13,7 @@ import jakarta.ws.rs.sse.Sse;
 import jakarta.ws.rs.sse.SseEventSink;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -54,7 +55,9 @@ public class SseUtilTest {
 
 		_sses.put("live", _mockSse());
 
-		Set<String> reapedSseEventSinkKeys = SseUtil.sendHeartbeats();
+		Set<String> reapedSseEventSinkKeys = new HashSet<>();
+
+		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
 		Assert.assertTrue(reapedSseEventSinkKeys.isEmpty());
 
@@ -85,7 +88,9 @@ public class SseUtilTest {
 
 		_sses.put("closed", _mockSse());
 
-		Set<String> reapedSseEventSinkKeys = SseUtil.sendHeartbeats();
+		Set<String> reapedSseEventSinkKeys = new HashSet<>();
+
+		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
 		Assert.assertTrue(reapedSseEventSinkKeys.contains("closed"));
 
@@ -122,7 +127,9 @@ public class SseUtilTest {
 
 		_sses.put("closed", _mockSse());
 
-		Set<String> reapedSseEventSinkKeys = SseUtil.sendHeartbeats();
+		Set<String> reapedSseEventSinkKeys = new HashSet<>();
+
+		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
 		Assert.assertEquals(
 			Collections.singleton("closed"), reapedSseEventSinkKeys);
@@ -137,7 +144,9 @@ public class SseUtilTest {
 
 		_sseEventSinks.put("orphan", sseEventSink);
 
-		Set<String> reapedSseEventSinkKeys = SseUtil.sendHeartbeats();
+		Set<String> reapedSseEventSinkKeys = new HashSet<>();
+
+		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
 		Assert.assertTrue(reapedSseEventSinkKeys.contains("orphan"));
 
@@ -168,14 +177,13 @@ public class SseUtilTest {
 
 		_sses.put("async-fail", _mockSse());
 
-		Set<String> reapedSseEventSinkKeys = SseUtil.sendHeartbeats();
+		Set<String> reapedSseEventSinkKeys = new HashSet<>();
 
-		// An asynchronous send failure closes and removes the sink, but does
-		// not report the key as reaped, so its chat memory is not evicted.
+		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
 		Assert.assertFalse(_sseEventSinks.containsKey("async-fail"));
 
-		Assert.assertFalse(reapedSseEventSinkKeys.contains("async-fail"));
+		Assert.assertTrue(reapedSseEventSinkKeys.contains("async-fail"));
 
 		Mockito.verify(
 			sseEventSink
@@ -196,7 +204,9 @@ public class SseUtilTest {
 
 		_sses.put("sync-fail", _mockSse());
 
-		Set<String> reapedSseEventSinkKeys = SseUtil.sendHeartbeats();
+		Set<String> reapedSseEventSinkKeys = new HashSet<>();
+
+		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
 		Assert.assertTrue(reapedSseEventSinkKeys.contains("sync-fail"));
 
