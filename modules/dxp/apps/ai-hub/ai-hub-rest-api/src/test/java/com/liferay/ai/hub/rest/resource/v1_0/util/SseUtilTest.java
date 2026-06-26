@@ -6,6 +6,7 @@
 package com.liferay.ai.hub.rest.resource.v1_0.util;
 
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import jakarta.ws.rs.sse.OutboundSseEvent;
@@ -49,11 +50,13 @@ public class SseUtilTest {
 
 	@Test
 	public void testSendHeartbeatsKeepsLiveSink() {
+		String sseEventSinkKey = RandomTestUtil.randomString();
+
 		SseEventSink sseEventSink = _mockLiveSseEventSink();
 
-		_sseEventSinks.put("live", sseEventSink);
+		_sseEventSinks.put(sseEventSinkKey, sseEventSink);
 
-		_sses.put("live", _mockSse());
+		_sses.put(sseEventSinkKey, _mockSse());
 
 		Set<String> reapedSseEventSinkKeys = new HashSet<>();
 
@@ -61,7 +64,7 @@ public class SseUtilTest {
 
 		Assert.assertTrue(reapedSseEventSinkKeys.isEmpty());
 
-		Assert.assertTrue(_sseEventSinks.containsKey("live"));
+		Assert.assertTrue(_sseEventSinks.containsKey(sseEventSinkKey));
 
 		Mockito.verify(
 			sseEventSink
@@ -76,6 +79,8 @@ public class SseUtilTest {
 
 	@Test
 	public void testSendHeartbeatsReapsClosedSink() {
+		String sseEventSinkKey = RandomTestUtil.randomString();
+
 		SseEventSink sseEventSink = Mockito.mock(SseEventSink.class);
 
 		Mockito.when(
@@ -84,17 +89,17 @@ public class SseUtilTest {
 			true
 		);
 
-		_sseEventSinks.put("closed", sseEventSink);
+		_sseEventSinks.put(sseEventSinkKey, sseEventSink);
 
-		_sses.put("closed", _mockSse());
+		_sses.put(sseEventSinkKey, _mockSse());
 
 		Set<String> reapedSseEventSinkKeys = new HashSet<>();
 
 		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
-		Assert.assertTrue(reapedSseEventSinkKeys.contains("closed"));
+		Assert.assertTrue(reapedSseEventSinkKeys.contains(sseEventSinkKey));
 
-		Assert.assertFalse(_sseEventSinks.containsKey("closed"));
+		Assert.assertFalse(_sseEventSinks.containsKey(sseEventSinkKey));
 
 		Mockito.verify(
 			sseEventSink, Mockito.never()
@@ -109,11 +114,15 @@ public class SseUtilTest {
 
 	@Test
 	public void testSendHeartbeatsReapsOnlyDeadSinks() {
+		String liveSseEventSinkKey = RandomTestUtil.randomString();
+
 		SseEventSink liveSseEventSink = _mockLiveSseEventSink();
 
-		_sseEventSinks.put("live", liveSseEventSink);
+		_sseEventSinks.put(liveSseEventSinkKey, liveSseEventSink);
 
-		_sses.put("live", _mockSse());
+		_sses.put(liveSseEventSinkKey, _mockSse());
+
+		String closedSseEventSinkKey = RandomTestUtil.randomString();
 
 		SseEventSink closedSseEventSink = Mockito.mock(SseEventSink.class);
 
@@ -123,34 +132,37 @@ public class SseUtilTest {
 			true
 		);
 
-		_sseEventSinks.put("closed", closedSseEventSink);
+		_sseEventSinks.put(closedSseEventSinkKey, closedSseEventSink);
 
-		_sses.put("closed", _mockSse());
+		_sses.put(closedSseEventSinkKey, _mockSse());
 
 		Set<String> reapedSseEventSinkKeys = new HashSet<>();
 
 		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
 		Assert.assertEquals(
-			Collections.singleton("closed"), reapedSseEventSinkKeys);
+			Collections.singleton(closedSseEventSinkKey),
+			reapedSseEventSinkKeys);
 
-		Assert.assertTrue(_sseEventSinks.containsKey("live"));
-		Assert.assertFalse(_sseEventSinks.containsKey("closed"));
+		Assert.assertTrue(_sseEventSinks.containsKey(liveSseEventSinkKey));
+		Assert.assertFalse(_sseEventSinks.containsKey(closedSseEventSinkKey));
 	}
 
 	@Test
 	public void testSendHeartbeatsReapsSinkMissingSse() {
+		String sseEventSinkKey = RandomTestUtil.randomString();
+
 		SseEventSink sseEventSink = Mockito.mock(SseEventSink.class);
 
-		_sseEventSinks.put("orphan", sseEventSink);
+		_sseEventSinks.put(sseEventSinkKey, sseEventSink);
 
 		Set<String> reapedSseEventSinkKeys = new HashSet<>();
 
 		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
-		Assert.assertTrue(reapedSseEventSinkKeys.contains("orphan"));
+		Assert.assertTrue(reapedSseEventSinkKeys.contains(sseEventSinkKey));
 
-		Assert.assertFalse(_sseEventSinks.containsKey("orphan"));
+		Assert.assertFalse(_sseEventSinks.containsKey(sseEventSinkKey));
 
 		Mockito.verify(
 			sseEventSink
@@ -159,6 +171,8 @@ public class SseUtilTest {
 
 	@Test
 	public void testSendHeartbeatsReapsSinkOnAsynchronousFailure() {
+		String sseEventSinkKey = RandomTestUtil.randomString();
+
 		SseEventSink sseEventSink = Mockito.mock(SseEventSink.class);
 
 		CompletableFuture<Object> completableFuture = new CompletableFuture<>();
@@ -173,17 +187,17 @@ public class SseUtilTest {
 			Mockito.any(OutboundSseEvent.class)
 		);
 
-		_sseEventSinks.put("async-fail", sseEventSink);
+		_sseEventSinks.put(sseEventSinkKey, sseEventSink);
 
-		_sses.put("async-fail", _mockSse());
+		_sses.put(sseEventSinkKey, _mockSse());
 
 		Set<String> reapedSseEventSinkKeys = new HashSet<>();
 
 		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
-		Assert.assertFalse(_sseEventSinks.containsKey("async-fail"));
+		Assert.assertFalse(_sseEventSinks.containsKey(sseEventSinkKey));
 
-		Assert.assertTrue(reapedSseEventSinkKeys.contains("async-fail"));
+		Assert.assertTrue(reapedSseEventSinkKeys.contains(sseEventSinkKey));
 
 		Mockito.verify(
 			sseEventSink
@@ -192,6 +206,8 @@ public class SseUtilTest {
 
 	@Test
 	public void testSendHeartbeatsReapsSinkOnSynchronousFailure() {
+		String sseEventSinkKey = RandomTestUtil.randomString();
+
 		SseEventSink sseEventSink = Mockito.mock(SseEventSink.class);
 
 		Mockito.when(
@@ -200,17 +216,17 @@ public class SseUtilTest {
 			new RuntimeException()
 		);
 
-		_sseEventSinks.put("sync-fail", sseEventSink);
+		_sseEventSinks.put(sseEventSinkKey, sseEventSink);
 
-		_sses.put("sync-fail", _mockSse());
+		_sses.put(sseEventSinkKey, _mockSse());
 
 		Set<String> reapedSseEventSinkKeys = new HashSet<>();
 
 		SseUtil.sendHeartbeats(reapedSseEventSinkKeys::add);
 
-		Assert.assertTrue(reapedSseEventSinkKeys.contains("sync-fail"));
+		Assert.assertTrue(reapedSseEventSinkKeys.contains(sseEventSinkKey));
 
-		Assert.assertFalse(_sseEventSinks.containsKey("sync-fail"));
+		Assert.assertFalse(_sseEventSinks.containsKey(sseEventSinkKey));
 
 		Mockito.verify(
 			sseEventSink
