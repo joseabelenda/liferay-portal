@@ -5,6 +5,7 @@
 
 package com.liferay.ai.hub.internal.memory;
 
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import dev.langchain4j.data.message.UserMessage;
@@ -27,17 +28,23 @@ public class ChatMemoryProviderUtilTest {
 
 	@Test
 	public void testEvictDoesNotAffectOtherMemoryIds() {
-		MessageWindowChatMemory messageWindowChatMemory1 =
-			ChatMemoryProviderUtil.provide("testEvict-id-1");
+		String memoryId1 = RandomTestUtil.randomString();
 
-		messageWindowChatMemory1.add(UserMessage.from("first"));
+		MessageWindowChatMemory messageWindowChatMemory1 =
+			ChatMemoryProviderUtil.provide(memoryId1);
+
+		messageWindowChatMemory1.add(
+			UserMessage.from(RandomTestUtil.randomString()));
+
+		String memoryId2 = RandomTestUtil.randomString();
 
 		MessageWindowChatMemory messageWindowChatMemory2 =
-			ChatMemoryProviderUtil.provide("testEvict-id-2");
+			ChatMemoryProviderUtil.provide(memoryId2);
 
-		messageWindowChatMemory2.add(UserMessage.from("second"));
+		messageWindowChatMemory2.add(
+			UserMessage.from(RandomTestUtil.randomString()));
 
-		ChatMemoryProviderUtil.evict("testEvict-id-1");
+		ChatMemoryProviderUtil.evict(memoryId1);
 
 		Assert.assertTrue(
 			messageWindowChatMemory1.messages(
@@ -49,16 +56,19 @@ public class ChatMemoryProviderUtilTest {
 
 	@Test
 	public void testEvictRemovesMessages() {
-		MessageWindowChatMemory messageWindowChatMemory =
-			ChatMemoryProviderUtil.provide("testEvictRemovesMessages-id");
+		String memoryId = RandomTestUtil.randomString();
 
-		messageWindowChatMemory.add(UserMessage.from("Hello"));
+		MessageWindowChatMemory messageWindowChatMemory =
+			ChatMemoryProviderUtil.provide(memoryId);
+
+		messageWindowChatMemory.add(
+			UserMessage.from(RandomTestUtil.randomString()));
 
 		Assert.assertFalse(
 			messageWindowChatMemory.messages(
 			).isEmpty());
 
-		ChatMemoryProviderUtil.evict("testEvictRemovesMessages-id");
+		ChatMemoryProviderUtil.evict(memoryId);
 
 		Assert.assertTrue(
 			messageWindowChatMemory.messages(
@@ -67,10 +77,12 @@ public class ChatMemoryProviderUtilTest {
 
 	@Test
 	public void testEvictUnknownMemoryIdDoesNotThrow() {
-		ChatMemoryProviderUtil.evict("testEvictUnknownMemoryId-id");
+		String memoryId = RandomTestUtil.randomString();
+
+		ChatMemoryProviderUtil.evict(memoryId);
 
 		MessageWindowChatMemory messageWindowChatMemory =
-			ChatMemoryProviderUtil.provide("testEvictUnknownMemoryId-id");
+			ChatMemoryProviderUtil.provide(memoryId);
 
 		Assert.assertTrue(
 			messageWindowChatMemory.messages(
