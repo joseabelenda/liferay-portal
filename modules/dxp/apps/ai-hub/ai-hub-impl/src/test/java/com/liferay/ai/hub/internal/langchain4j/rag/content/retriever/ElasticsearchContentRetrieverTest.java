@@ -16,8 +16,11 @@ import com.liferay.portal.search.hits.SearchHit;
 import com.liferay.portal.search.hits.SearchHits;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
+<<<<<<< HEAD
 import dev.langchain4j.data.document.Metadata;
 import dev.langchain4j.data.segment.TextSegment;
+=======
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 import dev.langchain4j.rag.content.Content;
 import dev.langchain4j.rag.query.Query;
 
@@ -29,7 +32,10 @@ import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
+<<<<<<< HEAD
 import org.mockito.ArgumentCaptor;
+=======
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 import org.mockito.Mockito;
 
 /**
@@ -43,6 +49,7 @@ public class ElasticsearchContentRetrieverTest {
 		LiferayUnitTestRule.INSTANCE;
 
 	@Test
+<<<<<<< HEAD
 	public void testSearch() {
 		SearchEngineAdapter searchEngineAdapter = Mockito.mock(
 			SearchEngineAdapter.class);
@@ -61,12 +68,24 @@ public class ElasticsearchContentRetrieverTest {
 
 		String fragment = RandomTestUtil.randomString();
 
+=======
+	public void testSearchSkipsHitsScoringBelowMinScore() {
+		String fragment = RandomTestUtil.randomString();
+
+		HighlightField highlightField = Mockito.mock(HighlightField.class);
+
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 		Mockito.when(
 			highlightField.getFragments()
 		).thenReturn(
 			List.of(fragment)
 		);
 
+<<<<<<< HEAD
+=======
+		SearchHit highScoreSearchHit = Mockito.mock(SearchHit.class);
+
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 		Mockito.when(
 			highScoreSearchHit.getHighlightFieldsMap()
 		).thenReturn(
@@ -79,12 +98,21 @@ public class ElasticsearchContentRetrieverTest {
 			0.9F
 		);
 
+<<<<<<< HEAD
 		String url = RandomTestUtil.randomString();
 
 		Mockito.when(
 			highScoreSearchHit.getSourcesMap()
 		).thenReturn(
 			Map.of(_URL, url)
+=======
+		SearchHit lowScoreSearchHit = Mockito.mock(SearchHit.class);
+
+		Mockito.when(
+			lowScoreSearchHit.getScore()
+		).thenReturn(
+			0.5F
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 		);
 
 		SearchHits searchHits = Mockito.mock(SearchHits.class);
@@ -104,12 +132,29 @@ public class ElasticsearchContentRetrieverTest {
 			searchHits
 		);
 
+<<<<<<< HEAD
+=======
+		SearchEngineAdapter searchEngineAdapter = Mockito.mock(
+			SearchEngineAdapter.class);
+
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 		Mockito.when(
 			searchEngineAdapter.execute((SearchSearchRequest)Mockito.any())
 		).thenReturn(
 			searchSearchResponse
 		);
 
+<<<<<<< HEAD
+=======
+		Query query = Mockito.mock(Query.class);
+
+		Mockito.when(
+			query.text()
+		).thenReturn(
+			RandomTestUtil.randomString()
+		);
+
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 		ElasticsearchContentRetriever elasticsearchContentRetriever =
 			new ElasticsearchContentRetriever(
 				Mockito.mock(
@@ -121,6 +166,7 @@ public class ElasticsearchContentRetrieverTest {
 				searchEngineAdapter, RandomTestUtil.randomLong(),
 				RandomTestUtil.randomLong());
 
+<<<<<<< HEAD
 		Query query = Mockito.mock(Query.class);
 
 		Mockito.when(
@@ -129,12 +175,15 @@ public class ElasticsearchContentRetrieverTest {
 			RandomTestUtil.randomString()
 		);
 
+=======
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 		List<Content> contents = elasticsearchContentRetriever.search(query);
 
 		Assert.assertEquals(contents.toString(), 1, contents.size());
 
 		Content content = contents.get(0);
 
+<<<<<<< HEAD
 		TextSegment textSegment = content.textSegment();
 
 		Assert.assertEquals(fragment, textSegment.text());
@@ -161,4 +210,12 @@ public class ElasticsearchContentRetrieverTest {
 
 	private static final String _URL = "url";
 
+=======
+		Assert.assertEquals(
+			fragment,
+			content.textSegment(
+			).text());
+	}
+
+>>>>>>> b7523bdc2a261 (LPD-96487 Skip low-score chunks in the Elasticsearch RAG retriever)
 }
