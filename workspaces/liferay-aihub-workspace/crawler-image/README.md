@@ -87,6 +87,7 @@ never rejects a batch.
 | Variable | Default | Description |
 |---|---|---|
 | `CRAWLER_DRY_RUN` | `false` | Set to `true` to skip the wrapper and write crawled docs to a local directory (estimation mode). |
+| `CRAWLER_LOG_LEVEL` | `info` | Crawler system-log verbosity, written to stdout (and tee'd to `CRAWLER_LOG_FILE`). One of `debug`, `info`, `warn`, `error`, `fatal`. Set to `debug` to see per-URL fetch outcomes (redirects, errors, skipped non-HTML content) — useful for explaining why `Pages visited` far exceeds `Documents upserted`. Noisy; enable only when diagnosing. |
 | `TENANT_AVAILABLE_QUOTA_TOKENS` | *(empty)* | Tokens this crawl may consume. **Computed by the caller** as `account_quota_limit - account_quota_used` before the Job is created. When empty, the wrapper runs in unlimited mode — counts consumption but never rejects. |
 | `ACCOUNT_ENTRY_ID` | `unknown` | Echoed in logs and in the `account_entry_id` field of the final report. |
 | `CHARS_PER_TOKEN` | `4` | Conversion factor for English. Increase for multi-byte / non-Latin scripts. |

@@ -14,6 +14,8 @@ fi
 : "${ACCOUNT_ENTRY_ID:=unknown}"
 # Optional: when unset the wrapper runs unlimited (counts tokens, never rejects).
 : "${TENANT_AVAILABLE_QUOTA_TOKENS:=}"
+# Crawler system log verbosity: debug | info | warn | error | fatal.
+: "${CRAWLER_LOG_LEVEL:=info}"
 
 log() {
 	echo "[$(date -Iseconds)] $*"
@@ -84,6 +86,7 @@ domains:
             -   "${CRAWLER_SEED_URL}"
 ${CRAWL_RULES_YAML}
 
+log_level: "${CRAWLER_LOG_LEVEL}"
 output_sink: file
 output_dir: /tmp/crawled_docs
 EOF
@@ -118,6 +121,7 @@ domains:
             -   "${CRAWLER_SEED_URL}"
 ${CRAWL_RULES_YAML}
 
+log_level: "${CRAWLER_LOG_LEVEL}"
 output_index: "${CRAWLER_OUTPUT_INDEX}"
 output_sink: elasticsearch
 
@@ -131,7 +135,7 @@ elasticsearch:
 EOF
 fi
 
-log "Starting crawler with seed=${CRAWLER_SEED_URL} index=${CRAWLER_OUTPUT_INDEX} dry_run=${CRAWLER_DRY_RUN}"
+log "Starting crawler with seed=${CRAWLER_SEED_URL} index=${CRAWLER_OUTPUT_INDEX} dry_run=${CRAWLER_DRY_RUN} log_level=${CRAWLER_LOG_LEVEL}"
 
 # Tee so the wrapper can parse "Crawl Stats" / "Ingestion Stats" on shutdown.
 bundle exec bin/crawler crawl /tmp/crawl.yml 2>&1 | tee /tmp/crawl.log
