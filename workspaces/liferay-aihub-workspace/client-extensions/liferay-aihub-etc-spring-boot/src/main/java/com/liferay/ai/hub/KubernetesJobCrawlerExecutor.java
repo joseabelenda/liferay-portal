@@ -34,12 +34,14 @@ public class KubernetesJobCrawlerExecutor implements CrawlerExecutor {
 		@Value("${liferay.ai.hub.crawler.elasticsearch.port}") int
 			elasticsearchPort,
 		@Value("${liferay.ai.hub.crawler.k8s.image}") String image,
+		@Value("${liferay.ai.hub.crawler.log.level}") String crawlerLogLevel,
 		@Value("${liferay.ai.hub.crawler.k8s.namespace}") String namespace) {
 
 		_kubernetesClient = kubernetesClient;
 		_elasticsearchHost = elasticsearchHost;
 		_elasticsearchPort = elasticsearchPort;
 		_image = image;
+		_crawlerLogLevel = crawlerLogLevel;
 		_namespace = namespace;
 	}
 
@@ -122,6 +124,12 @@ public class KubernetesJobCrawlerExecutor implements CrawlerExecutor {
 		).withValue(
 			String.valueOf(_elasticsearchPort)
 		).endEnv(
+		).addNewEnv(
+		).withName(
+			"CRAWLER_LOG_LEVEL"
+		).withValue(
+			_crawlerLogLevel
+		).endEnv(
 		).withNewSecurityContext(
 		).withAllowPrivilegeEscalation(
 			false
@@ -155,6 +163,7 @@ public class KubernetesJobCrawlerExecutor implements CrawlerExecutor {
 	private static final Log _log = LogFactory.getLog(
 		KubernetesJobCrawlerExecutor.class);
 
+	private final String _crawlerLogLevel;
 	private final String _elasticsearchHost;
 	private final int _elasticsearchPort;
 	private final String _image;
