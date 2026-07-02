@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 
 <workflow-definition
-	xmlns="urn:liferay.com:liferay-workflow_7.4.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.4.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_4_0.xsd"
+        xmlns="urn:liferay.com:liferay-workflow_7.4.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.4.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_4_0.xsd"
 >
-	<name>Site Builder</name>
-	<version>1</version>
-	<http-request>
-		<name>markGenerationReady</name>
-		<labels>
-			<label language-id="en_US">
-				Mark Generation Ready
-			</label>
-		</labels>
-		<http-method>PATCH</http-method>
-		<input-variables>
-			<![CDATA[
+    <name>Site Builder</name>
+    <version>1</version>
+    <http-request>
+        <name>markGenerationReady</name>
+        <labels>
+            <label language-id="en_US">
+                Mark Generation Ready
+            </label>
+        </labels>
+        <http-method>PATCH</http-method>
+        <input-variables>
+            <![CDATA[
 				[
 					{
 						"name": "aiHubCellLiferayDXPURL",
@@ -28,9 +28,9 @@
 					}
 				]
 			]]>
-		</input-variables>
-		<output-variables>
-			<![CDATA[
+        </input-variables>
+        <output-variables>
+            <![CDATA[
 				[
 					{
 						"name": "output",
@@ -38,27 +38,27 @@
 					}
 				]
 			]]>
-		</output-variables>
-		<request-body>
-			<![CDATA[
+        </output-variables>
+        <request-body>
+            <![CDATA[
 				{
 					"generationStatus": "ready"
 				}
 			]]>
-		</request-body>
-		<timeout>10000</timeout>
-		<transitions>
-			<transition>
-				<name>end</name>
-				<target>end</target>
-			</transition>
-		</transitions>
-		<url>{{aiHubCellLiferayDXPURL}}/o/content-site-generator/generations/by-external-reference-code/{{generationExternalReferenceCode}}</url>
-	</http-request>
-	<llm>
-		<name>siteAnalyzer</name>
-		<metadata>
-			<![CDATA[
+        </request-body>
+        <timeout>10000</timeout>
+        <transitions>
+            <transition>
+                <name>end</name>
+                <target>end</target>
+            </transition>
+        </transitions>
+        <url>{{aiHubCellLiferayDXPURL}}/o/content-site-generator/generations/by-external-reference-code/{{generationExternalReferenceCode}}</url>
+    </http-request>
+    <llm>
+        <name>siteAnalyzer</name>
+        <metadata>
+            <![CDATA[
 				{
 					"xy": [
 						300,
@@ -66,14 +66,14 @@
 					]
 				}
 			]]>
-		</metadata>
-		<labels>
-			<label language-id="en_US">
-				Site Analyzer
-			</label>
-		</labels>
-		<input-variables>
-			<![CDATA[
+        </metadata>
+        <labels>
+            <label language-id="en_US">
+                Site Analyzer
+            </label>
+        </labels>
+        <input-variables>
+            <![CDATA[
 				[
 					{
 						"name": "request",
@@ -81,9 +81,9 @@
 					}
 				]
 			]]>
-		</input-variables>
-		<output-variables>
-			<![CDATA[
+        </input-variables>
+        <output-variables>
+            <![CDATA[
 				[
 					{
 						"name": "sitePlan",
@@ -91,9 +91,9 @@
 					}
 				]
 			]]>
-		</output-variables>
-		<prompt>
-			<![CDATA[You are a Liferay site architect. You analyze a website use case description and produce a complete site plan as a single JSON object. No markdown, no prose — raw JSON only.
+        </output-variables>
+        <prompt>
+            <![CDATA[You are a Liferay site architect. You analyze a website use case description and produce a complete site plan as a single JSON object. No markdown, no prose — raw JSON only.
 
 # Output schema
 
@@ -181,30 +181,30 @@ f. Before finalizing, mentally parse the entire output as JSON to confirm every 
 11. `site.hasNavigationMenu` MUST be set to `true` if the site plan includes a navigation menu or header fragment (e.g., a navbar, site header, or top navigation bar), and `false` otherwise. This flag tells downstream steps whether to create a Liferay navigation menu for the site.
 12. For each custom fragment, set `isNavigationMenu` to `true` if it is a navigation menu or header that renders site page links, `false` otherwise. Only one fragment per site should have this flag set to `true`.
 13. Editable type constraints: editables on `<a>` (anchor) elements MUST be type "link" — NEVER "text" or "rich-text". Editables on `<img>` elements MUST be type "image". Types "text" and "rich-text" are only for text-holding tags (`<span>`, `<p>`, `<h1>`-`<h6>`, `<div>`, etc.).]]>
-		</prompt>
-		<tools>
-			<![CDATA[[]]]>
-		</tools>
-		<transitions>
-			<transition>
-				<labels>
-					<label language-id="en_US">
-						Fragment Generator
-					</label>
-				</labels>
-				<name>repairSitePlan</name>
-				<target>repairSitePlan</target>
-				<default>true</default>
-			</transition>
-		</transitions>
-		<user-message>
-			<![CDATA[{{request}}]]>
-		</user-message>
-	</llm>
-	<llm>
-		<name>fragmentGenerator</name>
-		<metadata>
-			<![CDATA[
+        </prompt>
+        <tools>
+            <![CDATA[[]]]>
+        </tools>
+        <transitions>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        Fragment Generator
+                    </label>
+                </labels>
+                <name>repairSitePlan</name>
+                <target>repairSitePlan</target>
+                <default>true</default>
+            </transition>
+        </transitions>
+        <user-message>
+            <![CDATA[{{request}}]]>
+        </user-message>
+    </llm>
+    <llm>
+        <name>fragmentGenerator</name>
+        <metadata>
+            <![CDATA[
 				{
 					"xy": [
 						300,
@@ -212,14 +212,14 @@ f. Before finalizing, mentally parse the entire output as JSON to confirm every 
 					]
 				}
 			]]>
-		</metadata>
-		<labels>
-			<label language-id="en_US">
-				Fragment Generator
-			</label>
-		</labels>
-		<input-variables>
-			<![CDATA[
+        </metadata>
+        <labels>
+            <label language-id="en_US">
+                Fragment Generator
+            </label>
+        </labels>
+        <input-variables>
+            <![CDATA[
 				[
 					{
 						"name": "sitePlan",
@@ -227,9 +227,9 @@ f. Before finalizing, mentally parse the entire output as JSON to confirm every 
 					}
 				]
 			]]>
-		</input-variables>
-		<output-variables>
-			<![CDATA[
+        </input-variables>
+        <output-variables>
+            <![CDATA[
 				[
 					{
 						"name": "response",
@@ -237,9 +237,9 @@ f. Before finalizing, mentally parse the entire output as JSON to confirm every 
 					}
 				]
 			]]>
-		</output-variables>
-		<prompt>
-			<![CDATA[You are a Liferay fragment developer. You receive a site plan JSON and generate production-quality HTML, CSS, and JS for every custom fragment defined in the `customFragments` array. ALL fragments must share a single, cohesive visual identity — they belong to the same site and must look like they were designed together. Output the complete enriched site plan as raw JSON — no markdown, no prose.
+        </output-variables>
+        <prompt>
+            <![CDATA[You are a Liferay fragment developer. You receive a site plan JSON and generate production-quality HTML, CSS, and JS for every custom fragment defined in the `customFragments` array. ALL fragments must share a single, cohesive visual identity — they belong to the same site and must look like they were designed together. Output the complete enriched site plan as raw JSON — no markdown, no prose.
 
 # Design system
 
@@ -369,32 +369,32 @@ SELF-CHECK: Before returning, mentally walk through every `html`, `css`, and `js
 - Return the COMPLETE site plan JSON with `html`, `css`, and `js` fields added to each `customFragments[]` entry.
 - Do NOT modify `site`, `sitemap`, or `pages` — pass them through unchanged.
 - Do NOT wrap in markdown fences. Output raw JSON only.]]>
-		</prompt>
-		<tools>
-			<![CDATA[[]]]>
-		</tools>
-		<transitions>
-			<transition>
-				<labels>
-					<label language-id="en_US">
-						Cache Fragments
-					</label>
-				</labels>
-				<name>repairEnrichedSitePlan</name>
-				<target>repairEnrichedSitePlan</target>
-				<default>true</default>
-			</transition>
-		</transitions>
-		<user-message>
-			<![CDATA[Generate HTML, CSS, and JS for all custom fragments in this site plan. Read the site.themePreference field and make sure every fragment visually reflects that design preference.
+        </prompt>
+        <tools>
+            <![CDATA[[]]]>
+        </tools>
+        <transitions>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        Cache Fragments
+                    </label>
+                </labels>
+                <name>repairEnrichedSitePlan</name>
+                <target>repairEnrichedSitePlan</target>
+                <default>true</default>
+            </transition>
+        </transitions>
+        <user-message>
+            <![CDATA[Generate HTML, CSS, and JS for all custom fragments in this site plan. Read the site.themePreference field and make sure every fragment visually reflects that design preference.
 
 {{sitePlan}}]]>
-		</user-message>
-	</llm>
-	<llm>
-		<name>blogGenerator</name>
-		<metadata>
-			<![CDATA[
+        </user-message>
+    </llm>
+    <llm>
+        <name>blogGenerator</name>
+        <metadata>
+            <![CDATA[
 				{
 					"xy": [
 						300,
@@ -402,14 +402,14 @@ SELF-CHECK: Before returning, mentally walk through every `html`, `css`, and `js
 					]
 				}
 			]]>
-		</metadata>
-		<labels>
-			<label language-id="en_US">
-				Blog Generator
-			</label>
-		</labels>
-		<input-variables>
-			<![CDATA[
+        </metadata>
+        <labels>
+            <label language-id="en_US">
+                Blog Generator
+            </label>
+        </labels>
+        <input-variables>
+            <![CDATA[
 				[
 					{
 						"name": "request",
@@ -417,9 +417,9 @@ SELF-CHECK: Before returning, mentally walk through every `html`, `css`, and `js
 					}
 				]
 			]]>
-		</input-variables>
-		<output-variables>
-			<![CDATA[
+        </input-variables>
+        <output-variables>
+            <![CDATA[
 				[
 					{
 						"name": "blogEntries",
@@ -427,9 +427,9 @@ SELF-CHECK: Before returning, mentally walk through every `html`, `css`, and `js
 					}
 				]
 			]]>
-		</output-variables>
-		<prompt>
-			<![CDATA[# Role
+        </output-variables>
+        <prompt>
+            <![CDATA[# Role
 
 You are a CMS blog-builder for Liferay. You receive a **natural-language request** (e.g. "Create a blog with the subject Agentic Systems" or "Create 7 blogs about birds") and you produce a JSON array of CMSBlog request bodies. Each element of the array is one blog.
 
@@ -498,37 +498,32 @@ Output:
 
 - The tool's return value is the agent's final answer. Emit it VERBATIM — no surrounding prose, no commentary, no markdown fences.
 - Never invent fields not listed in the schema. If the request can't be fulfilled, do NOT call the tool — output {"_error": "<reason>"} as plain text instead.]]>
-		</prompt>
-		<tools>
-			<![CDATA[[]]]>
-		</tools>
-		<transitions>
-			<transition>
-				<labels>
-					<label language-id="en_US">
-						Generate Site Batch Files
-					</label>
-				</labels>
-				<name>writeGenerationItems</name>
-				<target>writeGenerationItems</target>
-				<default>true</default>
-			</transition>
-		</transitions>
-		<user-message>
-			Generate blog posts for the following site request. If no blogs are requested, return an empty JSON array []. If the request specifies N blogs, emit exactly that many; if it explicitly asks for blogs without a count, emit a single blog post.
-			{{request}}
-			Return the result as a JSON array following the schema and escaping rules defined in the system prompt.
-		</user-message>
-	</llm>
-	<service>
-		<name>repairSitePlan</name>
-		<labels>
-			<label language-id="en_US">
-				Repair Site Plan
-			</label>
-		</labels>
-		<input-variables>
-			<![CDATA[
+        </prompt>
+        <tools>
+            <![CDATA[[]]]>
+        </tools>
+        <transitions>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        Generate Site Batch Files
+                    </label>
+                </labels>
+                <name>writeGenerationItems</name>
+                <target>writeGenerationItems</target>
+                <default>true</default>
+            </transition>
+        </transitions>
+        <user-message>
+            Generate blog posts for the following site request. If no blogs are requested, return an empty JSON array []. If the request specifies N blogs, emit exactly that many; if it explicitly asks for blogs without a count, emit a single blog post.
+            {{request}}
+            Return the result as a JSON array following the schema and escaping rules defined in the system prompt.
+        </user-message>
+    </llm>
+    <service>
+        <name>repairSitePlan</name>
+        <input-variables>
+            <![CDATA[
 				[
 					{
 						"name": "sitePlan",
@@ -536,10 +531,15 @@ Output:
 					}
 				]
 			]]>
-		</input-variables>
-		<java-delegate>javaDelegate#jsonRepair</java-delegate>
-		<output-variables>
-			<![CDATA[
+        </input-variables>
+        <java-delegate>javaDelegate#jsonRepair</java-delegate>
+        <labels>
+            <label language-id="en_US">
+                Repair Site Plan
+            </label>
+        </labels>
+        <output-variables>
+            <![CDATA[
 				[
 					{
 						"name": "sitePlan",
@@ -547,24 +547,24 @@ Output:
 					}
 				]
 			]]>
-		</output-variables>
-		<transitions>
-			<transition>
-				<name>acknowledgeAgent</name>
-				<target>acknowledgeAgent</target>
-			</transition>
-		</transitions>
-	</service>
-	<service>
-		<name>acknowledgeAgent</name>
-		<labels>
-			<label language-id="en_US">
-				Acknowledge Agent
-			</label>
-		</labels>
-		<java-delegate>javaDelegate#acknowledgeAgent</java-delegate>
-		<output-variables>
-			<![CDATA[
+        </output-variables>
+        <transitions>
+            <transition>
+                <name>acknowledgeAgent</name>
+                <target>acknowledgeAgent</target>
+            </transition>
+        </transitions>
+    </service>
+    <service>
+        <name>acknowledgeAgent</name>
+        <java-delegate>javaDelegate#acknowledgeAgent</java-delegate>
+        <labels>
+            <label language-id="en_US">
+                Acknowledge Agent
+            </label>
+        </labels>
+        <output-variables>
+            <![CDATA[
 				[
 					{
 						"name": "output",
@@ -572,23 +572,18 @@ Output:
 					}
 				]
 			]]>
-		</output-variables>
-		<transitions>
-			<transition>
-				<name>fragmentGenerator</name>
-				<target>fragmentGenerator</target>
-			</transition>
-		</transitions>
-	</service>
-	<service>
-		<name>repairEnrichedSitePlan</name>
-		<labels>
-			<label language-id="en_US">
-				Repair Enriched Site Plan
-			</label>
-		</labels>
-		<input-variables>
-			<![CDATA[
+        </output-variables>
+        <transitions>
+            <transition>
+                <name>fragmentGenerator</name>
+                <target>fragmentGenerator</target>
+            </transition>
+        </transitions>
+    </service>
+    <service>
+        <name>repairEnrichedSitePlan</name>
+        <input-variables>
+            <![CDATA[
 				[
 					{
 						"name": "response",
@@ -596,10 +591,15 @@ Output:
 					}
 				]
 			]]>
-		</input-variables>
-		<java-delegate>javaDelegate#jsonRepair</java-delegate>
-		<output-variables>
-			<![CDATA[
+        </input-variables>
+        <java-delegate>javaDelegate#jsonRepair</java-delegate>
+        <labels>
+            <label language-id="en_US">
+                Repair Enriched Site Plan
+            </label>
+        </labels>
+        <output-variables>
+            <![CDATA[
 				[
 					{
 						"name": "enrichedSitePlan",
@@ -607,23 +607,18 @@ Output:
 					}
 				]
 			]]>
-		</output-variables>
-		<transitions>
-			<transition>
-				<name>blogGenerator</name>
-				<target>blogGenerator</target>
-			</transition>
-		</transitions>
-	</service>
-	<service>
-		<name>writeGenerationItems</name>
-		<labels>
-			<label language-id="en_US">
-				Write Generation Items
-			</label>
-		</labels>
-		<input-variables>
-			<![CDATA[
+        </output-variables>
+        <transitions>
+            <transition>
+                <name>blogGenerator</name>
+                <target>blogGenerator</target>
+            </transition>
+        </transitions>
+    </service>
+    <service>
+        <name>writeGenerationItems</name>
+        <input-variables>
+            <![CDATA[
 				[
 					{
 						"name": "enrichedSitePlan",
@@ -639,10 +634,15 @@ Output:
 					}
 				]
 			]]>
-		</input-variables>
-		<java-delegate>javaDelegate#writeCSGGenerationItems</java-delegate>
-		<output-variables>
-			<![CDATA[
+        </input-variables>
+        <java-delegate>javaDelegate#writeCSGGenerationItems</java-delegate>
+        <labels>
+            <label language-id="en_US">
+                Write Generation Items
+            </label>
+        </labels>
+        <output-variables>
+            <![CDATA[
 				[
 					{
 						"name": "itemsResult",
@@ -650,18 +650,18 @@ Output:
 					}
 				]
 			]]>
-		</output-variables>
-		<transitions>
-			<transition>
-				<name>markGenerationReady</name>
-				<target>markGenerationReady</target>
-			</transition>
-		</transitions>
-	</service>
-	<state>
-		<name>start</name>
-		<metadata>
-			<![CDATA[
+        </output-variables>
+        <transitions>
+            <transition>
+                <name>markGenerationReady</name>
+                <target>markGenerationReady</target>
+            </transition>
+        </transitions>
+    </service>
+    <state>
+        <name>start</name>
+        <metadata>
+            <![CDATA[
 				{
 					"xy": [
 						300,
@@ -669,30 +669,30 @@ Output:
 					]
 				}
 			]]>
-		</metadata>
-		<initial>true</initial>
-		<labels>
-			<label language-id="en_US">
-				Start
-			</label>
-		</labels>
-		<transitions>
-			<transition>
-				<labels>
-					<label language-id="en_US">
-						Site Analyzer
-					</label>
-				</labels>
-				<name>siteAnalyzer</name>
-				<target>siteAnalyzer</target>
-				<default>true</default>
-			</transition>
-		</transitions>
-	</state>
-	<state>
-		<name>end</name>
-		<metadata>
-			<![CDATA[
+        </metadata>
+        <initial>true</initial>
+        <labels>
+            <label language-id="en_US">
+                Start
+            </label>
+        </labels>
+        <transitions>
+            <transition>
+                <labels>
+                    <label language-id="en_US">
+                        Site Analyzer
+                    </label>
+                </labels>
+                <name>siteAnalyzer</name>
+                <target>siteAnalyzer</target>
+                <default>true</default>
+            </transition>
+        </transitions>
+    </state>
+    <state>
+        <name>end</name>
+        <metadata>
+            <![CDATA[
 				{
 					"terminal": true,
 					"xy": [
@@ -701,11 +701,11 @@ Output:
 					]
 				}
 			]]>
-		</metadata>
-		<labels>
-			<label language-id="en_US">
-				End
-			</label>
-		</labels>
-	</state>
+        </metadata>
+        <labels>
+            <label language-id="en_US">
+                End
+            </label>
+        </labels>
+    </state>
 </workflow-definition>
