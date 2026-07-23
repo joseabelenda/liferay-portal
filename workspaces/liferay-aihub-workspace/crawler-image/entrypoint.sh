@@ -61,6 +61,9 @@ CRAWL_RULES_YAML=$(cat <<'EOF'
             -   pattern: backURL
                 policy: deny
                 type: contains
+            -   pattern: p_l_back_url
+                policy: deny
+                type: contains
             -   pattern: "redirect="
                 policy: deny
                 type: contains
@@ -73,6 +76,15 @@ CRAWL_RULES_YAML=$(cat <<'EOF'
             -   pattern: orderBy
                 policy: deny
                 type: contains
+            -   pattern: "[?&]delta="
+                policy: deny
+                type: regex
+            -   pattern: "[?&]start="
+                policy: deny
+                type: regex
+            -   pattern: "[?&]category="
+                policy: deny
+                type: regex
 EOF
 )
 
